@@ -1,0 +1,48 @@
+<p>
+  <b>Title:</b>
+  <%=h @document.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @document.description %>
+</p>
+
+<p>
+  <b>Publicly Readable:</b>
+  <%=h @document.readable %>
+</p>
+
+<p>
+  <b>Publicly Writable:</b>
+  <%=h @document.writable %>
+</p>
+
+<p>
+  <b>Downloaded:</b>
+  <%=h @document.downloaded %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= link_to @document.category.name, @document.category %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @document.user.full_name %>
+</p>
+
+<p>
+  <b>Revisions:</b><br />
+  <em><%= link_to "Current Revision", [@document, @document.current_revision] unless @document.current_revision.blank? %></em>
+  <ul>
+<% @document.revisions.each do |revision| %>
+    <li><%= link_to "#{revision.position} @ #{revision.created_at}", [revision.document, revision] %>
+<% end %>
+  </ul>
+</p>
+
+
+<%= link_to 'Edit', edit_document_path(@document) %> |
+<%= link_to 'Back', documents_path %>

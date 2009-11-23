@@ -1,0 +1,32 @@
+<h1>Listing documents</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Readable</th>
+    <th>Writable</th>
+    <th>Downloaded</th>
+    <th>Category</th>
+    <th>User</th>
+  </tr>
+
+<% @documents.each do |document| %>
+  <tr>
+    <td><%=h document.title %></td>
+    <td><%=h document.description %></td>
+    <td><%=h document.readable %></td>
+    <td><%=h document.writable %></td>
+    <td><%=h document.downloaded %></td>
+    <td><%=h document.category.name %></td>
+    <td><%=h document.user.full_name %></td>
+    <td><%= link_to 'Show', document %></td>
+    <td><%= link_to 'Edit', edit_document_path(document) %></td>
+    <td><%= link_to 'Destroy', document, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New document', new_document_path %>

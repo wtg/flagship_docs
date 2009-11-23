@@ -1,0 +1,29 @@
+  <p>
+    <%= form.label :name %><br />
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :description %><br />
+    <%= form.text_area :description %>
+  </p>
+  <p>
+    <%= form.label :private %><br />
+    <%= form.check_box :private %>
+  </p>
+  <p>
+    <%= form.label :writable, "Publicly Writable" %><br />
+    <%= form.check_box :writable %>
+  </p>
+  <p>
+    <%= form.label :parent_id %><br />
+    <%= aac_select(Category.roots, {:id =>'category_parent_id', :name => 'category[parent_id]', :selected => @category.parent_id, :option_nil => 'None'})%>
+  </p>
+  <p>
+    <%= form.label :group %><br />
+    <%= form.collection_select :group_id, Group.all, :id, :name %>
+  </p>
+  <p>
+    <%= form.label :user %><br />
+    <%= form.collection_select :user_id, User.all, :id, :full_name %>
+  </p>
+

@@ -1,0 +1,57 @@
+<p>
+  <b>Name:</b>
+  <%=h @category.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @category.description %>
+</p>
+
+<p>
+  <b>Private:</b>
+  <%=h @category.private %>
+</p>
+
+<p>
+  <b>Publically Writable:</b>
+  <%=h @category.writable %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%=h @category.parent.name unless @category.parent.blank?%>
+</p>
+
+<p>
+  <b>Owned by:</b>
+  <%=h @category.group.name %>
+</p>
+
+<p>
+  <b>Created By:</b>
+  <%=h @category.user.full_name %>
+</p>
+
+<p>
+  <b>Child Categories:</b>
+  <ul>
+<% @category.children.each do |child| %>
+    <li><%= link_to child.name, child %></li>
+<% end %>
+    <li><%= link_to '[+] Add New Category', new_category_path(:parent_id => @category.id) %></li>
+  </ul>
+</p>
+
+<p>
+  <b>Child Documents:</b>
+  <ul>
+<% @category.documents.each do |document| %>
+    <li><%= link_to document.title, document %></li>
+<% end %>
+    <li><%= link_to '[+] Add New Document', new_document_path(:category_id => @category.id) %></li>
+  </ul>
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>

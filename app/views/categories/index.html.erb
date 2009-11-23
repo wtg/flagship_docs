@@ -1,0 +1,30 @@
+<h1>Listing categories</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Private</th>
+    <th>Writable</th>
+    <th>Group</th>
+    <th>User</th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%=h category.name %></td>
+    <td><%=h category.description %></td>
+    <td><%=h category.private %></td>
+    <td><%=h category.writable %></td>
+    <td><%=h category.group.name %></td>
+    <td><%=h category.user.full_name %></td>
+    <td><%= link_to 'Show', category %></td>
+    <td><%= link_to 'Edit', edit_category_path(category) %></td>
+    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New category', new_category_path %>

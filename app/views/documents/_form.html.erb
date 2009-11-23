@@ -1,0 +1,24 @@
+  <p>
+    <%= form.label :title %><br />
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :description %><br />
+    <%= form.text_area :description %>
+  </p>
+  <p>
+    <%= form.label :readable, "Publicly Readable" %><br />
+    <%= form.check_box :readable %>
+  </p>
+  <p>
+    <%= form.label :writable, "Publicly Writable" %><br />
+    <%= form.check_box :writable %>
+  </p>
+  <p>
+    <%= form.label :category %><br />
+    <%= aac_select(Category.roots, {:id =>'document_category_id', :name => 'document[category_id]', :selected => @document.category_id}) %>
+  </p>
+  <p>
+    <%= form.label :user %><br />
+    <%= form.collection_select :user_id, User.all, :id, :full_name %>
+  </p>
