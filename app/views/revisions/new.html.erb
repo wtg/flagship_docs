@@ -1,6 +1,6 @@
 <h1>New revision for <%=h @revision.document.title %></h1>
 
-<% form_for([@revision.document, @revision]) do |f| %>
+<% form_for([@revision.document, @revision], :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
   <%= render :partial => f %>
   <p>

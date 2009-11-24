@@ -13,6 +13,10 @@
   <%=h @revision.position %>
 </p>
 
+<p>
+  <b>Download:</b>
+  <%= link_to "Here", @revision.upload.url unless @revision.upload.url.blank?%>
+</p>
 
 <%= link_to 'Edit', edit_document_revision_path(@revision.document, @revision) %> |
 <%= link_to 'Back', document_revisions_path %>

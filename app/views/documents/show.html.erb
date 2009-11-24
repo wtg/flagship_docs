@@ -37,6 +37,7 @@
   <b>Revisions:</b><br />
   <em><%= link_to "Current Revision", [@document, @document.current_revision] unless @document.current_revision.blank? %></em>
   <ul>
+    <li><%= link_to "[+] Add new revision", new_document_revision_path(@document) %></li>
 <% @document.revisions.each do |revision| %>
     <li><%= link_to "#{revision.position} @ #{revision.created_at}", [revision.document, revision] %>
 <% end %>

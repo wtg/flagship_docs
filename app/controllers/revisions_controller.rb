@@ -84,4 +84,8 @@ class RevisionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+ #Temporary download function.  Will need to be updated with something secure.
+ downloads_files_for :revision, :upload
+
 end

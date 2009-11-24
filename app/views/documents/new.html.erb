@@ -1,6 +1,6 @@
 <h1>New document</h1>
 
-<% form_for(@document) do |f| %>
+<% form_for(@document, :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
   <%= render :partial => f %>
   

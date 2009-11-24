@@ -1,24 +1,12 @@
 <h1>Editing revision</h1>
 
-<% form_for(@revision) do |f| %>
+<% form_for([@revision.document, @revision], :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :document %><br />
-    <%= f.text_field :document %>
-  </p>
-  <p>
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
-  </p>
-  <p>
-    <%= f.label :position_id %><br />
-    <%= f.text_field :position_id %>
-  </p>
+  <%= render :partial => f %>
   <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @revision %> |
-<%= link_to 'Back', revisions_path %>
+<%= link_to 'Show', [@revision.document, @revision] %> |
+<%= link_to 'Back', document_revisions_path %>

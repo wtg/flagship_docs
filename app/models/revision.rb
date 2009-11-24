@@ -1,8 +1,10 @@
 class Revision < ActiveRecord::Base
   acts_as_list :scope => :document
 
-  default_scope :order => 'position DESC'
-  
+  has_attached_file :upload, :storage => :database
+ 
+  default_scope select_without_file_columns_for(:upload).merge({:order => 'position DESC'})
+
   #Relationships
   belongs_to :document
   belongs_to :user
