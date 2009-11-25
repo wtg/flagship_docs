@@ -1,0 +1,54 @@
+/* Flagship Docs (v2) - CSS */
+/* Designed by Brian R Zaik (http://brzaik.com) in 2009-2010. */
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertica-align:baseline; }
+html { font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; }
+body { background:#FFFFFF url(../images/layout/greengrass_bg.jpg) repeat scroll left top; }
+
+a { text-decoration: none; }
+a:hover { color:#3399ff; text-decoration: underline; }
+h1#main-title { font-family:"Myriad Pro"; margin:40px 34px 24px 34px; padding:0px; padding-left:34px; line-height:1.2em; background:url(../images/layout/h1block.png) top left no-repeat; font-size:1.9em; font-weight:600; color:#333; }
+
+
+/* MAIN LAYOUT ELEMENTS */
+#wrap { width:70%; margin:40px auto; min-width:940px; background:#e0e0e0; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 0.5em #000; }
+#wrap-padding { padding:20px; }
+
+#topbar { background:#777777 url(../images/layout/tb_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #333; -webkit-box-shadow: 0 0.15em 0.2em #333; }
+#topbar-padding { padding:5px 18px; padding-left:12px; }
+#topbar { color:#eee; text-shadow:0 1px 1px #333; font-weight:normal; }
+#topbar h1 { font-weight:normal; }
+#topbar a { font-weight:bold; color:#FFF; }
+#topbar-left { float:left; width:44%; }
+#topbar-right { padding:8px 0px; padding-top:10px; float:right; width:54%; text-align:right; }
+input#tb_searchbox { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 12px; margin-top:2px; padding-left:38px; width:300px; }
+
+#dl { background:#ddd url(../images/layout/dlbg.png) top left repeat-x; }
+#dl-padding { padding:18px 34px 4px 34px; }
+#dltop { background:url(../images/layout/dlbl_tr.png) bottom right no-repeat;padding-right:11px;height:14px; }
+#dltop-inner { background:url(../images/layout/dlbl_tl.png) bottom left no-repeat;height:14px; }
+#dlmid { background:#ededed; padding:10px 0px; text-align:center; }
+#dlbot { background:url(../images/layout/dlbl_br.png) bottom right no-repeat;padding-right:11px;height:14px; }
+#dlbot-inner { background:url(../images/layout/dlbl_bl.png) bottom left no-repeat;height:14px; }
+#dl-link { height:42px;background:url(../images/layout/dlbl_linkright.png) center right repeat-x; }
+#dl-link-padding { padding:8px 35px; }
+#dl-link a { color:#0066cc; font-size:1.25em; font-weight:bold; text-decoration: none; }
+#dl-link a:hover { color:#3399ff; text-decoration: underline; }
+#dl span.details { color:#333 !important; font-size:0.7em; font-weight:normal; padding-left:8px; }
+#dl-revs { padding:12px 12px 4px 35px; }
+#dl-revs h3 { padding-bottom:12px; font-weight:normal; color:#333; font-size:0.75em; background:url(../images/layout/dlrev_hr.png) bottom center no-repeat; }
+div.dl-rev { background:url(../images/layout/dlrev_hr.png) bottom center no-repeat; padding:7px 20px; }
+div.dl-rev a { color:#000; font-weight:bold; text-decoration: none; }
+div.dl-rev a:hover { color:#3399ff; text-decoration: underline; }
+div#dl-revs div#seemore-link { text-align:right; padding:0px; margin:8px 8px 0px 0px; }
+div#dl-revs div#seemore-link a { color:#666; font-weight:bold; font-size:0.7em; text-decoration: none; }
+div#dl-revs div#seemore-link a:hover { color:#000; text-decoration: underline; }
+
+div.hr_dl { background:url(../images/layout/hr_dl.png) top left repeat-x; height:2px; }
+#sb-mid div.hr_dl { margin-left:-20px; }
+div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; height:2px; }
+
+#mc-indent { padding:20px 38px 30px 68px; }
+
+#mc-indent h2 { font-family:"Myriad Pro"; font-size:1.2em; color:#666; font-weight:bold; margin:0px 0px 18px 0px; padding:20px 0px 0px 0px; }
+#mc-indent p { font-size:0.8em; color:#333; line-height:1.2em; margin:0px 0px 14px 0px; padding:0px; }
