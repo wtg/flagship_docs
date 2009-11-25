@@ -39,7 +39,4 @@ form.cmxform label.error, label.error {
         font-style: italic
 }
 div.error { display: none; }
-input { border: 1px solid black; }
-input:focus { border: 1px dotted black; }
-input.error { border: 1px dotted red; }
 form.cmxform .gray * { color: gray; }
