@@ -4,7 +4,11 @@ class AddDbAttachmentsUploadToRevision < ActiveRecord::Migration
     add_column :revisions, :upload_content_type, :string
     add_column :revisions, :upload_file_size, :integer
     add_column :revisions, :upload_updated_at, :datetime
-    add_column :revisions, :upload_file, :binary
+    if ActiveRecord::Base.connection.instance_values["config"][:adapter] == "mysql"
+      execute "ALTER TABLE revisions ADD COLUMN upload_file LONGBLOB"
+    else
+      add_column :revisions, :upload_file, :binary
+    end
   end
 
   def self.down
@@ -12,6 +16,10 @@ class AddDbAttachmentsUploadToRevision < ActiveRecord::Migration
     remove_column :revisions, :upload_content_type
     remove_column :revisions, :upload_file_size
     remove_column :revisions, :upload_updated_at
-    remove_column :revisions, :upload_file
+    if ActiveRecord::Base.connection.instance_values["config"][:adapter] == "mysql"
+      execute "ALTER TABLE revisions DROP upload_file"
+    else
+      remove_column :revisions, :upload_file
+    end
   end
 end

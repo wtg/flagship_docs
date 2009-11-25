@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091124051445) do
+ActiveRecord::Schema.define(:version => 20091125042153) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20091124051445) do
     t.string   "upload_content_type"
     t.integer  "upload_file_size"
     t.datetime "upload_updated_at"
-    t.binary   "upload_file"
+    t.binary   "upload_file",         :limit => 2147483647
   end
 
   create_table "users", :force => true do |t|
