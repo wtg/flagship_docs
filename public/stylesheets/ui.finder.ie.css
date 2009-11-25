@@ -1,0 +1,13 @@
+.ui-finder,
+.ui-finder .ui-finder-wrapper,
+.ui-finder .ui-finder-header {
+	height:1%;
+	position:relative;
+	clear:both;
+}
+.ui-finder .ui-finder-container,
+.ui-finder .ui-finder-content,
+.ui-finder .ui-finder-list-item {
+	position:relative;
+	hasLayout:true;
+}

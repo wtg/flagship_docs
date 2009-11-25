@@ -1,0 +1,15 @@
+body{font:0.8em Verdana,Arial,Helvetica,sans-serif;;}
+hr{clear:both;}
+.ui-finder{width:850px;padding:10px;}
+.ui-finder .ui-finder-list-item{border-bottom:1px solid;}
+.ui-finder .ui-finder-column .ui-finder-file-preview .ui-finder-image img{background-color:#000;border:1px outset #ccc;}
+.ui-finder-action-destroy{float:left !important;}
+.ui-finder .ui-finder-column .ui-finder-file-preview{font-size:0.85em;}
+.ui-finder .ui-finder-column .ui-finder-file-preview{padding:10px;}
+.ui-finder .ui-finder-column .ui-finder-file-preview .ui-finder-properties{line-height:1.3em;}
+.ui-finder .ui-finder-column .ui-finder-file-preview .ui-finder-properties li{margin:0 0 10px 0;}
+.ui-finder .ui-finder-column .ui-finder-file-preview .ui-finder-properties li strong{display:block;color:#888;}
+.ui-finder .ui-finder-column .ui-finder-file-preview .ui-finder-preview-heading{font-size:1.2em;position:relative;padding-left:20px;margin:0 0 15px 0;cursor:pointer;}
+.ui-finder .ui-finder-column .ui-finder-file-preview .ui-finder-preview-heading span{display:block;position:absolute;top:0;left:0;bottom:0;width:16px;}
+.ui-finder .ui-finder-column .ui-finder-file-preview .ui-finder-image{margin:15px 0;display:block;}
+.ui-finder .ui-finder-column .ui-finder-file-preview .ui-finder-image img{padding:2px;max-width:150px;max-height:150px;}
