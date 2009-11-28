@@ -1,9 +1,4 @@
-  <p>
-    <%= form.label :user %><br />
-    <%= form.collection_select :user_id, User.all, :id, :full_name %>
-  </p>
-  <p>
-    <%= form.label :upload %><br />
-    <%= form.file_field :upload %>
-  </p>
+<li><%= form.label :user %> <%= form.text_field :user %></li>
+<li><%= form.label :upload %> <%= form.file_field :upload %></li>
+
 

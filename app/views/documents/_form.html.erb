@@ -8,12 +8,11 @@
 			<li><%= f.label :writable, "Publicly Writable" %> <%= f.check_box :writable %></li>
 			<li><%= f.label :category %> <%= aac_select(Category.roots, {:id =>'document_category_id', :name => 'document[category_id]', :selected => @document.category_id}) %></li>
 			<li><%= f.label :user %> <%= f.collection_select :user_id, User.all, :id, :full_name %></li>
+			<hr />
+			<% f.fields_for :revisions do |revision| %>
+		    	<%= render :partial => 'revisions/form', :locals => {:form => revision} %>
+		  	<% end %>
 		</ol>
 	</fieldset>
-	<% if controller.action_name == 'edit' %>
-		<% f.fields_for :revisions do |revision| %>
-	    	<%= render :partial => 'revisions/form', :locals => {:form => revision} %>
-	  	<% end %>
-	<% end %>
 	<p class="submitbutton"><%= f.submit button_text %></p>
 <% end %>

@@ -7,15 +7,17 @@ body { background:#FFFFFF url(../images/layout/greengrass_bg.jpg) repeat scroll 
 
 a { text-decoration: none; }
 a:hover { color:#3399ff; text-decoration: underline; }
-h1.main-title { margin:0px; margin-bottom:26px; padding:0px; padding-left:34px; background:url(../images/layout/h1block.png) top left no-repeat; font-size:1.9em; font-weight:600; color:#333; }
-h1.main-title span { font-weight:normal; font-size:0.5em; padding:0px; margin:0px; display:block; }
+h1.main-title { margin:0px; margin-bottom:30px; padding:0px; padding-left:34px; background:url(../images/layout/h1block.png) top left no-repeat; font-size:1.9em; font-weight:600; color:#333; }
+h1.main-title span { color:#666; font-weight:normal; font-size:0.5em; padding:0px; margin:0px; display:block; }
 h1.main-title span a { color:#666; font-weight:bold; }
 h1.main-title span a.cancel-link { color:#dc0000 !important; }
 h1.main-title span a.edit-link { color:#f59300 !important; }
+div.mc-indent { padding-left:34px; }
+
 
 /* MAIN LAYOUT ELEMENTS */
 #wrap { width:70%; margin:30px auto; min-width:940px; background:#f5f5f5 url(../images/layout/wrap_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 0.5em #000; }
-#wrap-padding { padding:40px 20px; }
+#wrap-padding { padding:40px 20px; padding-bottom:50px; }
 
 #header { background:#99cccc; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #666; -webkit-box-shadow: 0 0.15em 0.2em #666; }
 #header h1.expand { font-size:1em; padding:6px 20px; }
@@ -62,7 +64,7 @@ div.hr_dl { background:url(../images/layout/hr_dl.png) top left repeat-x; height
 #sb-mid div.hr_dl { margin-left:-20px; }
 div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; height:2px; }
 
-#mc-indent { padding:20px 38px 30px 68px; }
+
 
 #mc-indent h2 { font-family:"Myriad Pro"; font-size:1.2em; color:#666; font-weight:bold; margin:0px 0px 18px 0px; padding:20px 0px 0px 0px; }
 #mc-indent p { font-size:0.8em; color:#333; line-height:1.2em; margin:0px 0px 14px 0px; padding:0px; }
