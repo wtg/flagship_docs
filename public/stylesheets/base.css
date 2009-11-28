@@ -27,7 +27,7 @@ div.mc-indent { padding-left:34px; }
 #cat_tree-padding { padding:25px; border-bottom:solid 1px #666; }
 #cat_tree ul { font-size:0.9em; margin:0px; padding:0px; padding-left:8px; }
 #cat_tree li { list-style-type:square; margin:0px; padding:0px; }
-#cat_tree a { font-size:1em; color:#;}
+#cat_tree a { font-size:1em; color:#333; font-weight:bold; }
 
 #topbar { background:url(../images/layout/tb_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #333; -webkit-box-shadow: 0 0.15em 0.2em #333; }
 #topbar-padding { padding:5px 18px; padding-left:12px; }
