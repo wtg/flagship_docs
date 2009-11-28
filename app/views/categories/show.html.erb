@@ -1,12 +1,11 @@
-<p>
-  <b>Name:</b>
-  <%=h @category.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%=h @category.description %>
-</p>
+<h1 class="main-title">
+	<%=h @category.name %>
+	<span>
+		<%= link_to 'Edit', edit_category_path(@category), :class => 'edit-link' %>
+		<br />
+		<%=h @category.description %>
+	</span>
+</h1>
 
 <p>
   <b>Private:</b>
@@ -52,6 +51,3 @@
     <li><%= link_to '[+] Add New Document', new_document_path(:category_id => @category.id) %></li>
   </ul>
 </p>
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>

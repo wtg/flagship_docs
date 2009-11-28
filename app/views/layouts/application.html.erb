@@ -4,26 +4,41 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
 	<title><%= controller.controller_name.titleize %> - Flagship Docs</title>
 	<meta name="title" content="Flagship" />
-	<%= stylesheet_link_tag "base", :media => 'all' %>
-	<%= stylesheet_link_tag "cmxform", :media => 'all' %>	
+	<%= stylesheet_link_tag "base", :media => 'all' %>	
 
 </head>
 
 <body>
 	
 	<div id="wrap">
-		<div id="topbar">
-			<div id="topbar-padding">
-				<div id="topbar-left">
-					<%= text_field :stuff, :stuff, :id => "tb_searchbox" %>
+		<div id="header">
+			<div id="topbar">
+				<div id="topbar-padding">
+					<div id="topbar-left">
+						<%= text_field :stuff, :stuff, :id => "tb_searchbox" %>
+					</div>
+					<div id="topbar-right">
+						<h1><a href="#">Login</a></h1>
+					</div>
+					<div style="clear:both;"></div>
 				</div>
-				<div id="topbar-right">
-					<h1><a href="#">Login</a></h1>
-				</div>
-				<div style="clear:both;"></div>
 			</div>
-		</div>
+			<% @tree_categories = Category.find(:all) %>
+			<% if @tree_categories %>
+			<div id="cat_tree">
+				<div id="cat_tree-padding">
+					<ul>
+						<% @tree_categories.each do |tree_cat| %>
+						<li><%= link_to tree_cat.name, tree_cat %></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+			<% end %>
 
+			<h1 class="expand"><a href="#">Hide Categories</a></h1>
+		</div>
+		
 		<div id="wrap-padding">
 			<%= yield %>
 		</div>

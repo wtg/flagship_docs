@@ -1,12 +1,7 @@
-<h1>Editing category</h1>
+<h1 class="main-title">
+	Editing Category
+	<span><%= link_to 'Show', @category %> | <%= link_to 'Cancel', categories_path, :class => 'cancel-link' %></span>
+</h1>
 
-<% form_for(@category) do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => f %>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+<%= render :partial => 'form', :locals => { :category => @category, :button_text => 'Update' } %>
 
-<%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>

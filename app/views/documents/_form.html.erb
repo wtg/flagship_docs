@@ -1,24 +1,19 @@
-  <p>
-    <%= form.label :title %><br />
-    <%= form.text_field :title %>
-  </p>
-  <p>
-    <%= form.label :description %><br />
-    <%= form.text_area :description %>
-  </p>
-  <p>
-    <%= form.label :readable, "Publicly Readable" %><br />
-    <%= form.check_box :readable %>
-  </p>
-  <p>
-    <%= form.label :writable, "Publicly Writable" %><br />
-    <%= form.check_box :writable %>
-  </p>
-  <p>
-    <%= form.label :category %><br />
-    <%= aac_select(Category.roots, {:id =>'document_category_id', :name => 'document[category_id]', :selected => @document.category_id}) %>
-  </p>
-  <p>
-    <%= form.label :user %><br />
-    <%= form.collection_select :user_id, User.all, :id, :full_name %>
-  </p>
+<% form_for(document, :html => { :class => 'cmxform', :multipart => true }) do |f| %>
+	<%= f.error_messages %>
+	<fieldset>
+		<ol>
+			<li><%= f.label :title %> <%= f.text_field :title %></li>
+			<li><%= f.label :description %> <%= f.text_area :description %></li>
+			<li><%= f.label :readable, "Publicly Readable" %> <%= f.check_box :readable %></li>
+			<li><%= f.label :writable, "Publicly Writable" %> <%= f.check_box :writable %></li>
+			<li><%= f.label :category %> <%= aac_select(Category.roots, {:id =>'document_category_id', :name => 'document[category_id]', :selected => @document.category_id}) %></li>
+			<li><%= f.label :user %> <%= f.collection_select :user_id, User.all, :id, :full_name %></li>
+		</ol>
+	</fieldset>
+	<% if controller.action_name == 'edit' %>
+		<% f.fields_for :revisions do |revision| %>
+	    	<%= render :partial => 'revisions/form', :locals => {:form => revision} %>
+	  	<% end %>
+	<% end %>
+	<p class="submitbutton"><%= f.submit button_text %></p>
+<% end %>

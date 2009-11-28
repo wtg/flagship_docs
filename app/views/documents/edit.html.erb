@@ -1,12 +1,6 @@
-<h1>Editing document</h1>
+<h1 class="main-title">
+	Editing Document
+	<span><%= link_to 'Show', @document %> | <%= link_to 'Cancel', documents_path, :class => 'cancel-link' %></span>
+</h1>
 
-<% form_for(@document) do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => f %>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @document %> |
-<%= link_to 'Back', documents_path %>
+<%= render :partial => 'form', :locals => { :document => @document, :button_text => 'Update' } %>

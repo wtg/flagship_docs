@@ -1,11 +1,6 @@
-<h1>New category</h1>
+<h1 class="main-title">
+	New Category
+	<span><%= link_to 'Cancel', categories_path, :class => 'cancel-link' %></span>
+</h1>
 
-<% form_for(@category) do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => f %>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
-
-<%= link_to 'Back', categories_path %>
+<%= render :partial => 'form', :locals => { :category => @category, :button_text => 'Create' } %>

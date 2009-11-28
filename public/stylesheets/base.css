@@ -7,21 +7,35 @@ body { background:#FFFFFF url(../images/layout/greengrass_bg.jpg) repeat scroll 
 
 a { text-decoration: none; }
 a:hover { color:#3399ff; text-decoration: underline; }
-h1#main-title { font-family:"Myriad Pro"; margin:40px 34px 24px 34px; padding:0px; padding-left:34px; line-height:1.2em; background:url(../images/layout/h1block.png) top left no-repeat; font-size:1.9em; font-weight:600; color:#333; }
-
+h1.main-title { margin:0px; margin-bottom:26px; padding:0px; padding-left:34px; background:url(../images/layout/h1block.png) top left no-repeat; font-size:1.9em; font-weight:600; color:#333; }
+h1.main-title span { font-weight:normal; font-size:0.5em; padding:0px; margin:0px; display:block; }
+h1.main-title span a { color:#666; font-weight:bold; }
+h1.main-title span a.cancel-link { color:#dc0000 !important; }
+h1.main-title span a.edit-link { color:#f59300 !important; }
 
 /* MAIN LAYOUT ELEMENTS */
-#wrap { width:70%; margin:40px auto; min-width:940px; background:#f5f5f5 url(../images/layout/wrap_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 0.5em #000; }
-#wrap-padding { padding:30px 20px; }
+#wrap { width:70%; margin:30px auto; min-width:940px; background:#f5f5f5 url(../images/layout/wrap_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 0.5em #000; }
+#wrap-padding { padding:40px 20px; }
+
+#header { background:#99cccc; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #666; -webkit-box-shadow: 0 0.15em 0.2em #666; }
+#header h1.expand { font-size:1em; padding:6px 20px; }
+#header h1.expand a { font-weight:bold; text-shadow:0 1px 0px #FFF; color:#003366; font-size:0.6em; text-transform:uppercase; letter-spacing:0.13em; }
+
+#cat_tree { background:url(../images/layout/tree_bg.png) bottom left repeat-x; margin:0px; border-bottom:solid 1px #eee; }
+#cat_tree-padding { padding:25px; border-bottom:solid 1px #666; }
+#cat_tree ul { font-size:0.9em; margin:0px; padding:0px; padding-left:8px; }
+#cat_tree li { list-style-type:square; margin:0px; padding:0px; }
+#cat_tree a { font-size:1em; color:#;}
 
 #topbar { background:url(../images/layout/tb_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #333; -webkit-box-shadow: 0 0.15em 0.2em #333; }
 #topbar-padding { padding:5px 18px; padding-left:12px; }
-#topbar { color:#eee; text-shadow:0 1px 1px #333; font-weight:normal; }
+#topbar { color:#eee; text-shadow:0 1px 0px #000; font-weight:normal; }
 #topbar h1 { font-weight:normal; }
 #topbar a { font-weight:bold; color:#FFF; }
 #topbar-left { float:left; width:44%; }
 #topbar-right { padding:8px 0px; padding-top:10px; float:right; width:54%; text-align:right; }
 input#tb_searchbox { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 12px; margin-top:2px; padding-left:38px; width:300px; }
+input#tb_searchbox:focus { background:url(../images/layout/search_bg_hover.png) center center no-repeat; }
 
 #dl { background:#ddd url(../images/layout/dlbg.png) top left repeat-x; }
 #dl-padding { padding:18px 34px 4px 34px; }
@@ -52,3 +66,28 @@ div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; heig
 
 #mc-indent h2 { font-family:"Myriad Pro"; font-size:1.2em; color:#666; font-weight:bold; margin:0px 0px 18px 0px; padding:20px 0px 0px 0px; }
 #mc-indent p { font-size:0.8em; color:#333; line-height:1.2em; margin:0px 0px 14px 0px; padding:0px; }
+
+
+/* Admin Forms Styles */
+p.submitbutton{padding-left:140px;}
+form.cmxform fieldset{ background:#e6e6e6; border:solid 1px #999; -moz-border-radius:5px; -webkit-border-radius:5px; font-size:1.2em;margin-bottom:10px;}
+form.cmxform input { font-size:1em; }
+form.cmxform textarea{font-size:0.9em;width:80%;}
+form.cmxform legend{padding:0 2px;font-weight:700;_margin:0 -7px;/* IE Win */}
+form.cmxform label{text-transform:uppercase; letter-spacing:0.13em; display:inline-block;line-height:1.8;vertical-align:top;}
+form.cmxform fieldset ol{margin:0;padding:0;}
+form.cmxform fieldset li{list-style:none;padding:5px;margin:0;}
+form.cmxform fieldset fieldset{border:none;margin:3px 0 0;}
+form.cmxform fieldset fieldset legend{padding:0 0 5px;font-weight:400;}
+form.cmxform fieldset fieldset label{display:block;width:auto;}
+form.cmxform em{font-weight:700;font-style:normal;color:red;}
+form.cmxform label{ text-shadow:0 1px 0px #000; background:#666;color:#FFF;font-size:0.6em;text-align:right;padding:6px 0px; padding-right:8px;width:120px;}
+/* Width of labels */
+form.cmxform fieldset fieldset label{margin-left:123px;}
+/* Width plus 3 (html space) *//*\*//*/ form.cmxform legend { display: inline-block; } /* IE Mac legend fix */
+div.form_group { margin-bottom:25px; }
+div.form_group fieldset { padding:14px 0px; border:solid 1px #999; -moz-border-radius:5px; -webkit-border-radius:5px; }
+div.form_group input { background:#FFEFEF; font-size:1.15em; border:solid 1px #999; }
+div.form_group legend { margin:8px; font-size:1.4em; background:#FFF; font-weight:normal; padding:0px 8px; }
+div.form_group label { padding:2px 0px; vertical-align:top; font-weight:bold; padding-right:6px; background:none; color:#333; font-size:0.8em; width:210px; }
+div.form_group textarea { width:70%; background:#FFEFEF; border:solid 1px #999; }
