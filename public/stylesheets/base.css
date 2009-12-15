@@ -12,6 +12,8 @@ h1.main-title span { color:#666; font-weight:normal; font-size:0.5em; padding:0p
 h1.main-title span a { color:#666; font-weight:bold; }
 h1.main-title span a.cancel-link { color:#dc0000 !important; }
 h1.main-title span a.edit-link { color:#f59300 !important; }
+h2.breadcrumb { padding-left:34px; color:#999; text-transform: uppercase; font-size:0.75em; letter-spacing: 0.15em; }
+h2.breadcrumb a { color:#333; }
 div.mc-indent { padding-left:34px; }
 
 
@@ -58,12 +60,12 @@ div.flush { margin-left:-20px; margin-right:-20px; }
 #dlbot-inner { background:url(../images/layout/dlbl_bl.png) bottom left no-repeat;height:14px; }
 #dl-link { height:42px; background:#EDEDED; -moz-border-radius-bottomright:12px; -webkit-border-bottom-right-radius:12px; -moz-border-radius-topright:12px; -webkit-border-top-right-radius:12px; }
 #dl-link-padding { padding:8px 35px; }
-#dl-link a { color:#0066cc; font-size:1.25em; font-weight:bold; text-decoration: none; }
+#dl-link a { color:#0066cc; font-size:1.5em; font-weight:bold; text-decoration: none; }
 #dl-link a:hover { color:#3399ff; text-decoration: underline; }
 #dl span.details { color:#333 !important; font-size:0.7em; font-weight:normal; padding-left:8px; }
 #dl-revs { padding:12px 12px 4px 35px; }
-#dl-revs h3 { padding-bottom:12px; font-weight:normal; color:#333; font-size:0.75em; background:url(../images/layout/dlrev_hr.png) bottom center no-repeat; }
-div.dl-rev { background:url(../images/layout/dlrev_hr.png) bottom center no-repeat; padding:7px 20px; }
+#dl-revs h3 { padding-bottom:12px; font-weight:normal; color:#333; font-size:0.75em; border-bottom:solid 1px #999; }
+div.dl-rev { border-bottom:solid 1px #999; padding:7px 20px; }
 div.dl-rev a { color:#000; font-weight:bold; text-decoration: none; }
 div.dl-rev a:hover { color:#3399ff; text-decoration: underline; }
 div#dl-revs div#seemore-link { text-align:right; padding:0px; margin:8px 8px 0px 0px; }
@@ -75,7 +77,7 @@ div.hr_dl { background:url(../images/layout/hr_dl.png) top left repeat-x; height
 div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; height:2px; }
 
 
-#mc-indent h2 { font-size:1.2em; color:#666; font-weight:bold; margin:0px 0px 18px 0px; padding:20px 0px 0px 0px; }
+#mc-indent h2 { font-size:1.2em; color:#333; font-weight:normal; margin:0px 0px 18px 0px; padding:20px 0px 0px 0px; }
 #mc-indent p { font-size:0.8em; color:#333; line-height:1.2em; margin:0px 0px 14px 0px; padding:0px; }
 
 

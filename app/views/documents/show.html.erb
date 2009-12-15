@@ -1,9 +1,18 @@
+<h2 class="breadcrumb"><%= link_to @document.category.name, @document.category %> /</h2>
 <h1 class="main-title">
+	<div class="info_box">
+		<p>
+			<% if @document.readable %>Readable<% else %>Not Readable<% end %>
+			<% if @document.writable %>Writable<% else %>Not Writable<% end %>
+		</p>
+	</div>
+
 	<%=h @document.title %>
 	<span>
 		<%= link_to 'Edit', edit_document_path(@document), :class => 'edit-link' %> | <%= link_to 'Back', documents_path %>
 	</span>
 </h1>
+
 <div class="flush">
 	<div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
 	<div id="dl">
@@ -43,19 +52,7 @@
 		<h2>Description</h2>
 		<%= @document.description %>
 	<% end %>
-	<p>
-	  <b>Category:</b>
-	  <%= link_to @document.category.name, @document.category %>
-	</p>
-	<p>
-	  <b>Publicly Readable:</b>
-	  <%=h @document.readable %>
-	</p>
-	
-	<p>
-	  <b>Publicly Writable:</b>
-	  <%=h @document.writable %>
-	</p>
+
 	<h2>
 		Submitted by <%=h @document.user.full_name %>
 		<br />
