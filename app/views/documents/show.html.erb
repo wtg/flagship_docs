@@ -12,7 +12,7 @@
 				<div id="dltop"><div id="dltop-inner"><%= image_tag("bl.png", :alt => "") %></div></div>
 				<div id="dlmid">
 					<% unless @document.current_revision.blank? %>
-						<% link_to [@document, @document.current_revision] do %>
+						<% link_to document_revision_path(@document, 'current') do %>
 							<%= image_tag("http://documents.studentsenate.rpi.edu/images/cobalt/frame/icon_pdf.png", :alt => "Download File") %>
 						<% end %>
 					<% end %>
@@ -21,7 +21,7 @@
 			</div>
 			<div style="padding-top:14px;float:right;width:75%;">
 				<div id="dl-link"><div id="dl-link-padding">
-					<%= link_to "Download File", [@document, @document.current_revision] unless @document.current_revision.blank? %>
+					<%= link_to "Download File", document_revision_path(@document, 'current') unless @document.current_revision.blank? %>
 					<span class="details">3.4 MB PDF from 3/12/09</span>
 				</div></div>
 				<div id="dl-revs">

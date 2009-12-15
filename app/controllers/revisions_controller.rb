@@ -13,7 +13,11 @@ class RevisionsController < ApplicationController
   # GET /revisions/1
   # GET /revisions/1.xml
   def show
-    @revision = Revision.find(params[:id])
+    if params[:id] == 'current'
+      @revision = Document.find(params[:document_id]).current_revision
+    else
+      @revision = Revision.find(params[:id])
+    end
 
     respond_to do |format|
       format.html # show.html.erb
