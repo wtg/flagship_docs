@@ -1,4 +1,10 @@
 <h1 class="main-title">
+	<div class="info_box">
+		<p>
+			<% if @category.private %>Private<% else %>Public<% end %>
+			<% if @category.writable %>Writable<% else %>Not Writable<% end %>
+		</p>
+	</div>
 	<%=h @category.name %>
 	<span>
 		<%=h @category.description %>
@@ -7,27 +13,24 @@
 	</span>
 </h1>
 <div class="mc-indent">
+	<%= link_to 'Add Sub-Category', new_category_path(:parent_id => @category.id), :class => "link-button" %>
+	<%= link_to 'Add Document', new_document_path(:category_id => @category.id), :class => "link-button" %>
+	<div style="clear:both;"></div>
+	<br /><br />
 	<ul>
 		<% @category.children.each do |child| %>
 	  	<li><%= link_to child.name, child %></li>
 		<% end %>
-	  	<li><%= link_to '[+] Add New Category', new_category_path(:parent_id => @category.id) %></li>
 	</ul>
-
-	<div style="clear:both;"></div>
-	
+	<br />
 	<ul>
 		<% @category.documents.each do |document| %>
 		<li><%= link_to document.title, document %></li>
 		<% end %>
-	  	<li><%= link_to '[+] Add New Document', new_document_path(:category_id => @category.id) %></li>
 	</ul>
 	
 	<br /><br />
 	<hr />
-	
-	<p><b>Private:</b> <%=h @category.private %></p>
-	<p><b>Publically Writable:</b> <%=h @category.writable %></p>
 	<p><b>Parent:</b> <%=h @category.parent.name unless @category.parent.blank?%></p>
 	<p><b>Owned by:</b> <%=h @category.group.name %></p>
 	<p><b>Created By:</b> <%=h @category.user.full_name %></p>

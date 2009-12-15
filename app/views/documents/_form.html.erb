@@ -10,8 +10,8 @@
 			<li><%= f.label :user %> <%= f.collection_select :user_id, User.all, :id, :full_name %></li>
 			<hr />
 			<% f.fields_for :revisions do |revision| %>
-		    	<%= render :partial => 'revisions/form', :locals => {:form => revision} %>
-		  	<% end %>
+		    	<%= render :partial => 'revisions/form', :locals => {:form => revision } %>
+		  <% end %>
 		</ol>
 	</fieldset>
 	<p class="submitbutton"><%= f.submit button_text %></p>

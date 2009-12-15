@@ -1,49 +1,64 @@
-<p>
-  <b>Title:</b>
-  <%=h @document.title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%=h @document.description %>
-</p>
-
-<p>
-  <b>Publicly Readable:</b>
-  <%=h @document.readable %>
-</p>
-
-<p>
-  <b>Publicly Writable:</b>
-  <%=h @document.writable %>
-</p>
-
-<p>
-  <b>Downloaded:</b>
-  <%=h @document.downloaded %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%= link_to @document.category.name, @document.category %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%=h @document.user.full_name %>
-</p>
-
-<p>
-  <b>Revisions:</b><br />
-  <em><%= link_to "Current Revision", [@document, @document.current_revision] unless @document.current_revision.blank? %></em>
-  <ul>
-    <li><%= link_to "[+] Add new revision", new_document_revision_path(@document) %></li>
-<% @document.revisions.each do |revision| %>
-    <li><%= link_to "#{revision.position} @ #{revision.created_at}", [revision.document, revision] %>
-<% end %>
-  </ul>
-</p>
-
-
-<%= link_to 'Edit', edit_document_path(@document) %> |
-<%= link_to 'Back', documents_path %>
+<h1 class="main-title">
+	<%=h @document.title %>
+	<span>
+		<%= link_to 'Edit', edit_document_path(@document), :class => 'edit-link' %> | <%= link_to 'Back', documents_path %>
+	</span>
+</h1>
+<div class="flush">
+	<div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
+	<div id="dl">
+		<div id="dl-padding">
+			<div style="float:left; width:25%;">
+				<div id="dltop"><div id="dltop-inner"><%= image_tag("bl.png", :alt => "") %></div></div>
+				<div id="dlmid">
+					<% unless @document.current_revision.blank? %>
+						<% link_to [@document, @document.current_revision] do %>
+							<%= image_tag("http://documents.studentsenate.rpi.edu/images/cobalt/frame/icon_pdf.png", :alt => "Download File") %>
+						<% end %>
+					<% end %>
+				</div>
+				<div id="dlbot"><div id="dlbot-inner"><%= image_tag("bl.png", :alt => "") %></div></div>
+			</div>
+			<div style="padding-top:14px;float:right;width:75%;">
+				<div id="dl-link"><div id="dl-link-padding">
+					<%= link_to "Download File", [@document, @document.current_revision] unless @document.current_revision.blank? %>
+					<span class="details">3.4 MB PDF from 3/12/09</span>
+				</div></div>
+				<div id="dl-revs">
+					<h3>Past Revisions:</h3>
+					<% @document.revisions.each do |revision| %>
+    				<div class="dl-rev"><%= link_to "#{revision.position} @ #{revision.created_at}", [revision.document, revision] %></div>
+    			<% end %>
+    			<div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document) %></div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+	<div class="hr_dl2"><%= image_tag("bl.png", :alt => "") %></div>
+</div>
+<br /><br />
+<div id="mc-indent" class="mc-indent">
+	<% if @document.description and @document.description != "" %>
+		<h2>Description</h2>
+		<%= @document.description %>
+	<% end %>
+	<p>
+	  <b>Category:</b>
+	  <%= link_to @document.category.name, @document.category %>
+	</p>
+	<p>
+	  <b>Publicly Readable:</b>
+	  <%=h @document.readable %>
+	</p>
+	
+	<p>
+	  <b>Publicly Writable:</b>
+	  <%=h @document.writable %>
+	</p>
+	<h2>
+		Submitted by <%=h @document.user.full_name %>
+		<br />
+		Downloaded <%=h @document.downloaded %> times to date
+	</h2>
+</div>

@@ -2,7 +2,7 @@
 /* Designed by Brian R Zaik (http://brzaik.com) in 2009-2010. */
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertica-align:baseline; }
-html { font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; }
+html { font-family:"Myriad Web", Myriad, Helvetica, Arial, sans-serif; }
 body { background:#FFFFFF url(../images/customized/woodplanks.jpg) repeat scroll left top; }
 
 a { text-decoration: none; }
@@ -16,7 +16,7 @@ div.mc-indent { padding-left:34px; }
 
 
 /* LINK BUTTONS */
-a.link-button { font-size:0.9em; padding:6px 18px; background:#666; color:#FFF; -moz-border-radius:18px; -webkit-border-radius:18px; text-shadow:0 1px 0px #000; -moz-box-shadow: 0 0.2em 0em #999; -webkit-box-shadow: 0 0.2em 0em #999; }
+a.link-button { font-size:0.9em; padding:6px 18px; background:#666; color:#FFF; -moz-border-radius:18px; -webkit-border-radius:18px; text-shadow:0 1px 0px #000; -moz-box-shadow: 0 0.2em 0em #999; -webkit-box-shadow: 0 0.2em 0em #999; margin-bottom:25px !important; }
 a.link-button:hover { background:#006699; -moz-box-shadow: 0 0.2em 0em #99cccc; -webkit-box-shadow: 0 0.2em 0em #99cccc; }
 
 /* MAIN LAYOUT ELEMENTS */
@@ -24,15 +24,19 @@ a.link-button:hover { background:#006699; -moz-box-shadow: 0 0.2em 0em #99cccc; 
 #wrap-padding { padding:40px 20px; padding-bottom:50px; }
 
 #header { background:#99cccc; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #666; -webkit-box-shadow: 0 0.15em 0.2em #666; }
-#header h1.expand { font-size:1em; padding:6px 20px; }
+#header h1.expand { font-size:1em; padding:6px 20px; margin-top:4px; }
 #header h1.expand a { font-weight:bold; text-shadow:0 1px 0px #FFF; color:#003366; font-size:0.6em; text-transform:uppercase; letter-spacing:0.13em; }
 
+/* Category Tree */
 #cat_tree { background:url(../images/layout/tree_bg.png) bottom left repeat-x; margin:0px; }
 #cat_tree_inset { border-bottom:solid 1px #eee; }
-#cat_tree-padding { padding:25px; border-bottom:solid 1px #666; }
-#cat_tree ul { font-size:0.9em; margin:0px; padding:0px; padding-left:8px; }
+#cat_tree-padding { padding:25px 25px 25px 8px; border-bottom:solid 1px #666; }
+#cat_tree ul { font-size:0.9em; margin:0px; padding:0px; padding-left:20px; }
 #cat_tree li { list-style-type:square; margin:0px; padding:0px; }
 #cat_tree a { font-size:1em; color:#333; font-weight:bold; }
+ul.tree_root li { list-style: none !important; }
+ul.tree_root li a {-moz-border-radius:3px; -webkit-border-radius:3px; display:block; padding:4px 12px; }
+ul.tree_root li a:hover { background:#006666; color:#FFF !important; }
 
 #topbar { background:url(../images/layout/tb_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #333; -webkit-box-shadow: 0 0.15em 0.2em #333; }
 #topbar-padding { padding:5px 18px; padding-left:12px; }
@@ -40,16 +44,17 @@ a.link-button:hover { background:#006699; -moz-box-shadow: 0 0.2em 0em #99cccc; 
 #topbar h1 { font-weight:normal; }
 #topbar a { font-weight:bold; color:#FFF; }
 #topbar-left { float:left; width:44%; }
-#topbar-right { padding:8px 0px; padding-top:10px; float:right; width:54%; text-align:right; }
+#topbar-right { padding:8px 0px; padding-top:14px; float:right; width:54%; text-align:right; }
 
+div.flush { margin-left:-20px; margin-right:-20px; }
 #dl { background:#ddd url(../images/layout/dlbg.png) top left repeat-x; }
-#dl-padding { padding:18px 34px 4px 34px; }
+#dl-padding { padding:18px 34px 18px 34px; }
 #dltop { background:url(../images/layout/dlbl_tr.png) bottom right no-repeat;padding-right:11px;height:14px; }
 #dltop-inner { background:url(../images/layout/dlbl_tl.png) bottom left no-repeat;height:14px; }
 #dlmid { background:#ededed; padding:10px 0px; text-align:center; }
 #dlbot { background:url(../images/layout/dlbl_br.png) bottom right no-repeat;padding-right:11px;height:14px; }
 #dlbot-inner { background:url(../images/layout/dlbl_bl.png) bottom left no-repeat;height:14px; }
-#dl-link { height:42px;background:url(../images/layout/dlbl_linkright.png) center right repeat-x; }
+#dl-link { height:42px; background:#EDEDED; -moz-border-radius-bottomright:12px; -webkit-border-bottom-right-radius:12px; -moz-border-radius-topright:12px; -webkit-border-top-right-radius:12px; }
 #dl-link-padding { padding:8px 35px; }
 #dl-link a { color:#0066cc; font-size:1.25em; font-weight:bold; text-decoration: none; }
 #dl-link a:hover { color:#3399ff; text-decoration: underline; }
@@ -68,8 +73,7 @@ div.hr_dl { background:url(../images/layout/hr_dl.png) top left repeat-x; height
 div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; height:2px; }
 
 
-
-#mc-indent h2 { font-family:"Myriad Pro"; font-size:1.2em; color:#666; font-weight:bold; margin:0px 0px 18px 0px; padding:20px 0px 0px 0px; }
+#mc-indent h2 { font-size:1.2em; color:#666; font-weight:bold; margin:0px 0px 18px 0px; padding:20px 0px 0px 0px; }
 #mc-indent p { font-size:0.8em; color:#333; line-height:1.2em; margin:0px 0px 14px 0px; padding:0px; }
 
 
@@ -107,3 +111,7 @@ div.form_group textarea { width:70%; background:#FFEFEF; border:solid 1px #999; 
 .auto_complete ul, .auto_complete ol { margin-left:45px; }
 .auto_complete li { border-bottom:solid 1px #666; margin:0px; line-height:normal; padding:8px 0px; }
 .auto_complete p { margin:0px; padding:0px; }
+
+/* In-page Documents/show styles */
+div.info_box { border:solid 1px #666;  -moz-border-radius:7px; -webkit-border-radius:7px; padding:8px; float:right; margin-bottom:20px; margin-left:20px; }
+div.info_box p { font-size:0.6em !important; }
