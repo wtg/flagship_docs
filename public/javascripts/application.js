@@ -10,14 +10,14 @@ $(document).ready(function () {
 			url: searchURL,
 			data: $(this),
 			success: function(msg) {
-				$("#search_query_auto_complete").show();
+				$("#search_query_auto_complete").fadeIn(100);
 				$("#search_query_auto_complete").html(msg);
 			}
 		});
 	});
 
 	$('#searchbox'.parent).click(function() {
-		$("#search_query_auto_complete").hide();
+		$("#search_query_auto_complete").fadeOut(300);
 	});
 
 });
