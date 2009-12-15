@@ -10,15 +10,15 @@ class DocumentsController < ApplicationController
     end
   end
 
-  def auto_complete_for_search_query
-    @documents = Document.find_with_ferret(params["search"]["query"]+"*", {:limit => 5})
-    render :partial => "search_results"
+  def search
+    if request.xhr? 
+      @documents = Document.find_with_ferret(params[:query]+"*", {:limit => 5})
+      render :partial => 'search_results'
+    else
+      @documents = Document.find_with_ferret(params[:query] + "*")
+    end
   end
   
-  def search_results_inpage
-  	@documents = Document.find_with_ferret(params[:id] + "*")
-  end
-
   # GET /documents/1
   # GET /documents/1.xml
   def show

@@ -9,6 +9,9 @@ class Document < ActiveRecord::Base
   belongs_to :user
 
   accepts_nested_attributes_for :revisions, :allow_destroy => true
+
+  #Indexing
+  acts_as_ferret :fields => [ :title, :description ]
   
   #Return current document
   def current_revision

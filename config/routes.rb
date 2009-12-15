@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :documents do |documents|
+  map.resources :documents, :collection => { :search => :any } do |documents|
     documents.resources :revisions
   end
 

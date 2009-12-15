@@ -7,7 +7,7 @@ $(document).ready(function () {
 		$.ajax({
 			type: "POST",
 			cache: true,
-			url: baseURL + "/documents/auto_complete_for_search_query",
+			url: searchURL,
 			data: $(this),
 			success: function(msg) {
 				$("#search_query_auto_complete").show();
