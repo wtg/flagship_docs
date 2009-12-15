@@ -24,8 +24,8 @@ a.link-button:hover { background:#006699; -moz-box-shadow: 0 0.2em 0em #99cccc; 
 #wrap-padding { padding:40px 20px; padding-bottom:50px; }
 
 #header { background:#99cccc; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #666; -webkit-box-shadow: 0 0.15em 0.2em #666; }
-#header h1.expand { font-size:1em; padding:6px 20px; margin-top:4px; }
-#header h1.expand a { font-weight:bold; text-shadow:0 1px 0px #FFF; color:#003366; font-size:0.6em; text-transform:uppercase; letter-spacing:0.13em; }
+#header h1.expand { font-size:1em; margin-top:4px; }
+#header h1.expand a { font-weight:bold; padding:6px 20px; text-shadow:0 1px 0px #FFF; color:#003366; font-size:0.6em; text-transform:uppercase; letter-spacing:0.13em; -moz-border-radius-bottomleft:12px; -webkit-border-bottom-left-radius:12px; -moz-border-radius-bottomright:12px; -webkit-border-bottom-right-radius:12px; }
 
 /* Category Tree */
 #cat_tree { background:url(../images/layout/tree_bg.png) bottom left repeat-x; margin:0px; }
@@ -34,9 +34,11 @@ a.link-button:hover { background:#006699; -moz-box-shadow: 0 0.2em 0em #99cccc; 
 #cat_tree ul { font-size:0.9em; margin:0px; padding:0px; padding-left:20px; }
 #cat_tree li { list-style-type:square; margin:0px; padding:0px; }
 #cat_tree a { font-size:1em; color:#333; font-weight:bold; }
+a#cat_tree_expand { display:block; }
+a#cat_tree_expand:hover { background:#82bdbd; }
 ul.tree_root li { list-style: none !important; }
 ul.tree_root li a {-moz-border-radius:3px; -webkit-border-radius:3px; display:block; padding:4px 12px; }
-ul.tree_root li a:hover { background:#006666; color:#FFF !important; }
+ul.tree_root li a:hover { background:#006699; color:#FFF !important; }
 
 #topbar { background:url(../images/layout/tb_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #333; -webkit-box-shadow: 0 0.15em 0.2em #333; }
 #topbar-padding { padding:5px 18px; padding-left:12px; }

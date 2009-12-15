@@ -12,17 +12,19 @@
 		<%= link_to 'Edit', edit_category_path(@category), :class => 'edit-link' %>
 	</span>
 </h1>
-<div class="mc-indent">
+<div id="mc-indent" class="mc-indent">
 	<%= link_to 'Add Sub-Category', new_category_path(:parent_id => @category.id), :class => "link-button" %>
 	<%= link_to 'Add Document', new_document_path(:category_id => @category.id), :class => "link-button" %>
 	<div style="clear:both;"></div>
 	<br /><br />
+	<h2>Sub-Categories</h2>
 	<ul>
 		<% @category.children.each do |child| %>
 	  	<li><%= link_to child.name, child %></li>
 		<% end %>
 	</ul>
 	<br />
+	<h2>Documents</h2>
 	<ul>
 		<% @category.documents.each do |document| %>
 		<li><%= link_to document.title, document %></li>
