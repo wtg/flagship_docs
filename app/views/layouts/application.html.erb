@@ -4,24 +4,28 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
 	<title><%= controller.controller_name.titleize %> - Flagship Docs</title>
 	<meta name="title" content="Flagship" />
-        <%= stylesheet_link_tag "base", :media => 'all' %>i
-        <%= javascript_include_tag "jquery-1.3.2.min.js" %>
-        <script type="text/javascript">
-          $(document).ready(function() {
-              $('#cat_tree_expand').click(function() {
-                $('#cat_tree_inset').toggle();
-                      if ($('#label_show').css("display") == "none") {   // case PREVIOUSLY CLOSED
-                              $('#label_hide').hide();
-                              $('#label_show').show();
-                      }
-                      else {                        // case PREVIOUSLY OPEN
-                              $('#label_show').hide();
-                              $('#label_hide').show();
-                      }
-                      return false;
-              });
-          });
-        </script>
+  <%= stylesheet_link_tag "base", "apple_search", :media => 'all' %>
+  <%= javascript_include_tag "jquery-1.3.2.min.js" %>
+  <%= javascript_include_tag "application.js" %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+					$('#cat_tree_expand').click(function() {
+          $('#cat_tree_inset').toggle();
+                if ($('#label_show').css("display") == "none") {   // case PREVIOUSLY CLOSED
+                        $('#label_hide').hide();
+                        $('#label_show').show();
+                }
+                else {                        // case PREVIOUSLY OPEN
+                        $('#label_show').hide();
+                        $('#label_hide').show();
+                }
+                return false;
+        });
+    });
+  </script>
+  <script type="text/javascript" language="javascript">
+			var baseURL = '<%= ActionController::Base.relative_url_root %>';
+	</script>
 </head>
 
 <body>
@@ -31,7 +35,7 @@
 			<div id="topbar">
 				<div id="topbar-padding">
 					<div id="topbar-left">
-						<%= text_field :stuff, :stuff, :id => "tb_searchbox" %>
+						<%= render :partial => "documents/search_pane" %>
 					</div>
 					<div id="topbar-right">
 						<h1><a href="#">Login</a></h1>
@@ -41,16 +45,16 @@
 			</div>
 			<% @tree_categories = Category.find(:all) %>
 			<% if @tree_categories %>
-                          <div id="cat_tree">
-                            <div id="cat_tree_inset" style="display:none;">
-                              <div id="cat_tree-padding">
-                                <%#= aac_tree(@tree_categories) %>
-                              </div>
-                            </div>
+	    <div id="cat_tree">
+        <div id="cat_tree_inset" style="display:none;">
+          <div id="cat_tree-padding">
+            <%#= aac_tree(@tree_categories) %>
+          </div>
+        </div>
 			</div>
 			<% end %>
 
-                        <h1 class="expand"><a id="cat_tree_expand" href="#"><span id="label_hide" style="display:none;">Hide</span><span id="label_show">Show</span> Categories</a></h1>
+			<h1 class="expand"><a id="cat_tree_expand" href="#"><span id="label_hide" style="display:none;">Hide</span><span id="label_show">Show</span> Categories</a></h1>
 		</div>
 		
 		<div id="wrap-padding">

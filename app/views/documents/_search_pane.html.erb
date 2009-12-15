@@ -1,0 +1,12 @@
+<noscript>
+	<% form_tag({:action => 'search_results_inpage'}, :method => 'post') do -%>
+	<%= text_field_tag 'id', '', :class => 'index-search no-js' %>
+	<%= submit_tag "Search", :style => 'font-size:1.6em;' %>
+	<% end %> 
+</noscript>
+
+<div id="search-jQuery">
+	<!-- if there is Javascript enabled -->
+	<input id="search_query" class="index-search" name="search[query]" size="30" type="text" />
+	<div class="auto_complete" id="search_query_auto_complete"></div>
+</div>
