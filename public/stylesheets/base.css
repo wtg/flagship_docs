@@ -3,7 +3,7 @@
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertica-align:baseline; }
 html { font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; }
-body { background:#FFFFFF url(../images/layout/greengrass_bg.jpg) repeat scroll left top; }
+body { background:#FFFFFF url(../images/customized/woodplanks.jpg) repeat scroll left top; }
 
 a { text-decoration: none; }
 a:hover { color:#3399ff; text-decoration: underline; }
@@ -41,8 +41,6 @@ a.link-button:hover { background:#006699; -moz-box-shadow: 0 0.2em 0em #99cccc; 
 #topbar a { font-weight:bold; color:#FFF; }
 #topbar-left { float:left; width:44%; }
 #topbar-right { padding:8px 0px; padding-top:10px; float:right; width:54%; text-align:right; }
-input#tb_searchbox { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 12px; margin-top:2px; padding-left:38px; width:300px; }
-input#tb_searchbox:focus { background:url(../images/layout/search_bg_hover.png) center center no-repeat; }
 
 #dl { background:#ddd url(../images/layout/dlbg.png) top left repeat-x; }
 #dl-padding { padding:18px 34px 4px 34px; }
@@ -98,3 +96,14 @@ div.form_group input { background:#FFEFEF; font-size:1.15em; border:solid 1px #9
 div.form_group legend { margin:8px; font-size:1.4em; background:#FFF; font-weight:normal; padding:0px 8px; }
 div.form_group label { padding:2px 0px; vertical-align:top; font-weight:bold; padding-right:6px; background:none; color:#333; font-size:0.8em; width:210px; }
 div.form_group textarea { width:70%; background:#FFEFEF; border:solid 1px #999; }
+
+/* Search Box */
+.index-search { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 12px; margin-top:2px; padding-left:38px; width:300px; }
+.index-search:focus { background:url(../images/layout/search_bg_hover.png) center center no-repeat; }
+.no-js { width:60%; }
+.auto_complete { position:absolute; z-index:999; width:400px; background:#000; color:#ccc; }
+.auto_complete-padding { padding:12px 12px 20px 12px; }
+.auto_complete a { color:#ffffcc; }
+.auto_complete ul, .auto_complete ol { margin-left:45px; }
+.auto_complete li { border-bottom:solid 1px #666; margin:0px; line-height:normal; padding:8px 0px; }
+.auto_complete p { margin:0px; padding:0px; }

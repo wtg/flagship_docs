@@ -1,0 +1,10 @@
+<div class="auto_complete-padding">
+<h3>Matched Documents:</h3>
+<!--<ol>
+	<%# for document in @documents %>
+	<li><%#= link_to h(document.name), :controller =>"documents", :action =>"show", :id => document %></li>
+  <%# end %>
+</ol>-->
+<br />
+<p style="text-align:right;"><%= link_to "All Results", :action => 'search_results_inpage', :id => params["search"]["query"] %></p>
+</div>
