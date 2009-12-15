@@ -89,7 +89,18 @@ class RevisionsController < ApplicationController
     end
   end
 
- #Temporary download function.  Will need to be updated with something secure.
- downloads_files_for :revision, :upload
+ #Some authentication needs to be added here.
+ def download
+   if params[:id] == 'current'
+      revision = Document.find(params[:document_id]).current_revision
+   else
+      revision = Revision.find(params[:id])
+   end
+   revision.document.increment!(:downloaded)
+   
+   send_data revision.upload.file_contents(:original),
+             :filename => revision.upload_file_name,
+             :type => revision.upload_content_type
 
+ end
 end

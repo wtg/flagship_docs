@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :documents, :collection => { :search => :any } do |documents|
-    documents.resources :revisions
+    documents.resources :revisions, :member => { :download => :get }
   end
 
   map.resources :categories
