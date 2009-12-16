@@ -4,9 +4,9 @@
 		<ol>
 			<li><%= f.label :title %> <%= f.text_field :title %></li>
 			<li><%= f.label :description %> <%= f.text_area :description %></li>
+			<li><%= f.label :category %> <%= aac_select(Category.roots, {:id =>'document_category_id', :name => 'document[category_id]', :selected => @document.category_id}) %></li>
 			<li><%= f.label :readable, "Publicly Readable" %> <%= f.check_box :readable %></li>
 			<li><%= f.label :writable, "Publicly Writable" %> <%= f.check_box :writable %></li>
-			<li><%= f.label :category %> <%= aac_select(Category.roots, {:id =>'document_category_id', :name => 'document[category_id]', :selected => @document.category_id}) %></li>
 			<li><%= f.label :user %> <%= f.collection_select :user_id, User.all, :id, :full_name %></li>
 			<hr />
 			<% f.fields_for :revisions do |revision| %>

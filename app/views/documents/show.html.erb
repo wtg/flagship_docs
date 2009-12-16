@@ -5,8 +5,8 @@
 <h1 class="main-title">
 	<div class="info_box">
 		<p>
-			<% if @document.readable %><%= image_tag("icons/eye_icon.png", :alt => "Readable", :title => "This document is readable by others") %><% else %><%= image_tag("icons/noeye_icon.png", :alt => "Not Readable", :title => "This document is not readable by others") %><% end %>
-			<% if @document.writable %><%= image_tag("icons/write_icon.png", :alt => "Writable", :title => "This document is writable by others") %><% else %><%= image_tag("icons/nowrite_icon.png", :alt => "Not Writable", :title => "This document is not writable by others") %><% end %>
+			<% if @document.readable %><%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This document is visible to everyone") %><% else %><%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This document is invisible to others") %><% end %>
+			<% if @document.writable %><%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Others can edit this document") %><% else %><%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Only you can edit this document") %><% end %>
 			&nbsp;&nbsp;&nbsp;<%=h @document.downloaded %> downloads
 		</p>
 	</div>

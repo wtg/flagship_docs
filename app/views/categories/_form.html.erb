@@ -4,12 +4,12 @@
 		<ol>
 			<li><%= f.label :name %> <%= f.text_field :name %></li>
 			<li><%= f.label :description %> <%= f.text_area :description %></li>
-			<li><%= f.label :private %> <%= f.check_box :private %></li>
-			<li><%= f.label :writable, "Publicly Writable" %> <%= f.check_box :writable %></li>
 			<li><%= f.label :parent_id %> <%= aac_select(Category.roots, {:id =>'category_parent_id', :name => 'category[parent_id]', :selected => @category.parent_id, :option_nil => 'None'}) %></li>
 			<li><%= f.label :group %> <%= f.collection_select :group_id, Group.all, :id, :name %></li>
-			<li><%= f.label :user %> <%= f.collection_select :user_id, User.all, :id, :full_name %></li>
 			<li><%= f.label :background %> <%= render :partial => 'backgrounds/select', :locals => {:form => f} %> </li>
+			<li><%= f.label :private %> <%= f.check_box :private %></li>
+			<li><%= f.label :writable, "Publicly Writable" %> <%= f.check_box :writable %></li>
+			<li><%= f.label :user %> <%= f.collection_select :user_id, User.all, :id, :full_name %></li>
 		</ol>
 	</fieldset>
 	<p class="submitbutton"><%= f.submit button_text %></p>
