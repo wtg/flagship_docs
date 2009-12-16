@@ -6,6 +6,7 @@
 	<meta name="title" content="Flagship" />
   <%= stylesheet_link_tag "base", :media => 'all' %>
   <%= javascript_include_tag "jquery-1.3.2.min.js" %>
+  <%= javascript_include_tag "jquery.tipsy.js" %>
   <%= javascript_include_tag "application.js" %>
   <script type="text/javascript">
     $(document).ready(function() {
@@ -21,6 +22,8 @@
                 }
                 return false;
         });
+        $('.info_box p img').tipsy({gravity: 's'});
+        $('#dl_img').tipsy({gravity: 's'});
     });
   </script>
   <script type="text/javascript" language="javascript">
