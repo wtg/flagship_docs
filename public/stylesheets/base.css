@@ -130,4 +130,13 @@ div.form_group textarea { width:70%; background:#FFEFEF; border:solid 1px #999; 
 
 /* In-page Documents/show styles */
 div.info_box { border:solid 1px #666;  -moz-border-radius:7px; -webkit-border-radius:7px; padding:8px; float:right; margin-bottom:20px; margin-left:20px; }
-div.info_box p { font-size:0.6em !important; }
+div.info_box p { font-size:0.5em !important; }
+div.info_box p img { vertical-align: middle; }
+
+/* Tipsy jQuery tooltips */
+.tipsy { padding: 5px; font-size: 10px; opacity: 0.8; filter: alpha(opacity=80); background-repeat: no-repeat; }
+.tipsy-inner { padding: 4px 5px; background-color: black; color: white; max-width: 200px; text-align: center; }
+.tipsy-north { background-image: url(../images/icons/tipsy-north.gif); background-position: top center; }
+.tipsy-south { background-image: url(../images/icons/tipsy-south.gif); background-position: bottom center; }
+.tipsy-east { background-image: url(../images/icons/tipsy-east.gif); background-position: right center; }
+.tipsy-west { background-image: url(../images/icons/tipsy-west.gif); background-position: left center; }

@@ -5,8 +5,9 @@
 <h1 class="main-title">
 	<div class="info_box">
 		<p>
-			<% if @document.readable %>Readable<% else %>Not Readable<% end %>
-			<% if @document.writable %>Writable<% else %>Not Writable<% end %>
+			<% if @document.readable %><%= image_tag("icons/eye_icon.png", :alt => "Readable", :title => "This document is readable by others") %><% else %><%= image_tag("icons/noeye_icon.png", :alt => "Not Readable", :title => "This document is not readable by others") %><% end %>
+			<% if @document.writable %><%= image_tag("icons/write_icon.png", :alt => "Writable", :title => "This document is writable by others") %><% else %><%= image_tag("icons/nowrite_icon.png", :alt => "Not Writable", :title => "This document is not writable by others") %><% end %>
+			&nbsp;&nbsp;&nbsp;<%=h @document.downloaded %> downloads
 		</p>
 	</div>
 
@@ -24,8 +25,8 @@
 				<div id="dltop"><div id="dltop-inner"><%= image_tag("bl.png", :alt => "") %></div></div>
 				<div id="dlmid">
 					<% unless @document.current_revision.blank? %>
-						<% link_to document_revision_path(@document, 'current') do %>
-							<%= image_tag("http://documents.studentsenate.rpi.edu/images/cobalt/frame/icon_pdf.png", :alt => "Download File") %>
+						<% link_to download_revision_path(@document.current_revision) do %>
+							<%= image_tag("http://documents.studentsenate.rpi.edu/images/cobalt/frame/icon_pdf.png", :id => "dl_img", :alt => "Download File", :title => "Download this file to your computer") %>
 						<% end %>
 					<% end %>
 				</div>
@@ -34,14 +35,17 @@
 			<div style="padding-top:14px;float:right;width:75%;">
 				<div id="dl-link"><div id="dl-link-padding">
 					<%= link_to "Download File", download_document_revision_path(@document, 'current') unless @document.current_revision.blank? %>
-					<span class="details">3.4 MB PDF from 3/12/09</span>
+					<span class="details">from <%= @document.current_revision.user.full_name %> on <%= @document.current_revision.created_at.strftime('%D') %></span>
 				</div></div>
 				<div id="dl-revs">
 					<% if @document.revisions.size > 1 %>
 						<h3>Past Revisions:</h3>
 						<% @document.revisions.each do |revision| %>
 	    				<% if not revision == @document.current_revision %>
-	    					<div class="dl-rev"><%= link_to "Revision #{revision.position} (#{revision.created_at.strftime('%D')})", download_revision_path(revision) %></div>
+	    					<div class="dl-rev">
+	    						<%= link_to "Revision #{ revision.position }", download_revision_path(revision) %>
+	    						<span class="details">from <%= revision.user.full_name %> on <%= revision.created_at.strftime('%D') %></span>
+	    					</div>
 	    				<% end %>
 	    			<% end %>
     			<% end %>
@@ -56,13 +60,7 @@
 <br /><br />
 <div id="mc-indent" class="mc-indent">
 	<% if @document.description and @document.description != "" %>
-		<h2>Description</h2>
 		<%= @document.description %>
+		<br /><br />
 	<% end %>
-
-	<h2>
-		Submitted by <%=h @document.user.full_name %>
-		<br />
-		Downloaded <%=h @document.downloaded %> times to date
-	</h2>
 </div>
