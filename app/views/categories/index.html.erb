@@ -1,30 +1,22 @@
-<h1>Listing categories</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Private</th>
-    <th>Writable</th>
-    <th>Group</th>
-    <th>User</th>
-  </tr>
-
-<% @categories.each do |category| %>
-  <tr>
-    <td><%=h category.name %></td>
-    <td><%=h category.description %></td>
-    <td><%=h category.private %></td>
-    <td><%=h category.writable %></td>
-    <td><%=h category.group.name %></td>
-    <td><%=h category.user.full_name %></td>
-    <td><%= link_to 'Show', category %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<h1 class="main-title">All Categories</h1>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
-
-<%= link_to 'New Category', new_category_path, :class => "link-button" %>
+<div id="mc-indent" class="mc-indent">
+	<ul class="iconlist">
+		<% @categories.each do |category| %>
+	  	<li>
+	  		<% link_to category do %>
+	  			<div class="iconlist_padding">
+        		<div class="ins">
+          		<div class="type-folder"><%= image_tag("icons/icon_folder.png", :alt => "Icon_folder") %></div>
+        		</div>
+        		<h2><%=h category.name %></h2>
+      		</div>
+	  		<% end %>
+	  	</li>
+		<% end %>
+	</ul>
+	<div style="clear:both;"></div>
+	<br />
+	<%= link_to 'New Category', new_category_path, :class => "link-button" %>
+</div>

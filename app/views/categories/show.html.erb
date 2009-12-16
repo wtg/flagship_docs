@@ -1,4 +1,8 @@
 <% content_for :background_img, background_img(@category) %>
+<% my_ancestors = @category.ancestors %>
+<h2 class="breadcrumb">
+	<%= link_to "Home", :controller => "categories" %>&nbsp;/&nbsp;<% my_ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %>
+</h2>
 <h1 class="main-title">
 	<div class="info_box">
 		<p>
@@ -13,7 +17,9 @@
 		<%= link_to 'Edit', edit_category_path(@category), :class => 'edit-link' %>
 	</span>
 </h1>
-<div id="mc-indent" class="mc-indent">
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+<br />
+<div class="mc-indent">
 	<h2>Sub-Categories<%= link_to 'Add', new_category_path(:parent_id => @category.id), :class => "link-button" %></h2>
 	<ul class="iconlist">
 		<% @category.children.each do |child| %>
@@ -47,9 +53,11 @@
 		<% end %>
 	</ul>
 	<div style="clear:both;"></div>
-	
-	<br /><br />
-	<hr />
+	<br />
+</div>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+<br />
+<div class="mc-indent">
 	<p><b>Parent:</b> <%=h @category.parent.name unless @category.parent.blank?%></p>
 	<p><b>Owned by:</b> <%=h @category.group.name %></p>
 	<p><b>Created By:</b> <%=h @category.user.full_name %></p>
