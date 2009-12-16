@@ -9,6 +9,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :groups
 
+	map.download_revision 'revisions/:id', :controller => 'revisions', :action => 'download'
+	
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

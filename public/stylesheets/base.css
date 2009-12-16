@@ -33,7 +33,7 @@ a.link-button:hover { background:#006699; -moz-box-shadow: 0 0.2em 0em #99cccc; 
 #cat_tree { background:url(../images/layout/tree_bg.png) bottom left repeat-x; margin:0px; }
 #cat_tree_inset { border-bottom:solid 1px #eee; }
 #cat_tree-padding { padding:25px 25px 25px 8px; border-bottom:solid 1px #666; }
-#cat_tree ul { font-size:0.9em; margin:0px; padding:0px; padding-left:20px; }
+#cat_tree ul { border-left:dotted 1px #006699; font-size:0.9em; margin:0px; padding:0px; margin-left:20px; }
 #cat_tree li { list-style-type:square; margin:0px; padding:0px; }
 #cat_tree a { font-size:1em; color:#333; font-weight:bold; }
 a#cat_tree_expand { display:block; }

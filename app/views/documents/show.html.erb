@@ -1,4 +1,7 @@
-<h2 class="breadcrumb"><%= link_to @document.category.name, @document.category %> /</h2>
+<% my_ancestors = @document.category.ancestors %>
+<h2 class="breadcrumb">
+	<%= link_to "Home", :controller => "categories" %>&nbsp;/&nbsp;<% my_ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %><%= link_to @document.category.name, @document.category %>
+</h2>
 <h1 class="main-title">
 	<div class="info_box">
 		<p>
@@ -30,13 +33,17 @@
 			</div>
 			<div style="padding-top:14px;float:right;width:75%;">
 				<div id="dl-link"><div id="dl-link-padding">
-					<%= link_to "Download File", document_revision_path(@document, 'current') unless @document.current_revision.blank? %>
+					<%= link_to "Download File", download_revision_path(@document.current_revision) unless @document.current_revision.blank? %>
 					<span class="details">3.4 MB PDF from 3/12/09</span>
 				</div></div>
 				<div id="dl-revs">
-					<h3>Past Revisions:</h3>
-					<% @document.revisions.each do |revision| %>
-    				<div class="dl-rev"><%= link_to "#{revision.position} @ #{revision.created_at}", [revision.document, revision] %></div>
+					<% if @document.revisions.size > 1 %>
+						<h3>Past Revisions:</h3>
+						<% @document.revisions.each do |revision| %>
+	    				<% if not revision == @document.current_revision %>
+	    					<div class="dl-rev"><%= link_to "Revision #{revision.position} (#{revision.created_at.strftime('%D')})", download_revision_path(revision) %></div>
+	    				<% end %>
+	    			<% end %>
     			<% end %>
     			<div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document) %></div>
 				</div>
