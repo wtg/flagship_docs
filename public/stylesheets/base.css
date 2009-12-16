@@ -53,11 +53,9 @@ ul.tree_root li a:hover { background:#006699; color:#FFF !important; }
 div.flush { margin-left:-20px; margin-right:-20px; }
 #dl { background:#ddd url(../images/layout/dlbg.png) top left repeat-x; }
 #dl-padding { padding:18px 34px 18px 34px; }
-#dltop { background:url(../images/layout/dlbl_tr.png) bottom right no-repeat;padding-right:11px;height:14px; }
-#dltop-inner { background:url(../images/layout/dlbl_tl.png) bottom left no-repeat;height:14px; }
-#dlmid { background:#ededed; padding:10px 0px; text-align:center; }
-#dlbot { background:url(../images/layout/dlbl_br.png) bottom right no-repeat;padding-right:11px;height:14px; }
-#dlbot-inner { background:url(../images/layout/dlbl_bl.png) bottom left no-repeat;height:14px; }
+#dl_icon { float:left; width:25%; text-align:center; }
+#dl_icon a { background:#ededed; padding:30px 10px; display:block; -moz-border-radius:12px; -webkit-border-radius:12px; }
+#dl_icon a:hover { background:#3399ff; }
 #dl-link { height:42px; background:#EDEDED; -moz-border-radius-bottomright:12px; -webkit-border-bottom-right-radius:12px; -moz-border-radius-topright:12px; -webkit-border-top-right-radius:12px; }
 #dl-link-padding { padding:8px 35px; }
 #dl-link a { color:#0066cc; font-size:1.5em; font-weight:bold; text-decoration: none; }

@@ -21,16 +21,12 @@
 	<div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
 	<div id="dl">
 		<div id="dl-padding">
-			<div style="float:left; width:25%;">
-				<div id="dltop"><div id="dltop-inner"><%= image_tag("bl.png", :alt => "") %></div></div>
-				<div id="dlmid">
-					<% unless @document.current_revision.blank? %>
-						<% link_to download_revision_path(@document.current_revision) do %>
-							<%= image_tag("http://documents.studentsenate.rpi.edu/images/cobalt/frame/icon_pdf.png", :id => "dl_img", :alt => "Download File", :title => "Download this file to your computer") %>
-						<% end %>
+			<div id="dl_icon">
+				<% unless @document.current_revision.blank? %>
+					<% link_to download_revision_path(@document.current_revision) do %>
+						<%= image_tag("http://documents.studentsenate.rpi.edu/images/cobalt/frame/icon_pdf.png", :alt => "Download File") %>
 					<% end %>
-				</div>
-				<div id="dlbot"><div id="dlbot-inner"><%= image_tag("bl.png", :alt => "") %></div></div>
+				<% end %>
 			</div>
 			<div style="padding-top:14px;float:right;width:75%;">
 				<div id="dl-link"><div id="dl-link-padding">
