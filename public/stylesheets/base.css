@@ -12,7 +12,7 @@ h1.main-title span { color:#666; font-weight:normal; font-size:0.5em; padding:0p
 h1.main-title span a { color:#666; font-weight:bold; }
 h1.main-title span a.cancel-link { color:#dc0000 !important; }
 h1.main-title span a.edit-link { color:#f59300 !important; }
-h2.breadcrumb { padding-left:34px; color:#999; text-transform: uppercase; font-size:0.75em; letter-spacing: 0.15em; }
+h2.breadcrumb { padding-left:34px; color:#999; text-transform: uppercase; font-size:0.7em; letter-spacing: 0.15em; }
 h2.breadcrumb a { color:#333; }
 div.mc-indent { padding-left:34px; }
 
