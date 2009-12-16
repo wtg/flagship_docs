@@ -65,7 +65,7 @@ div.img_icon { background:url(../images/icons/imageicon.png) center center no-re
 a#cat_tree_expand { display:block; }
 a#cat_tree_expand:hover { background:#82bdbd; }
 ul.tree_root li { list-style: none !important; }
-ul.tree_root li a {-moz-border-radius:3px; -webkit-border-radius:3px; display:block; padding:4px 12px; }
+ul.tree_root li a { -moz-border-radius:3px; -webkit-border-radius:3px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-bottomleft:0px; -webkit-border-bottom-left-radius:0px; display:block; padding:4px 12px; }
 ul.tree_root li a:hover { background:#006699; color:#FFF !important; }
 
 #topbar { background:url(../images/layout/tb_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #333; -webkit-box-shadow: 0 0.15em 0.2em #333; }
