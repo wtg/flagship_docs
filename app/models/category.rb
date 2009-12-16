@@ -8,6 +8,7 @@ class Category < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
   has_many :documents
+  belongs_to :background
 
   def full_path()
     return self.name

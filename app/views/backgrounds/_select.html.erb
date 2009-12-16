@@ -1,0 +1,3 @@
+<% Background.all.each do |background| %>
+  <%= form.radio_button(:background_id, background.id) %> <%= background.image_file_name %>
+<% end %>

@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091214042617) do
+ActiveRecord::Schema.define(:version => 20091216001608) do
+
+  create_table "backgrounds", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -26,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20091214042617) do
     t.integer  "descendants_count"
     t.integer  "position"
     t.integer  "pictures_count"
+    t.integer  "background_id"
   end
 
   create_table "documents", :force => true do |t|
