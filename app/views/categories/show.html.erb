@@ -3,7 +3,7 @@
 	<div class="info_box">
 		<p>
 			<% if @category.private %><%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This category is visible to everyone") %><% else %><%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This category is invisible to others") %><% end %>
-			<% if @category.writable %><%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Anyone can edit this category or add things to it") %><% else %><%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Nobody else can edit this category or add things to it") %><% end %>
+			<% if @category.writable %><%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Anyone can edit this category or add docs") %><% else %><%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Nobody else can edit this category or add docs") %><% end %>
 		</p>
 	</div>
 	<%=h @category.name %>
@@ -14,23 +14,39 @@
 	</span>
 </h1>
 <div id="mc-indent" class="mc-indent">
-	<%= link_to 'Add Sub-Category', new_category_path(:parent_id => @category.id), :class => "link-button" %>
-	<%= link_to 'Add Document', new_document_path(:category_id => @category.id), :class => "link-button" %>
-	<div style="clear:both;"></div>
-	<br /><br />
-	<h2>Sub-Categories</h2>
-	<ul>
+	<h2>Sub-Categories<%= link_to 'Add', new_category_path(:parent_id => @category.id), :class => "link-button" %></h2>
+	<ul class="iconlist">
 		<% @category.children.each do |child| %>
-	  	<li><%= link_to child.name, child %></li>
+	  	<li>
+	  		<% link_to child do %>
+	  			<div class="iconlist_padding">
+        		<div class="ins">
+          		<div class="type-folder"><%= image_tag("icons/icon_folder.png", :alt => "Icon_folder") %></div>
+        		</div>
+        		<h2><%=h child.name %></h2>
+      		</div>
+	  		<% end %>
+	  	</li>
 		<% end %>
 	</ul>
+	<div style="clear:both;"></div>
 	<br />
-	<h2>Documents</h2>
-	<ul>
+	<h2>Documents<%= link_to 'Add', new_document_path(:category_id => @category.id), :class => "link-button" %></h2>
+	<ul class="iconlist">
 		<% @category.documents.each do |document| %>
-		<li><%= link_to document.title, document %></li>
+	  	<li>
+	  		<% link_to document do %>
+	  			<div class="iconlist_padding">
+        		<div class="ins">
+          		<div class="type-folder"><%= image_tag("icons/icon_doc.png", :alt => "Icon_doc") %></div>
+        		</div>
+        		<h2><%=h document.title %></h2>
+      		</div>
+	  		<% end %>
+	  	</li>
 		<% end %>
 	</ul>
+	<div style="clear:both;"></div>
 	
 	<br /><br />
 	<hr />

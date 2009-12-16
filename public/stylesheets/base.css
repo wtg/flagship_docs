@@ -20,6 +20,9 @@ div.mc-indent { padding-left:34px; }
 /* LINK BUTTONS */
 a.link-button { font-size:0.9em; padding:6px 18px; background:#666; color:#FFF; -moz-border-radius:18px; -webkit-border-radius:18px; text-shadow:0 1px 0px #000; -moz-box-shadow: 0 0.2em 0em #999; -webkit-box-shadow: 0 0.2em 0em #999; margin-bottom:25px !important; }
 a.link-button:hover { background:#006699; -moz-box-shadow: 0 0.2em 0em #99cccc; -webkit-box-shadow: 0 0.2em 0em #99cccc; }
+h2 a.link-button { vertical-align:middle; font-size:0.6em; border:solid 1px #008000; width:120px; text-align:center; -moz-border-radius:20px; -webkit-border-radius:20px; -moz-box-shadow: 0 0 0 #666; -webkit-box-shadow: 0 0 0 #666; height:55px; background:#008000; padding:3px 18px; margin-left:12px; }
+h2 a.link-button:hover { background:#339933; -moz-box-shadow: 0 0 0 #666; -webkit-box-shadow: 0 0 0 #666; }
+
 
 /* MAIN LAYOUT ELEMENTS */
 #wrap { width:70%; margin:30px auto; min-width:940px; background:#f5f5f5 url(../images/layout/wrap_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 0.5em #000; }
@@ -28,6 +31,28 @@ a.link-button:hover { background:#006699; -moz-box-shadow: 0 0.2em 0em #99cccc; 
 #header { background:#99cccc; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #666; -webkit-box-shadow: 0 0.15em 0.2em #666; }
 #header h1.expand { font-size:1em; margin-top:4px; }
 #header h1.expand a { font-weight:bold; padding:6px 20px; text-shadow:0 1px 0px #FFF; color:#003366; font-size:0.6em; text-transform:uppercase; letter-spacing:0.13em; -moz-border-radius-bottomleft:12px; -webkit-border-bottom-left-radius:12px; -moz-border-radius-bottomright:12px; -webkit-border-bottom-right-radius:12px; }
+
+
+/* Item Listing */
+ul.iconlist { margin:0px -8px; }
+ul.iconlist li { list-style:none; float:left; margin:15px 6px; }
+ul.iconlist li a { background:#eee; width:180px; height:210px; border:solid 1px #ccc; -moz-border-radius:12px; -webkit-border-radius:12px; font-size:small; display:block; text-align:center; }
+ul.iconlist li a:hover { background:#99ccff; border:solid 1px #3399cc; }
+ul.iconlist li a h2 { color:#333 !important; background:none !important; padding:0px !important; font-size:1.3em !important; margin:0px; margin-top:130px; font-weight:bold !important; text-align:center; }
+ul.iconlist li a:hover h2 { }
+ul.iconlist li a h3 { font-size:1em; font-weight:normal; margin:0px; padding:0px; text-align:center; }
+
+
+div.iconlist_padding { padding:8px; }
+div.ins { z-index:1; width:164px; height:130px; }
+div.type-file, div.type-folder { margin-left:auto; margin-right:auto; text-align:center; }
+div.type-folder img { border:0px !important; }
+div.type-img img { border:solid 1px #666; }
+div.type-file img { border:0px !important; }
+div.f_icon { background:url(../images/icons/foldericon.png) center center no-repeat; width:50px; height:39px; margin:75px 0px 0px 110px; position:absolute; z-index:5; }
+div.pdf_icon { background:url(../images/icons/pdficon.png) center center no-repeat; width:44px; height:45px; margin:75px 0px 0px 110px; position:absolute; z-index:5; }
+div.img_icon { background:url(../images/icons/imageicon.png) center center no-repeat; width:46px; height:44px; margin:75px 0px 0px 110px; position:absolute; z-index:5; }
+
 
 /* Category Tree */
 #cat_tree { background:url(../images/layout/tree_bg.png) bottom left repeat-x; margin:0px; }
@@ -75,8 +100,8 @@ div.hr_dl { background:url(../images/layout/hr_dl.png) top left repeat-x; height
 div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; height:2px; }
 
 
-#mc-indent h2 { font-size:1.2em; color:#333; font-weight:normal; margin:0px 0px 18px 0px; padding:20px 0px 0px 0px; }
-#mc-indent p { font-size:0.8em; color:#333; line-height:1.2em; margin:0px 0px 14px 0px; padding:0px; }
+#mc-indent h2 { font-size:1.2em; color:#333; font-weight:normal; margin:0px 0px 12px 0px; padding:20px 0px 0px 0px; }
+#mc-indent p { font-size:0.8em; color:#333; line-height:1.2em; margin:0px 0px 12px 0px; padding:0px; }
 
 
 /* Admin Forms Styles */
