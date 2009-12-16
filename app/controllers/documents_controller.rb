@@ -13,9 +13,11 @@ class DocumentsController < ApplicationController
   def search
     if request.xhr? 
       @documents = Document.find_with_ferret(params[:query]+"*", {:limit => 5})
+      @categories = Category.find_with_ferret(params[:query]+"*", {:limit => 5})
       render :partial => 'search_results'
     else
       @documents = Document.find_with_ferret(params[:query] + "*")
+      @categories =  Category.find_with_ferret(params[:query]+"*")
     end
   end
   

@@ -10,7 +10,7 @@ class Category < ActiveRecord::Base
   has_many :documents
   belongs_to :background
 
-  def full_path()
-    return self.name
-  end
+  #Indexing
+  acts_as_ferret :fields => [ :name, :description ]
+
 end

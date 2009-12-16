@@ -5,4 +5,9 @@
 	<li><%= link_to h(document.title), document  %></li>
   	<% end %>
 </ol>
-
+<br /><h3>Matched Categories:</h3>
+<ol>
+	<% for category in @categories %>
+	<li><%= link_to h(category.name), category %></li>
+	<% end %>
+</ol>
