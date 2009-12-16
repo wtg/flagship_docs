@@ -21,7 +21,7 @@
 		<div id="dl-padding">
 			<div id="dl_icon">
 				<% unless @document.current_revision.blank? %>
-					<% link_to download_revision_path(@document.current_revision) do %>
+					<% link_to download_document_revision_path(@document, 'current') do %>
 						<%= image_tag("icons/icon_#{@document.current_revision.type}.png", :alt => "Download File") %>
 					<% end %>
 				<% end %>
@@ -37,7 +37,7 @@
 						<% @document.revisions.each do |revision| %>
 	    				<% if not revision == @document.current_revision %>
 	    					<div class="dl-rev">
-	    						<%= link_to "Revision #{ revision.position }", download_revision_path(revision) %>
+	    						<%= link_to "Revision #{ revision.position }", download_document_revision_path(@document, revision) %>
 	    						<span class="details">from <%= revision.user.full_name %> on <%= revision.created_at.strftime('%D') %></span>
 	    					</div>
 	    				<% end %>
