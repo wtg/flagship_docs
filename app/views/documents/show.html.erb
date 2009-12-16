@@ -22,7 +22,7 @@
 			<div id="dl_icon">
 				<% unless @document.current_revision.blank? %>
 					<% link_to download_revision_path(@document.current_revision) do %>
-						<%= image_tag("http://documents.studentsenate.rpi.edu/images/cobalt/frame/icon_pdf.png", :alt => "Download File") %>
+						<%= image_tag("icons/icon_#{@document.current_revision.type}.png", :alt => "Download File") %>
 					<% end %>
 				<% end %>
 			</div>

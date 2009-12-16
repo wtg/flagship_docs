@@ -9,7 +9,28 @@ class Revision < ActiveRecord::Base
   belongs_to :document
   belongs_to :user
 
+  #Test if this revision is the current one
   def current?
-    return Document.current.id == self.id
+    return Document.current_revision.id == self.id
+  end
+  
+  #Try and identify the type of file uploaded
+  #other will be returned if the type doesn't match something we recognize
+  def type
+    result = case self.upload_content_type
+      #PDF files
+      when "application/pdf" then "pdf"
+      #Word and Word 2007 files
+      when "application/msword" then "doc"
+      when "application/vnd.openxmlformats-officedocument.wordprocessingml.document" then "doc"
+      #Excel and Excel 2007 files
+      when "application/vnd.ms-excel" then "xls"
+      when "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" then "xls"
+      #Powerpoint and Powerpoint 2007 files
+      when "application/vnd.ms-powerpoint" then "ppt"
+      when "application/vnd.openxmlformats-officedocument.presentationml.presentation" then "ppt"
+      else "other"
+    end
+    result
   end
 end
