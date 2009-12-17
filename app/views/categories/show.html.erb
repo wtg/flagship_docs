@@ -1,4 +1,5 @@
 <% content_for :title, @category.name %>
+<% content_for :meta_tags, meta_tags(@category.name, @category.description, "icons/icon_folder.png") %>
 <% content_for :background_img, background_img(@category) %>
 <% my_ancestors = @category.ancestors %>
 <h2 class="breadcrumb">

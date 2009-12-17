@@ -1,4 +1,5 @@
 <% content_for :title, @document.title %>
+<% content_for :meta_tags, meta_tags(@document.title, @document.description, "icons/icon_#{@document.current_revision.type}.png") %>
 <% my_ancestors = @document.category.ancestors %>
 <h2 class="breadcrumb">
 	<%= link_to "Home", :controller => "categories" %>&nbsp;/&nbsp;<% my_ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %><%= link_to @document.category.name, @document.category %>
