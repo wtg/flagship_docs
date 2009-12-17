@@ -23,4 +23,9 @@ class Document < ActiveRecord::Base
     revision = self.current_revision
     revision.text
   end
+
+  #The group that is responsible for this document.  Inherited from the category the document belongs to.
+  def group
+    self.category.group
+  end
 end

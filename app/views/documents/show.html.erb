@@ -1,3 +1,4 @@
+<% content_for :title, @document.title %>
 <% my_ancestors = @document.category.ancestors %>
 <h2 class="breadcrumb">
 	<%= link_to "Home", :controller => "categories" %>&nbsp;/&nbsp;<% my_ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %><%= link_to @document.category.name, @document.category %>
@@ -5,8 +6,16 @@
 <h1 class="main-title">
 	<div class="info_box">
 		<p>
-			<% if @document.readable %><%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This document is visible to everyone") %><% else %><%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This document is invisible to others") %><% end %>
-			<% if @document.writable %><%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Others can edit this document") %><% else %><%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Only you can edit this document") %><% end %>
+			<% if @document.readable %>
+				<%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This document is visible to everyone") %>
+			<% else %>
+				<%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This document is invisible to others") %>
+			<% end %>
+			<% if @document.writable %>
+				<%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Others can edit this document") %>
+			<% else %>
+				<%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Only members of #{@document.group.name} can edit this document") %>
+			<% end %>
 			&nbsp;&nbsp;&nbsp;<%=h @document.downloaded %> downloads
 		</p>
 	</div>
