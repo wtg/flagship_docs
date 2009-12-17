@@ -11,9 +11,15 @@ class DocumentsController < ApplicationController
   end
 
   def search
-    if request.xhr? 
-      @documents = Document.find_with_ferret(params[:query]+"*", {:limit => 5})
-      @categories = Category.find_with_ferret(params[:query]+"*", {:limit => 5})
+    if request.xhr?
+      #Help to remove any empty queries fired off
+      if params[:query].blank?
+        @documents = Array.new
+        @categories = Array.new
+      else
+        @documents = Document.find_with_ferret(params[:query]+"*", {:limit => 5})
+        @categories = Category.find_with_ferret(params[:query]+"*", {:limit => 5})
+      end
       render :partial => 'search_results'
     else
       @documents = Document.find_with_ferret(params[:query] + "*")

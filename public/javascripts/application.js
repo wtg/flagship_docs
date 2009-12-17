@@ -4,16 +4,21 @@
 $(document).ready(function () {
 	$("#search-jQuery").css({'display' : 'block'});
 	$("#search_query").bind('keyup',function () {
-		$.ajax({
-			type: "POST",
-			cache: true,
-			url: searchURL,
-			data: $(this),
-			success: function(msg) {
-				$("#search_query_auto_complete").fadeIn(100);
-				$("#search_query_auto_complete").html(msg);
-			}
-		});
+		if($(this).val().length == 0){
+			$("#search_query_auto_complete").fadeOut(100);
+			$("#search_query_auto_complete").html("");
+		} else {
+			$.ajax({
+				type: "POST",
+				cache: true,
+				url: searchURL,
+				data: $(this),
+				success: function(msg) {
+					$("#search_query_auto_complete").fadeIn(100);
+					$("#search_query_auto_complete").html(msg);
+				}
+			});
+		}
 	});
 
 	$('#searchbox'.parent).click(function() {
