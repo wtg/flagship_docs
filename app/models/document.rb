@@ -11,10 +11,16 @@ class Document < ActiveRecord::Base
   accepts_nested_attributes_for :revisions, :allow_destroy => true
 
   #Indexing
-  acts_as_ferret :fields => [ :title, :description ]
+  acts_as_ferret :fields => [ :title, :description ], :additional_fields => [ :current_revision_text ]
   
   #Return current document
   def current_revision
     Revision.find(:first, :conditions => {:document_id => self.id})
+  end
+
+  #Try to extract some text from the current revision
+  def current_revision_text
+    revision = self.current_revision
+    revision.text
   end
 end

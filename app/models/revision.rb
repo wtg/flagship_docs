@@ -33,4 +33,21 @@ class Revision < ActiveRecord::Base
     end
     result
   end
+
+  def text
+    tempfile = Tempfile.new(self.upload_file_name)
+    tempfile.write(self.upload.file_contents)
+    
+    result = case self.upload_content_type
+      when "application/msword" then `catdoc -w #{tempfile.path}`
+      when "application/pdf" then `pdftotext #{tempfile.path} -`
+      when "application/vnd.ms-excel" then `xls2cvs #{tempfile.path}`
+      when "application/vnd.ms-powerpoint" then `catppt #{tempfile.path}`
+      when "image/jpeg" then `jhead -c #{tempfile.path}`
+      when "image/png"  then `jhead -c #{tempfile.path}`
+      else ""
+    end
+    result.gsub(tempfile.path,"")
+  end
+
 end
