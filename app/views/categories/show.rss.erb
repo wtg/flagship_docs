@@ -1,0 +1,22 @@
+<%= xml = Builder::XmlMarkup.new
+xml.instruct! :xml, :version => "1.0" 
+xml.rss :version => "2.0" do
+  xml.channel do
+    xml.title @category.name + " - Flagship Docs"
+    xml.description @category.description
+    xml.link category_url(@category)
+    xml.generator "Flagship Docs"
+
+    for document in @category.documents_by_updated
+      xml.item do
+        xml.title document.title
+        xml.link document_url(document)
+        xml.description document.description
+        xml.author document.user.full_name
+        xml.pubDate document.created_at(:rfc822)
+        xml.guid document_url(document)
+      end
+    end
+  end
+end %>
+

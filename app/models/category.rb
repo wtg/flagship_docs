@@ -13,4 +13,10 @@ class Category < ActiveRecord::Base
   #Indexing
   acts_as_ferret :fields => [ :name, :description ]
 
+  #All the documents in a category, sorted by their last update.
+  #This is needed until a bug in activerecord is fixed. (see below)
+  #https://rails.lighthouseapp.com/projects/8994/tickets/2346-named_scope-doesnt-override-default_scopes-order-key
+  def documents_by_updated
+    Document.find(:all, :conditions => {:category_id => self.id}, :order => 'updated_at DESC')
+  end
 end

@@ -17,6 +17,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.rss #show.rss.erb
       format.xml  { render :xml => @category }
     end
   end

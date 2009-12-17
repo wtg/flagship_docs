@@ -13,6 +13,10 @@ class Document < ActiveRecord::Base
   #Indexing
   acts_as_ferret :fields => [ :title, :description ], :additional_fields => [ :current_revision_text ]
   
+  #Scoping
+  default_scope :order => 'title ASC'
+  named_scope :by_updated, :order => 'updated_at DESC'
+
   #Return current document
   def current_revision
     Revision.find(:first, :conditions => {:document_id => self.id})
