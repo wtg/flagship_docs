@@ -24,6 +24,10 @@ class DocumentsController < ApplicationController
     else
       @documents = Document.find_with_ferret(params[:query] + "*")
       @categories =  Category.find_with_ferret(params[:query]+"*")
+      respond_to do |format|
+        format.html # search.html.erb
+        format.rss  # search.rss.erb
+      end
     end
   end
   
@@ -103,6 +107,14 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(documents_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  #GET /documents/opensearch.xml
+  def opensearch
+    respond_to do |format|
+      format.html { redirect_to(search_documents_url) }
+      format.xml #opensearch.xml.erb
     end
   end
 end

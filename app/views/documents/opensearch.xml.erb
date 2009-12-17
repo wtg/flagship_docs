@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+   <ShortName>Flagship Search</ShortName>
+   <Description>Search categories and documents stored in Flagship</Description>
+   <Developer>Web Tech Group</Developer>
+   <Url type="text/html" template="<%= search_documents_url() %>?query={searchTerms}"/>
+   <Url type="application/rss+xml" template="<%= search_documents_url(:format=>:rss) %>?query={searchTerms}"/>
+</OpenSearchDescription>

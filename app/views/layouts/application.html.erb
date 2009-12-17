@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head profile="http://a9.com/-/spec/opensearch/1.1/">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
   <title><%= yield(:title) || controller.controller_name.titleize %> - Flagship Docs</title>
   <%= yield(:meta_tags) %>
@@ -8,6 +8,7 @@
   <%= javascript_include_tag "jquery-1.3.2.min.js" %>
   <%= javascript_include_tag "jquery.tipsy.js" %>
   <%= javascript_include_tag "application.js" %>
+  <link rel="search" type="application/opensearchdescription+xml" href="<%= opensearch_documents_url(:format => :xml) %>" title="Flagship Docs Search" />
   <script type="text/javascript" language="javascript">
     var searchURL = '<%= search_documents_path(:format=>'js') %>';
   </script>
