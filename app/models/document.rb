@@ -11,7 +11,7 @@ class Document < ActiveRecord::Base
   accepts_nested_attributes_for :revisions, :allow_destroy => true
 
   #Indexing
-  acts_as_ferret :fields => [ :title, :description ], :additional_fields => [ :current_revision_text ]
+  acts_as_ferret :fields => { :title  => {:store => :yes}, :description => {:store => :yes}}, :additional_fields => { :current_revision_text => {:store => :yes}}
   
   #Scoping
   default_scope :order => 'title ASC'
