@@ -1,13 +1,36 @@
-<h2>You searched for: <b><%= params[:query] %></b></h2>
-<br /><h3>Matched Documents:</h3>
-<ol>
-	<% for document in @documents %>
-	<li><%= link_to h(document.title), document  %></li>
-  	<% end %>
-</ol>
-<br /><h3>Matched Categories:</h3>
-<ol>
-	<% for category in @categories %>
-	<li><%= link_to h(category.name), category %></li>
-	<% end %>
-</ol>
+<div id="search_results_inpage">
+	<h1 class="main-title">Results for <strong><%= params[:query] %></strong></h1>
+	<br />
+	<h2>Matched Documents</h2>
+	<ol>
+	  <% for document in @documents %>
+		<li class="<%= cycle('even', 'odd') %>">
+			<% link_to document do %>
+				<div style="float:left; text-align:center; width:80px;"><%= image_tag("icons/icon_#{document.current_revision.type}.png", :alt => "", :width => 50) %></div>
+				<div style="float:right; width:800px; padding:8px 0px;">
+					<h1><%=h document.title %></h1>
+					<h2><%=h document.category.name %></h2>
+					<h3><%= document.highlight(params[:query] + "*", :field => :current_revision_text, :excerpt_length => 80, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>" ) %></h3>
+				</div>
+				<div style="clear:both;"></div>
+			<% end %>
+		</li>
+	  <% end %>
+	</ol>
+	<br /><br />
+	<h2>Matched Categories</h2>
+	<ol>
+	  <% for category in @categories %>
+		<li class="<%= cycle('even', 'odd') %>">
+			<% link_to category do %>
+				<div style="float:left; text-align:center; width:80px;"><%= image_tag("icons/icon_folder.png", :alt => "", :width => 50) %></div>
+				<div style="float:right; width:800px; padding:8px 0px;">
+					<h1><%=h category.name %></h1>
+					<h2><%=truncate(h(category.description), :length => 40) %></h2>
+				</div>
+				<div style="clear:both;"></div>
+			<% end %>
+		</li>
+	  <% end %>
+	</ol>
+</div>

@@ -139,12 +139,18 @@ div.form_group textarea { width:70%; background:#FFEFEF; border:solid 1px #999; 
 
 .auto_complete { font: 11px "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif; letter-spacing:normal; position:absolute; z-index:999; margin-top:-7px; margin-left:14px; border:solid 1px #333; border-style:solid; width:320px; background-color:#333; font-size:10px; line-height:14px; -moz-border-radius:3px; -webkit-border-radius:3px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.1em 0.5em #333; -webkit-box-shadow: 0 0.1em 0.5em #333; }
 .auto_complete * { text-shadow:0 0px 0px #000 !important; }
-.auto_complete h1 { text-transform:uppercase; letter-spacing:0.2em; font-size:1.1em; font-weight:bold; padding:8px 10px; }
-.auto_complete ol { list-style: none; }
+.auto_complete h1, div#search_results_inpage h2 { text-transform:uppercase; letter-spacing:0.2em; font-size:1.1em; font-weight:bold; padding:8px 10px; }
+div#search_results_inpage h2 { color:#666; font-size:0.8em; font-weight:normal; padding:0px; margin-bottom:12px; }
+.auto_complete ol, div#search_results_inpage ol { list-style: none; }
 .auto_complete ol li h1 { font-weight:bold !important; text-transform: none !important; padding:0px; font-size:1.2em; color:#000; margin-bottom:3px; letter-spacing:0.02em !important; }
 .auto_complete ol li h2 { font-weight:normal !important; padding:0px; font-size:1em; color:#666; margin:0px; letter-spacing: 0.02em; }
+.auto_complete ol li h3 { font-weight:normal !important; color:#000; margin-top:3px; }
+.auto_complete ol li h3 strong, div#search_results_inpage h1.main-title strong, div#search_results_inpage li a h3 strong { font-weight:normal !important; background:yellow; padding:2px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+div#search_results_inpage h1.main-title strong, div#search_results_inpage li a h3 strong { padding-left:8px; padding-right:8px; color:#000; }
 .auto_complete ol li a { background:#ccc; display:block; padding:8px 18px; clear:left; text-decoration:none; }
 .auto_complete ol li a:hover { background-color:#999; color:#ffffff; }
+.auto_complete ol li a:hover h3 { color:#333 !important; }
+.auto_complete ol li a:hover h3 strong { color:#333 !important; }
 .auto_complete ol li a span.searchheading { display:block; font-weight:bold; padding-top:5px; color:#191919; }
 .auto_complete ol li a:hover * { color:#ffffff; }
 .auto_complete ol li a span { color:#555555; }
@@ -152,6 +158,16 @@ div.form_group textarea { width:70%; background:#FFEFEF; border:solid 1px #999; 
 .auto_complete span.category { font-size:11px; margin:5px; display:block; color:#ffffff; }
 .auto_complete span.seperator { float:right; padding-right:15px; margin-right:5px; background-image:url(../images/shortcuts_arrow.gif); background-repeat:no-repeat; background-position:right; }
 .auto_complete span.seperator a { background-color:transparent; display:block; margin:5px; height:auto; color:#ffffff; }
+div#search_results_inpage li.even { background:#ccc; }
+div#search_results_inpage li.odd { background:#eee; }
+div#search_results_inpage li a { padding:6px; display:block; }
+div#search_results_inpage li a:hover { background:#666; }
+div#search_results_inpage li a h1 { color:#000; font-weight:bold; font-size:1.2em; letter-spacing: normal; text-transform: none; }
+div#search_results_inpage li a h2 { color:#333; font-weight: bold; font-size:1em; letter-spacing: normal; text-transform: none; }
+div#search_results_inpage li a h3 { color:#000; font-weight: normal; font-size:0.9em; letter-spacing: normal; text-transform: none; }
+div#search_results_inpage li a:hover h1 { color:#FFF; text-decoration: none !important; }
+div#search_results_inpage li a:hover h2 { color:#ccc; text-decoration: none !important; }
+div#search_results_inpage li a:hover h3 { color:#FFF; text-decoration: none !important; }
 
 
 /* In-page Documents/show styles */
