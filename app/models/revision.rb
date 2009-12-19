@@ -29,6 +29,12 @@ class Revision < ActiveRecord::Base
       #Powerpoint and Powerpoint 2007 files
       when "application/vnd.ms-powerpoint" then "ppt"
       when "application/vnd.openxmlformats-officedocument.presentationml.presentation" then "ppt"
+      #Open Document Document
+      when "application/vnd.oasis.opendocument.text" then "odt"
+      #Open Document Presentation
+      when "application/vnd.oasis.opendocument.presentation" then "odp"
+      #Open Document Spreadsheet
+      when "application/vnd.oasis.opendocument.spreadsheet" then "ods"
       else "other"
     end
     result
