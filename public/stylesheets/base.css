@@ -33,7 +33,8 @@ h2 a.link-button:hover { background:#339933; -moz-box-shadow: 0 0 0 #666; -webki
 #header h1.expand { font-size:1em; margin-top:4px; }
 #header h1.expand a { font-weight:bold; padding:6px 20px; text-shadow:0 1px 0px #FFF; color:#003366; font-size:0.6em; text-transform:uppercase; letter-spacing:0.13em; -moz-border-radius-bottomleft:12px; -webkit-border-bottom-left-radius:12px; -moz-border-radius-bottomright:12px; -webkit-border-bottom-right-radius:12px; }
 
-#footer { color:#eee; text-shadow:0 1px 0px #000; font-size:0.8em; text-align:center; width:800px; margin:0 auto; }
+#footer { color:#999; text-shadow:0 1px 0px #000; font-size:0.6em; text-align:center; width:800px; margin:0 auto; }
+#footer a { color:#ccc; }
 
 
 /* Item Listing */
