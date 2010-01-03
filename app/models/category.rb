@@ -19,4 +19,27 @@ class Category < ActiveRecord::Base
   def documents_by_updated
     Document.find(:all, :conditions => {:category_id => self.id}, :order => 'updated_at DESC')
   end
+
+  #Test if a user can write to the category
+  def can_write(user)
+    if self.writable
+      #Anyone can write to a category that is publically writable
+      return true
+    elsif self.group.users.include?(user)
+      #A member of the owning group can write as well
+      return true
+    elsif self.is_owner(user)
+      #The user who owns the category can write to it
+      return true
+    else
+      #Otherwise, no one can write
+      false
+    end
+  end
+  
+  #Test if the user can admin the category or not
+  def is_owner(user)
+    self.user == user
+  end
+
 end
