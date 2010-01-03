@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091216001608) do
+ActiveRecord::Schema.define(:version => 20100103173855) do
 
   create_table "backgrounds", :force => true do |t|
     t.string   "image_file_name"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20091216001608) do
 
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id"
-    t.integer "project_id"
+    t.integer "user_id"
   end
 
   create_table "revisions", :force => true do |t|

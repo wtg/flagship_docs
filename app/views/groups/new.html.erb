@@ -2,11 +2,7 @@
 
 <% form_for(@group) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
+  <%= render :partial => 'form', :locals => {:f => f }%>
   <p>
     <%= f.submit 'Create' %>
   </p>

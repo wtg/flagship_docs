@@ -2,6 +2,14 @@
   <b>Name:</b>
   <%=h @group.name %>
 </p>
+<p>
+  <b>Members:</b>
+  <ul>
+  <% @group.users.each do |u| %>
+    <li><%= u.full_name %></li>
+  <% end %>
+  </ul>
+</p>
 
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
