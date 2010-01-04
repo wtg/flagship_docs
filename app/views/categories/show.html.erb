@@ -8,7 +8,7 @@
 <h1 class="main-title">
 	<div class="info_box">
 		<p>
-			<% if @category.private %><%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This category is visible to everyone") %><% else %><%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This category is invisible to others") %><% end %>
+			<% if !@category.private %><%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This category is visible to everyone") %><% else %><%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This category is invisible to others") %><% end %>
 			<% if @category.writable %><%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Anyone can edit this category or add docs") %><% else %><%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Nobody else can edit this category or add docs") %><% end %>
 		</p>
 	</div>
@@ -42,6 +42,7 @@
 	<h2>Documents<%= link_to 'Add', new_document_path(:category_id => @category.id), :class => "link-button" %></h2>
 	<ul class="iconlist">
 		<% @category.documents.each do |document| %>
+		<% if document.can_read current_user%>
 	  	<li>
 	  		<% link_to document do %>
 	  			<div class="iconlist_padding">
@@ -52,6 +53,7 @@
       		</div>
 	  		<% end %>
 	  	</li>
+		<% end %>
 		<% end %>
 	</ul>
 	<div style="clear:both;"></div>

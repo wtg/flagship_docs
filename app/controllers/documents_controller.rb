@@ -35,10 +35,15 @@ class DocumentsController < ApplicationController
   # GET /documents/1.xml
   def show
     @document = Document.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @document }
+    
+    if !@document.can_read(current_user)
+      flash[:error] = 'Access denied'
+      redirect_to(@document.category)
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @document }
+      end
     end
   end
 
@@ -62,6 +67,10 @@ class DocumentsController < ApplicationController
   # GET /documents/1/edit
   def edit
     @document = Document.find(params[:id])
+    if !@document.can_write(current_user)
+      flash[:error] = 'Access denied'
+      redirect_to(@document)      
+    end
   end
 
   # POST /documents
@@ -85,15 +94,19 @@ class DocumentsController < ApplicationController
   # PUT /documents/1.xml
   def update
     @document = Document.find(params[:id])
-
-    respond_to do |format|
-      if @document.update_attributes(params[:document])
-        flash[:notice] = 'Document was successfully updated.'
-        format.html { redirect_to(@document) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @document.errors, :status => :unprocessable_entity }
+    if !@document.can_write(current_user)
+      flash[:error] = 'Access denied'
+      redirect_to(@document)
+    else
+      respond_to do |format|
+        if @document.update_attributes(params[:document])
+          flash[:notice] = 'Document was successfully updated.'
+          format.html { redirect_to(@document) }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @document.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end

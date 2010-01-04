@@ -9,7 +9,7 @@
 			<li><%= f.label :background %> <%= render :partial => 'backgrounds/select', :locals => {:form => f} %> </li>
 			<li><%= f.label :private %> <%= f.check_box :private %></li>
 			<li><%= f.label :writable, "Publicly Writable" %> <%= f.check_box :writable %></li>
-			<li><%= f.label :user %> <%= f.collection_select :user_id, User.all, :id, :full_name %></li>
+			<li><%= f.label :user, "Admin" %> <%= f.collection_select :user_id, User.all, :id, :full_name %></li>
 		</ol>
 	</fieldset>
 	<p class="submitbutton"><%= f.submit button_text %></p>

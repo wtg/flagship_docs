@@ -24,13 +24,13 @@ class Category < ActiveRecord::Base
   def can_write(user)
     if self.writable
       #Anyone can write to a category that is publically writable
-      return true
+      true
     elsif self.group.users.include?(user)
       #A member of the owning group can write as well
-      return true
+      true
     elsif self.is_owner(user)
       #The user who owns the category can write to it
-      return true
+      true
     else
       #Otherwise, no one can write
       false
