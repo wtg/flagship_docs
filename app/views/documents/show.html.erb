@@ -22,7 +22,9 @@
 	</div>
 
 	<%=h @document.title %>
-	<span><%= link_to 'Edit', edit_document_path(@document), :class => 'edit-link' %></span>
+	<% if admin_logged_in? || (logged_in? && @document.can_write(current_user)) %>
+	  <span><%= link_to 'Edit', edit_document_path(@document), :class => 'edit-link' %></span>
+	<% end %>
 </h1>
 
 <div class="flush">
@@ -53,7 +55,9 @@
 	    				<% end %>
 	    			<% end %>
     			<% end %>
-    			<div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document) %></div>
+    			<% if admin_logged_in? || (logged_in? && @document.can_write(current_user)) %>
+    			  <div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document) %></div>
+    			<% end %>
 				</div>
 			</div>
 			<div style="clear:both;"></div>

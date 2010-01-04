@@ -18,5 +18,7 @@
 	</ul>
 	<div style="clear:both;"></div>
 	<br />
-	<%= link_to 'New Category', new_category_path, :class => "link-button" %>
+	<% if admin_logged_in? %>
+	  <%= link_to 'New Category', new_category_path, :class => "link-button" %>
+	<% end %>
 </div>

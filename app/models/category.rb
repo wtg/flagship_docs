@@ -20,6 +20,25 @@ class Category < ActiveRecord::Base
     Document.find(:all, :conditions => {:category_id => self.id}, :order => 'updated_at DESC')
   end
 
+  #Test if a user can write to a category
+  #This method bypasses the acts_as_category plugin methods
+  def can_read(user = nil)
+   if user.nil? && self.private
+      #Public users cannot access private
+      false
+    elsif !self.private
+      #Not private categories can be read by all
+      true
+    elsif self.user == user
+      true
+    elsif self.group.users.include?(user)
+      true
+    else
+      false
+    end  
+  end
+
+
   #Test if a user can write to the category
   def can_write(user)
     if self.writable

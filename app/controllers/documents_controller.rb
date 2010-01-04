@@ -27,10 +27,16 @@ class DocumentsController < ApplicationController
         @documents = Document.find_with_ferret(params[:query]+"*", {:limit => 5})
         @categories = Category.find_with_ferret(params[:query]+"*", {:limit => 5})
       end
+      #Filter out results that you won't be able to see
+      @documents.delete_if{|d| !d.can_read(current_user)}
+      @categories.delete_if{|c| !c.can_read(current_user)}
       render :partial => 'search_results'
     else
       @documents = Document.find_with_ferret(params[:query] + "*")
       @categories =  Category.find_with_ferret(params[:query]+"*")
+      #Filter out results that you won't be able to see
+      @documents.delete_if{|d| !d.can_read(current_user)}
+      @categories.delete_if{|c| !c.can_read(current_user)}
       respond_to do |format|
         format.html # search.html.erb
         format.rss  # search.rss.erb
@@ -76,7 +82,7 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     if !@document.can_write(current_user)
       flash[:error] = 'Access denied'
-      redirect_to(@document)      
+      redirect_to(@document)
     end
   end
 
@@ -122,11 +128,16 @@ class DocumentsController < ApplicationController
   # DELETE /documents/1.xml
   def destroy
     @document = Document.find(params[:id])
-    @document.destroy
+    if !@document.can_write(current_user)
+      flash[:error] = 'Access denied'
+      redirect_to(@document)
+    else
+      @document.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(documents_url) }
-      format.xml  { head :ok }
+      respond_to do |format|
+        format.html { redirect_to(documents_url) }
+        format.xml  { head :ok }
+      end
     end
   end
 
