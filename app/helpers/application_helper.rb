@@ -18,5 +18,9 @@ module ApplicationHelper
    result += other.join("\n")
    result
  end
+ 
+ def current_user
+   nil
+ end
 
 end
