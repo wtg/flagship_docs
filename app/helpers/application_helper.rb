@@ -19,8 +19,15 @@ module ApplicationHelper
    result
  end
  
+ #Boilerplate methods, should be overridden by your authentication system.
  def current_user
    nil
+ end
+ def logged_in?
+   true
+ end
+ def admin_logged_in?
+   true
  end
 
 end
