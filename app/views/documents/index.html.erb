@@ -1,32 +1,19 @@
-<h1>Listing documents</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Readable</th>
-    <th>Writable</th>
-    <th>Downloaded</th>
-    <th>Category</th>
-    <th>User</th>
-  </tr>
-
-<% @documents.each do |document| %>
-  <tr>
-    <td><%=h document.title %></td>
-    <td><%=h document.description %></td>
-    <td><%=h document.readable %></td>
-    <td><%=h document.writable %></td>
-    <td><%=h document.downloaded %></td>
-    <td><%=h document.category.name %></td>
-    <td><%=h document.user.full_name %></td>
-    <td><%= link_to 'Show', document %></td>
-    <td><%= link_to 'Edit', edit_document_path(document) %></td>
-    <td><%= link_to 'Destroy', document, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New document', new_document_path %>
+<div id="doc_listing_inpage">
+	<h1 class="main-title">Documents</strong></h1>
+	<br />
+	<h2>Browse All Accessible Documents</h2>
+	<ol>
+	  <% for document in @documents %>
+		<li class="<%= cycle('even', 'odd') %>">
+			<% link_to document do %>
+				<div style="float:left; text-align:center; width:80px;"><%= image_tag("icons/icon_#{document.current_revision.type}.png", :alt => "", :width => 50) %></div>
+				<div style="float:right; width:800px; padding:8px 0px;">
+					<h1><%=h document.title %></h1>
+					<h2><%=h document.category.name %></h2>
+				</div>
+				<div style="clear:both;"></div>
+			<% end %>
+		</li>
+	  <% end %>
+	</ol>
+</div>

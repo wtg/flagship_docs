@@ -2,8 +2,15 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.xml
   def index
-    @documents = Document.all
-
+    if admin_logged_in?
+      #Admins will get a listing of all documents
+      @documents = Document.all
+    else
+      #Regular users just see all the documents they can read
+      @documents = Document.all
+      #Scrub out all the documents the user cannot read
+      @documents.delete_if{|d| !d.can_read(current_user)}
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @documents }
