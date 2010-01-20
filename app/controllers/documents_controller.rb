@@ -5,11 +5,15 @@ class DocumentsController < ApplicationController
     if admin_logged_in?
       #Admins will get a listing of all documents
       @documents = Document.all
-    else
+    elsif user_logged_in?
       #Regular users just see all the documents they can read
       @documents = Document.all
       #Scrub out all the documents the user cannot read
       @documents.delete_if{|d| !d.can_read(current_user)}
+		else
+			@documents = Document.all
+			#Scrub out all the documents that aren't public
+			@documents.delete_if{|d| !d.can_read(current_user)}
     end
     respond_to do |format|
       format.html # index.html.erb

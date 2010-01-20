@@ -20,18 +20,18 @@ class Category < ActiveRecord::Base
     Document.find(:all, :conditions => {:category_id => self.id}, :order => 'updated_at DESC')
   end
 
-  #Test if a user can write to a category
+  #Test if a user can write to a read
   #This method bypasses the acts_as_category plugin methods
-  def can_read(user = nil)
-   if user.nil? && self.private
+  def can_read(current_user)
+   if current_user == user.nil? && self.private
       #Public users cannot access private
       false
     elsif !self.private
       #Not private categories can be read by all
       true
-    elsif self.user == user
+    elsif self.user == current_user
       true
-    elsif self.group.users.include?(user)
+    elsif self.group.users.include?(current_user)
       true
     else
       false
@@ -40,14 +40,14 @@ class Category < ActiveRecord::Base
 
 
   #Test if a user can write to the category
-  def can_write(user)
+  def can_write(current_user)
     if self.writable
       #Anyone can write to a category that is publically writable
       true
-    elsif self.group.users.include?(user)
+    elsif self.group.users.include?(current_user)
       #A member of the owning group can write as well
       true
-    elsif self.is_owner(user)
+    elsif self.is_owner(current_user)
       #The user who owns the category can write to it
       true
     else
@@ -56,9 +56,9 @@ class Category < ActiveRecord::Base
     end
   end
   
-  #Test if the user can admin the category or not
-  def is_owner(user)
-    self.user == user
+  #Test if the user can admin the category or not. Added a check if the user is a super_admin
+  def is_owner(current_user)
+    self.user == current_user || (!current_user.blank? && current_user.is_admin)
   end
 
 end

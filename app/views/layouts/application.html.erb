@@ -25,7 +25,25 @@
 						<%= render :partial => "documents/search_pane" %>
 					</div>
 					<div id="topbar-right">
-						<h1><a href="#">Login</a></h1>
+						<h1>
+						Welcome to Flagship Documents<%
+						if not logged_in?
+						%>.
+						 Why not
+						<%=
+							link_to 'Login?', new_session_path
+						%>
+						<%
+						else
+						%>,
+						<%= current_user.full_name%>. Need to 
+						<%=
+							link_to 'Logout?', session_path, :method => :delete
+						%>
+						<%
+						end
+						%>
+						</h1>
 					</div>
 					<div style="clear:both;"></div>
 				</div>
