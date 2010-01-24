@@ -7,3 +7,6 @@
 [submodule "vendor/plugins/authenticates_rpi"]
 	path = vendor/plugins/authenticates_rpi
 	url = git://github.com/mikldt/authenticates_rpi.git
+[submodule "vendor/plugins/authenticates_access"]
+	path = vendor/plugins/authenticates_access
+	url = git://github.com/asquared/authenticates_access.git
