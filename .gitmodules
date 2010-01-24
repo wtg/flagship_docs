@@ -9,4 +9,4 @@
 	url = git://github.com/mikldt/authenticates_rpi.git
 [submodule "vendor/plugins/authenticates_access"]
 	path = vendor/plugins/authenticates_access
-	url = git://github.com/asquared/authenticates_access.git
+	url = git://github.com/mikldt/authenticates_access.git
