@@ -4,7 +4,11 @@ class Background < ActiveRecord::Base
   has_many :categories
 
   #Attachment
-  has_attached_file :image
+  has_attached_file :image, 
+      :styles => { 
+          :thumb => ["125x95#", :png],
+          :standard => ["800x1200", :jpg]
+      }
 
 	#Methods
 

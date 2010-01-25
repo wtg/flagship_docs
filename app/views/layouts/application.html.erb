@@ -26,38 +26,27 @@
 					</div>
 					<div id="topbar-right">
 						<h1>
-						Welcome to Flagship Documents<%
-						if not logged_in?
-						%>.
-						 Why not
-						<%=
-							link_to 'Login?', new_session_path
-						%>
-						<%
-						else
-						%>,
-						<%= current_user.full_name%>. Need to 
-						<%=
-							link_to 'Logout?', session_path, :method => :delete
-						%>
-						<%
-						end
-						%>
+							<% if not logged_in? %>
+								<%= link_to 'Log in to add/change docs', new_session_path %>
+							<% else %>
+								<%= current_user.full_name %>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%= link_to 'Logout', session_path, :method => :delete %>
+							<% end %>
 						</h1>
 					</div>
 					<div style="clear:both;"></div>
 				</div>
 			</div>
-			<%= render :partial=>'categories/cat_tree' %>
 
 			<h1 class="expand"><a id="cat_tree_expand" href="#"><span id="label_hide" style="display:none;">Hide</span><span id="label_show">Show</span> Categories</a></h1>
+			
+			<%= render :partial=>'categories/cat_tree' %>
 		</div>
 		
 		<div id="wrap-padding">
 			<%= yield %>
 		</div>
 	</div>
-        <div id="footer">Powered by <%= link_to "Flagship Docs", "http://github.com/wtg/flagship_docs" %>.  2009 <%= link_to "RPI Web Tech Group", "http://webtech.union.rpi.edu" %>.</div>
+        <div id="footer">Powered by <%= link_to "Flagship Docs", "http://github.com/wtg/flagship_docs" %>.&nbsp;&nbsp;&nbsp;2010 <%= link_to "RPI Web Tech Group", "http://webtech.union.rpi.edu" %>.</div>
 
 </body>
 

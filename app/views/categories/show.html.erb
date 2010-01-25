@@ -35,7 +35,7 @@
 	<h2>Sub-Categories <%= link_to 'Add', new_category_path(:parent_id => @category.id), :class => "link-button" if admin_logged_in? || (logged_in? && @category.allowed_to_create)%></h2>
 	<ul class="iconlist">
 		<% @category.children.each do |child| %>
-		<% if child.can_read(current_user)%>
+		<% if child.allowed_to_read %>
 	  	<li>
 	  		<% link_to child do %>
 	  			<div class="iconlist_padding">

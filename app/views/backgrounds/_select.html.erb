@@ -1,3 +1,8 @@
-<% Background.all.each do |background| %>
-  <%= form.radio_button(:background_id, background.id) %> <%= background.image_file_name %>
-<% end %>
+<div>
+	<ul class="img_sel">
+	<% Background.all.each do |background| %>
+	  <li><%= form.radio_button(:background_id, background.id) %>&nbsp;&nbsp;&nbsp;<%= image_tag background.image(:thumb), :height => 70 %>&nbsp;&nbsp;&nbsp;<%= background.image_file_name %></li>
+	<% end %>
+	</ul>
+</div>
+<div style="clear:both;"></div>
