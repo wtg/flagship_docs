@@ -128,6 +128,9 @@ form.cmxform em{font-weight:700;font-style:normal;color:red;}
 form.cmxform label{ text-shadow:0 1px 0px #000; background:#666;color:#FFF;font-size:0.6em;text-align:right;padding:6px 0px; padding-right:8px;width:120px;}
 /* Width of labels */
 form.cmxform fieldset fieldset label{margin-left:123px;}
+form.cmxform ul.img_sel li { -moz-border-radius:5px; -webkit-border-radius:5px; background:#eee; border:solid 1px #999; margin-bottom:8px; font-size:0.8em; }
+form.cmxform ul.img_sel li:hover { background:#FFF; }
+form.cmxform ul.img_sel li * { vertical-align: middle; }
 /* Width plus 3 (html space) *//*\*//*/ form.cmxform legend { display: inline-block; } /* IE Mac legend fix */
 div.form_group { margin-bottom:25px; }
 div.form_group fieldset { padding:14px 0px; border:solid 1px #999; -moz-border-radius:5px; -webkit-border-radius:5px; }
