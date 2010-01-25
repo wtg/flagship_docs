@@ -32,7 +32,7 @@
 <div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
 <div class="mc-indent">
-	<h2>Sub-Categories <%= link_to 'Add', new_category_path(:parent_id => @category.id), :class => "link-button" if admin_logged_in? || (logged_in? && @category.allowed_to_create)%></h2>
+	<h2>Sub-Categories <%= link_to 'Add', new_category_path(:parent_id => @category.id), :class => "link-button" if Category.allowed_to_create %></h2>
 	<ul class="iconlist">
 		<% @category.children.each do |child| %>
 		<% if child.allowed_to_read %>
@@ -51,7 +51,7 @@
 	</ul>
 	<div style="clear:both;"></div>
 	<br />
-	<h2>Documents<%= link_to 'Add', new_document_path(:category_id => @category.id), :class => "link-button" if admin_logged_in? || (logged_in? && Document.new.allowed_to_create)%></h2>
+	<h2>Documents<%= link_to 'Add', new_document_path(:category_id => @category.id), :class => "link-button" if @category.allowed_to_save %></h2>
 	<ul class="iconlist">
 		<% @category.documents.each do |document| %>
 		<% if document.allowed_to_read%>

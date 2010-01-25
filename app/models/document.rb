@@ -40,48 +40,9 @@ class Document < ActiveRecord::Base
 	authenticates_reads :with => :readable
 	#authenticates_reads :with => IS_IN_GROUP
 
-	authenticates_creation :with => :allow_owner
-	authenticates_creation :with => :allow_admin
-	#authenticates_creation :with => IS_IN_GROUP
-	#authenticates_creation :with => CATEOGRY_IS_PUBLIC
-
-	authenticates_saves :with_accessor_method => :writeable
+	authenticates_saves :with => :writeable
 	authenticates_saves :with => :allow_owner
-	authenticates_saves :with => :allow_admin
+	authenticates_saves :with_accessor_method => :is_admin
 	#authenticates_saves :with => IS_IN_GROUP
 
-=begin
-	  #If a user has access to read a document (and its revisions)
-  def can_read(user = nil)
-    if user.nil? && !self.readable
-      #Public users cannot access non readible documents
-      false
-    elsif self.readable
-      #Publically readible documents can be read by all
-      true
-    elsif self.user == user
-      true
-    elsif self.category.group.users.include?(user)
-      true
-    else
-      false
-    end  
-  end
-  
-  #If a user has access to write/update to a document
-  def can_write(user)
-    if self.writable
-      #Publically writable documents
-      true
-    elsif self.user == user
-      #The owner can always write to a document
-      true
-    elsif self.category.group.users.include?(user)
-      #Members of the category can always write to it as well
-      true
-    else
-      false
-    end
-  end
-=end
 end

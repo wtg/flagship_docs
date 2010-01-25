@@ -17,8 +17,9 @@ class User < ActiveRecord::Base
   authenticates_saves :with_accessor_method => :is_admin
   has_owner :self
 
-  def pants
-    true
+  #Determine if a user is in a group or not
+  def in_group
+    !self.groups.nil?
   end
 
 end

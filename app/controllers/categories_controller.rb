@@ -43,7 +43,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   def edit
     @category = Category.find(params[:id])
-    if !@category.allowed_to_write
+    if !@category.allowed_to_save
       flash[:notice] = 'Sorry, you do not have access to edit this category'
       redirect_back
     end

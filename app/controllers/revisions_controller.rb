@@ -4,9 +4,13 @@ class RevisionsController < ApplicationController
   def index
     @revisions = Revision.find(:all, :conditions => {:document_id => params[:document_id]})
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @revisions }
+    if !@revisions.first.document.allowed_to_read
+      redirect_back
+    else
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @revisions }
+      end
     end
   end
 
@@ -19,9 +23,13 @@ class RevisionsController < ApplicationController
       @revision = Revision.find(params[:id])
     end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @revision }
+    if !@revision.document.allowed_to_read
+      redirect_back
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @revision }
+      end
     end
   end
 
@@ -31,15 +39,22 @@ class RevisionsController < ApplicationController
     @revision = Revision.new
     @revision.document_id = params[:document_id]
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @revision }
+    if !@revision.document.allowed_to_save
+      redirect_back
+    else
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @revision }
+      end
     end
   end
 
   # GET /revisions/1/edit
   def edit
     @revision = Revision.find(params[:id])
+    if !@revision.document.allowed_to_save
+      redirect_back
+    end
   end
 
   # POST /revisions
@@ -81,7 +96,11 @@ class RevisionsController < ApplicationController
   # DELETE /revisions/1.xml
   def destroy
     @revision = Revision.find(params[:id])
-    @revision.destroy
+    if !revision.document.allowed_to_save
+      redirect_back
+    else
+      @revision.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to(revisions_url) }
@@ -89,18 +108,21 @@ class RevisionsController < ApplicationController
     end
   end
 
- #Some authentication needs to be added here.
- def download
+  def download
    if params[:id] == 'current'
       revision = Document.find(params[:document_id]).current_revision
    else
       revision = Revision.find(params[:id])
    end
-   revision.document.increment!(:downloaded)
-   
-   send_data revision.upload.file_contents(:original),
-             :filename => revision.upload_file_name,
-             :type => revision.upload_content_type
 
+   if revision.document.allowed_to_read
+     revision.document.increment!(:downloaded)
+   
+     send_data revision.upload.file_contents(:original),
+               :filename => revision.upload_file_name,
+               :type => revision.upload_content_type
+   else
+     redirect_back
+   end
  end
 end

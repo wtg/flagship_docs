@@ -22,7 +22,7 @@
 	</div>
 
 	<%=h @document.title %>
-	<% if admin_logged_in? || (logged_in? && @document.can_write(current_user)) %>
+	<% if @document.allowed_to_save %>
 	  <span><%= link_to 'Edit', edit_document_path(@document), :class => 'edit-link' %></span>
 	<% end %>
 </h1>
@@ -55,7 +55,7 @@
 	    				<% end %>
 	    			<% end %>
     			<% end %>
-    			<% if admin_logged_in? || (logged_in? && @document.can_write(current_user)) %>
+    			<% if @document.allowed_to_save %>
     			  <div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document) %></div>
     			<% end %>
 				</div>

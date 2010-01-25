@@ -5,15 +5,11 @@ class DocumentsController < ApplicationController
     if admin_logged_in?
       #Admins will get a listing of all documents
       @documents = Document.all
-    elsif user_logged_in?
+    else
       #Regular users just see all the documents they can read
       @documents = Document.all
       #Scrub out all the documents the user cannot read
-      @documents.delete_if{|d| !d.can_read(current_user)}
-		else
-			@documents = Document.all
-			#Scrub out all the documents that aren't public
-			@documents.delete_if{|d| !d.can_read(current_user)}
+      @documents.delete_if{|d| !d.allowed_to_read}
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -32,15 +28,15 @@ class DocumentsController < ApplicationController
         @categories = Category.find_with_ferret(params[:query]+"*", {:limit => 5})
       end
       #Filter out results that you won't be able to see
-      @documents.delete_if{|d| !d.can_read(current_user)}
-      @categories.delete_if{|c| !c.can_read(current_user)}
+      @documents.delete_if{|d| !d.allowed_to_read}
+      @categories.delete_if{|c| !c.allowed_to_read}
       render :partial => 'search_results'
     else
       @documents = Document.find_with_ferret(params[:query] + "*")
       @categories =  Category.find_with_ferret(params[:query]+"*")
       #Filter out results that you won't be able to see
-      @documents.delete_if{|d| !d.can_read(current_user)}
-      @categories.delete_if{|c| !c.can_read(current_user)}
+      @documents.delete_if{|d| !d.allowed_to_read}
+      @categories.delete_if{|c| !c.allowed_to_read}
       respond_to do |format|
         format.html # search.html.erb
         format.rss  # search.rss.erb
@@ -55,7 +51,7 @@ class DocumentsController < ApplicationController
     
     if !@document.allowed_to_read
       flash[:error] = 'Access denied'
-      redirect_to(@document.category)
+      redirect_back
     else
       respond_to do |format|
         format.html # show.html.erb
@@ -84,7 +80,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1/edit
   def edit
     @document = Document.find(params[:id])
-    if !@document.can_write(current_user)
+    if !@document.allowed_to_save
       flash[:error] = 'Access denied'
       redirect_to(@document)
     end
@@ -95,14 +91,19 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(params[:document])
 
-    respond_to do |format|
-      if @document.save
-        flash[:notice] = 'Document was successfully created.'
-        format.html { redirect_to(@document) }
-        format.xml  { render :xml => @document, :status => :created, :location => @document }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @document.errors, :status => :unprocessable_entity }
+    if !@document.category.allowed_to_save
+      flash[:notice] = 'Permission denied.'
+      redirect_back
+    else
+      respond_to do |format|
+        if @document.save
+          flash[:notice] = 'Document was successfully created.'
+          format.html { redirect_to(@document) }
+          format.xml  { render :xml => @document, :status => :created, :location => @document }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @document.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
@@ -111,7 +112,7 @@ class DocumentsController < ApplicationController
   # PUT /documents/1.xml
   def update
     @document = Document.find(params[:id])
-    if !@document.can_write(current_user)
+    if !@document.allowed_to_save
       flash[:error] = 'Access denied'
       redirect_to(@document)
     else
@@ -132,7 +133,7 @@ class DocumentsController < ApplicationController
   # DELETE /documents/1.xml
   def destroy
     @document = Document.find(params[:id])
-    if !@document.can_write(current_user)
+    if !@document.allowed_to_save
       flash[:error] = 'Access denied'
       redirect_to(@document)
     else
