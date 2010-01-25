@@ -53,7 +53,7 @@ class DocumentsController < ApplicationController
   def show
     @document = Document.find(params[:id])
     
-    if !@document.can_read(current_user)
+    if !@document.allowed_to_read
       flash[:error] = 'Access denied'
       redirect_to(@document.category)
     else

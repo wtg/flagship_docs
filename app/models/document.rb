@@ -32,8 +32,26 @@ class Document < ActiveRecord::Base
   def group
     self.category.group
   end
-  
-  #If a user has access to read a document (and its revisions)
+	has_owner :user
+	autosets_owner_on_create
+	
+	authenticates_reads :with_accessor_method => :is_admin
+	authenticates_reads :with => :allow_owner
+	authenticates_reads :with => :readable
+	#authenticates_reads :with => IS_IN_GROUP
+
+	authenticates_creation :with => :allow_owner
+	authenticates_creation :with => :allow_admin
+	#authenticates_creation :with => IS_IN_GROUP
+	#authenticates_creation :with => CATEOGRY_IS_PUBLIC
+
+	authenticates_saves :with_accessor_method => :writeable
+	authenticates_saves :with => :allow_owner
+	authenticates_saves :with => :allow_admin
+	#authenticates_saves :with => IS_IN_GROUP
+
+=begin
+	  #If a user has access to read a document (and its revisions)
   def can_read(user = nil)
     if user.nil? && !self.readable
       #Public users cannot access non readible documents
@@ -65,4 +83,5 @@ class Document < ActiveRecord::Base
       false
     end
   end
+=end
 end

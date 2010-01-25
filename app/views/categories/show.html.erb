@@ -24,7 +24,7 @@
 	<span>
 		<%=h @category.description %>
 		<br />
-		<% if admin_logged_in? || (logged_in? && @category.is_owner(current_user)) %>
+		<% if admin_logged_in? || (logged_in? && @category.allowed_to_save) %>
 		  <%= link_to 'Edit', edit_category_path(@category), :class => 'edit-link' %>
 		<% end %>
 	</span>
@@ -32,7 +32,7 @@
 <div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
 <div class="mc-indent">
-	<h2>Sub-Categories <%= link_to 'Add', new_category_path(:parent_id => @category.id), :class => "link-button" if admin_logged_in? || (logged_in? && @category.can_write(current_user))%></h2>
+	<h2>Sub-Categories <%= link_to 'Add', new_category_path(:parent_id => @category.id), :class => "link-button" if admin_logged_in? || (logged_in? && @category.allowed_to_create)%></h2>
 	<ul class="iconlist">
 		<% @category.children.each do |child| %>
 		<% if child.can_read(current_user)%>
@@ -51,10 +51,10 @@
 	</ul>
 	<div style="clear:both;"></div>
 	<br />
-	<h2>Documents<%= link_to 'Add', new_document_path(:category_id => @category.id), :class => "link-button" if admin_logged_in? || (logged_in? && @category.can_write(current_user))%></h2>
+	<h2>Documents<%= link_to 'Add', new_document_path(:category_id => @category.id), :class => "link-button" if admin_logged_in? || (logged_in? && Document.new.allowed_to_create)%></h2>
 	<ul class="iconlist">
 		<% @category.documents.each do |document| %>
-		<% if document.can_read current_user%>
+		<% if document.allowed_to_read%>
 	  	<li>
 	  		<% link_to document do %>
 	  			<div class="iconlist_padding">

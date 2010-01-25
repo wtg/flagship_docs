@@ -12,6 +12,10 @@ class Background < ActiveRecord::Base
 	#Three Types of People can create new backgrounds. Super Admins, Group Members, and Group Leaders
 	#The Check for Group Leaders really isn't required, you need to be a group member to lead it generally,
 	#but sticky things can happen. You never know what the user will do.
+
+	authenticates_saves :with_accessor_method => :is_admin
+	#authenticates_saves :with => IN_A_GROUP
+=begin
 	def can_upload
 		#if user is an admin he can do this.
 		if current_user.is_admin
@@ -27,5 +31,5 @@ class Background < ActiveRecord::Base
 			false
 		end
 	end
-
+=end
 end
