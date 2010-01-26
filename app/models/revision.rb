@@ -8,7 +8,7 @@ class Revision < ActiveRecord::Base
   #Relationships
   belongs_to :document
   belongs_to :user
-
+	
   #Test if this revision is the current one
   def current?
     return Document.current_revision.id == self.id
@@ -55,5 +55,8 @@ class Revision < ActiveRecord::Base
     end
     result.gsub(tempfile.path,"")
   end
+
+	has_owner :user
+	autosets_owner_on_create
 
 end

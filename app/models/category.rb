@@ -28,8 +28,9 @@ class Category < ActiveRecord::Base
   #Authenticates Access
   #Test if a user can read a category
   #This method bypasses the acts_as_category plugin methods
-  has_owner :user
-  authenticates_reads :with => :not_private
+
+	has_owner :user
+	authenticates_reads :with => :not_private
   authenticates_reads :with => :allow_owner
   authenticates_reads :with_accessor_method => :is_admin
   #authenticates_reads :with => IN THE GROUP
@@ -41,7 +42,7 @@ class Category < ActiveRecord::Base
   #authenticates_saves :with => IN THE GROUP  
 
   #authenticates_creation :with => IN THE GROUP
-
+ 
   autosets_owner_on_create
 
 end
