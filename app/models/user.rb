@@ -17,11 +17,13 @@ class User < ActiveRecord::Base
   authenticates_saves :with_accessor_method => :is_admin
   has_owner :self
 
-  #Determine if a user is in a group or not
+  #Determine if a user belongs to at least one group
   def in_one_group
     !self.groups.nil?
   end
 
+  #Used to test if a user is a member of a certain group.
+  #Used by authenticates_access via method in model.
   def in_group?(options)
     result = false
     if options.is_a?(Hash)
