@@ -1,12 +1,24 @@
 /* Flagship Docs (v2) - CSS */
 /* Designed by Brian R Zaik (http://brzaik.com) in 2009-2010. */
+/* Web Technologies Group of RPI, 2009-2010 */
 
+
+
+/*##############################################################################################################################*/
+/*																												GLOBAL CSS																														*/
+/*##############################################################################################################################*/
+
+
+/*##########################################################################*/
+/*														General Styles																*/
+/*##########################################################################*/
+
+/*##########  GLOBAL RESET AND MASTER TAGS  ##########*/
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertica-align:baseline; }
 html { font-family:"Myriad Web", Myriad, Arial, sans-serif; }
 body { background:#FFFFFF url(../images/customized/woodplanks.jpg) repeat scroll left top; }
 
-a { text-decoration: none; }
-a:hover { color:#3399ff; text-decoration: underline; }
+/*##########  MAIN HEADERS  ##########*/
 h1.main-title { margin:0px; margin-bottom:30px; padding:0px; padding-left:34px; background:url(../images/layout/h1block.png) top left no-repeat; font-size:2.2em; font-weight:600; color:#333; }
 h1.main-title span { color:#666; font-weight:normal; font-size:0.45em; padding:0px; margin:0px; margin-top:4px; display:block; }
 h1.main-title span a { color:#666; font-weight:bold; }
@@ -15,40 +27,63 @@ h1.main-title span a.edit-link { color:#f59300 !important; }
 h2.breadcrumb { margin-bottom:6px; padding-left:34px; color:#999; text-transform: uppercase; font-size:0.7em; letter-spacing: 0.15em; }
 h2.breadcrumb a { padding:4px; color:#333; }
 h2.breadcrumb a:hover { background:#000; color:#FFF; }
+div.mc-indent h2 { font-size:1.2em; color:#333; font-weight:normal; margin:0px 0px 12px 0px; padding:20px 0px 0px 0px; }
+div.mc-indent p { font-size:0.8em; color:#333; line-height:1.2em; margin:0px 0px 12px 0px; padding:0px; }
+
+/*##########  INDENTS AND PADDING  ##########*/
 div.mc-indent { padding-left:34px; }
+div.flush { margin-left:-20px; margin-right:-20px; }
 
-
-/* LINK BUTTONS */
+/*##########  LINKS AND LINK BUTTONS  ##########*/
+a { text-decoration: none; }
+a:hover { color:#3399ff; text-decoration: underline; }
 a.link-button { font-size:0.9em; padding:6px 18px; background:#666; color:#FFF; -moz-border-radius:18px; -webkit-border-radius:18px; text-shadow:0 1px 0px #000; -moz-box-shadow: 0 0.2em 0em #999; -webkit-box-shadow: 0 0.2em 0em #999; margin-bottom:25px !important; }
 a.link-button:hover { background:#006699; -moz-box-shadow: 0 0.2em 0em #99cccc; -webkit-box-shadow: 0 0.2em 0em #99cccc; }
 h2 a.link-button { vertical-align:middle; font-size:0.6em; border:solid 1px #008000; width:120px; text-align:center; -moz-border-radius:20px; -webkit-border-radius:20px; -moz-box-shadow: 0 0 0 #666; -webkit-box-shadow: 0 0 0 #666; height:55px; background:#008000; padding:3px 18px; margin-left:12px; }
 h2 a.link-button:hover { background:#339933; -moz-box-shadow: 0 0 0 #666; -webkit-box-shadow: 0 0 0 #666; }
 
+/*##########  HORIZONTAL RULE  ##########*/
+div.hr_dl { background:url(../images/layout/hr_dl.png) top left repeat-x; height:2px; }
+#sb-mid div.hr_dl { margin-left:-20px; }
+div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; height:2px; }
 
-/* MAIN LAYOUT ELEMENTS */
+/*##########  TIPSY CAPTIONS  ##########*/
+.tipsy { padding: 5px; font-size: 10px; opacity: 0.8; filter: alpha(opacity=80); background-repeat: no-repeat; }
+.tipsy-inner { padding: 4px 5px; background-color: black; color: white; max-width: 200px; text-align: center; }
+.tipsy-north { background-image: url(../images/icons/tipsy-north.gif); background-position: top center; }
+.tipsy-south { background-image: url(../images/icons/tipsy-south.gif); background-position: bottom center; }
+.tipsy-east { background-image: url(../images/icons/tipsy-east.gif); background-position: right center; }
+.tipsy-west { background-image: url(../images/icons/tipsy-west.gif); background-position: left center; }
+
+
+/*##########################################################################*/
+/*															Master Layout																*/
+/*##########################################################################*/
+
+/*##########  WRAP  ##########*/
 #wrap { width:70%; margin:30px auto; margin-bottom:8px; min-width:940px; background:#f5f5f5 url(../images/layout/wrap_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 0.5em #000; }
 #wrap-padding { padding:40px 20px; padding-bottom:50px; }
 
+/*##########  HEADER  ##########*/
 #header { background:#BFE2FF; -moz-box-shadow: 0 0.15em 0.2em #666; -webkit-box-shadow: 0 0.15em 0.2em #666; }
 #header h1.expand { font-size:1em; margin-top:4px; }
 #header h1.expand a { font-weight:bold; padding:6px 20px; color:#003366; font-size:0.6em; text-transform:uppercase; letter-spacing:0.13em; }
 #header h1.expand a:hover { color:#FFF; }
 
+/*##########  FOOTER  ##########*/
 #footer { color:#999; text-shadow:0 1px 0px #000; font-size:0.6em; text-align:center; width:800px; margin:0 auto; }
 #footer a { color:#ccc; }
 
-
-/* Top Bar */
+/*##########  TOP BAR  ##########*/
 #topbar { background:url(../images/layout/tb_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #333; -webkit-box-shadow: 0 0.15em 0.2em #333; }
 #topbar-padding { padding:5px 18px; padding-left:12px; }
 #topbar { color:#eee; font-weight:normal; }
 #topbar h1 { font-weight:normal; }
 #topbar a { text-shadow:0 1px 0px #000; font-size:0.8em; font-weight:bold; color:#FFF; }
-#topbar-left { float:left; width:54%; }
+#topbar-left { float:left; width:491px; }
 #topbar-right { padding:8px 0px; padding-top:14px; float:right; width:44%; text-align:right; }
 
-
-/* Category Tree */
+/*##########  CATEGORIES TREE  ##########*/
 #cat_tree { background:#99cccc url(../images/layout/tree_bg.png) bottom left repeat-x; margin:0px; border-bottom:solid 1px #eee; }
 #cat_tree_inset { border-top:solid 1px #666; }
 #cat_tree-padding { padding:15px 25px 20px 8px; border-top:solid 1px #eee; }
@@ -61,8 +96,48 @@ ul.tree_root li { list-style: none !important; }
 ul.tree_root li a { -moz-border-radius:3px; -webkit-border-radius:3px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-bottomleft:0px; -webkit-border-bottom-left-radius:0px; display:block; padding:4px 12px; }
 ul.tree_root li a:hover { background:#006699; color:#FFF !important; }
 
+/*##########  DOCUMENTS/CATEGORIES SEARCH FIELD  ##########*/
+#search-jQuery { position:relative; }
+.index-search { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 14px; margin-top:2px; padding-left:38px; width:398px; }
+.index-search:focus { background:url(../images/layout/search_bg_hover.png) center center no-repeat; }
+#no-js { position:relative; }
+.search-button { position:absolute; z-index:20; right:50px; top:4px; background:url(../images/icons/search_button.png) center center no-repeat; border:0px; width:57px; height:35px; }
+a#search_ex { position:absolute; z-index:20; right:54px; top:12px; background:url(../images/icons/search_ex.png) center center no-repeat; border:0px; width:17px; height:17px; }
+a#search_ex:active { background:url(../images/icons/search_ex_hover.png) center center no-repeat; border:0px; }
 
-/* Item Listing */
+/*##########  DOCUMENTS/CATEGORIES SEARCH POP-OVER  ##########*/
+.auto_complete { font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif; font-size:14px; letter-spacing:normal; position:absolute; z-index:999; margin-top:-6px; margin-left:14px; border:solid 1px #333; border-style:solid; width:422px; background-color:#333; line-height:14px; -moz-border-radius:3px; -webkit-border-radius:3px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.1em 0.5em #333; -webkit-box-shadow: 0 0.1em 0.5em #333; }
+.auto_complete * { text-shadow:0 0px 0px #000 !important; }
+.auto_complete h1, div#doc_listing_inpage h2 { text-transform:uppercase; letter-spacing:0.2em; font-size:0.8em; font-weight:bold; padding:8px 10px; }
+.auto_complete ol { list-style: none; }
+.auto_complete ol li h1 { font-weight:bold !important; text-transform: none !important; padding:0px; font-size:1.2em; color:#000; margin-bottom:3px; letter-spacing:0.02em !important; }
+.auto_complete ol li h2 { font-weight:normal !important; padding:0px; font-size:1em; color:#666; margin:0px; letter-spacing: 0.02em; }
+.auto_complete ol li h3 { font-weight:normal !important; color:#000; margin-top:3px; }
+.auto_complete ol li h3 strong { font-weight:normal !important; background:yellow; padding:2px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+.auto_complete ol li a { background:#ccc; display:block; padding:8px 18px; clear:left; text-decoration:none; }
+.auto_complete ol li a:hover { background-color:#999; color:#ffffff; }
+.auto_complete ol li a:hover h3 { color:#333 !important; }
+.auto_complete ol li a:hover h3 strong { color:#333 !important; }
+.auto_complete ol li a span.searchheading { display:block; font-weight:bold; padding-top:5px; color:#191919; }
+.auto_complete ol li a:hover * { color:#ffffff; }
+.auto_complete ol li a span { color:#555555; }
+.auto_complete ol li a:hover span { color:#f1f1f1; }
+.auto_complete span.category { font-size:11px; margin:5px; display:block; color:#ffffff; }
+.auto_complete span.seperator { float:right; padding-right:15px; margin-right:5px; background-image:url(../images/shortcuts_arrow.gif); background-repeat:no-repeat; background-position:right; }
+.auto_complete span.seperator a { background-color:transparent; display:block; margin:5px; height:auto; color:#ffffff; }
+
+
+
+/*##############################################################################################################################*/
+/*																											AREA-SPECIFIC CSS																												*/
+/*##############################################################################################################################*/
+
+
+/*##########################################################################*/
+/*															Categories/Show															*/
+/*##########################################################################*/
+
+/*##########  GRAPHICAL ICON LISTS  ##########*/
 ul.iconlist { margin:0px -8px; }
 ul.iconlist li { list-style:none; float:left; margin:15px 6px; }
 ul.iconlist li a { background:#eee; width:180px; height:210px; border:solid 1px #ccc; -moz-border-radius:12px; -webkit-border-radius:12px; font-size:small; display:block; text-align:center; }
@@ -70,9 +145,9 @@ ul.iconlist li a:hover { background:#99ccff; border:solid 1px #3399cc; }
 ul.iconlist li a h2 { color:#333 !important; background:none !important; padding:0px !important; font-size:1.3em !important; margin:0px; font-weight:bold !important; text-align:center; }
 ul.iconlist li a:hover h2 { }
 ul.iconlist li a h3 { font-size:1em; font-weight:normal; margin:0px; padding:0px; text-align:center; }
-
-
 div.iconlist_padding { padding:8px; }
+
+/*##########  ICONS  ##########*/
 div.ins { z-index:1; width:164px; height:130px; }
 div.type-file, div.type-folder { margin-left:auto; margin-right:auto; text-align:center; }
 div.type-folder img { border:0px !important; }
@@ -83,7 +158,34 @@ div.pdf_icon { background:url(../images/icons/pdficon.png) center center no-repe
 div.img_icon { background:url(../images/icons/imageicon.png) center center no-repeat; width:46px; height:44px; margin:75px 0px 0px 110px; position:absolute; z-index:5; }
 
 
-div.flush { margin-left:-20px; margin-right:-20px; }
+/*##########################################################################*/
+/*													Non-JS Search Results														*/
+/*##########################################################################*/
+
+/*##########  HEADERS  ##########*/
+div#doc_listing_inpage h1.main-title strong, div#doc_listing_inpage li a h3 strong { font-weight:normal !important; background:yellow; padding:2px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+div#doc_listing_inpage h1.main-title strong, div#doc_listing_inpage li a h3 strong { padding-left:8px; padding-right:8px; color:#000; }
+div#doc_listing_inpage h2 { color:#666; font-size:0.8em; font-weight:normal; padding:0px; margin-bottom:12px; }
+
+/*##########  LISTING STYLES  ##########*/
+div#doc_listing_inpage ol { list-style: none; }
+div#doc_listing_inpage li.even { background:#ccc; }
+div#doc_listing_inpage li.odd { background:#eee; }
+div#doc_listing_inpage li a { padding:6px; display:block; }
+div#doc_listing_inpage li a:hover { background:#666; }
+div#doc_listing_inpage li a h1 { color:#000; font-weight:bold; font-size:1.2em; letter-spacing: normal; text-transform: none; }
+div#doc_listing_inpage li a h2 { color:#333; font-weight: bold; font-size:1em; letter-spacing: normal; text-transform: none; }
+div#doc_listing_inpage li a h3 { color:#000; font-weight: normal; font-size:0.9em; letter-spacing: normal; text-transform: none; }
+div#doc_listing_inpage li a:hover h1 { color:#FFF; text-decoration: none !important; }
+div#doc_listing_inpage li a:hover h2 { color:#ccc; text-decoration: none !important; }
+div#doc_listing_inpage li a:hover h3 { color:#FFF; text-decoration: none !important; }
+
+
+/*##########################################################################*/
+/*													Documents/Show Pages														*/
+/*##########################################################################*/
+
+/*##########  DOWNLOAD BLOCK  ##########*/
 #dl { background:#ddd url(../images/layout/dlbg.png) top left repeat-x; }
 #dl-padding { padding:18px 34px 18px 34px; }
 #dl_icon { float:left; width:25%; text-align:center; }
@@ -96,6 +198,8 @@ div.flush { margin-left:-20px; margin-right:-20px; }
 #dl span.details { color:#333 !important; font-size:0.7em; font-weight:normal; padding-left:8px; }
 #dl-revs { padding:12px 12px 4px 35px; }
 #dl-revs h3 { padding-bottom:12px; font-weight:normal; color:#333; font-size:0.75em; border-bottom:solid 1px #999; }
+
+/*##########  REVISIONS  ##########*/
 div.dl-rev { border-bottom:solid 1px #999; padding:7px 20px; }
 div.dl-rev a { color:#000; font-weight:bold; text-decoration: none; }
 div.dl-rev a:hover { color:#3399ff; text-decoration: underline; }
@@ -103,16 +207,17 @@ div#dl-revs div#seemore-link { text-align:right; padding:0px; margin:8px 8px 0px
 div#dl-revs div#seemore-link a { color:#666; font-weight:bold; font-size:0.7em; text-decoration: none; }
 div#dl-revs div#seemore-link a:hover { color:#000; text-decoration: underline; }
 
-div.hr_dl { background:url(../images/layout/hr_dl.png) top left repeat-x; height:2px; }
-#sb-mid div.hr_dl { margin-left:-20px; }
-div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; height:2px; }
+/*##########  INFO BOX  ##########*/
+div.info_box { border:solid 1px #666;  -moz-border-radius:7px; -webkit-border-radius:7px; padding:8px; float:right; margin-bottom:20px; margin-left:20px; }
+div.info_box p { font-size:0.5em !important; }
+div.info_box p img { vertical-align: middle; }
 
 
-div.mc-indent h2 { font-size:1.2em; color:#333; font-weight:normal; margin:0px 0px 12px 0px; padding:20px 0px 0px 0px; }
-div.mc-indent p { font-size:0.8em; color:#333; line-height:1.2em; margin:0px 0px 12px 0px; padding:0px; }
+/*##########################################################################*/
+/*																Admin Forms																*/
+/*##########################################################################*/
 
-
-/* Admin Forms Styles */
+/*##########  FORM ELEMENTS  ##########*/
 p.submitbutton{padding-left:140px;}
 form.cmxform fieldset{ background:#e6e6e6; border:solid 1px #999; -moz-border-radius:5px; -webkit-border-radius:5px; font-size:1.2em;margin-bottom:10px;}
 form.cmxform input { font-size:1em; }
@@ -132,61 +237,11 @@ form.cmxform ul.img_sel li { -moz-border-radius:5px; -webkit-border-radius:5px; 
 form.cmxform ul.img_sel li:hover { background:#FFF; }
 form.cmxform ul.img_sel li * { vertical-align: middle; }
 /* Width plus 3 (html space) *//*\*//*/ form.cmxform legend { display: inline-block; } /* IE Mac legend fix */
+
+/*##########  FORM GROUPS  ##########*/
 div.form_group { margin-bottom:25px; }
 div.form_group fieldset { padding:14px 0px; border:solid 1px #999; -moz-border-radius:5px; -webkit-border-radius:5px; }
 div.form_group input { background:#FFEFEF; font-size:1.15em; border:solid 1px #999; }
 div.form_group legend { margin:8px; font-size:1.4em; background:#FFF; font-weight:normal; padding:0px 8px; }
 div.form_group label { padding:2px 0px; vertical-align:top; font-weight:bold; padding-right:6px; background:none; color:#333; font-size:0.8em; width:210px; }
 div.form_group textarea { width:70%; background:#FFEFEF; border:solid 1px #999; }
-
-
-/* Search Box */
-.index-search { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 14px; margin-top:2px; padding-left:38px; width:398px; }
-.index-search:focus { background:url(../images/layout/search_bg_hover.png) center center no-repeat; }
-.no-js { width:60%; }
-
-.auto_complete { font: 11px "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif; letter-spacing:normal; position:absolute; z-index:999; margin-top:-6px; margin-left:14px; border:solid 1px #333; border-style:solid; width:422px; background-color:#333; font-size:10px; line-height:14px; -moz-border-radius:3px; -webkit-border-radius:3px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.1em 0.5em #333; -webkit-box-shadow: 0 0.1em 0.5em #333; }
-.auto_complete * { text-shadow:0 0px 0px #000 !important; }
-.auto_complete h1, div#doc_listing_inpage h2 { text-transform:uppercase; letter-spacing:0.2em; font-size:1.1em; font-weight:bold; padding:8px 10px; }
-div#doc_listing_inpage h2 { color:#666; font-size:0.8em; font-weight:normal; padding:0px; margin-bottom:12px; }
-.auto_complete ol, div#doc_listing_inpage ol { list-style: none; }
-.auto_complete ol li h1 { font-weight:bold !important; text-transform: none !important; padding:0px; font-size:1.2em; color:#000; margin-bottom:3px; letter-spacing:0.02em !important; }
-.auto_complete ol li h2 { font-weight:normal !important; padding:0px; font-size:1em; color:#666; margin:0px; letter-spacing: 0.02em; }
-.auto_complete ol li h3 { font-weight:normal !important; color:#000; margin-top:3px; }
-.auto_complete ol li h3 strong, div#doc_listing_inpage h1.main-title strong, div#doc_listing_inpage li a h3 strong { font-weight:normal !important; background:yellow; padding:2px; -moz-border-radius:5px; -webkit-border-radius:5px; }
-div#doc_listing_inpage h1.main-title strong, div#doc_listing_inpage li a h3 strong { padding-left:8px; padding-right:8px; color:#000; }
-.auto_complete ol li a { background:#ccc; display:block; padding:8px 18px; clear:left; text-decoration:none; }
-.auto_complete ol li a:hover { background-color:#999; color:#ffffff; }
-.auto_complete ol li a:hover h3 { color:#333 !important; }
-.auto_complete ol li a:hover h3 strong { color:#333 !important; }
-.auto_complete ol li a span.searchheading { display:block; font-weight:bold; padding-top:5px; color:#191919; }
-.auto_complete ol li a:hover * { color:#ffffff; }
-.auto_complete ol li a span { color:#555555; }
-.auto_complete ol li a:hover span { color:#f1f1f1; }
-.auto_complete span.category { font-size:11px; margin:5px; display:block; color:#ffffff; }
-.auto_complete span.seperator { float:right; padding-right:15px; margin-right:5px; background-image:url(../images/shortcuts_arrow.gif); background-repeat:no-repeat; background-position:right; }
-.auto_complete span.seperator a { background-color:transparent; display:block; margin:5px; height:auto; color:#ffffff; }
-div#doc_listing_inpage li.even { background:#ccc; }
-div#doc_listing_inpage li.odd { background:#eee; }
-div#doc_listing_inpage li a { padding:6px; display:block; }
-div#doc_listing_inpage li a:hover { background:#666; }
-div#doc_listing_inpage li a h1 { color:#000; font-weight:bold; font-size:1.2em; letter-spacing: normal; text-transform: none; }
-div#doc_listing_inpage li a h2 { color:#333; font-weight: bold; font-size:1em; letter-spacing: normal; text-transform: none; }
-div#doc_listing_inpage li a h3 { color:#000; font-weight: normal; font-size:0.9em; letter-spacing: normal; text-transform: none; }
-div#doc_listing_inpage li a:hover h1 { color:#FFF; text-decoration: none !important; }
-div#doc_listing_inpage li a:hover h2 { color:#ccc; text-decoration: none !important; }
-div#doc_listing_inpage li a:hover h3 { color:#FFF; text-decoration: none !important; }
-
-
-/* In-page Documents/show styles */
-div.info_box { border:solid 1px #666;  -moz-border-radius:7px; -webkit-border-radius:7px; padding:8px; float:right; margin-bottom:20px; margin-left:20px; }
-div.info_box p { font-size:0.5em !important; }
-div.info_box p img { vertical-align: middle; }
-
-/* Tipsy jQuery tooltips */
-.tipsy { padding: 5px; font-size: 10px; opacity: 0.8; filter: alpha(opacity=80); background-repeat: no-repeat; }
-.tipsy-inner { padding: 4px 5px; background-color: black; color: white; max-width: 200px; text-align: center; }
-.tipsy-north { background-image: url(../images/icons/tipsy-north.gif); background-position: top center; }
-.tipsy-south { background-image: url(../images/icons/tipsy-south.gif); background-position: bottom center; }
-.tipsy-east { background-image: url(../images/icons/tipsy-east.gif); background-position: right center; }
-.tipsy-west { background-image: url(../images/icons/tipsy-west.gif); background-position: left center; }

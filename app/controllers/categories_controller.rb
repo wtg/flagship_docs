@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.xml
   def index
-    @categories = Category.roots!
+    @categories = Category.roots
     @categories.delete_if {|x| !x.allowed_to_read} #Hide Private Root Categories
     respond_to do |format|
       format.html # index.html.erb

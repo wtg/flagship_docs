@@ -56,7 +56,16 @@
 	    			<% end %>
     			<% end %>
     			<% if @document.allowed_to_save %>
-    			  <div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document) %></div>
+    			  <div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document), :id => 'revision-link' %>
+						<div id="new-revision" style="display:none">
+								<% form_for([@document, @revision], :html => { :multipart => true }) do |f| %>
+  							<%= f.error_messages %>
+								<%= f.label :upload %> <%= f.file_field :upload %>
+    						<%= f.submit 'Upload' %>
+  								
+								<% end %>
+						</div>
+						</div>
     			<% end %>
 				</div>
 			</div>

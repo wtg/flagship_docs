@@ -25,6 +25,9 @@ $(document).ready(function () {
 	//End search box
 
 	//Expandable category tree
+	$('#cat_tree_inset').hide();
+	$('#cat_tree_expand').show();
+	$('#search-jQuery').show();
 	$('#cat_tree_expand').click(function() {
 		$('#cat_tree_inset').toggle();
 		if ($('#label_show').css("display") == "none") {   // case PREVIOUSLY CLOSED
@@ -38,6 +41,21 @@ $(document).ready(function () {
 	});
 	$('.info_box p img').tipsy({gravity: 's'});
 	//End category tree
+	
+	$('input#search_query').keypress(function() {
+		$('a#search_ex').fadeIn('fast');
+	});
+	
+	if (!$('input#search_query').val('')) {
+		$('a#search_ex').show();
+	}
+	
+	//Clear search box when click:
+	$('a#search_ex').click(function() {
+		$('input#search_query').val('');
+		$(this).fadeOut('fast');
+		$("#search_query_auto_complete").fadeOut(100);
+	});
 });
 
 

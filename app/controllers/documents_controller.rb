@@ -48,7 +48,8 @@ class DocumentsController < ApplicationController
   # GET /documents/1.xml
   def show
     @document = Document.find(params[:id])
-    
+    @revision = Revision.new
+    @revision.document_id = params[:id]
     if !@document.allowed_to_read
       flash[:error] = 'Access denied'
       redirect_back

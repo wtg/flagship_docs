@@ -9,7 +9,9 @@
 			<li><div style="float:left;"><%= f.label :background %> </div><div style="float:left; margin-left:8px; width:80%;"><%= render :partial => 'backgrounds/select', :locals => {:form => f} %></div><div style="clear:both;"></div></li>
 			<li><%= f.label :private %> <%= f.check_box :private %></li>
 			<li><%= f.label :writable, "Publicly Writable" %> <%= f.check_box :writable %></li>
+			<% if !(controller.action_name == "new") %>
 			<li><%= f.label :user, "Admin" %> <%= f.collection_select :user_id, User.all, :id, :full_name %></li>
+			<% end %>
 		</ol>
 	</fieldset>
 	<p class="submitbutton"><%= f.submit button_text %></p>
