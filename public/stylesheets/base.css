@@ -80,7 +80,7 @@ div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; heig
 #topbar { color:#eee; font-weight:normal; }
 #topbar h1 { font-weight:normal; }
 #topbar a { text-shadow:0 1px 0px #000; font-size:0.8em; font-weight:bold; color:#FFF; }
-#topbar-left { float:left; width:54%; }
+#topbar-left { float:left; width:491px; }
 #topbar-right { padding:8px 0px; padding-top:14px; float:right; width:44%; text-align:right; }
 
 /*##########  CATEGORIES TREE  ##########*/
