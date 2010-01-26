@@ -40,8 +40,6 @@ class Category < ActiveRecord::Base
   authenticates_saves :with_accessor_method => :is_admin
   #authenticates_saves :with => IN THE GROUP  
 
-  authenticates_creation :with => :writable
-  authenticates_creation :with_accessor_method => :is_admin
   #authenticates_creation :with => IN THE GROUP
 
   autosets_owner_on_create

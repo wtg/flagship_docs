@@ -62,11 +62,11 @@ class RevisionsController < ApplicationController
   def create
     @revision = Revision.new(params[:revision])
     @revision.document_id = params[:document_id]
-
+		@revision.user_id = current_user.id
     respond_to do |format|
       if @revision.save
         flash[:notice] = 'Revision was successfully created.'
-        format.html { redirect_to([@revision.document, @revision]) }
+        format.html { redirect_to(@revision.document) }
         format.xml  { render :xml => @revision, :status => :created, :location => @revision }
       else
         format.html { render :action => "new" }
