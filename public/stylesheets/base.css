@@ -141,10 +141,13 @@ div.form_group textarea { width:70%; background:#FFEFEF; border:solid 1px #999; 
 
 
 /* Search Box */
+#search-jQuery { position:relative; }
 .index-search { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 14px; margin-top:2px; padding-left:38px; width:398px; }
 .index-search:focus { background:url(../images/layout/search_bg_hover.png) center center no-repeat; }
 #no-js { position:relative; }
-.search-button { background:#FFF; position:absolute; z-index:20; right:50px; top:4px; background:url(../images/icons/search_button.png) center center no-repeat; border:0px; width:57px; height:35px; }
+.search-button { position:absolute; z-index:20; right:50px; top:4px; background:url(../images/icons/search_button.png) center center no-repeat; border:0px; width:57px; height:35px; }
+a#search_ex { position:absolute; z-index:20; right:54px; top:12px; background:url(../images/icons/search_ex.png) center center no-repeat; border:0px; width:17px; height:17px; }
+a#search_ex:active { background:url(../images/icons/search_ex_hover.png) center center no-repeat; border:0px; }
 
 .auto_complete { font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif; font-size:14px; letter-spacing:normal; position:absolute; z-index:999; margin-top:-6px; margin-left:14px; border:solid 1px #333; border-style:solid; width:422px; background-color:#333; line-height:14px; -moz-border-radius:3px; -webkit-border-radius:3px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.1em 0.5em #333; -webkit-box-shadow: 0 0.1em 0.5em #333; }
 .auto_complete * { text-shadow:0 0px 0px #000 !important; }

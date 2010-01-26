@@ -41,6 +41,16 @@ $(document).ready(function () {
 	});
 	$('.info_box p img').tipsy({gravity: 's'});
 	//End category tree
+	
+	$('input#search_query').keypress(function() {
+		$('a#search_ex').fadeIn('fast');
+	});
+	
+	//Clear search box when click:
+	$('a#search_ex').click(function() {
+		$('input#search_query').val('');
+		$(this).fadeOut('fast');
+	});
 });
 
 
