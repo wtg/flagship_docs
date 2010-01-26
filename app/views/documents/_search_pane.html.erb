@@ -1,7 +1,7 @@
 <noscript>
 	<div id="no-js">
 		<% form_tag(search_documents_path, :method => 'post') do -%>
-	  	<%= text_field_tag 'query', '', :class => 'index-search' %>
+	  	<%= text_field_tag 'query', '', :class => 'index-search', :autocomplete => "off" %>
 	  	<%= submit_tag "", :class => 'search-button', :style => 'font-size:1.6em;' %>
 		<% end %>
 	</div> 
@@ -9,7 +9,7 @@
 
 <div id="search-jQuery" style="display:none;">
 	<!-- if there is Javascript enabled -->
-	<input id="search_query" class="index-search" name="query" size="30" type="text" />
+	<input id="search_query" class="index-search" name="query" size="30" type="text" autocomplete="off"  />
 	<div class="auto_complete" id="search_query_auto_complete"></div>
 	<%= link_to "", "#", :id => "search_ex", :style => "display:none;" %>
 </div>
