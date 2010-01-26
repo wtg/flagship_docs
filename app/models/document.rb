@@ -32,17 +32,29 @@ class Document < ActiveRecord::Base
   def group
     self.category.group
   end
+
+  def current_user_in_my_group?
+    bypass_auth do
+      #bypass authentication allows us to looka at the accessor and group, or something
+      if !ActiveRecord::Base.accessor.nil? && ActiveRecord::Base.accessor.in_group?( group )
+        true
+      else
+        false
+      end
+    end
+  end
+
 	has_owner :user
 	autosets_owner_on_create
 	
 	authenticates_reads :with_accessor_method => :is_admin
 	authenticates_reads :with => :allow_owner
 	authenticates_reads :with => :readable
-	#authenticates_reads :with => IS_IN_GROUP
+	authenticates_reads :with => :current_user_in_my_group?
 
 	authenticates_saves :with => :writeable
 	authenticates_saves :with => :allow_owner
 	authenticates_saves :with_accessor_method => :is_admin
-	#authenticates_saves :with => IS_IN_GROUP
+	authenticates_saves :with => :current_user_in_my_group?
 
 end

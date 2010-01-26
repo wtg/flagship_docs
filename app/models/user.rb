@@ -18,8 +18,24 @@ class User < ActiveRecord::Base
   has_owner :self
 
   #Determine if a user is in a group or not
-  def in_group
+  def in_one_group
     !self.groups.nil?
   end
 
+  def in_group?(options)
+    result = false
+    if options.is_a?(Hash)
+      if (options.has_key? :group) && (options[:group].is_a?(Group))
+        if self.groups.include?(options[:group])
+          result = true
+        end
+      end
+    elsif options.is_a?(Group)
+      if self.groups.include?(options)
+        result = true
+      end
+    end
+    result
+    #true
+  end
 end

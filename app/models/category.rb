@@ -32,13 +32,28 @@ class Category < ActiveRecord::Base
   authenticates_reads :with => :not_private
   authenticates_reads :with => :allow_owner
   authenticates_reads :with_accessor_method => :is_admin
-  #authenticates_reads :with => IN THE GROUP
+  authenticates_reads :with => :current_user_in_my_group?
+
+  def current_user_in_my_group?
+    bypass_auth do
+      #bypass authentication allows us to looka at the accessor and group, or something
+      if !ActiveRecord::Base.accessor.nil? && ActiveRecord::Base.accessor.in_group?( group )
+        true
+      else
+        false
+      end
+    end
+  end
+
+  def return_my_group
+    group
+  end
 
   #Test if a user can write to the category
   authenticates_saves :with => :allow_owner
   authenticates_saves :with => :writable
   authenticates_saves :with_accessor_method => :is_admin
-  #authenticates_saves :with => IN THE GROUP  
+  authenticates_saves :with => :current_user_in_my_group?
 
   authenticates_creation :with => :writable
   authenticates_creation :with_accessor_method => :is_admin

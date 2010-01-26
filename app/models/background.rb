@@ -17,5 +17,5 @@ class Background < ActiveRecord::Base
 	#The Check for Group Leaders really isn't required, you need to be a group member to lead it generally,
 	#but sticky things can happen. You never know what the user will do.
 	authenticates_saves :with_accessor_method => :is_admin
-	authenticates_saves :with_accessor_method => :in_group
+	authenticates_saves :with_accessor_method => :in_one_group
 end
