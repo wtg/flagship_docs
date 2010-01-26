@@ -46,10 +46,15 @@ $(document).ready(function () {
 		$('a#search_ex').fadeIn('fast');
 	});
 	
+	if (!$('input#search_query').val('')) {
+		$('a#search_ex').show();
+	}
+	
 	//Clear search box when click:
 	$('a#search_ex').click(function() {
 		$('input#search_query').val('');
 		$(this).fadeOut('fast');
+		$("#search_query_auto_complete").fadeOut(100);
 	});
 });
 
