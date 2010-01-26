@@ -143,11 +143,12 @@ div.form_group textarea { width:70%; background:#FFEFEF; border:solid 1px #999; 
 /* Search Box */
 .index-search { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 14px; margin-top:2px; padding-left:38px; width:398px; }
 .index-search:focus { background:url(../images/layout/search_bg_hover.png) center center no-repeat; }
-.no-js { width:60%; }
+#no-js { position:relative; }
+.search-button { background:#FFF; position:absolute; z-index:20; right:50px; top:4px; background:url(../images/icons/search_button.png) center center no-repeat; border:0px; width:57px; height:35px; }
 
-.auto_complete { font: 11px "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif; letter-spacing:normal; position:absolute; z-index:999; margin-top:-6px; margin-left:14px; border:solid 1px #333; border-style:solid; width:422px; background-color:#333; font-size:10px; line-height:14px; -moz-border-radius:3px; -webkit-border-radius:3px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.1em 0.5em #333; -webkit-box-shadow: 0 0.1em 0.5em #333; }
+.auto_complete { font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif; font-size:14px; letter-spacing:normal; position:absolute; z-index:999; margin-top:-6px; margin-left:14px; border:solid 1px #333; border-style:solid; width:422px; background-color:#333; line-height:14px; -moz-border-radius:3px; -webkit-border-radius:3px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.1em 0.5em #333; -webkit-box-shadow: 0 0.1em 0.5em #333; }
 .auto_complete * { text-shadow:0 0px 0px #000 !important; }
-.auto_complete h1, div#doc_listing_inpage h2 { text-transform:uppercase; letter-spacing:0.2em; font-size:1.1em; font-weight:bold; padding:8px 10px; }
+.auto_complete h1, div#doc_listing_inpage h2 { text-transform:uppercase; letter-spacing:0.2em; font-size:0.8em; font-weight:bold; padding:8px 10px; }
 div#doc_listing_inpage h2 { color:#666; font-size:0.8em; font-weight:normal; padding:0px; margin-bottom:12px; }
 .auto_complete ol, div#doc_listing_inpage ol { list-style: none; }
 .auto_complete ol li h1 { font-weight:bold !important; text-transform: none !important; padding:0px; font-size:1.2em; color:#000; margin-bottom:3px; letter-spacing:0.02em !important; }

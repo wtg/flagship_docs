@@ -25,6 +25,9 @@ $(document).ready(function () {
 	//End search box
 
 	//Expandable category tree
+	$('#cat_tree_inset').hide();
+	$('#cat_tree_expand').show();
+	$('#search-jQuery').show();
 	$('#cat_tree_expand').click(function() {
 		$('#cat_tree_inset').toggle();
 		if ($('#label_show').css("display") == "none") {   // case PREVIOUSLY CLOSED
