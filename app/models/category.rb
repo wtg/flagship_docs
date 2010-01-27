@@ -27,24 +27,35 @@ class Category < ActiveRecord::Base
     !self.private
   end
 
+  #Test if the current user is a member of the owning group
+  def current_user_in_my_group?
+    result = false
+    bypass_auth do
+      #bypass authentication allows us to looka at the accessor and group, or something
+      if !ActiveRecord::Base.accessor.nil? && ActiveRecord::Base.accessor.in_group?( group )
+        result=true
+      else
+        result = false
+      end
+    end
+    return result || false
+  end
+
   #Authenticates Access
+  has_owner :user
+  autosets_owner_on_create
+
   #Test if a user can read a category
   #This method bypasses the acts_as_category plugin methods
-
-	has_owner :user
-	authenticates_reads :with => :not_private
+  authenticates_reads :with => :not_private
   authenticates_reads :with => :allow_owner
   authenticates_reads :with_accessor_method => :is_admin
-  #authenticates_reads :with => IN THE GROUP
+  authenticates_reads :with => :current_user_in_my_group?
 
   #Test if a user can write to the category
   authenticates_saves :with => :allow_owner
   authenticates_saves :with => :writable
   authenticates_saves :with_accessor_method => :is_admin
-  #authenticates_saves :with => IN THE GROUP  
-
-  #authenticates_creation :with => IN THE GROUP
- 
-  autosets_owner_on_create
+  authenticates_saves :with => :current_user_in_my_group?
 
 end

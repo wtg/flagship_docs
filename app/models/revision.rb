@@ -56,7 +56,8 @@ class Revision < ActiveRecord::Base
     result.gsub(tempfile.path,"")
   end
 
-	has_owner :user
-	autosets_owner_on_create
+  #Authenticates Access
+  has_owner :user
+  autosets_owner_on_create
 
 end

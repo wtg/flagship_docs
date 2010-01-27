@@ -32,17 +32,35 @@ class Document < ActiveRecord::Base
   def group
     self.category.group
   end
-	has_owner :user
-	autosets_owner_on_create
-	
-	authenticates_reads :with_accessor_method => :is_admin
-	authenticates_reads :with => :allow_owner
-	authenticates_reads :with => :readable
-	#authenticates_reads :with => IS_IN_GROUP
 
-	authenticates_saves :with => :writeable
-	authenticates_saves :with => :allow_owner
-	authenticates_saves :with_accessor_method => :is_admin
-	#authenticates_saves :with => IS_IN_GROUP
+  #Test if the current user is a member of the owning group
+  def current_user_in_my_group?
+    result = false
+    bypass_auth do
+      #bypass authentication allows us to looka at the accessor and group, or something
+      if !ActiveRecord::Base.accessor.nil? && ActiveRecord::Base.accessor.in_group?( group )
+        result=true
+      else
+        result = false
+      end
+    end
+    return result || false
+  end
+
+  #Authenticates Access
+  has_owner :user
+  autosets_owner_on_create
+
+  #Determine who can read this document	
+  authenticates_reads :with_accessor_method => :is_admin
+  authenticates_reads :with => :allow_owner
+  authenticates_reads :with => :readable
+  authenticates_reads :with => :current_user_in_my_group?
+
+  #Determine who can write/update this document
+  authenticates_saves :with => :writeable
+  authenticates_saves :with => :allow_owner
+  authenticates_saves :with_accessor_method => :is_admin
+  authenticates_saves :with => :current_user_in_my_group?
 
 end
