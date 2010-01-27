@@ -10,6 +10,8 @@ class Category < ActiveRecord::Base
   has_many :documents
   belongs_to :background
 
+  accepts_nested_attributes_for :background, :allow_destroy => true, :reject_if => proc { |attrs| attrs['image'].blank? }
+
   #Indexing
   acts_as_ferret :fields => [ :name, :description ]
 

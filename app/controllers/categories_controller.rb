@@ -30,6 +30,7 @@ class CategoriesController < ApplicationController
   # GET /categories/new.xml
   def new
     @category = Category.new
+    @category.background = Background.new
     #If there is a category, set that as the default parent
     if(!params[:parent_id].blank?)
       @category.parent_id = params[:parent_id]	
@@ -43,6 +44,9 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   def edit
     @category = Category.find(params[:id])
+    if @category.background.nil?
+      @category.background = Background.new
+    end
     if !@category.allowed_to_save
       flash[:notice] = 'Sorry, you do not have access to edit this category'
       redirect_back
@@ -81,6 +85,11 @@ class CategoriesController < ApplicationController
   # PUT /categories/1.xml
   def update
     @category = Category.find(params[:id])
+    if params[:category].has_key?("background_attributes") && params[:category][:background_attributes].has_key?("id")
+      params[:category][:background_attributes].delete("id")
+    end
+      
+    logger.debug params.to_yaml
     #only users who own this category can change it. Super Admins can change it too.
     if @category.allowed_to_save
       respond_to do |format|

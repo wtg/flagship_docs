@@ -1,4 +1,4 @@
-<% form_for(category, :html => { :class => 'cmxform', :multipart => true }) do |f| %>
+\<% form_for(@category, :html => { :class => 'cmxform', :multipart => true }) do |f| %>
 	<%= f.error_messages %>
 	<fieldset>
 		<ol>
@@ -6,7 +6,11 @@
 			<li><%= f.label :description %> <%= f.text_area :description %></li>
 			<li><%= f.label :parent_id %> <%= aac_select(Category.roots, {:id =>'category_parent_id', :name => 'category[parent_id]', :selected => @category.parent_id, :option_nil => 'None'}) %></li>
 			<li><%= f.label :group %> <%= f.collection_select :group_id, Group.all, :id, :name %></li>
-			<li><div style="float:left;"><%= f.label :background %> </div><div style="float:left; margin-left:8px; width:80%;"><%= render :partial => 'backgrounds/select', :locals => {:form => f} %></div><div style="clear:both;"></div></li>
+			<li>
+				<div style="float:left;"><%= f.label :background %> </div>
+				<div style="float:left; margin-left:8px; width:80%;"><%= render :partial => 'backgrounds/select', :locals => {:form => f} %></div>
+				<div style="clear:both;"></div>
+			</li>
 			<li><%= f.label :private %> <%= f.check_box :private %></li>
 			<li><%= f.label :writable, "Publicly Writable" %> <%= f.check_box :writable %></li>
 			<% if !(controller.action_name == "new") %>
