@@ -1,22 +1,10 @@
-<h1>Listing users</h1>
-
-<table>
-  <tr>
-    <th>Username</th>
-    <th>Full name</th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%=h user.username %></td>
-    <td><%=h user.full_name %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<h1 class="main-title">All Users</h1>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
-
-<%= link_to 'New user', new_user_path %>
+<div id="mc-indent" class="mc-indent">
+	<% if admin_logged_in? %>
+		<%= link_to 'New User', new_user_path, :class => "link-button" %>
+		<br />
+	<% end %>
+	<%= render :partial => @users %>
+</div>

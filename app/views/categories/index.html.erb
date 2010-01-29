@@ -2,6 +2,10 @@
 <div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
 <div id="mc-indent" class="mc-indent">
+	<% if admin_logged_in? %>
+	  <%= link_to 'New Category', new_category_path, :class => "link-button" %>
+	  <br /><br />
+	<% end %>
 	<ul class="iconlist">
 		<% @categories.each do |category| %>
 	  	<li>
@@ -17,8 +21,4 @@
 		<% end %>
 	</ul>
 	<div style="clear:both;"></div>
-	<br />
-	<% if admin_logged_in? %>
-	  <%= link_to 'New Category', new_category_path, :class => "link-button" %>
-	<% end %>
 </div>

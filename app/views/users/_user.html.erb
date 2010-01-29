@@ -1,0 +1,2 @@
+<h1><%=h user.full_name %> (<%=h user.username %>)<%= link_to 'Edit', edit_user_path(user), :class => "link-button" %></h1>
+<%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>

@@ -1,20 +1,10 @@
-<h1>Listing groups</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-
-<% @groups.each do |group| %>
-  <tr>
-    <td><%=h group.name %></td>
-    <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<h1 class="main-title">All Groups</h1>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
-
-<%= link_to 'New group', new_group_path %>
+<div id="mc-indent" class="mc-indent">
+	<% if admin_logged_in? %>
+		<%= link_to 'New Group', new_group_path, :class => "link-button" %>
+		<br />
+	<% end %>
+	<%= render :partial => @groups %>
+</div>

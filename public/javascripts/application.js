@@ -39,7 +39,6 @@ $(document).ready(function () {
 		}
 		return false;
 	});
-	$('.info_box p img').tipsy({gravity: 's'});
 	//End category tree
 	
 	$('input#search_query').keypress(function() {
@@ -56,6 +55,9 @@ $(document).ready(function () {
 		$(this).fadeOut('fast');
 		$("#search_query_auto_complete").fadeOut(100);
 	});
+	
+	$('.info_box p img').tipsy({gravity: 's'});
+	$('ul.img_sel li img').tipsy({gravity: 's'});
 });
 
 

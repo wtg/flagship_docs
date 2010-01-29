@@ -27,6 +27,7 @@ h1.main-title span a.edit-link { color:#f59300 !important; }
 h2.breadcrumb { margin-bottom:6px; padding-left:34px; color:#999; text-transform: uppercase; font-size:0.7em; letter-spacing: 0.15em; }
 h2.breadcrumb a { padding:4px; color:#333; }
 h2.breadcrumb a:hover { background:#000; color:#FFF; }
+div.mc-indent h1 { font-size:1.6em; color:#000; font-weight:normal; margin:35px 0px 6px 0px; padding:0px; }
 div.mc-indent h2 { font-size:1.2em; color:#333; font-weight:normal; margin:0px 0px 12px 0px; padding:20px 0px 0px 0px; }
 div.mc-indent p { font-size:0.8em; color:#333; line-height:1.2em; margin:0px 0px 12px 0px; padding:0px; }
 
@@ -35,12 +36,13 @@ div.mc-indent { padding-left:34px; }
 div.flush { margin-left:-20px; margin-right:-20px; }
 
 /*##########  LINKS AND LINK BUTTONS  ##########*/
-a { text-decoration: none; }
+a { color:#006699; text-decoration: none; }
 a:hover { color:#3399ff; text-decoration: underline; }
 a.link-button { font-size:0.9em; padding:6px 18px; background:#666; color:#FFF; -moz-border-radius:18px; -webkit-border-radius:18px; text-shadow:0 1px 0px #000; -moz-box-shadow: 0 0.2em 0em #999; -webkit-box-shadow: 0 0.2em 0em #999; margin-bottom:25px !important; }
 a.link-button:hover { background:#006699; -moz-box-shadow: 0 0.2em 0em #99cccc; -webkit-box-shadow: 0 0.2em 0em #99cccc; }
-h2 a.link-button { vertical-align:middle; font-size:0.6em; border:solid 1px #008000; width:120px; text-align:center; -moz-border-radius:20px; -webkit-border-radius:20px; -moz-box-shadow: 0 0 0 #666; -webkit-box-shadow: 0 0 0 #666; height:55px; background:#008000; padding:3px 18px; margin-left:12px; }
-h2 a.link-button:hover { background:#339933; -moz-box-shadow: 0 0 0 #666; -webkit-box-shadow: 0 0 0 #666; }
+h1 a.link-button, h2 a.link-button { vertical-align:middle; font-size:0.6em; border:solid 1px #008000; width:120px; text-align:center; -moz-border-radius:20px; -webkit-border-radius:20px; -moz-box-shadow: 0 0 0 #666; -webkit-box-shadow: 0 0 0 #666; height:55px; background:#008000; padding:3px 14px; margin-left:12px; }
+h1 a.link-button { font-size:0.4em; }
+h1 a.link-button:hover, h2 a.link-button:hover { background:#339933; -moz-box-shadow: 0 0 0 #666; -webkit-box-shadow: 0 0 0 #666; }
 
 /*##########  HORIZONTAL RULE  ##########*/
 div.hr_dl { background:url(../images/layout/hr_dl.png) top left repeat-x; height:2px; }
@@ -233,7 +235,7 @@ form.cmxform em{font-weight:700;font-style:normal;color:red;}
 form.cmxform label{ text-shadow:0 1px 0px #000; background:#666;color:#FFF;font-size:0.6em;text-align:right;padding:6px 0px; padding-right:8px;width:120px;}
 /* Width of labels */
 form.cmxform fieldset fieldset label{margin-left:123px;}
-form.cmxform ul.img_sel li { -moz-border-radius:5px; -webkit-border-radius:5px; background:#eee; border:solid 1px #999; margin-bottom:8px; font-size:0.8em; }
+form.cmxform ul.img_sel li { width:20%; height:100px; margin-right:12px; float:left; -moz-border-radius:5px; -webkit-border-radius:5px; background:#eee; border:solid 1px #999; margin-bottom:8px; font-size:0.8em; }
 form.cmxform ul.img_sel li:hover { background:#FFF; }
 form.cmxform ul.img_sel li * { vertical-align: middle; }
 /* Width plus 3 (html space) *//*\*//*/ form.cmxform legend { display: inline-block; } /* IE Mac legend fix */
