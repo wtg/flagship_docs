@@ -51,7 +51,7 @@ class DocumentsController < ApplicationController
     @revision = Revision.new
     @revision.document_id = params[:id]
     if !@document.allowed_to_read
-      flash[:error] = 'Access denied'
+      flash[:error] = "Whoops! It seems that you don't have permission to view this document."
       redirect_back
     else
       respond_to do |format|
@@ -82,7 +82,7 @@ class DocumentsController < ApplicationController
   def edit
     @document = Document.find(params[:id])
     if !@document.allowed_to_save
-      flash[:error] = 'Access denied'
+      flash[:error] = "Oops! It looks like you don't have permission to edit this document!"
       redirect_to(@document)
     end
   end
@@ -98,7 +98,7 @@ class DocumentsController < ApplicationController
     else
       respond_to do |format|
         if @document.save
-          flash[:notice] = 'Document was successfully created.'
+          flash[:notice] = 'Success! The document was successfully created.'
           format.html { redirect_to(@document) }
           format.xml  { render :xml => @document, :status => :created, :location => @document }
         else
@@ -114,15 +114,16 @@ class DocumentsController < ApplicationController
   def update
     @document = Document.find(params[:id])
     if !@document.allowed_to_save
-      flash[:error] = 'Access denied'
+      flash[:error] = "We're sorry, but you do not currently have permission to edit this document."
       redirect_to(@document)
     else
       respond_to do |format|
         if @document.update_attributes(params[:document])
-          flash[:notice] = 'Document was successfully updated.'
+          flash[:notice] = 'Mission accomplished! The document was successfully updated.'
           format.html { redirect_to(@document) }
           format.xml  { head :ok }
         else
+          flash[:error] = "Oops! It appears that something went wrong as we tried to update the document."
           format.html { render :action => "edit" }
           format.xml  { render :xml => @document.errors, :status => :unprocessable_entity }
         end
@@ -134,14 +135,15 @@ class DocumentsController < ApplicationController
   # DELETE /documents/1.xml
   def destroy
     @document = Document.find(params[:id])
+    @category = @document.category
     if !@document.allowed_to_save
-      flash[:error] = 'Access denied'
+      flash[:error] = "We're sorry, but you do not currently have permission to remove this document."
       redirect_to(@document)
     else
       @document.destroy
-
+			flash[:notice] = "The document has been successfully removed from this category."
       respond_to do |format|
-        format.html { redirect_to(documents_url) }
+        format.html { redirect_to(@category) }
         format.xml  { head :ok }
       end
     end
