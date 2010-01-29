@@ -46,7 +46,13 @@
 							<% if not logged_in? %>
 								<%= link_to 'Log in to add/change docs', new_session_path %>
 							<% else %>
-								<%= current_user.full_name %>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%= link_to 'Logout', session_path, :method => :delete %>
+								<%= current_user.full_name %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<% if admin_logged_in? %>
+									<%= link_to 'Users', users_path %>&nbsp;/&nbsp;<%= link_to 'Groups', groups_path %>
+									&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<% end %>
+								<%= link_to 'Logout', session_path, :method => :delete %>
 							<% end %>
 						</h1>
 					</div>
