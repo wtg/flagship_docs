@@ -17,7 +17,23 @@
 </head>
 
 <body>
-	
+	<% if flash[:notice] or flash[:error] %>
+		<div id="flash_block"<% if flash[:error] %> class="error"<% end %>>
+			<div id="flash_block-padding">
+				<% if flash[:notice] %><p><%= flash[:notice] %></p><% end %>
+				<% if flash[:error] %><p><%= flash[:error] %></p><% end %>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				setTimeout(function(){
+					$("#flash_block").fadeOut("slow", function () {
+						$("#flash_block").remove();
+					});
+				}, 7000);
+			});
+		</script>
+	<% end %>
 	<div id="wrap">
 		<div id="header">
 			<div id="topbar">

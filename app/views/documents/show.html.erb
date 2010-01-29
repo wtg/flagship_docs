@@ -22,8 +22,12 @@
 	</div>
 
 	<%=h @document.title %>
-	<% if @document.allowed_to_save %>
-	  <span><%= link_to 'Edit', edit_document_path(@document), :class => 'edit-link' %></span>
+	<% if admin_logged_in? || (logged_in? && @document.allowed_to_save) %>
+	  <span>
+	  	<%= link_to 'Edit', edit_document_path(@document), :class => 'edit-link' %>
+	  	&nbsp;
+	  	<%= link_to 'Remove', document_path(@document), :confirm => 'Are you sure you want to remove this document?', :method => :delete, :class => 'cancel-link' %>
+	  </span>
 	<% end %>
 </h1>
 
