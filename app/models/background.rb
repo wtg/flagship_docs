@@ -10,6 +10,11 @@ class Background < ActiveRecord::Base
           :standard => ["800x1200", :jpg]
       }
 
+  #Validation
+  validates_attachment_presence :image
+
+
+
 	#Methods
 
 	#Checks to see if a user can upload new backgrounds
