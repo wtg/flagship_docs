@@ -95,10 +95,12 @@ class CategoryTest < ActiveSupport::TestCase
     [groupie, patron, admin].each do |u|
       ActiveRecord::Base.accessor = u
       assert cat.allowed_to_save, "Owner, Group, Admin allowed to write default category"
+      assert cat.save, "Default save ok"
     end
     [regular, nil].each do |u|
       ActiveRecord::Base.accessor = u
       assert !cat.allowed_to_save, "Regular and nil cannot write default category"
+      assert !cat.save, "Default save nogo"
     end
     
     #Hidden Category
@@ -116,10 +118,12 @@ class CategoryTest < ActiveSupport::TestCase
     [groupie, patron, admin].each do |u|
       ActiveRecord::Base.accessor = u
       assert cat.allowed_to_save, "Owner, Group, Admin allowed to write hidden category"
+      assert cat.save, "Hidden save ok"
     end
     [regular, nil].each do |u|
       ActiveRecord::Base.accessor = u
       assert !cat.allowed_to_save, "Regular and nil cannot write hidden category"
+      assert !cat.save, "Hidden save nogo"
     end
     
     #Publicly Writable Category
@@ -138,6 +142,7 @@ class CategoryTest < ActiveSupport::TestCase
     [groupie, patron, regular, admin].each do |u|
       ActiveRecord::Base.accessor = u
       assert cat.allowed_to_save, "All users can write public category"
+      assert cat.save, "Public save ok"
     end
     [nil].each do |u|
       ActiveRecord::Base.accessor = u

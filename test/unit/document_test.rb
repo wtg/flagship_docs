@@ -75,10 +75,12 @@ class DocumentTest < ActiveSupport::TestCase
     [groupie, patron, admin].each do |u|
       ActiveRecord::Base.accessor = u
       assert doc.allowed_to_save, "Group, Owner, Admin can write a default document"
+      assert doc.save, "Default save ok"
     end
     [regular, nil].each do |u|
       ActiveRecord::Base.accessor = u
       assert !doc.allowed_to_save, "Regular users cannot write a default document"
+      assert !doc.save, "Default save nogo"
     end
 
     #Hidden document
@@ -96,10 +98,12 @@ class DocumentTest < ActiveSupport::TestCase
     [groupie, patron, admin].each do |u|
       ActiveRecord::Base.accessor = u
       assert doc.allowed_to_save, "Group, Owner, Admin can write a hidden document"
+      assert doc.save, "Hidden save ok"
     end
     [regular, nil].each do |u|
       ActiveRecord::Base.accessor = u
       assert !doc.allowed_to_save, "Regular users cannot write a hidden document"
+      assert !doc.save, "Hidden save nogo"
     end
     
     #Public document
@@ -118,6 +122,7 @@ class DocumentTest < ActiveSupport::TestCase
     [groupie, patron, admin, regular].each do |u|
       ActiveRecord::Base.accessor = u
       assert doc.allowed_to_save, "All users can write a public document"
+      assert doc.save, "Public save ok"
     end
     [nil].each do |u|
       ActiveRecord::Base.accessor = u
