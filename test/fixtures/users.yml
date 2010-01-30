@@ -1,9 +1,18 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  username: MyString
-  full_name: MyString
+admin:
+  username: admin
+  full_name: Admin User
+  is_admin: true  
 
-two:
-  username: MyString
-  full_name: MyString
+regular:
+  username: regular
+  full_name: Regular User
+
+groupie:
+  username: groupie
+  full_name: Group Member
+
+patron:
+  username: patron
+  full_name: Different Group Member

@@ -1,7 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
+cool_kids:
+  name: Cool Kids
+  leader: groupie
+  users: groupie, patron
 
-two:
-  name: MyString
+patroons:
+  name: Patroons
+  leader: patron
+  users: patron

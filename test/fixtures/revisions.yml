@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  document: 
-  user: 
-  position_id: 1
+#one:
+#  document: 
+#  user: 
+#  position_id: 1
 
-two:
-  document: 
-  user: 
-  position_id: 1
+#two:
+#  document: 
+#  user: 
+#  position_id: 1
