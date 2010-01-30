@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-#c3:
-#  name: Sub Category 3
-#  description: Sub Category under root level 2
-#  private: true
-#  writable: false
-#  parent: r2
-#  group: patroons
-#  user: patron
