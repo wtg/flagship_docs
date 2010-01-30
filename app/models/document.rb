@@ -1,7 +1,7 @@
 class Document < ActiveRecord::Base
   
   #Validation
-  validates_presence_of :title, :category_id
+  validates_presence_of :title, :category_id, :user_id
 
   #Relationships
   has_many :revisions, :order => "position DESC"
@@ -30,7 +30,11 @@ class Document < ActiveRecord::Base
 
   #The group that is responsible for this document.  Inherited from the category the document belongs to.
   def group
-    self.category.group
+    if !self.category.nil?
+      self.category.group
+    else
+      nil
+    end
   end
 
   #Test if the current user is a member of the owning group
@@ -58,7 +62,7 @@ class Document < ActiveRecord::Base
   authenticates_reads :with => :current_user_in_my_group?
 
   #Determine who can write/update this document
-  authenticates_saves :with => :writeable
+  authenticates_saves :with => :writable
   authenticates_saves :with => :allow_owner
   authenticates_saves :with_accessor_method => :is_admin
   authenticates_saves :with => :current_user_in_my_group?
