@@ -5,13 +5,18 @@ class Revision < ActiveRecord::Base
  
   default_scope select_without_file_columns_for(:upload).merge({:order => 'position DESC'})
 
+  #Validation
+  validates_presence_of :user_id, :document_id
+  validates_attachment_presence :upload
+
+
   #Relationships
   belongs_to :document
   belongs_to :user
 	
   #Test if this revision is the current one
   def current?
-    return Document.current_revision.id == self.id
+    return document.current_revision.id == self.id
   end
   
   #Try and identify the type of file uploaded
