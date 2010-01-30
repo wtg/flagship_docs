@@ -78,8 +78,8 @@ class CategoryTest < ActiveSupport::TestCase
     patroons = groups(:patroons)
     
     #Public Category
-    ActiveRecord::Base.accessor = admin
-    cat = Category.new({:name => "Root Level", :description => "Root Level Category", :group_id => cool_kids.id})
+    ActiveRecord::Base.accessor = groupie
+    cat = Category.new({:name => "Root Level", :description => "Root Level Category", :group_id => patroons.id})
     cat.save
     
     assert_equal cat.private, !cat.not_private, "Category not_private method"
@@ -102,7 +102,7 @@ class CategoryTest < ActiveSupport::TestCase
     end
     
     #Hidden Category
-    ActiveRecord::Base.accessor = admin
+    ActiveRecord::Base.accessor = groupie
     cat.private = true
     cat.save
     [groupie, patron, admin].each do |u|
@@ -123,7 +123,7 @@ class CategoryTest < ActiveSupport::TestCase
     end
     
     #Publicly Writable Category
-    ActiveRecord::Base.accessor = admin
+    ActiveRecord::Base.accessor = groupie
     cat.private = false
     cat.writable = true
     cat.save
