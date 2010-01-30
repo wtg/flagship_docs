@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   #Determine if a user belongs to at least one group
   def in_one_group
-    !self.groups.nil?
+    !self.groups.empty?
   end
 
   #Used to test if a user is a member of a certain group.
