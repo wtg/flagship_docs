@@ -1,7 +1,7 @@
 <% content_for :title, "Editing #{@category.name}" %>
 <h1 class="main-title">
 	Editing Category
-	<span><%= link_to 'Show', @category %> | <%= link_to 'Cancel', categories_path, :class => 'cancel-link' %></span>
+	<span><%= link_to 'Cancel and Return', @category, :class => 'cancel-link' %></span>
 </h1>
 
 <%= render :partial => 'form', :locals => { :category => @category, :button_text => 'Update' } %>
