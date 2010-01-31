@@ -4,7 +4,7 @@ module ApplicationHelper
  def background_img(category = nil)
    if !category.background.nil?
      result = '<style type="text/css">'
-     result += "body { background:#FFFFFF url(#{image_path(category.background.image.url)}) repeat scroll left top; }"
+     result += "body { background:#FFFFFF url(#{image_path(category.background.image.url)}) top left repeat; }"
      result += '</style>'
      result
    end
