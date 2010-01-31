@@ -57,26 +57,24 @@ class CategoriesController < ApplicationController
   # POST /categories.xml
   def create
     @category = Category.new(params[:category])
-    #checks to see if this category is to be a sub-category
-    if !@category.parent_id.blank? && !@category.parent.allowed_to_save
-      #since it is a sub-category, let's find the parent category and see if the user has access
-      #(ie. user is system admin or admins the group that owns the category)
-      flash[:notice] = 'Sorry, you do not have access to create a new category here.'
+    @parent = Category.find(@category.parent_id) unless @category.parent_id.blank? 
+    #I had to draw a Karnaugh map to figure this out.
+    if !admin_logged_in? && @category.parent_id.blank?
+      flash[:notice] = "Only a system admins can create a root category."
       redirect_back
-    elsif !admin_logged_in?
-      #The user wants to create a category in the 'root' folder. 
-      #Only system admins can do that. This person is not a super admin. It Fails
-      flash[:notice] = 'Only a system admins can create a root category.'
+    elsif !@parent.nil? && !@parent.allowed_to_save
+      flash[:notice] = "Sorry, you do not have access to create a new category here."
       redirect_back
-    end
-    respond_to do |format|
-      if @category.save
-        flash[:notice] = 'Category was successfully created.'
-        format.html { redirect_to(@category) }
-        format.xml  { render :xml => @category, :status => :created, :location => @category }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
+    else
+      respond_to do |format|
+        if @category.save
+          flash[:notice] = 'Category was successfully created.'
+          format.html { redirect_to(@category) }
+          format.xml  { render :xml => @category, :status => :created, :location => @category }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
