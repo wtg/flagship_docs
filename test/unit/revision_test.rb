@@ -19,6 +19,7 @@ class RevisionTest < ActiveSupport::TestCase
     @doc.save
 
     @txt_file = File.open("#{RAILS_ROOT}/test/binaries/sample.txt")
+    ActiveRecord::Base.accessor = nil
   end
 
   def test_validations
@@ -36,6 +37,7 @@ class RevisionTest < ActiveSupport::TestCase
   end
 
   def test_autosets_owner
+    ActiveRecord::Base.accessor = nil
     revision = Revision.new({:document => @doc, :upload => @txt_file})
     assert !revision.valid?
 

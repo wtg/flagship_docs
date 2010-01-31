@@ -15,6 +15,8 @@ class DocumentTest < ActiveSupport::TestCase
     @cat.group = @cool_kids
     @cat.user = @admin
     @cat.save
+
+    ActiveRecord::Base.accessor = nil
   end
  
   def test_validations

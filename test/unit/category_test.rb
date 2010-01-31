@@ -11,6 +11,8 @@ class CategoryTest < ActiveSupport::TestCase
 
     @cool_kids = groups(:cool_kids)
     @patroons = groups(:patroons)
+
+    ActiveRecord::Base.accessor = nil
   end
 
   def test_validation
