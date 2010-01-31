@@ -6,7 +6,7 @@ class Revision < ActiveRecord::Base
   default_scope select_without_file_columns_for(:upload).merge({:order => 'position DESC'})
 
   #Validation
-  validates_presence_of :user_id, :document_id
+  validates_presence_of :user_id#, :document_id
   validates_attachment_presence :upload
 
 
