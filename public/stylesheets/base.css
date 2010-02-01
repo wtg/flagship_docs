@@ -105,8 +105,8 @@ ul.tree_root li a:hover { background:#006699; color:#FFF !important; }
 
 /*##########  DOCUMENTS/CATEGORIES SEARCH FIELD  ##########*/
 #search-jQuery { position:relative; }
-.index-search { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 14px; margin-top:2px; padding-left:38px; width:398px; }
-.search-default { background:url(../images/layout/search_bg_default.png) center center no-repeat !important; }
+.index-search { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 14px; margin-top:2px; padding-left:38px; padding-right:34px; width:378px; }
+.search-default { background:url(../images/layout/search_bg_default.png) center center no-repeat; }
 .index-search:focus { background:url(../images/layout/search_bg_hover.png) center center no-repeat; }
 #no-js { position:relative; }
 .search-button { position:absolute; z-index:20; right:50px; top:4px; background:url(../images/icons/search_button.png) center center no-repeat; border:0px; width:57px; height:35px; }
