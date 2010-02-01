@@ -38,7 +38,13 @@ $(document).ready(function () {
 	
 	if (!$('input#search_query').val('')) {
 		$('a#search_ex').show();
-	}
+	} 
+	
+	$("#search_query").blur(function() {
+		if ($('input#search_query').val('')) {
+			$("#search_query").addClass("search-default");
+		}
+	});
 	
 	//Clear search box when click:
 	$('a#search_ex').click(function() {
