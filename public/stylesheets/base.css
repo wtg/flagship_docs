@@ -105,9 +105,11 @@ ul.tree_root li a:hover { background:#006699; color:#FFF !important; }
 
 /*##########  DOCUMENTS/CATEGORIES SEARCH FIELD  ##########*/
 #search-jQuery { position:relative; }
-.index-search { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 14px; margin-top:2px; padding-left:38px; width:398px; }
+.index-search { background:url(../images/layout/search_bg.png) center center no-repeat; border:0px; font-size:1.2em; padding:7px 14px; margin-top:2px; padding-left:38px; padding-right:34px; width:378px; }
+.search-default { background:url(../images/layout/search_bg_default.png) center center no-repeat; }
 .index-search:focus { background:url(../images/layout/search_bg_hover.png) center center no-repeat; }
 #no-js { position:relative; }
+#no-js .index-search { padding-right:70px; width:338px; }
 .search-button { position:absolute; z-index:20; right:50px; top:4px; background:url(../images/icons/search_button.png) center center no-repeat; border:0px; width:57px; height:35px; }
 a#search_ex { position:absolute; z-index:20; right:54px; top:12px; background:url(../images/icons/search_ex.png) center center no-repeat; border:0px; width:17px; height:17px; }
 a#search_ex:active { background:url(../images/icons/search_ex_hover.png) center center no-repeat; border:0px; }
@@ -149,7 +151,7 @@ ul.iconlist { margin:0px -8px; }
 ul.iconlist li { list-style:none; float:left; margin:15px 6px; }
 ul.iconlist li a { background:#eee; width:180px; height:210px; border:solid 1px #ccc; -moz-border-radius:12px; -webkit-border-radius:12px; font-size:small; display:block; text-align:center; }
 ul.iconlist li a:hover { background:#99ccff; border:solid 1px #3399cc; }
-ul.iconlist li a h2 { color:#333 !important; background:none !important; padding:0px !important; font-size:1.3em !important; margin:0px; font-weight:bold !important; text-align:center; }
+ul.iconlist li a h2 { color:#333 !important; background:none !important; padding:0px !important; margin:0px; font-weight:bold !important; text-align:center; }
 ul.iconlist li a:hover h2 { }
 ul.iconlist li a h3 { font-size:1em; font-weight:normal; margin:0px; padding:0px; text-align:center; }
 div.iconlist_padding { padding:8px; }

@@ -1,3 +1,4 @@
+<p style="text-align:right; font-size:1.1em; margin:8px 12px;"><%= link_to "All Results", search_documents_path(:query => params[:query]) %></p>
 <h1>Matched Documents</h1>
 <ol>
   <% for document in @documents %>
@@ -29,4 +30,3 @@
 	</li>
   <% end %>
 </ol>
-<p style="text-align:right; font-size:1.1em; margin:8px 12px;"><%= link_to "All Results", search_documents_path(:query => params[:query]) %></p>
