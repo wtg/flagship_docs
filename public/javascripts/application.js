@@ -8,13 +8,14 @@ $(document).ready(function () {
 	$("#search-jQuery").css({'display' : 'block'});
 	$("#search_query").click(function() {
 		$("#search_query").removeClass("search-default");
+		$("#search_query").addClass("has_focus");
 	});
 	
 	$("#search_query").bind('keyup',function () {
-		if($(this).val().length == 0){
+		if ($(this).val().length == 0 ) {
 			$("#search_query_auto_complete").fadeOut(100);
 			$("#search_query_auto_complete").html("");
-		} else {
+		} else if ($(this).hasClass('has_focus')) {
 			$.ajax({
 				type: "POST",
 				cache: true,
@@ -27,12 +28,8 @@ $(document).ready(function () {
 			});
 		}
 	});
-	
-	$('#searchbox'.parent).click(function() {
-		$("#search_query_auto_complete").fadeOut(300);
-	});
 
-	$('input#search_query').keypress(function() {
+	$("#search_query").keypress(function() {
 		$('a#search_ex').fadeIn('fast');
 	});
 	
@@ -41,9 +38,11 @@ $(document).ready(function () {
 	} 
 	
 	$("#search_query").blur(function() {
-		if ($('input#search_query').val('')) {
+		if ($('#search_query').val() == "") {
 			$("#search_query").addClass("search-default");
 		}
+		$("#search_query").removeClass("has_focus");
+		$("#search_query_auto_complete").fadeOut(100);
 	});
 	
 	//Clear search box when click:
