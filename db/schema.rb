@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100201053125) do
+ActiveRecord::Schema.define(:version => 20100201143130) do
 
   create_table "backgrounds", :force => true do |t|
     t.string   "image_file_name"
@@ -36,7 +36,11 @@ ActiveRecord::Schema.define(:version => 20100201053125) do
     t.integer  "background_id"
   end
 
+  add_index "categories", ["background_id"], :name => "background_id_index"
+  add_index "categories", ["group_id"], :name => "group_id_index"
   add_index "categories", ["name"], :name => "name_index"
+  add_index "categories", ["parent_id"], :name => "parent_id_index"
+  add_index "categories", ["user_id"], :name => "user_id_index"
 
   create_table "documents", :force => true do |t|
     t.string   "title"
@@ -49,6 +53,9 @@ ActiveRecord::Schema.define(:version => 20100201053125) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "documents", ["category_id"], :name => "category_id_index"
+  add_index "documents", ["user_id"], :name => "user_id_index"
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -79,7 +86,9 @@ ActiveRecord::Schema.define(:version => 20100201053125) do
     t.binary   "upload_file",         :limit => 2147483647
   end
 
+  add_index "revisions", ["document_id"], :name => "document_id_index"
   add_index "revisions", ["position"], :name => "position_index"
+  add_index "revisions", ["user_id"], :name => "user_id_index"
 
   create_table "users", :force => true do |t|
     t.string   "username"
@@ -88,5 +97,7 @@ ActiveRecord::Schema.define(:version => 20100201053125) do
     t.datetime "updated_at"
     t.boolean  "is_admin",   :default => false
   end
+
+  add_index "users", ["username"], :name => "username_index", :unique => true
 
 end
