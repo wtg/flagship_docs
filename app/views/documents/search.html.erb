@@ -10,7 +10,7 @@
 				<div style="float:right; width:800px; padding:8px 0px;">
 					<h1><%=h document.title %></h1>
 					<h2><%=h document.category.name unless document.category.nil? %></h2>
-					<h3><%= document.highlight(params[:query] + "*", :excerpt_length => 80, :num_excerpts => 3, :pre_tag => "<strong>", :post_tag => "</strong>" ).delete_if{ |x| !x.include? "<strong>"}.join("<br />") %></h3>
+					<h3><%= sanitize document.highlight(params[:query] + "*", :excerpt_length => 80, :num_excerpts => 3, :pre_tag => "<strong>", :post_tag => "</strong>", :ellipsis => ".." ).delete_if{ |x| !x.include? "<strong>"}.join(""), :tags => %w(strong) %></h3>
 				</div>
 				<div style="clear:both;"></div>
 			<% end %>
