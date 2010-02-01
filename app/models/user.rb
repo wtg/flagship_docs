@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  #Scoping
+  default_scope :order => 'username ASC'
+
   #Validations
   validates_presence_of :username, :full_name
 

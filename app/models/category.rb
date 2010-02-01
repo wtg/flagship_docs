@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  acts_as_category :order => 'name', :hidden => 'private'
+  acts_as_category :order_by => 'name', :hidden => 'private'
   
   #Validation
   validates_presence_of :name, :group_id, :user_id

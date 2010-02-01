@@ -1,10 +1,13 @@
 class Group < ActiveRecord::Base
 
+  #Scoping
+  default_scope :order => 'name ASC'
+  
   #Validations
   validates_presence_of :name
 
   #Relationships
-  has_and_belongs_to_many :users
+  has_and_belongs_to_many :users, :order => 'username ASC'
 	belongs_to :leader, :class_name => 'User', :foreign_key => 'group_leader_id'
 
 	has_owner :group_leader
