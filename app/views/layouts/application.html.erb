@@ -17,6 +17,7 @@
 </head>
 
 <body>
+	<%= render :partial => 'layouts/header' %>
 	<% if flash[:notice] or flash[:error] %>
 		<div id="flash_block"<% if flash[:error] %> class="error"<% end %>>
 			<div id="flash_block-padding">
@@ -69,8 +70,7 @@
 			<%= yield %>
 		</div>
 	</div>
-        <div id="footer">Powered by <%= link_to "Flagship Docs", "http://github.com/wtg/flagship_docs" %>.&nbsp;&nbsp;&nbsp;2010 <%= link_to "RPI Web Tech Group", "http://webtech.union.rpi.edu" %>.</div>
-
+	<%= render :partial => 'layouts/footer' %>
 </body>
 
 </html>
