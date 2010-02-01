@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100201005157) do
+ActiveRecord::Schema.define(:version => 20100201052521) do
 
   create_table "backgrounds", :force => true do |t|
     t.string   "image_file_name"
@@ -33,9 +33,10 @@ ActiveRecord::Schema.define(:version => 20100201005157) do
     t.integer  "children_count"
     t.integer  "ancestors_count"
     t.integer  "descendants_count"
-    t.integer  "position"
     t.integer  "background_id"
   end
+
+  add_index "categories", ["name"], :name => "name_index"
 
   create_table "documents", :force => true do |t|
     t.string   "title"
@@ -73,6 +74,8 @@ ActiveRecord::Schema.define(:version => 20100201005157) do
     t.datetime "upload_updated_at"
     t.binary   "upload_file",         :limit => 2147483647
   end
+
+  add_index "revisions", ["position"], :name => "position_index"
 
   create_table "users", :force => true do |t|
     t.string   "username"
