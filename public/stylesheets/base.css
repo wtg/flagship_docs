@@ -68,7 +68,7 @@ div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; heig
 .error { background:red !important; color:#FFF !important; }
 
 /*##########  WRAP  ##########*/
-#wrap { width:70%; margin:30px auto; margin-bottom:8px; min-width:940px; background:#f5f5f5 url(../images/layout/wrap_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 0.5em #000; }
+#wrap { width:70%; margin:80px auto; margin-bottom:8px; min-width:940px; background:#f5f5f5 url(../images/layout/wrap_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 0.5em #000; }
 #wrap-padding { padding:40px 20px; padding-bottom:50px; }
 
 /*##########  HEADER  ##########*/
@@ -231,6 +231,7 @@ p.submitbutton{padding-left:140px;}
 form.cmxform fieldset{ background:#e6e6e6; border:solid 1px #999; -moz-border-radius:5px; -webkit-border-radius:5px; font-size:1.2em;margin-bottom:10px;}
 form.cmxform input { font-size:1em; }
 form.cmxform textarea{font-size:0.9em;width:80%;}
+form.cmxform span { vertical-align:middle; padding-left:8px; font-size:0.7em; color:#333; }
 form.cmxform legend{padding:0 2px;font-weight:700;_margin:0 -7px;/* IE Win */}
 form.cmxform label{text-transform:uppercase; letter-spacing:0.13em; display:inline-block;line-height:1.8;vertical-align:top;}
 form.cmxform fieldset ol{margin:0;padding:0;}

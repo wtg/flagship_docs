@@ -11,8 +11,8 @@
 				<div style="float:left; margin-left:8px; width:80%;"><%= render :partial => 'backgrounds/select', :locals => {:form => f} %></div>
 				<div style="clear:both;"></div>
 			</li>
-			<li><%= f.label :private, "Is Private (Only Visible to Your Group)" %> <%= f.check_box :private %></li>
-			<li><%= f.label :writable, "Everyone Can Edit or Add Docs?" %> <%= f.check_box :writable %></li>
+			<li><%= f.label :private, "Is Private" %> <%= f.check_box :private %><span>Checking this box will make this category only visible to my group.</span></li>
+			<li><%= f.label :writable, "Everyone can edit" %> <%= f.check_box :writable %><span>Checking this box will make it so that everyone can edit and add docs.</span></li>
 			<% if !(controller.action_name == "new") %>
 			<li><%= f.label :user, "Admin" %> <%= f.collection_select :user_id, User.all, :id, :full_name %></li>
 			<% end %>
