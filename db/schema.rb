@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100201052521) do
+ActiveRecord::Schema.define(:version => 20100201053125) do
 
   create_table "backgrounds", :force => true do |t|
     t.string   "image_file_name"
@@ -61,6 +61,10 @@ ActiveRecord::Schema.define(:version => 20100201052521) do
     t.integer "group_id"
     t.integer "user_id"
   end
+
+  add_index "groups_users", ["group_id", "user_id"], :name => "group_id_user_id_index"
+  add_index "groups_users", ["group_id"], :name => "group_id_index"
+  add_index "groups_users", ["user_id"], :name => "user_id_index"
 
   create_table "revisions", :force => true do |t|
     t.integer  "document_id"
