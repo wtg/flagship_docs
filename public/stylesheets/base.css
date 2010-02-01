@@ -109,6 +109,7 @@ ul.tree_root li a:hover { background:#006699; color:#FFF !important; }
 .search-default { background:url(../images/layout/search_bg_default.png) center center no-repeat; }
 .index-search:focus { background:url(../images/layout/search_bg_hover.png) center center no-repeat; }
 #no-js { position:relative; }
+#no-js .index-search { padding-right:70px; width:338px; }
 .search-button { position:absolute; z-index:20; right:50px; top:4px; background:url(../images/icons/search_button.png) center center no-repeat; border:0px; width:57px; height:35px; }
 a#search_ex { position:absolute; z-index:20; right:54px; top:12px; background:url(../images/icons/search_ex.png) center center no-repeat; border:0px; width:17px; height:17px; }
 a#search_ex:active { background:url(../images/icons/search_ex_hover.png) center center no-repeat; border:0px; }
