@@ -78,7 +78,7 @@ div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; heig
 #header h1.expand a:hover { color:#FFF; }
 
 /*##########  FOOTER  ##########*/
-#footer { color:#999; text-shadow:0 1px 0px #000; font-size:0.6em; text-align:center; width:800px; margin:0 auto; }
+#footer { color:#999; text-shadow:0 1px 0px #000; font-size:0.6em; text-align:center; width:800px; margin:0 auto; margin-bottom:18px; }
 #footer a { color:#ccc; }
 
 /*##########  TOP BAR  ##########*/
@@ -92,9 +92,9 @@ div.hr_dl2 { background:url(../images/layout/hr_dl2.png) top left repeat-x; heig
 
 /*##########  CATEGORIES TREE  ##########*/
 #cat_tree { background:#99cccc url(../images/layout/tree_bg.png) bottom left repeat-x; margin:0px; border-bottom:solid 1px #eee; }
-#cat_tree_inset { border-top:solid 1px #666; }
+#cat_tree_inset { overflow-y:scroll; height:250px; border-top:solid 1px #666; }
 #cat_tree-padding { padding:15px 25px 20px 8px; border-top:solid 1px #eee; }
-#cat_tree ul { border-left:dotted 1px #006699; font-size:0.9em; margin:0px; padding:0px; margin-left:20px; }
+#cat_tree ul { border-left:dotted 1px #006699; font-size:0.95em; margin:0px; padding:0px; margin-left:20px; }
 #cat_tree li { list-style-type:square; margin:0px; padding:0px; }
 #cat_tree a { font-size:1em; color:#333; font-weight:bold; }
 a#cat_tree_expand { display:block; }
