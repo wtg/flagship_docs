@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100113193657) do
+ActiveRecord::Schema.define(:version => 20100201005157) do
 
   create_table "backgrounds", :force => true do |t|
     t.string   "image_file_name"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20100113193657) do
     t.integer  "ancestors_count"
     t.integer  "descendants_count"
     t.integer  "position"
-    t.integer  "pictures_count"
     t.integer  "background_id"
   end
 
