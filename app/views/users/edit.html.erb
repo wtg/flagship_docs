@@ -1,16 +1,19 @@
-<h1>Editing user</h1>
+<h1>Edit Profile</h1>
 
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
+  <p>Username: <%= @user.username %></p>
   <p>
     <%= f.label :full_name %><br />
     <%= f.text_field :full_name %>
   </p>
+  <% if @user.allowed_to_write(:is_admin)%>
+  <p>
+    <%= f.label :is_admin %><br />
+    <%= f.check_box :is_admin %>
+  </p>
+  <% end %>
   <p>
     <%= f.submit 'Update' %>
   </p>

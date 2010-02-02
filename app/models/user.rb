@@ -13,11 +13,15 @@ class User < ActiveRecord::Base
   has_many :groups_led, :class_name => 'Group' , :foreign_key => 'group_leader_id'
 
   #Authenticates Access
-  #is_admin can only be set by an admin
+  #is_admin and username can only be set by an admin
   authenticates_writes_to :is_admin, :with_accessor_method => :is_admin
+  authenticates_writes_to :username, :with_accessor_method => :is_admin
   #users can only be saved by self or an admin.
   authenticates_saves :with => :allow_owner
   authenticates_saves :with_accessor_method => :is_admin
+  #users can only read their own, unless they are admin
+  authenticates_reads :with => :allow_owner
+  authenticates_reads :with_accessor_method => :is_admin
   has_owner :self
 
   #Determine if a user belongs to at least one group
