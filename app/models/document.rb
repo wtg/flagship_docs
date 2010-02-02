@@ -4,7 +4,7 @@ class Document < ActiveRecord::Base
   validates_presence_of :title, :category_id, :user_id
 
   #Relationships
-  has_many :revisions, :order => "position DESC"
+  has_many :revisions, :order => "position DESC", :dependent => :destroy
   belongs_to :category
   belongs_to :user
 
