@@ -161,10 +161,6 @@ class DocumentsController < ApplicationController
   #Used to gracefully handle Flagship V1 style permalinks.
   def current
     @document = Document.find(params[:id])
-    if @document.allowed_to_read
-      redirect_to download_document_revision_path(@document, 'current'), :status => :moved_permanently
-    else
-      redirect_back
-    end
+    redirect_to download_document_revision_path(@document, 'current'), :status => :moved_permanently
   end
 end
