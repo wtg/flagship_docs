@@ -122,4 +122,11 @@ class CategoriesController < ApplicationController
       redirect_back
     end
   end
+  
+  #GET /categories/rss/11
+  #Used to gracefully handle Flagship V1 style RSS
+  def rss
+    @category = Category.find(params[:id])
+    redirect_to category_path(@category, :format => 'rss'), :status => :moved_permanently
+  end
 end
