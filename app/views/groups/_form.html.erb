@@ -6,3 +6,7 @@
     <%= f.label :members %><br />
     <%= f.collection_select(:user_ids, User.find(:all), :id, :full_name, {:include_blank => true}, {:multiple => true}) %>
   </p>
+  <p>
+    <%= f.label :leader %><br />
+    <%= f.collection_select(:group_leader_id, @group.users, :id, :full_name) %>
+  </p>

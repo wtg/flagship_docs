@@ -11,6 +11,7 @@
   </ul>
 </p>
 
-
-<%= link_to 'Edit', edit_group_path(@group) %> |
+<% if @group.allowed_to_save %>
+  <%= link_to 'Edit', edit_group_path(@group) %> |
+<% end %>
 <%= link_to 'Back', groups_path %>
