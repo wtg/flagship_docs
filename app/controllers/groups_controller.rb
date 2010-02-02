@@ -54,7 +54,7 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.xml
   def create
-    if !Group.allowed_to_save
+    if !Group.allowed_to_create
       flash[:error] = "Sorry, the page you requested in unavailable."
       redirect_back
     else
