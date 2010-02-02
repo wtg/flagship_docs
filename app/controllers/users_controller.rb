@@ -34,11 +34,16 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    @user = User.new
+    if admin_logged_in?
+      @user = User.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @user }
+      end
+    else
+      flash[:error] = "Sorry, the page you requested in unavailable."
+      redirect_back
     end
   end
 
