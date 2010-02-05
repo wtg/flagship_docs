@@ -47,7 +47,7 @@
 			<div style="padding-top:14px;float:right;width:75%;">
 				<div id="dl-link"><div id="dl-link-padding">
 					<%= link_to "Download File", download_document_revision_path(@document, 'current') unless @document.current_revision.blank? %>
-					<span class="details">from <%= @document.current_revision.user.full_name %> on <%= @document.current_revision.created_at.strftime('%D') %></span>
+					<span class="details">from <%= @document.current_revision.user.full_name unless @document.user.blank? %> on <%= @document.current_revision.created_at.strftime('%D') unless @document.current_revision.blank?%></span>
 				</div></div>
 				<div id="dl-revs">
 					<% if @document.revisions.size > 1 %>
