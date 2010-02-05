@@ -17,7 +17,7 @@
 			<% if @document.writable %>
 				<%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Others can edit this document") %>
 			<% else %>
-				<%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Only members of #{@document.group.name} can edit this document") %>
+				<%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Only members of #{@document.group.name unless @document.group.nil?} can edit this document") %>
 			<% end %>
 			&nbsp;&nbsp;&nbsp;<%=h @document.downloaded %> downloads
 		</p>
