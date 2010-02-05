@@ -116,8 +116,9 @@ class RevisionsController < ApplicationController
    end
 
    if revision.document.allowed_to_read
-     revision.document.increment!(:downloaded)
-   
+     revision.document.bypass_auth do
+       revision.document.increment!(:downloaded)
+     end
      send_data revision.upload.file_contents(:original),
                :filename => revision.upload_file_name,
                :type => revision.upload_content_type
