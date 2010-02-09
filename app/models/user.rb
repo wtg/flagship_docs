@@ -25,8 +25,13 @@ class User < ActiveRecord::Base
   has_owner :self
 
   #Determine if a user belongs to at least one group
-  def in_one_group
+  def in_one_group?
     !self.groups.empty?
+  end
+
+  def in_one_group
+    LOGGER.info("DEPRECATION WARNING: ADD A ? TO IN ONE GROUP")
+    !self.in_one_group?
   end
 
   #Used to test if a user is a member of a certain group.

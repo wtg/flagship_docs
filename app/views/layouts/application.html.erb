@@ -7,7 +7,7 @@
   <%= stylesheet_link_tag "base", :media => 'all' %>
   <%= javascript_include_tag "jquery-1.3.2.min.js" %>
   <%= javascript_include_tag "jquery.tipsy.js" %>
-	<%= javascript_include_tag "new_revision.js" %>
+  <%= javascript_include_tag "new_revision.js" %>
   <%= javascript_include_tag "application.js" %>
   <link rel="search" type="application/opensearchdescription+xml" href="<%= opensearch_documents_url(:format => :xml) %>" title="Flagship Docs Search" />
   <script type="text/javascript" language="javascript">
@@ -15,7 +15,6 @@
   </script>
   <%= yield(:background_img) %>
 </head>
-
 <body>
 	<%= render :partial => 'layouts/header' %>
 	<% if flash[:notice] or flash[:error] %>
@@ -47,11 +46,13 @@
 							<% if not logged_in? %>
 								<%= link_to 'Log in to add/change docs', new_session_path %>
 							<% else %>
-								<%= current_user.full_name %>
+								<%= link_to current_user.full_name, current_user %>
 								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 								<% if admin_logged_in? %>
-									<%= link_to 'Users', users_path %>&nbsp;/&nbsp;<%= link_to 'Groups', groups_path %>
-									&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+									<%= link_to 'Users', users_path %>&nbsp;/&nbsp;
+								<% end %>
+								<% if admin_logged_in? || current_user.in_one_group? %>
+									<%= link_to 'Groups', groups_path %> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 								<% end %>
 								<%= link_to 'Logout', session_path, :method => :delete %>
 							<% end %>
