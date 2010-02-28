@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100201143130) do
+ActiveRecord::Schema.define(:version => 20100227203223) do
 
   create_table "backgrounds", :force => true do |t|
     t.string   "image_file_name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20100201143130) do
     t.integer  "ancestors_count"
     t.integer  "descendants_count"
     t.integer  "background_id"
+    t.boolean  "is_featured"
   end
 
   add_index "categories", ["background_id"], :name => "background_id_index"
