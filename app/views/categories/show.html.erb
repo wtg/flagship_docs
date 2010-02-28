@@ -3,74 +3,60 @@
 <% content_for :background_img, background_img(@category) %>
 <% my_ancestors = @category.ancestors %>
 <h2 class="breadcrumb">
-	<%= link_to "Home", :controller => "categories" %>&nbsp;/&nbsp;<% my_ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %>
+<%= link_to "Home", :controller => "categories" %>&nbsp;/&nbsp;<% my_ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %>
 </h2>
 <h1 class="main-title">
-	<div class="info_box">
-		<p>
-			<% if !@category.private %>
-				<%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This category is visible to everyone") %>
-			<% else %>
-				<%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This category is invisible to others") %>
-			<% end %>
-			<% if @category.writable %>
-				<%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Anyone can edit this category or add docs") %>
-			<% else %>
-				<%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Nobody else can edit this category or add docs") %>
-			<% end %>
-		</p>
-	</div>
-	<%=h @category.name %>
-	<span>
-		<%=h @category.description %>
-		<br />
-		<% if admin_logged_in? || (logged_in? && @category.allowed_to_save) %>
-		  <%= link_to 'Edit', edit_category_path(@category), :class => 'edit-link' %>
-		  &nbsp;
-		  <%= link_to 'Remove', category_path(@category), :confirm => 'Are you sure you want to remove this category?', :method => :delete, :class => 'cancel-link' %>
-		<% end %>
-	</span>
+<div class="info_box">
+<p>
+<% if !@category.private %>
+<%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This category is visible to everyone") %>
+<% else %>
+<%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This category is invisible to others") %>
+<% end %>
+<% if @category.writable %>
+<%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Anyone can edit this category or add docs") %>
+<% else %>
+<%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Nobody else can edit this category or add docs") %>
+<% end %>
+</p>
+</div>
+<%=h @category.name %>
+<span>
+<%=h @category.description %>
+<br />
+<% if admin_logged_in? || (logged_in? && @category.allowed_to_save) %>
+<%= link_to 'Edit', edit_category_path(@category), :class => 'edit-link' %>
+&nbsp;
+<%= link_to 'Remove', category_path(@category), :confirm => 'Are you sure you want to remove this category?', :method => :delete, :class => 'cancel-link' %>
+<% end %>
+</span>
 </h1>
 <div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
 <div class="mc-indent">
-	<h2>Sub-Categories <%= link_to 'Add', new_category_path(:parent_id => @category.id), :class => "link-button" if (logged_in? && @category.allowed_to_save) %></h2>
-	<ul class="iconlist">
-		<% @category.children.each do |child| %>
-		<% if child.allowed_to_read %>
-	  	<li>
-	  		<% link_to child do %>
-	  			<div class="iconlist_padding">
-        		<div class="ins">
-          		<div class="type-folder"><%= image_tag("icons/icon_folder.png", :alt => "Icon_folder") %></div>
-        		</div>
-        		<h2><%=h child.name %></h2>
-      		</div>
-	  		<% end %>
-	  	</li>
-		<% end %>
-		<% end %>
-	</ul>
-	<div style="clear:both;"></div>
-	<br />
-	<h2>Documents<%= link_to 'Add', new_document_path(:category_id => @category.id), :class => "link-button" if (logged_in? && @category.allowed_to_save) %></h2>
-	<ul class="iconlist">
-		<% @category.documents.each do |document| %>
-		<% if document.allowed_to_read%>
-	  	<li>
-	  		<% link_to document do %>
-	  			<div class="iconlist_padding">
-        		<div class="ins">
-          		<div class="type-folder"><%= image_tag("icons/icon_#{document.current_revision.type}.png", :alt => document.title) %></div>
-        		</div>
-        		<h2><%=h document.title %></h2>
-      		</div>
-	  		<% end %>
-	  	</li>
-		<% end %>
-		<% end %>
-	</ul>
-	<div style="clear:both;"></div>
-	<br />
+<h2>Sub-Categories <%= link_to 'Add', new_category_path(:parent_id => @category.id), :class => "link-button" if (logged_in? && @category.allowed_to_save) %></h2>
+<ul class="iconlist">
+<% @category.children.each do |child| %>
+<% if child.allowed_to_read %>
+<li>
+<% link_to child do %>
+<div class="iconlist_padding">
+         <div class="ins">
+           <div class="type-folder"><%= image_tag("icons/icon_folder.png", :alt => "Icon_folder") %></div>
+         </div>
+         <h2><%=h child.name %></h2>
+       </div>
+<% end %>
+</li>
+<% end %>
+<% end %>
+</ul>
+<div style="clear:both;"></div>
+<br />
+<h2>Documents<%= link_to 'Add', new_document_path(:category_id => @category.id), :class => "link-button" if (logged_in? && @category.allowed_to_save) %></h2>
+<% if !@docs.empty? %>
+  <%= render :partial => 'documents/table', :locals => {:documents => @docs} %>
+<% end %>
+<div style="clear:both;"></div>
+<br />
 </div>
-

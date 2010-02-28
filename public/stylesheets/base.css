@@ -255,3 +255,20 @@ div.form_group input { background:#FFEFEF; font-size:1.15em; border:solid 1px #9
 div.form_group legend { margin:8px; font-size:1.4em; background:#FFF; font-weight:normal; padding:0px 8px; }
 div.form_group label { padding:2px 0px; vertical-align:top; font-weight:bold; padding-right:6px; background:none; color:#333; font-size:0.8em; width:210px; }
 div.form_group textarea { width:70%; background:#FFEFEF; border:solid 1px #999; }
+
+### DOCUMENTS LIST VIEW ###
+table.docs {-moz-border-radius: 12px 12px 0 0; border:1px solid #CCCCCC;}
+table.docs td { font-size:1.06em; height:35px; vertical-align:top; padding:3px 9px; margin:0; }
+table.docs tr.odd td { background:#e5e5e5 url(../images/layout/docs_odd_bg.png) top left repeat-x; }
+table.docs tr.even td { background:#ffffff url(../images/layout/docs_even_bg.png) top left repeat-x; }
+table.docs thead tr.cat_title th { background: #605B5B; color: #ffffff; padding: 1px 10px; height: auto; letter-spacing:0.15em; font-size:0.8em; text-transform:uppercase; }
+table.docs td.doc_img { width:42px; text-align: center; }
+table.docs a {width:180px; height:210px; font-size:small; text-align:center;}
+table.docs a:hover h2 {text-decoration:underline;}
+table.docs a h2 { color:#333 !important; background:none !important; padding:0px !important; margin:0px; font-weight:bold !important; text-align:center; }
+table.docs a.edit-link { color:#F59300 !important; font-weight:bold;}
+table.docs a.cancel-link {color:#DC0000 !important; font-weight:bold;}
+table.docs thead tr:first-child th:first-child { -moz-border-radius-topleft:10px; -webkit-border-top-left-radius:10px; border-top-left-radius:10px}
+table.docs thead tr:first-child th:last-child { -moz-border-radius-topright:10px; -webkit-border-top-right-radius:10px; border-top-right-radius:10px}
+table.docs tr:last-child td:first-child { -moz-border-radius-bottomleft:10px; -webkit-border-bottom-left-radius:10px; border-bottom-left-radius:10px}
+table.docs tr:last-child td:last-child { -moz-border-radius-bottomright:10px; -webkit-border-bottom-right-radius:10px; border-bottom-right-radius:10px}

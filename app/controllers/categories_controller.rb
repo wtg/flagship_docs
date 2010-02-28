@@ -14,6 +14,8 @@ class CategoriesController < ApplicationController
   # GET /categories/1.xml
   def show
     @category = Category.find(params[:id])
+    @docs= @category.documents
+    @docs.delete_if {|x| !x.allowed_to_read} #Hide private documents
     if @category.allowed_to_read #Show only if the user is allowed to see it
       respond_to do |format|
         format.html # show.html.erb

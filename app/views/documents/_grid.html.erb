@@ -1,0 +1,15 @@
+<ul class="iconlist">
+  <% documents.each do |document| %>
+  <li>
+    <% link_to document do %>
+      <div class="iconlist_padding">
+        <div class="ins">
+          <div class="type-folder"><%= image_tag("icons/icon_#{document.current_revision.type}.png", :alt => document.title) %></div>
+        </div>
+        <h2><%=h document.title %></h2>
+      </div>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+
