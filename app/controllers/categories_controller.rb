@@ -36,6 +36,8 @@ class CategoriesController < ApplicationController
     #If there is a category, set that as the default parent
     if(!params[:parent_id].blank?)
       @category.parent_id = params[:parent_id]	
+      @category.group_id = Category.find(params[:parent_id]).group_id
+      @category.user_id = Category.find(params[:parent_id]).user_id
     end
     respond_to do |format|
       format.html # new.html.erb
