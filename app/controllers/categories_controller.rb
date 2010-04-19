@@ -14,13 +14,18 @@ class CategoriesController < ApplicationController
   # GET /categories/1.xml
   def show
     @category = Category.find(params[:id])
+    @doc_display = params[:type] || 'table'
     @docs= @category.documents
     @docs.delete_if {|x| !x.allowed_to_read} #Hide private documents
     if @category.allowed_to_read #Show only if the user is allowed to see it
+       if request.xhr?
+          render :partial=>'documents/' +  @doc_display, :locals => {:documents => @docs}
+        else
       respond_to do |format|
         format.html # show.html.erb
         format.rss #show.rss.erb
         format.xml  { render :xml => @category }
+        end
       end
     else
       flash[:notice] = 'You are not authorized to view this Category.'
