@@ -123,7 +123,7 @@ a#search_ex:active { background:url(../images/icons/search_ex_hover.png) center 
 .auto_complete ol li h2 { font-weight:normal !important; padding:0px; font-size:1em; color:#666; margin:0px; letter-spacing: 0.02em; }
 .auto_complete ol li h3 { font-weight:normal !important; color:#000; margin-top:3px; }
 .auto_complete ol li h3 strong { font-weight:normal !important; background:yellow; padding:2px; -moz-border-radius:5px; -webkit-border-radius:5px; }
-.auto_complete ol li a { background:#ccc; display:block; padding:8px 18px; clear:left; text-decoration:none; }
+.auto_complete ol li a,.auto_complete ol li.none { background:#ccc; display:block; padding:8px 18px; clear:left; text-decoration:none; }
 .auto_complete ol li a:hover { background-color:#999; color:#ffffff; }
 .auto_complete ol li a:hover h3 { color:#333 !important; }
 .auto_complete ol li a:hover h3 strong { color:#333 !important; }

@@ -1,7 +1,15 @@
 <p style="text-align:right; font-size:1.1em; margin:8px 12px;"><%= link_to "All Results", search_documents_path(:query => params[:query]) %></p>
 <h1>Matched Documents</h1>
 <ol>
-  <% for document in @documents %>
+  <% if @documents.empty? %>
+    <li class="none">
+      <div style="float:right; width:315px; padding:8px 0px;">
+        <h1>No Documents Found</h1>
+      </div>
+      <div style="clear:both;"></div>
+    </li>
+  <% else %>
+    <% for document in @documents %>
 	<li>
 		<% link_to document do %>
 			<div style="float:left; width:60px;"><%= image_tag("icons/icon_#{document.current_revision.type}.png", :alt => "", :width => 50) %></div>
@@ -13,11 +21,20 @@
 			<div style="clear:both;"></div>
 		<% end %>
 	</li>
+    <% end %>
   <% end %>
 </ol>
 <h1>Matched Categories</h1>
 <ol>
-  <% for category in @categories %>
+  <% if @categories.empty? %>
+        <li class="none">
+          <div style="float:right; width:315px; padding:8px 0px;">
+            <h1>No Categories Found</h1>
+          </div>
+          <div style="clear:both;"></div>
+        </li>
+  <% else %>
+    <% for category in @categories %>
 	<li>
 		<% link_to category do %>
 			<div style="float:left; width:60px;"><%= image_tag("icons/icon_folder.png", :alt => "", :width => 50) %></div>
@@ -28,5 +45,6 @@
 			<div style="clear:both;"></div>
 		<% end %>
 	</li>
+    <% end %>
   <% end %>
 </ol>
