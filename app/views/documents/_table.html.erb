@@ -1,22 +1,21 @@
-<%= link_to 'View Grid', category_path(:type => 'grid'),  :class => "link-button update_holder" %>
+<%= link_to 'View Grid', category_path(:type => 'grid', :anchor => "doclist"), :class => "link-button update_holder" %>
 <br /><br />
 <% if !documents.empty? %>
 <table cellpadding="0" cellspacing="0" width="100%" class="docs">
  <thead>
- <tr class="cat_title">
-  <th></th>
-  <th>Title</th>
-  <th>Description</th>
-  <th>Number of Downloads</th>
-  <th>Uploaded by</th>
-  <th>Created on</th>
-  <th>Last Updated</th>
-  <th></th>
- </tr>
+	 <tr class="cat_title">
+		<th style="text-align:right;">Title</th>
+		<th>Link</th>
+		<th style="text-align:left;">Description</th>
+		<th>Downloads</th>
+		<th>Updated</th>
+		<th></th>
+	 </tr>
  </thead>
  <tbody>
  <% documents.each do |document| %>
  <tr class="<%= cycle('odd', 'even') %>">
+  <td><% link_to document do %><h2><%=h document.title %></h2><% end %></td>
   <td class="doc_img">
    <% unless document.current_revision.blank? %>
     <% link_to download_document_revision_path(document, 'current') do %>
@@ -24,11 +23,8 @@
     <% end %>
    <% end %>
   </td>
-  <td><% link_to document do %><h2><%=h document.title %></h2><% end %></td>
-  <td><%=h document.description %></td>
+  <td><p><%=h document.description %></p></td>
   <td><%=h document.downloaded %></td>
-  <td><%=h document.user.full_name unless document.user.nil? %></td>
-  <td><%=h document.created_at.strftime('%D') %></td>
   <td><%=h document.updated_at.strftime('%D') %></td>
   <td>
    <% if admin_logged_in? || (logged_in? && document.allowed_to_save) %>
