@@ -121,7 +121,8 @@ class RevisionsController < ApplicationController
      end
      send_data revision.upload.file_contents(:original),
                :filename => revision.upload_file_name,
-               :type => revision.upload_content_type
+               :type => revision.upload_content_type,
+               :disposition => 'inline'
    else
      redirect_back
    end
