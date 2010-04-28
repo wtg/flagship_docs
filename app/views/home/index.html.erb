@@ -29,7 +29,7 @@
 	<% @featured_categories.each do |category| %>
 		<h2>Featured: <%= link_to category.name, category %></h2>
 		<% if !category.documents.empty? %>
-			<% docs = category.documents.find(:all, :order => "updated_at DESC", :limit => 3, :conditions => "readable" ) %>
+			<% docs = category.documents.find(:all, :order => "updated_at DESC", :limit => 3, :conditions => {:readable => true} ) %>
 			  <%= render :partial=>'documents/table', :locals => {:documents => docs} %>
 			<% if category.documents.size > 3 %>
 			<br />
