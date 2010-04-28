@@ -1,4 +1,6 @@
-<%= link_to 'View in Grid', category_path(:type => 'grid', :anchor => "doclist"), :class => "link-button update_holder", :style => "font-size:0.6em;" %>
+<% if (defined? is_ajax) && is_ajax %>
+  <%= link_to 'View in Grid', category_path(:type => 'grid', :anchor => "doclist"), :class => "link-button update_holder", :style => "font-size:0.6em;" %>
+<% end %>
 <br /><br />
 <% if !documents.empty? %>
 <table cellpadding="0" cellspacing="0" width="100%" class="docs">

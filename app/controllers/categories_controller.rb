@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
     @docs.delete_if {|x| !x.allowed_to_read} #Hide private documents
     if @category.allowed_to_read #Show only if the user is allowed to see it
        if request.xhr?
-          render :partial=>'documents/' +  @doc_display, :locals => {:documents => @docs}
+          render :partial=>'documents/' +  @doc_display, :locals => {:documents => @docs, :is_ajax => true}
         else
       respond_to do |format|
         format.html # show.html.erb

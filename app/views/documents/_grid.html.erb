@@ -1,4 +1,6 @@
-<%= link_to 'View in Table', category_path(:type => 'table', :anchor => "doclist"), :class => "link-button update_holder", :style => "font-size:0.6em;" %>
+<% if (defined? is_ajax) && is_ajax %>
+  <%= link_to 'View in Table', category_path(:type => 'table', :anchor => "doclist"), :class => "link-button update_holder", :style => "font-size:0.6em;" %>
+<% end %>
 <br /><br />
 <ul class="iconlist">
   <% documents.each do |document| %>

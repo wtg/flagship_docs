@@ -66,7 +66,7 @@
 	
 	<h2 id="doclist">Documents<%= link_to 'Add', new_document_path(:category_id => @category.id), :class => "link-button" if (logged_in? && @category.allowed_to_save) %></h2>
 	<div id="doc_holder">
-	  <%= render :partial => 'documents/' + @doc_display, :locals => {:documents => @docs} %>
+	  <%= render :partial => 'documents/' + @doc_display, :locals => {:documents => @docs, :is_ajax => true} %>
 	</div>
 	<br />
 </div>
