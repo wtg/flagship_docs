@@ -192,9 +192,17 @@ div#doc_listing_inpage li a:hover h3 { color:#FFF; text-decoration: none !import
 /*  Documents/Show Pages  */
 /*##########################################################################*/
 
+/*##########  QUICKVIEW BLOCK  ##########*/
+#qv { background:#c2c1c2 url(../images/layout/qvbg.png) top left repeat-x; }
+#qv-padding { padding:12px 34px 12px 34px; }
+#qv h1 a { font-size:1.2em; text-shadow:0px -2px 0px #666; font-weight:bold; color:#FFF; }
+
 /*##########  DOWNLOAD BLOCK  ##########*/
 #dl { background:#ddd url(../images/layout/dlbg.png) top left repeat-x; }
+#dl.fp h1 { font-size:1.6em; margin-bottom:16px; }
+#dl.fp p { font-size:0.95em; margin-bottom:0px; line-height:1.2em; }
 #dl-padding { padding:18px 34px 18px 34px; }
+#dl.fp #dl-padding { padding:24px 34px; }
 #dl_icon { float:left; width:25%; text-align:center; }
 #dl_icon a { background:#ededed; padding:30px 10px; display:block; -moz-border-radius:12px; -webkit-border-radius:12px; }
 #dl_icon a:hover { background:#3399ff; }

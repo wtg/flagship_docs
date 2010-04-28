@@ -14,6 +14,7 @@
     var searchURL = '<%= search_documents_path(:format=>'js') %>';
   </script>
   <%= yield(:background_img) %>
+  <%= yield(:head) %>
 </head>
 <body>
 	<%= render :partial => 'layouts/header' %>

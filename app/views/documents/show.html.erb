@@ -4,7 +4,7 @@
 
 <h2 class="breadcrumb">
 	<% if !@document.category.nil? %>
-		<%= link_to "Home", :controller => "categories" %>&nbsp;/&nbsp;<% my_ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %><%= link_to @document.category.name, @document.category %>
+		<%= link_to "Home", root_path %>&nbsp;/&nbsp;<% my_ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %><%= link_to @document.category.name, @document.category %>
 	<% end %>
 </h2>
 
@@ -34,6 +34,43 @@
 	  </span>
 	<% end %>
 </h1>
+
+<% if @document.current_revision.upload_content_type == 'application/pdf' or @document.current_revision.upload_content_type == 'application/msword' %>
+<div class="flush">
+	<div id="qv">
+		<div id="qv-padding">
+			<% content_for :head do %>
+  			<%= stylesheet_link_tag "jquery.fancybox-1.3.1", :media => 'all' %>
+				<%= javascript_include_tag "jquery.easing-1.3.pack.js" %>
+				<%= javascript_include_tag "jquery.fancybox-1.3.1.pack.js" %>
+				<script type="text/javascript"> 
+					$(document).ready(function() {
+							$("a#docview").fancybox({
+								'titleShow'		: false,
+								'transitionIn'	: 'none',
+								'transitionOut'	: 'none'
+							});
+					
+							$("#docview").fancybox({
+								'width'				: '80%',
+								'height'			: '95%',
+								'autoScale'			: false,
+								'transitionIn'		: 'none',
+								'transitionOut'		: 'none',
+								'type'				: 'iframe'
+							});	
+					});
+				</script>
+			<% end %>
+			<h1>
+				<% link_to "http://docs.google.com/viewer?embedded=true&url=#{ download_document_revision_path(@document, 'current', :only_path => false) }", :id => 'docview' do %>
+					<%= image_tag("layout/qv_icon.png", :alt => "") %> View Live Preview
+				<% end %>
+			</h1>
+		</div>
+	</div>
+</div>
+<% end %>
 
 <div class="flush">
 	<div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
