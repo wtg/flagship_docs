@@ -59,6 +59,9 @@
 								'transitionOut'		: 'none',
 								'type'				: 'iframe'
 							});	
+							$("#docview").click(function(){
+							  //Code here will be fired when a live preview is opened
+							});
 					});
 				</script>
 			<% end %>
@@ -86,7 +89,7 @@
 			<div style="padding-top:14px;float:right;width:75%;">
 				<div id="dl-link"><div id="dl-link-padding">
 					<%= link_to "Download File", download_document_revision_path(@document, 'current') unless @document.current_revision.blank? %>
-					<span class="details">from <%= @document.current_revision.user.full_name unless @document.user.blank? %> on <%= @document.current_revision.created_at.strftime('%D') unless @document.current_revision.blank?%></span>
+					<span class="details">from <%= @document.current_revision.user.full_name unless @document.current_revision.user.blank? %> on <%= @document.current_revision.created_at.strftime('%D') unless @document.current_revision.blank?%></span>
 					&nbsp;&nbsp;<span id="clippy"></span>
 					<% content_for :head do %>
 					    <%= javascript_include_tag "swfobject.js" %>
