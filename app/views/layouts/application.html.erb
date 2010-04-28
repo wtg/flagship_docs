@@ -10,7 +10,8 @@
   <%= javascript_include_tag "new_revision.js" %>
   <%= javascript_include_tag "application.js" %>
   <link rel="search" type="application/opensearchdescription+xml" href="<%= opensearch_documents_url(:format => :xml) %>" title="Flagship Docs Search" />
-  <script type="text/javascript" language="javascript">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<script type="text/javascript" language="javascript">
     var searchURL = '<%= search_documents_path(:format=>'js') %>';
   </script>
   <%= yield(:background_img) %>
