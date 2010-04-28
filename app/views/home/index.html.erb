@@ -1,4 +1,16 @@
-<%= render :partial => "home/fpblock" %>
+<div class="flush">
+	<div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
+	<div id="dl" class="fp">
+		<div id="dl-padding">
+			<div style="float:left; width:630px;">
+				<%= render :partial => "home/fpblock" %>
+			</div>
+			<div style="float:right; width:200px;"><%= image_tag("icons/fs_logo.png", :alt => "") %></div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+	<div class="hr_dl2"><%= image_tag("bl.png", :alt => "") %></div>
+</div>
 
 <div id="mc-indent" class="mc-indent">
 	<% @featured_categories.each do |category| %>
