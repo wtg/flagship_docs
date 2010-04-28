@@ -35,7 +35,8 @@
 	<% end %>
 </h1>
 
-<% if @document.current_revision.upload_content_type == 'application/pdf' or @document.current_revision.upload_content_type == 'application/msword' %>
+<% allowed_types = ['pdf', 'doc', 'ppt'] %>
+<% if allowed_types.include?(@document.current_revision.type) && @document.readable %>
 <div class="flush">
 	<div id="qv">
 		<div id="qv-padding">
