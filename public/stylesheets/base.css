@@ -199,8 +199,6 @@ div#doc_listing_inpage li a:hover h3 { color:#FFF; text-decoration: none !import
 
 /*##########  DOWNLOAD BLOCK  ##########*/
 #dl { background:#ddd url(../images/layout/dlbg.png) top left repeat-x; }
-#dl.fp h1 { font-size:1.6em; margin-bottom:16px; }
-#dl.fp p { font-size:0.95em; margin-bottom:0px; line-height:1.2em; }
 #dl-padding { padding:18px 34px 18px 34px; }
 #dl.fp #dl-padding { padding:24px 34px; }
 #dl_icon { float:left; width:25%; text-align:center; }
@@ -226,6 +224,16 @@ div#dl-revs div#seemore-link a:hover { color:#000; text-decoration: underline; }
 div.info_box { border:solid 1px #666;  -moz-border-radius:7px; -webkit-border-radius:7px; padding:8px; float:right; margin-bottom:20px; margin-left:20px; }
 div.info_box p { font-size:0.5em !important; }
 div.info_box p img { vertical-align: middle; }
+
+
+/*##########################################################################*/
+/*  Home/Index  */
+/*##########################################################################*/
+
+#dl.fp { position:relative; }
+#dl.fp h1 { font-size:1.6em; margin-bottom:16px; }
+#dl.fp p { font-size:0.95em; margin-bottom:0px; line-height:1.2em; }
+#fp_ex { position:absolute; top:3px; right:3px; width:20px; height:20px; }
 
 
 /*##########################################################################*/

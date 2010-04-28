@@ -1,6 +1,7 @@
-<div class="flush">
+<div class="flush" id="fpblock">
 	<div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
 	<div id="dl" class="fp">
+		<div id="fp_ex"><%= link_to image_tag("icons/fp_ex.png", :alt => "x"), "#" %></div>
 		<div id="dl-padding">
 			<div style="float:left; width:630px;">
 				<%= render :partial => "home/fpblock" %>
@@ -10,12 +11,23 @@
 		</div>
 	</div>
 	<div class="hr_dl2"><%= image_tag("bl.png", :alt => "") %></div>
+	<br />
 </div>
+
+<% content_for :head do %>
+	<script type="text/javascript"> 
+			$(document).ready(function() {
+					$("#fp_ex a").click(function() {
+							$("#fpblock").hide();
+							$(this).blur();
+					});			
+			});
+	</script>
+<% end %>
 
 <div id="mc-indent" class="mc-indent">
 	<% @featured_categories.each do |category| %>
-		<h1>Featured Category: <%= link_to category.name, category %></h1>
-		<br />
+		<h2>Featured: <%= link_to category.name, category %></h2>
 		<% if !category.documents.empty? %>
 			<% docs = category.documents.find(:all, :order => "updated_at DESC", :limit => 3) %>
 			  <%= render :partial=>'documents/table', :locals => {:documents => docs} %>
