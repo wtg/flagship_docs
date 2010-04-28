@@ -1,17 +1,4 @@
-<div class="flush">
-	<div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
-	<div id="dl" class="fp">
-		<div id="dl-padding">
-			<div style="float:left; width:630px;">
-				<h1>Welcome to Flagship Docs</h1>
-				<p>Flagship Docs 2 is an online, open source manager of documents of all shapes, sizes, and formats.  At RPI, Flagship hosts docs from student government and the Rensselaer Union for download by everyone.  If you are a member of an existing student government organization and would like access to post docs, please contact us at the <%= mail_to "web@rpisenate.com", "Web Tech Group", :encode => "hex" %>.</p>
-			</div>
-			<div style="float:right; width:200px;"><%= image_tag("icons/fs_logo.png", :alt => "") %></div>
-			<div style="clear:both;"></div>
-		</div>
-	</div>
-	<div class="hr_dl2"><%= image_tag("bl.png", :alt => "") %></div>
-</div>
+<%= render :partial => "home/fpblock" %>
 
 <div id="mc-indent" class="mc-indent">
 	<% @featured_categories.each do |category| %>
