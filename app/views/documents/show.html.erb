@@ -102,7 +102,7 @@
 						<h3>Past Revisions:</h3>
 						<% @document.revisions.each do |revision| %>
 	    				<% if not revision == @document.current_revision %>
-	    					<div class="dl-rev
+	    					<div class="dl-rev">
 	    						<%= link_to "Revision #{ revision.position }", download_document_revision_path(@document, revision) %>
 	    						<span class="details">from <%= revision.user.full_name %> on <%= revision.created_at.strftime('%D') %></span>
 	    					</div>
