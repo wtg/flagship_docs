@@ -10,3 +10,6 @@
 [submodule "vendor/plugins/authenticates_access"]
 	path = vendor/plugins/authenticates_access
 	url = git://github.com/mikldt/authenticates_access.git
+[submodule "vendor/other/clippy"]
+	path = vendor/other/clippy
+	url = http://github.com/mojombo/clippy.git
