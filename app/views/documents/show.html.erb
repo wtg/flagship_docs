@@ -94,7 +94,7 @@
 					<script type="text/javascript">
 					  var flashvars = { text: "<%= download_document_revision_path(@document, 'current', :only_path => false) %>" };
 					  var params = { bgcolor: "#EDEDED", scale: "noscale", quality: "high" };
-					  swfobject.embedSWF("<%= compute_public_path('clippy.swf','') %>", "clippy", "110", "14", "9.0.0", '', flashvars, params);
+					  swfobject.embedSWF("<%= compute_public_path('clippy.swf','flash') %>", "clippy", "110", "14", "9.0.0", '', flashvars, params);
 					</script>
 				</div></div>
 				<div id="dl-revs">
