@@ -119,10 +119,16 @@ class RevisionsController < ApplicationController
      revision.document.bypass_auth do
        revision.document.increment!(:downloaded)
      end
+
+     disposition = 'inline'
+     if android_user_agent?
+       disposition = 'attachment'
+     end
+
      send_data revision.upload.file_contents(:original),
                :filename => revision.upload_file_name,
                :type => revision.upload_content_type,
-               :disposition => 'inline'
+               :disposition => disposition
    else
      redirect_back
    end

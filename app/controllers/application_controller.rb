@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
+ # Request from an Android?
+ def android_user_agent?
+   request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(Android)/]
+ end
+
+
 	def redirect_back
 	#if authorization fails, redirect back
 		redirect_to :back
