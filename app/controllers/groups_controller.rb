@@ -2,18 +2,17 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.xml
   def index
-		if current_user && current_user.is_admin
-			@groups = Group.all
-			@groups.delete_if {|x| !x.allowed_to_read}
-
-			respond_to do |format|
-				format.html # index.html.erb
-				format.xml  { render :xml => @groups }
-			end
-		else
-			flash[:error] = "Sorry, the page you requested in unavailable."
-			redirect_back
-		end
+    if !admin_logged_in?
+      flash[:error] = "Sorry, the page you requested in unavailable."
+      redirect_back
+    else
+      @groups = Group.all
+      @groups.delete_if {|x| !x.allowed_to_read}
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @groups }
+      end
+    end
   end
 
   # GET /groups/1
