@@ -23,7 +23,7 @@ class Group < ActiveRecord::Base
   #Relationships
   has_and_belongs_to_many :users, :order => 'username ASC'
   belongs_to :leader, :class_name => 'User', :foreign_key => 'group_leader_id'
-	has_many :categorys
+  has_many :categories
 
   has_owner :group_leader
   authenticates_creation :with_accessor_method => :is_admin
