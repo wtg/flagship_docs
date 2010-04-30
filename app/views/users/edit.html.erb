@@ -1,17 +1,23 @@
+<h2 class="breadcrumb">
+  <%= link_to "Home", root_path %> / <%= link_to 'Users', users_path %>
+</h2>
+
+<h1 class="main-title">
+  <%=h @user.full_name %> (<%=h @user.username %>)
+</h1>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+<div id="mc-indent" class="mc-indent">
 <h1>Edit Profile</h1>
 
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
 
-  <p>Username: <%= @user.username %></p>
   <p>
-    <%= f.label :full_name %><br />
-    <%= f.text_field :full_name %>
+    <%= f.label :full_name %>: <%= f.text_field :full_name %>
   </p>
   <% if @user.allowed_to_write(:is_admin)%>
   <p>
-    <%= f.label :is_admin %><br />
-    <%= f.check_box :is_admin %>
+    <%= f.label :is_admin %>: <%= f.check_box :is_admin %>
   </p>
   <% end %>
   <p>
@@ -19,5 +25,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Show User', @user %>
+</div>
