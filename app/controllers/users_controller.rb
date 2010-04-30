@@ -2,18 +2,24 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    @users = User.all
-    @users.delete_if {|x| !x.allowed_to_read}
+		if current_user && current_user.is_admin
+			@users = User.all
+			@users.delete_if {|x| !x.allowed_to_read}
 
-    if @users.empty?
-      flash[:error] = "Sorry, the page you requested in unavailable."
-      redirect_back
-    else
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @users }
-      end
-    end
+			if @users.empty?
+				flash[:error] = "Sorry, the page you requested in unavailable."
+				redirect_back
+			else
+				respond_to do |format|
+					format.html # index.html.erb
+					format.xml  { render :xml => @users }
+				end
+			end
+		else
+			flash[:error] = "Sorry, the page you requested in unavailable."
+			redirect_back
+		end
+
   end
 
   # GET /users/1

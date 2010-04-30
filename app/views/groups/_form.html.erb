@@ -1,12 +1,10 @@
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label :name %>: <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :members %><br />
+    <%= f.label :members %>:<br />
     <%= f.collection_select(:user_ids, User.find(:all), :id, :full_name, {:include_blank => true}, {:multiple => true}) %>
   </p>
   <p>
-    <%= f.label :leader %><br />
-    <%= f.collection_select(:group_leader_id, @group.users, :id, :full_name) %>
+    <%= f.label :leader %>: <%= f.collection_select(:group_leader_id, @group.users, :id, :full_name) %>
   </p>

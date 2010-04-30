@@ -1,13 +1,18 @@
-<p>
-  <b>Username:</b>
-  <%=h @user.username %>
-</p>
+<h2 class="breadcrumb">
+  <%= link_to "Home", root_path %> / <%= link_to 'Users', users_path %>
+</h2>
 
-<p>
-  <b>Full name:</b>
-  <%=h @user.full_name %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<h1 class="main-title">
+  <%=h @user.full_name %> (<%=h @user.username %>)<%= link_to 'Edit', edit_user_path(@user), :class => "link-button" %>
+</h1>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+<div id="mc-indent" class="mc-indent">
+  <h2>Groups</h2>
+  <ul class="bulleted_list">
+    <% @user.groups.each do |group| %>
+    <li><%= link_to group.name, group %></li>
+    <% end %>
+  </ul>
+  <h2>Documents</h2>
+  <div id="doc_holder"><%= render :partial => 'documents/table', :locals => {:documents => @user.documents} %></div>
+</div>
