@@ -117,7 +117,7 @@ class RevisionsController < ApplicationController
 
    if revision.document.allowed_to_read
      revision.document.bypass_auth do
-       revision.document.increment!(:downloaded)
+       revision.document.increment_downloaded
      end
 
      disposition = 'inline'

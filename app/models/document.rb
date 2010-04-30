@@ -51,6 +51,17 @@ class Document < ActiveRecord::Base
     return result || false
   end
 
+  #Increment the downloaded counter without touching the last_updated date.
+  def increment_downloaded
+    class << self
+      def record_timestamps; false; end
+    end
+    increment!(:downloaded)
+    class << self
+      remove_method :record_timestamps
+    end
+  end
+
   #Authenticates Access
   has_owner :user
   autosets_owner_on_create
