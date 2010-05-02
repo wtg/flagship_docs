@@ -1,6 +1,6 @@
 <%= xml = Builder::XmlMarkup.new
 xml.instruct! :xml, :version => "1.0" 
-xml.rss :version => "2.0" do
+xml.rss (:version => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
   xml.channel do
     xml.title @category.name + " - Flagship Docs"
     xml.description @category.description
@@ -13,12 +13,11 @@ xml.rss :version => "2.0" do
           xml.title document.title
           xml.link document_url(document)
           xml.description document.description
-          xml.author document.user.full_name unless document.user.nil?
-          xml.pubDate document.created_at(:rfc822)
+          xml.tag!("dc:creator", document.user.full_name) unless document.user.nil?
+          xml.pubDate document.created_at.rfc2822
           xml.guid document_url(document)
         end
       end
     end
   end
 end %>
-
