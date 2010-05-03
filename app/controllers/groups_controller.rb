@@ -2,15 +2,16 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.xml
   def index
-    if !admin_logged_in?
-      flash[:error] = "Sorry, the page you requested in unavailable."
+    @groups = Group.all
+    @groups.delete_if {|x| !x.allowed_to_read}
+    if(@groups.empty? == true)
+      flash[:error] = "Sorry, the page you requested is unavailable."
       redirect_back
     else
-      @groups = Group.all
-      @groups.delete_if {|x| !x.allowed_to_read}
       respond_to do |format|
         format.html # index.html.erb
         format.xml  { render :xml => @groups }
+    
       end
     end
   end
@@ -25,7 +26,7 @@ class GroupsController < ApplicationController
         format.xml  { render :xml => @group }
       end
     else
-      flash[:error] = "Sorry, the page you requested in unavailable."
+      flash[:error] = "Sorry, the page you requested is unavailable."
       redirect_back
     end
   end
@@ -41,7 +42,7 @@ class GroupsController < ApplicationController
         format.xml  { render :xml => @group }
       end
     else
-      flash[:error] = "Sorry, the page you requested in unavailable."
+      flash[:error] = "Sorry, the page you requested is unavailable."
       redirect_back
     end
   end
@@ -50,7 +51,7 @@ class GroupsController < ApplicationController
   def edit
     @group = Group.find(params[:id])
     if !@group.allowed_to_save
-      flash[:error] = "Sorry, the page you requested in unavailable."
+      flash[:error] = "Sorry, the page you requested is unavailable."
       redirect_back
     end
   end
@@ -59,7 +60,7 @@ class GroupsController < ApplicationController
   # POST /groups.xml
   def create
     if !Group.allowed_to_create
-      flash[:error] = "Sorry, the page you requested in unavailable."
+      flash[:error] = "Sorry, the page you requested is unavailable."
       redirect_back
     else
       @group = Group.new(params[:group])
@@ -82,7 +83,7 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if !@group.allowed_to_save
-      flash[:error] = "Sorry, the page you requested in unavailable."
+      flash[:error] = "Sorry, the page you requested is unavailable."
       redirect_back
     else
       respond_to do |format|
@@ -102,7 +103,7 @@ class GroupsController < ApplicationController
   # DELETE /groups/1.xml
   def destroy
     if !admin_logged_in?
-      flash[:error] = "Sorry, the page you requested in unavailable."
+      flash[:error] = "Sorry, the page you requested is unavailable."
       redirect_back
     else
       @group = Group.find(params[:id])
