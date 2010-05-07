@@ -52,4 +52,7 @@ class User < ActiveRecord::Base
     result
     #true
   end
+  def to_param
+    username
+  end
 end
