@@ -101,7 +101,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find_by_username(params[:id])
 	if !@user.allowed_to_save
 	  flash[:error] = "Sorry, the page you requested in unavailable."
       redirect_back
