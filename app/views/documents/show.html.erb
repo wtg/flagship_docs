@@ -87,6 +87,7 @@
 					<% end %>
 				<% end %>
 			</div>
+			<% cache(:action_suffix => 'revisions') do %>
 			<div style="padding-top:14px;float:right;width:75%;">
 				<div id="dl-link"><div id="dl-link-padding">
 					<%= link_to "Download File", download_document_revision_path(@document, 'current') unless @document.current_revision.blank? %>
@@ -105,14 +106,15 @@
 					<% if @document.revisions.size > 1 %>
 						<h3>Past Revisions:</h3>
 						<% @document.revisions.each do |revision| %>
-	    				<% if not revision == @document.current_revision %>
-	    					<div class="dl-rev">
-	    						<%= link_to "Revision #{ revision.position }", download_document_revision_path(@document, revision) %>
-	    						<span class="details">from <%= revision.user.full_name %> on <%= revision.created_at.strftime('%D') %></span>
-	    					</div>
-	    				<% end %>
-	    			<% end %>
-    			<% end %>
+	    						<% if revision != @document.current_revision %>
+	    							<div class="dl-rev">
+	    								<%= link_to "Revision #{ revision.position }", download_document_revision_path(@document, revision) %>
+	    								<span class="details">from <%= revision.user.full_name %> on <%= revision.created_at.strftime('%D') %></span>
+	    							</div>
+	    						<% end %>
+	    					<% end %>
+    					<% end %>
+			<% end %>
     			<% if logged_in? && @document.allowed_to_save %>
     			  <div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document), :id => 'revision-link' %>
 						<div id="new-revision" style="display:none">

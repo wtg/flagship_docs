@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  caches_action :index, :unless => Proc.new { |c| c.logged_in? }
+
   # GET /index
   # GET /index.xml
   def index

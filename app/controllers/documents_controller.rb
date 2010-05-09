@@ -98,6 +98,9 @@ class DocumentsController < ApplicationController
     else
       respond_to do |format|
         if @document.save
+          if @document.category.is_featured
+            expire_action :controller => :home, :action => :index
+          end
           flash[:notice] = 'Success! The document was successfully created.'
           format.html { redirect_to(@document) }
           format.xml  { render :xml => @document, :status => :created, :location => @document }
@@ -119,6 +122,9 @@ class DocumentsController < ApplicationController
     else
       respond_to do |format|
         if @document.update_attributes(params[:document])
+          if @document.category.is_featured
+            expire_action :controller => :home, :action => :index
+          end
           flash[:notice] = 'Mission accomplished! The document was successfully updated.'
           format.html { redirect_to(@document) }
           format.xml  { head :ok }
@@ -141,7 +147,10 @@ class DocumentsController < ApplicationController
       redirect_to(@document)
     else
       @document.destroy
-			flash[:notice] = "The document has been successfully removed from this category."
+      if @category.is_featured
+        expire_action :controller => :home, :action => :index
+      end
+      flash[:notice] = "The document has been successfully deleted."
       respond_to do |format|
         format.html { redirect_to(@category) }
         format.xml  { head :ok }

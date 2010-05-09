@@ -62,9 +62,13 @@ class RevisionsController < ApplicationController
   def create
     @revision = Revision.new(params[:revision])
     @revision.document_id = params[:document_id]
-		@revision.user_id = current_user.id
+    @revision.user_id = current_user.id
     respond_to do |format|
       if @revision.save
+        expire_fragment(:controller => :documents, :action => :show, :id => @revision.document_id, :action_suffix => 'revisions')
+        if @revision.document.category.is_featured
+          expire_action :controller => :home, :action => :index
+        end
         flash[:notice] = 'Revision was successfully created.'
         format.html { redirect_to(@revision.document) }
         format.xml  { render :xml => @revision, :status => :created, :location => @revision }

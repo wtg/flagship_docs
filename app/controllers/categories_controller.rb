@@ -77,6 +77,11 @@ class CategoriesController < ApplicationController
     else
       respond_to do |format|
         if @category.save
+          #Expire the cache if needed
+          expire_fragment(%r{cat_tree_\d*})
+          if @category.is_featured
+            expire_action :controller => :home, :action => :index
+          end
           flash[:notice] = 'Category was successfully created.'
           format.html { redirect_to(@category) }
           format.xml  { render :xml => @category, :status => :created, :location => @category }
@@ -96,11 +101,12 @@ class CategoriesController < ApplicationController
       params[:category][:background_attributes].delete("id")
     end
       
-    logger.debug params.to_yaml
     #only users who own this category can change it. Super Admins can change it too.
     if @category.allowed_to_save
       respond_to do |format|
         if @category.update_attributes(params[:category])
+          expire_fragment(%r{cat_tree_\d*})
+          expire_action :controller => :home, :action => :index
           flash[:notice] = 'Category was successfully updated.'
           format.html { redirect_to(@category) }
           format.xml  { head :ok }
@@ -121,6 +127,10 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     if @category.allowed_to_save
       @category.destroy
+      if @category.is_featured
+        expire_action :controller => :home, :action => :index
+      end      
+      expire_fragment(%r{cat_tree_\d*})
       flash[:notice] = 'Category was successfully deleted.'
       respond_to do |format|
         format.html { redirect_to(categories_url) }
