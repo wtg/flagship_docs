@@ -30,7 +30,7 @@
   <td><%=h document.downloaded %></td>
   <td><%=h document.updated_at.strftime('%D') unless document.updated_at.nil? %></td>
   <td>
-   <% if admin_logged_in? || (logged_in? && document.allowed_to_save) %>
+   <% if logged_in? && (admin_logged_in? || document.allowed_to_save) %>
     <span>
      <%= link_to 'Edit', edit_document_path(document), :class => 'edit-link' %>
      &nbsp;
