@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :categories
 
-  map.resources :users
+  map.resources :users, :collection => { :bulkadd => [:get, :post] }
 
   map.resources :groups
 

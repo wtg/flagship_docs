@@ -114,4 +114,28 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  # POST /users/bulkadd
+  # GET /users/bulkadd
+  def bulkadd
+    if !admin_logged_in?
+      flash[:error] = "Sorry, the page you requested in unavailable."
+      redirect_back
+    else
+      @users = Array.new
+      @errors = Array.new
+      if !params[:csv_data].blank?
+        require 'csv'
+        CSV.parse(params[:csv_data]).each do |row|
+          if !row[0].blank? && !row[1].blank?
+            user = User.new({:username => row[0].strip, :full_name => row[1].strip})
+            user.save
+            @users.push(user)
+          else
+            logger.debug("Problem with #{row.join(',')}.")
+          end
+        end
+      end
+    end
+  end
 end

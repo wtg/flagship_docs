@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   #Validations
   validates_presence_of :username, :full_name
+  validates_uniqueness_of :username
 
   #Relationships
   has_and_belongs_to_many :groups
@@ -52,6 +53,7 @@ class User < ActiveRecord::Base
     result
     #true
   end
+
   def to_param
     username
   end
