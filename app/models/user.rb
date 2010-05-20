@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def in_one_group
-    LOGGER.info("DEPRECATION WARNING: ADD A ? TO IN ONE GROUP")
+    logger.info("DEPRECATION WARNING: ADD A ? TO IN ONE GROUP")
     !self.in_one_group?
   end
 
