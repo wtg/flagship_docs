@@ -4,15 +4,9 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all
     @groups.delete_if {|x| !x.allowed_to_read}
-    if(@groups.empty? == true)
-      flash[:error] = "Sorry, the page you requested is unavailable."
-      redirect_back
-    else
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @groups }
-    
-      end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @groups }  
     end
   end
 

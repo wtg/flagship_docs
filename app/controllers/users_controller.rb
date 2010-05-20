@@ -8,14 +8,9 @@ class UsersController < ApplicationController
     else
       @users = User.all
       @users.delete_if {|x| !x.allowed_to_read}
-      if @users.empty?
-        flash[:error] = "Sorry, the page you requested in unavailable."
-        redirect_back
-      else
-        respond_to do |format|
-          format.html # index.html.erb
-          format.xml  { render :xml => @users }
-        end
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @users }
       end
     end
   end
