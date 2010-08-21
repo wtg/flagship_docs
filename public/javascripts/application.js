@@ -3,6 +3,12 @@ var inactive_color = '#ccc'; // color of default text
 
 $(document).ready(function () {
 	//Search box live search
+  var AJAX = $.manageAjax.create('AjaxProfile',
+    {
+      queue:'clear',
+      cacheResponse:true,
+      abortOld: true
+    });
 	$("#search_query").addClass("search-default");
 	
 	$("#search-jQuery").css({'display' : 'block'});
@@ -16,7 +22,7 @@ $(document).ready(function () {
 			$("#search_query_auto_complete").fadeOut(100);
 			$("#search_query_auto_complete").html("");
 		} else if ($(this).hasClass('has_focus')) {
-			$.ajax({
+    AJAX.add({
 				type: "POST",
 				cache: true,
 				url: searchURL,

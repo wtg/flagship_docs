@@ -63,8 +63,13 @@ class RevisionsController < ApplicationController
     @revision = Revision.new(params[:revision])
     @revision.document_id = params[:document_id]
     @revision.user_id = current_user.id
+    logger.info @revision.upload_content_type
     respond_to do |format|
       if @revision.save
+        #Find the revision we just made and index text from document
+        @rev = Revision.find(:first, :order => 'created_at desc')
+        #run the method which indexes the document
+        @rev.rev_text
         expire_fragment(:controller => :documents, :action => :show, :id => @revision.document_id, :action_suffix => 'revisions')
         if @revision.document.category.is_featured
           expire_action :controller => :home, :action => :index

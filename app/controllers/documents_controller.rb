@@ -24,16 +24,16 @@ class DocumentsController < ApplicationController
         @documents = Array.new
         @categories = Array.new
       else
-        @documents = Document.find_with_ferret(params[:query]+"*", {:limit => 5})
-        @categories = Category.find_with_ferret(params[:query]+"*", {:limit => 5})
+        @documents = Document.search(params[:query]+"*", :limit => 5, :excerpts => true)
+        @categories = Category.search(params[:query]+"*",:limit => 5, :excerpts => true)
       end
       #Filter out results that you won't be able to see
       @documents.delete_if{|d| !d.allowed_to_read}
       @categories.delete_if{|c| !c.allowed_to_read}
       render :partial => 'search_results'
     else
-      @documents = Document.find_with_ferret(params[:query] + "*")
-      @categories =  Category.find_with_ferret(params[:query]+"*")
+      @documents = Document.search(params[:query] + "*",:excerpts => true)
+      @categories =  Category.search(params[:query]+"*",:exceprts => true)
       #Filter out results that you won't be able to see
       @documents.delete_if{|d| !d.allowed_to_read}
       @categories.delete_if{|c| !c.allowed_to_read}
@@ -98,6 +98,9 @@ class DocumentsController < ApplicationController
     else
       respond_to do |format|
         if @document.save
+          #find the Revision we just made and index the text from within the document
+          @rev = Revision.find(:first, :conditions => { :document_id => @document.id })
+          @rev.rev_text
           if @document.category.is_featured
             expire_action :controller => :home, :action => :index
           end

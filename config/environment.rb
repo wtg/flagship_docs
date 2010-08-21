@@ -20,7 +20,12 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "bamnet-paperclip", :lib => "paperclip", :source => "http://gemcutter.org"
-  config.gem 'acts_as_ferret', :version => '~> 0.4.4'
+  config.gem(
+    'thinking-sphinx', 
+    :lib => 'thinking_sphinx',
+    :version => '1.3.18'
+  )
+  #config.gem 'acts_as_ferret', :version => '~> 0.4.4'
 	
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

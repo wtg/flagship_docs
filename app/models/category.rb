@@ -13,7 +13,11 @@ class Category < ActiveRecord::Base
   accepts_nested_attributes_for :background, :allow_destroy => true, :reject_if => proc { |attrs| attrs['image'].blank? }
 
   #Indexing
-  acts_as_ferret :fields => [ :name, :description ]
+  define_index do
+    indexes name
+    indexes description
+  end
+  
 
   #All the documents in a category, sorted by their last update.
   #This is needed until a bug in activerecord is fixed. (see below)

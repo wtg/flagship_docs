@@ -7,7 +7,6 @@
 /*	GLOBAL CSS  */
 /*##########################################################################*/
 
-
 /*##########################################################################*/
 /*  General Styles  */
 /*##########################################################################*/
@@ -296,3 +295,6 @@ table.docs tr td:last-child { border-right:solid 1px #999; }
 table.docs tr:last-child td { border-bottom:solid 1px #999; }
 table.docs tr:last-child td:first-child { -moz-border-radius-bottomleft:10px; -webkit-border-bottom-left-radius:10px; border-bottom-left-radius:10px; border:solid 1px #999; border-width: 1px 0px 1px 1px; }
 table.docs tr:last-child td:last-child { -moz-border-radius-bottomright:10px; -webkit-border-bottom-right-radius:10px; border-bottom-right-radius:10px; border:solid 1px #999; border-width: 1px 1px 1px 0px; }
+
+/* SPHINX HIGHLIGHTING */
+span.match{ font-weight:normal !important; background:yellow; padding:2px; -moz-border-radius:5px; -webkit-border-radius:5px; }
