@@ -28,15 +28,16 @@ class DocumentsController < ApplicationController
         @categories = Category.search(params[:query]+"*",:limit => 5, :excerpts => true)
       end
       #Filter out results that you won't be able to see
-      @documents.delete_if{|d| !d.allowed_to_read}
-      @categories.delete_if{|c| !c.allowed_to_read}
+      @documents.delete_if{|d| d.nil? || !d.allowed_to_read}
+      @categories.delete_if{|c| c.nil? || !c.allowed_to_read}
       render :partial => 'search_results'
     else
-      @documents = Document.search(params[:query] + "*",:excerpts => true)
-      @categories =  Category.search(params[:query]+"*",:exceprts => true)
+      @documents = Document.search(params[:query]+"*", :excerpts => true)
+      @categories =  Category.search(params[:query]+"*", :exceprts => true)
       #Filter out results that you won't be able to see
-      @documents.delete_if{|d| !d.allowed_to_read}
-      @categories.delete_if{|c| !c.allowed_to_read}
+      logger.debug @documents.to_yaml
+      @documents.delete_if{|d| d.nil? || !d.allowed_to_read}
+      @categories.delete_if{|c| c.nil? || !c.allowed_to_read}
       respond_to do |format|
         format.html # search.html.erb
         format.rss  # search.rss.erb
