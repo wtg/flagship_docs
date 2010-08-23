@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100607040352) do
+ActiveRecord::Schema.define(:version => 20100823173636) do
 
   create_table "backgrounds", :force => true do |t|
     t.string   "image_file_name"
@@ -46,14 +46,13 @@ ActiveRecord::Schema.define(:version => 20100607040352) do
   create_table "documents", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.boolean  "readable",              :default => true
-    t.boolean  "writable",              :default => false
-    t.integer  "downloaded",            :default => 0
+    t.boolean  "readable",    :default => true
+    t.boolean  "writable",    :default => false
+    t.integer  "downloaded",  :default => 0
     t.integer  "category_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "current_revision_text"
   end
 
   add_index "documents", ["category_id"], :name => "category_id_index"
@@ -86,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20100607040352) do
     t.integer  "upload_file_size"
     t.datetime "upload_updated_at"
     t.binary   "upload_file",         :limit => 2147483647
+    t.text     "search_text"
   end
 
   add_index "revisions", ["document_id"], :name => "document_id_index"

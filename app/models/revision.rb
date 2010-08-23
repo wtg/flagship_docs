@@ -1,4 +1,6 @@
 class Revision < ActiveRecord::Base
+  before_create :set_text 
+
   acts_as_list :scope => :document
 
   has_attached_file :upload, :storage => :database
@@ -45,41 +47,23 @@ class Revision < ActiveRecord::Base
     result
   end
 
+  # Attempt to extract text from a document.
+  # TODO: Refactor this into a library module/class/something else.
+  # We should not be maintaining this in a test-less model.
   def text
     tempfile = Tempfile.new(self.upload_file_name)
     tempfile.write(self.upload.file_contents)
+    tempfile.close #If you don't close the file it might still be empty before the next command executes
     #find out what kinda file we're dealing with and run appropriate system calls
-    result = case self.upload_content_type
-      when "application/msword" then `catdoc -w #{tempfile.path}`
-      when "application/pdf" then `pdftotext #{tempfile.path} -`
-      when "application/vnd.ms-excel" then `xls2cvs #{tempfile.path}`
-      when "application/vnd.ms-powerpoint" then `catppt #{tempfile.path}`
-      when "image/jpeg" then `jhead -c #{tempfile.path}`
-      when "image/png"  then `jhead -c #{tempfile.path}`
-      else ""
-    end
-    result.gsub(tempfile.path,"")
-  end
-
-  def rev_text
-    #Current Revision Text 
-    #create temporary files for use during indexing
-    tempfile = Tempfile.new(self.upload_file_name)
-    tempfile.write (self.upload.file_contents)
-    #If it's a docx,xlsx, or pptx, fix the zip archive (paperclip bungles it up)
-    if self.upload_content_type == ("application/vnd.openxmlformats-officedocument.wordprocessingml.document" or "application/vnd.openxmlformats-officedocument.presentationml.presentation" or "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-      system("yes | zip -FF #{tempfile.path} --out /tmp/doc")
-    end
-    #find what kind of file we're dealing with and run appropriate system calls
     result = case self.upload_content_type
       when "text/plain" then `cat #{tempfile.path}`
       when "application/pdf" then `pdftotext #{tempfile.path} -`
       when "application/msword" then `catdoc -w #{tempfile.path}`
       when "application/vnd.ms-excel" then `xls2cvs #{tempfile.path}`
       when "application/vnd.ms-powerpoint" then `catppt #{tempfile.path}`
-      when "application/vnd.openxmlformats-officedocument.wordprocessingml.document" then `doctotext "/tmp/doc.docx"`
-      when "application/vnd.openxmlformats-officedocument.presentationml.presentation" then `doctotext "/tmp/doc.docx"`
-      when "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" then `doctotext "/tmp/doc.docx"`
+      when "application/vnd.openxmlformats-officedocument.wordprocessingml.document" then `doctotext #{tempfile.path}`
+      when "application/vnd.openxmlformats-officedocument.presentationml.presentation" then `doctotext  #{tempfile.path}`
+      when "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" then `doctotext #{tempfile.path}`
       when "image/jpeg" then `jhead -c #{tempfile.path}`
       when "image/png"  then `jhead -c #{tempfile.path}`
       when "application/vnd.oasis.opendocument.text" then `odt2txt #{tempfile.path}`
@@ -87,14 +71,14 @@ class Revision < ActiveRecord::Base
       when "application/vnd.oasis.opendocument.spreadsheet" then `odt2txt #{tempfile.path}`
       else ""
     end
-
-    result.gsub!(tempfile.path,"")
-    #remove the temporary file we made when fixing zipped documents
-    system('rm -rf "/tmp/doc"')
-    #save the data
-    document = Document.find(self.document_id)
-    document.current_revision_text = result
-    document.save
+    result.gsub(tempfile.path,"")
+    tempfile.unlink
+    result
+  end
+  
+  # Set the search_text field to the extracted text from a revision
+  def set_text
+    self.search_text = text
   end
 
   #Authenticates Access

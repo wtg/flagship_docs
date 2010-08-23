@@ -10,16 +10,6 @@ class Document < ActiveRecord::Base
 
   accepts_nested_attributes_for :revisions, :allow_destroy => true
 
-  #Indexing
-
-  define_index do
-    indexes title
-    indexes description
-    indexes current_revision_text
-    ##Indexing Revisions Text doesn't work yet, working on it.
-    #indexes revisions(:text), :as => :revision_text
-  end
-  
   #Scoping
   default_scope :order => 'title ASC'
   named_scope :by_updated, :order => 'updated_at DESC'
@@ -28,6 +18,16 @@ class Document < ActiveRecord::Base
   def current_revision
     Revision.find(:first, :conditions => {:document_id => self.id})
   end
+
+  #Indexing
+  define_index do
+    indexes title
+    indexes description
+    #indexes current_revision_text
+    ##Indexing Revisions Text doesn't work yet, working on it.
+    indexes revisions(:search_text), :as => :revision_text
+  end
+
 
   #Try to extract some text from the current revision
   def current_revision_text
