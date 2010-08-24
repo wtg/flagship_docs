@@ -99,9 +99,6 @@ class DocumentsController < ApplicationController
     else
       respond_to do |format|
         if @document.save
-          #find the Revision we just made and index the text from within the document
-          @rev = Revision.find(:first, :conditions => { :document_id => @document.id })
-          @rev.rev_text
           if @document.category.is_featured
             expire_action :controller => :home, :action => :index
           end
