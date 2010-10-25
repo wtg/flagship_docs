@@ -48,7 +48,7 @@ $(document).ready(function () {
 			$("#search_query").addClass("search-default");
 		}
 		$("#search_query").removeClass("has_focus");
-		$("#search_query_auto_complete").fadeOut(100);
+		$("#search_query_auto_complete").fadeOut('medium');
 	});
 	
 	//Clear search box when click:
