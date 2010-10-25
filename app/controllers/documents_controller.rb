@@ -35,7 +35,6 @@ class DocumentsController < ApplicationController
       @documents = Document.search(params[:query]+"*", :excerpts => true)
       @categories =  Category.search(params[:query]+"*", :exceprts => true)
       #Filter out results that you won't be able to see
-      logger.debug @documents.to_yaml
       @documents.delete_if{|d| d.nil? || !d.allowed_to_read}
       @categories.delete_if{|c| c.nil? || !c.allowed_to_read}
       respond_to do |format|
