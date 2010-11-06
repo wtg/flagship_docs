@@ -53,25 +53,15 @@ class Revision < ActiveRecord::Base
   def text
     tempfile = Tempfile.new(self.upload_file_name)
     tempfile.write(self.upload.file_contents)
-    tempfile.close #If you don't close the file it might still be empty before the next command executes
-    #find out what kinda file we're dealing with and run appropriate system calls
-    result = case self.upload_content_type
-      when "text/plain" then `cat #{tempfile.path}`
-      when "application/pdf" then `pdftotext #{tempfile.path} -`
-      when "application/msword" then `catdoc -w #{tempfile.path}`
-      when "application/vnd.ms-excel" then `xls2cvs #{tempfile.path}`
-      when "application/vnd.ms-powerpoint" then `catppt #{tempfile.path}`
-      when "application/vnd.openxmlformats-officedocument.wordprocessingml.document" then `doctotext #{tempfile.path}`
-      when "application/vnd.openxmlformats-officedocument.presentationml.presentation" then `doctotext  #{tempfile.path}`
-      when "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" then `doctotext #{tempfile.path}`
-      when "image/jpeg" then `jhead -c #{tempfile.path}`
-      when "image/png"  then `jhead -c #{tempfile.path}`
-      when "application/vnd.oasis.opendocument.text" then `odt2txt #{tempfile.path}`
-      when "application/vnd.oasis.opendocument.presentation" then `odt2txt #{tempfile.path}`
-      when "application/vnd.oasis.opendocument.spreadsheet" then `odt2txt #{tempfile.path}`
-      else ""
+    tempfile.close #If you don't close the file it might still be
+    #empty before the next command executes
+
+    begin
+      result = Textract.text_from_path(tempfile.path)
+      result.gsub!(tempfile.path, "")
+    rescue Textractor::UnknownContentType
+      result = ""
     end
-    result.gsub!(tempfile.path,"")
     result
   ensure
     tempfile.unlink
