@@ -72,8 +72,9 @@ class Revision < ActiveRecord::Base
       else ""
     end
     result.gsub!(tempfile.path,"")
-    tempfile.unlink
     result
+  ensure
+    tempfile.unlink
   end
 
   # Set the search_text field to the extracted text from a revision
