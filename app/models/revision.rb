@@ -1,10 +1,10 @@
 class Revision < ActiveRecord::Base
-  before_create :set_text 
+  before_create :set_text
 
   acts_as_list :scope => :document
 
   has_attached_file :upload, :storage => :database
- 
+
   default_scope select_without_file_columns_for(:upload).merge({:order => 'position DESC'})
 
   #Validation
@@ -15,12 +15,12 @@ class Revision < ActiveRecord::Base
   #Relationships
   belongs_to :document
   belongs_to :user
-	
+
   #Test if this revision is the current one
   def current?
     return document.current_revision.id == self.id
   end
-  
+
   #Try and identify the type of file uploaded
   #other will be returned if the type doesn't match something we recognize
   def type
@@ -71,11 +71,11 @@ class Revision < ActiveRecord::Base
       when "application/vnd.oasis.opendocument.spreadsheet" then `odt2txt #{tempfile.path}`
       else ""
     end
-    result.gsub(tempfile.path,"")
+    result.gsub!(tempfile.path,"")
     tempfile.unlink
     result
   end
-  
+
   # Set the search_text field to the extracted text from a revision
   def set_text
     self.search_text = text
