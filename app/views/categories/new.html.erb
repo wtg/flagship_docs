@@ -1,5 +1,6 @@
-<h1>New category</h1>
-
+<% content_for :title, "New Category" %>
+<h1 class="main-title">
+  New Category
+  <span><%= link_to 'Cancel', categories_path, :class => 'cancel-link' %></span>
+</h1>
 <%= render 'form' %>
-
-<%= link_to 'Back', categories_path %>

@@ -24,7 +24,10 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   # GET /categories/new.xml
   def new
-    @category = Category.new
+    @parent = nil
+    @parent = Category.find(params[:parent_id]) if params[:parent_id]
+
+    @category = Category.new(:parent => @parent)
 
     respond_to do |format|
       format.html # new.html.erb

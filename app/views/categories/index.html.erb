@@ -1,31 +1,12 @@
-<h1>Listing categories</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Is private</th>
-    <th>Is writable</th>
-    <th>Parent</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @categories.each do |category| %>
-  <tr>
-    <td><%= category.name %></td>
-    <td><%= category.description %></td>
-    <td><%= category.is_private %></td>
-    <td><%= category.is_writable %></td>
-    <td><%= category.parent.name unless category.parent.nil? %></td>
-    <td><%= link_to 'Show', category %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<h1 class="main-title">Home Category</h1>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 <br />
-
-<%= link_to 'New Category', new_category_path %>
+<div id="mc-indent" class="mc-indent">
+  <%= link_to 'New Category', new_category_path, :class => "link-button" %><br /><br />
+  <ul class="iconlist">
+    <% @categories.each do |category| %>
+      <li><%= render :partial => 'block', :locals => {:category => category} %></li>
+    <% end %>
+  </ul>
+  <div style="clear:both;"></div>
+</div>
