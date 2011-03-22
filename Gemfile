@@ -6,3 +6,6 @@ gem 'sqlite3'
 
 # Deploy with Capistrano
 # gem 'capistrano'
+
+# Use jQuery instead of Prototype
+gem "jquery-rails"
