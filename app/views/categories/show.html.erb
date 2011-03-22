@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @category.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @category.description %>
+</p>
+
+<p>
+  <b>Is private:</b>
+  <%= @category.is_private %>
+</p>
+
+<p>
+  <b>Is writable:</b>
+  <%= @category.is_writable %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%=link_to @category.parent.name, @category.parent unless @category.parent.nil? %>
+</p>
+
+<% if @category.children.count > 0 %>
+<p><b>Children:</b>
+<ul>
+  <% @category.children.each do |child| %>
+    <li><%= link_to child.name, child %></li> 
+  <% end %>
+</ul>
+</p>
+<% end %>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
