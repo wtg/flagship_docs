@@ -1,0 +1,36 @@
+<% content_for :title, @document.title %>
+
+<h2 class="breadcrumb">
+  <%= link_to "Home", "#" %>&nbsp;/&nbsp;
+  <% @document.category.ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %>
+  <%= link_to @document.category.name, @document.category %>
+</h2>
+
+<h1 class="main-title">
+  <div class="info_box">
+    <p>
+      <% if !@document.is_private? %>
+        <%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This document is visible to everyone") %>
+      <% else %>
+        <%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This document is invisible to others") %>
+      <% end %>
+
+      <% if @document.is_writable? %>
+        <%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Others can edit this document") %>
+      <% else %>
+        <%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Only members of GROUP can edit this document") %>
+      <% end %>
+      &nbsp;&nbsp;&nbsp;<%=h @document.download_count %> downloads
+    </p>
+  </div>
+  <%= @document.title %>
+  <span>
+    <%= link_to 'Edit', edit_document_path(@document), :class => 'edit-link' %>
+    &nbsp;
+    <%= link_to 'Remove', document_path(@document), :confirm => 'Are you sure you want to remove this document?', :method => :delete, :class => 'cancel-link' %>
+  </span>
+</h1>
+
+<%#= render :partial => 'google_viewer', :locals => {:document => @document} %>
+
+

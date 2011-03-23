@@ -1,4 +1,6 @@
 Docs::Application.routes.draw do
+  resources :documents, :except => [:index]
+
   resources :categories
 
   # The priority is based upon order of creation:

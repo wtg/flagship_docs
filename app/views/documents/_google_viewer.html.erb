@@ -1,0 +1,39 @@
+<% allowed_types = ['pdf', 'doc', 'ppt'] %>
+<% if allowed_types.include?(@document.current_revision.type) && @document.readable %>
+<div class="flush">
+  <div id="qv">
+    <div id="qv-padding">
+      <% content_for :head do %>
+        <%= stylesheet_link_tag "jquery.fancybox-1.3.1", :media => 'all' %>
+        <%= javascript_include_tag "jquery.easing-1.3.pack.js" %>
+        <%= javascript_include_tag "jquery.fancybox-1.3.1.pack.js" %>
+        <script type="text/javascript"> 
+          $(document).ready(function() {
+            $("a#docview").fancybox({
+              'titleShow': false,
+              'transitionIn': 'none',
+              'transitionOut': 'none'
+            });
+            $("#docview").fancybox({
+              'width': '80%',
+              'height': '95%',
+              'autoScale': false,
+              'transitionIn': 'none',
+              'transitionOut': 'none',
+              'type': 'iframe'
+            });
+            $("#docview").click(function(){
+              //Code here will be fired when a live preview is opened
+            });
+          });
+        </script>
+      <% end %>
+      <h1>
+        <% link_to "http://docs.google.com/viewer?embedded=true&url=#{ download_document_revision_path(@document, 'current', :only_path => false) }", :id => 'docview' do %>
+          <%= image_tag("layout/qv_icon.png", :alt => "") %> View Live Preview
+        <% end %>
+      </h1>
+    </div>
+  </div>
+</div>
+<% end %>

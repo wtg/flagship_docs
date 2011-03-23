@@ -1,0 +1,6 @@
+<% content_for :title, "Editing #{@document.title}" %>
+<h1 class="main-title">
+  Editing Document
+  <span><%= link_to 'Cancel and Return', @document, :class => 'cancel-link' %></span>
+</h1>
+<%= render 'form' %>

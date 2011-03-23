@@ -34,7 +34,10 @@
     </div>
   </div>
   <%= render :partial => 'layouts/footer' %>
+
+<%= yield(:js_late_load) %>
 <% if content_for?(:js_ready) || flash[:notice] || flash[:error] %>
+<script type="text/javascript">
 $(document).ready(function(){
   <% if flash[:notice] || flash[:error] %>
     setTimeout(function(){
@@ -44,8 +47,9 @@ $(document).ready(function(){
     }, 7000);
   <% end %>
   <%= yield(:js_ready) %>
-)};
+});
 <% end %>
+</script>
 <% if content_for?(:js) %>
 <script type="text/javascipt">
 
