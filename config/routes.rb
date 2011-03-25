@@ -1,5 +1,11 @@
 Docs::Application.routes.draw do
-  resources :documents, :except => [:index]
+  resources :documents, :except => [:index] do
+    resources :revisions, :only => [:new, :create, :destroy] do
+      member do
+        get :download
+      end
+    end
+  end
 
   resources :categories
 

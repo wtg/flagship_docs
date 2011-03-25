@@ -31,6 +31,58 @@
   </span>
 </h1>
 
-<%#= render :partial => 'google_viewer', :locals => {:document => @document} %>
+<%= render :partial => 'google_viewer', :locals => {:document => @document} %>
 
+<div class="flush">
+  <div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
+    <div id="dl">
+      <div id="dl-padding">
+        <div id="dl_icon">
+          <% unless @document.revisions.current.blank? %>
+            <% link_to download_document_revision_path(@document, 'current') do %>
+              <%= image_tag("icons/icon_#{@document.revisions.current.type}.png", :alt => "Download File") %>
+            <% end %>
+          <% end %>
+        </div>
 
+        <div style="padding-top:14px;float:right;width:75%;">
+          <div id="dl-link">
+            <div id="dl-link-padding">
+              <%= link_to "Download File", download_document_revision_path(@document, 'current') unless @document.revisions.current.blank? %>
+              <span class="details">
+                from USER on <%= @document.revisions.current.first.created_at.strftime('%D') unless @document.revisions.current.blank?%>
+              </span>
+              &nbsp;&nbsp;<%= render :partial => 'clippy', :locals => {:document => @document} %>
+            </div>
+          </div>
+          <div id="dl-revs">
+            <% if @document.revisions.size > 1 %>
+              <h3>Past Revisions:</h3>
+              <% @document.revisions.each_with_index do |revision, i| %>
+                <% if revision != @document.revisions.current %>
+                  <div class="dl-rev">
+                    <%= link_to "Revision #{i+1}", download_document_revision_path(@document, revision) %>
+                    <span class="details">from USER on <%= revision.created_at.strftime('%D') %></span>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+            <div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document), :id => 'revision-link' %>
+              <div id="new-revision" style="dis1play:none">
+                <% form_for([@document, Revision.new(:document => @document)], :html => { :multipart => true }) do |f| %>
+                  <%= f.label :file %> <%= f.file_field :file %>
+                  <%= f.submit %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+  <div class="hr_dl2"><%= image_tag("bl.png", :alt => "") %></div>
+</div>
+<br /><br />
+<div id="mc-indent" class="mc-indent">
+  <%= @document.description unless @document.description.blank? %>
+</div>

@@ -1,5 +1,5 @@
 <% allowed_types = ['pdf', 'doc', 'ppt'] %>
-<% if allowed_types.include?(@document.current_revision.type) && @document.readable %>
+<% if allowed_types.include?(@document.revisions.current.type) && !@document.is_private %>
 <div class="flush">
   <div id="qv">
     <div id="qv-padding">

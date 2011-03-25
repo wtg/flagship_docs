@@ -17,6 +17,7 @@ class DocumentsController < ApplicationController
     @category = Category.find(params[:category_id]) if params[:category_id]
 
     @document = Document.new(:category => @category)
+    @document.revisions.build
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
+  has_many :documents
  
   # Build the hierarchy of categories
   belongs_to :parent, :class_name => 'Category'
