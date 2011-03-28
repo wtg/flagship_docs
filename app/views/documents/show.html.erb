@@ -40,7 +40,7 @@
         <div id="dl_icon">
           <% unless @document.revisions.current.blank? %>
             <% link_to download_document_revision_path(@document, 'current') do %>
-              <%= image_tag("icons/icon_#{@document.revisions.current.type}.png", :alt => "Download File") %>
+              <%= image_tag("icons/icon_#{@document.revisions.current.first.short_type}.png", :alt => "Download File") %>
             <% end %>
           <% end %>
         </div>
@@ -61,7 +61,9 @@
               <% @document.revisions.each_with_index do |revision, i| %>
                 <% if revision != @document.revisions.current %>
                   <div class="dl-rev">
-                    <%= link_to "Revision #{i+1}", download_document_revision_path(@document, revision) %>
+                    <%= link_to download_document_revision_path(@document, revision) do %>
+                      <%= image_tag("icons/icon_#{revision.short_type}.png",  :height => "20", :alt => "Download File") %> Revision <%= i+1 %>
+                    <% end %>
                     <span class="details">from USER on <%= revision.created_at.strftime('%D') %></span>
                   </div>
                 <% end %>
