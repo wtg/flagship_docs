@@ -19,9 +19,13 @@ class CategoriesController < ApplicationController
     # Otherwise, set it to table.
     @display_type = (params[:type] == 'grid' && 'grid') || 'table'
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @category }
+    if request.xhr? && request.format.html?
+       render :partial => 'documents/' + @display_type, :locals => {:documents => @category.documents}
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @category }
+      end
     end
   end
 
