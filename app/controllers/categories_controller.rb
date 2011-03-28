@@ -15,6 +15,10 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
 
+    # If type equals grid, set the display type to grid.
+    # Otherwise, set it to table.
+    @display_type = (params[:type] == 'grid' && 'grid') || 'table'
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @category }
