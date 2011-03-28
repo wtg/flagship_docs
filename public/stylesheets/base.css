@@ -215,7 +215,7 @@ div#doc_listing_inpage li a:hover h3 { color:#FFF; text-decoration: none !import
 #dl_icon { float:left; width:25%; text-align:center; }
 #dl_icon a { background:#ededed; padding:30px 10px; display:block; -moz-border-radius:12px; -webkit-border-radius:12px; }
 #dl_icon a:hover { background:#3399ff; }
-#dl-link { height:42px; background:#EDEDED; -moz-border-radius-bottomright:12px; -webkit-border-bottom-right-radius:12px; -moz-border-radius-topright:12px; -webkit-border-top-right-radius:12px; }
+#dl-link { height:42px; background:#EDEDED; -moz-border-radius-bottomright:12px; -webkit-border-bottom-right-radius:12px; -moz-border-radius-topright:12px; -webkit-border-top-right-radius:12px; margin-left: -1px;}
 #dl-link-padding { padding:8px 35px; }
 #dl-link a { color:#0066cc; font-size:1.5em; font-weight:bold; text-decoration: none; }
 #dl-link a:hover { color:#3399ff; text-decoration: underline; }
