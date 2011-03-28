@@ -1,4 +1,5 @@
 <%= link_to 'View in Grid', category_path(:type => 'grid', :anchor => "doclist"), :class => "link-button update_holder", :style => "font-size:0.6em;" %>
+<% unless documents.empty? %>
 <br /><br />
 <table cellpadding="0" cellspacing="0" width="100%" class="docs">
   <thead>
@@ -16,7 +17,7 @@
       <tr class="<%= cycle('odd', 'even') %>">
         <td><% link_to document do %><h2><%= document.title %></h2><% end %></td>
         <td class="doc_img">
-          <% unless document.revisions.current.nil? %>
+          <% unless document.revisions.current.empty? %>
             <% link_to download_document_revision_path(document, 'current') do %>
               <%= image_tag("icons/icon_#{document.revisions.current.first.short_type}.png", :size=>"40x40", :alt => "Download File") %>
             <% end %>
@@ -35,4 +36,5 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 <div style="clear:both;"></div>

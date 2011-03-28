@@ -40,24 +40,23 @@
 
 <%= render :partial => 'google_viewer', :locals => {:document => @document} %>
 
+<% unless @document.revisions.current.empty? %>
 <div class="flush">
   <div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
     <div id="dl">
       <div id="dl-padding">
         <div id="dl_icon">
-          <% unless @document.revisions.current.blank? %>
-            <% link_to download_document_revision_path(@document, 'current') do %>
-              <%= image_tag("icons/icon_#{@document.revisions.current.first.short_type}.png", :alt => "Download File") %>
-            <% end %>
+          <% link_to download_document_revision_path(@document, 'current') do %>
+            <%= image_tag("icons/icon_#{@document.revisions.current.first.short_type}.png", :alt => "Download File") %>
           <% end %>
         </div>
 
         <div style="padding-top:14px;float:right;width:75%;">
           <div id="dl-link">
             <div id="dl-link-padding">
-              <%= link_to "Download File", download_document_revision_path(@document, 'current') unless @document.revisions.current.blank? %>
+              <%= link_to "Download File", download_document_revision_path(@document, 'current') %>
               <span class="details">
-                from USER on <%= @document.revisions.current.first.created_at.strftime('%D') unless @document.revisions.current.blank?%>
+                from USER on <%= @document.revisions.current.first.created_at.strftime('%D') %>
               </span>
               &nbsp;&nbsp;<%= render :partial => 'clippy', :locals => {:document => @document} %>
             </div>
@@ -91,6 +90,7 @@
     </div>
   <div class="hr_dl2"><%= image_tag("bl.png", :alt => "") %></div>
 </div>
+<% end %>
 <br /><br />
 <div id="mc-indent" class="mc-indent">
   <%= @document.description unless @document.description.blank? %>
