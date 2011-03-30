@@ -87,7 +87,7 @@ class CategoriesController < ApplicationController
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to(categories_url) }
+      format.html { redirect_to(category_url(@category.parent), :notice => 'Category was successfully removed.') }
       format.xml  { head :ok }
     end
   end

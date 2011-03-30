@@ -70,7 +70,7 @@ class DocumentsController < ApplicationController
     @document.destroy
 
     respond_to do |format|
-      format.html { redirect_to(documents_url) }
+      format.html { redirect_to(category_url(@document.category), :notice => 'Document was successfully removed.') }
       format.xml  { head :ok }
     end
   end
