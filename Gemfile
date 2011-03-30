@@ -9,3 +9,6 @@ gem 'sqlite3'
 
 # Use jQuery instead of Prototype
 gem "jquery-rails"
+
+# Text Extraction
+gem 'textractor', :git => "git://github.com/bamnet/textractor.git"
