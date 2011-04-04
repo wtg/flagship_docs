@@ -1,5 +1,8 @@
 Docs::Application.routes.draw do
   resources :documents, :except => [:index] do
+    collection do
+      get :search
+    end
     resources :revisions, :only => [:new, :create, :destroy] do
       member do
         get :download

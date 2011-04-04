@@ -311,5 +311,5 @@ table.docs tr:last-child td:first-child { -moz-border-radius-bottomleft:10px; -w
 table.docs tr:last-child td:last-child { -moz-border-radius-bottomright:10px; -webkit-border-bottom-right-radius:10px; border-bottom-right-radius:10px; border:solid 1px #999; border-width: 1px 1px 
 1px 0px; }
 
-/* SPHINX HIGHLIGHTING */
-span.match{ font-weight:normal !important; background:yellow; padding:2px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+/* SEACH HIGHLIGHTING */
+h3 em{ font-weight:normal !important; background:yellow; padding:2px; -moz-border-radius:5px; -webkit-border-radius:5px; }

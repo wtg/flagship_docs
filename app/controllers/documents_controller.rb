@@ -74,4 +74,15 @@ class DocumentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # GET /documents/search
+  def search 
+    @document_search = Document.search(:include => [:revisions]) do
+      keywords params[:query], :highlight => true
+    end
+
+    respond_to do |format|
+      format.html # show.html.erb
+    end
+  end
 end
