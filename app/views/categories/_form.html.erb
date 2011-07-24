@@ -1,0 +1,23 @@
+<%= form_for(@category, :html => { :class => 'cmxform', :multipart => true }) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <ol>
+      <li><%= f.label :name %><%= f.text_field :name %></li>
+      <li><%= f.label :description %> <%= f.text_area :description %></li>
+      <li><%= f.label :parent_id, "Parent" %> <%= f.select :parent_id, (dfs_tree(Category.roots) - [@category]).collect{|c| [raw("&nbsp;&nbsp;")* c.depth + c.name, c.id ]}, {:include_blank => true } %></li>
+      <li><%= f.label :is_private, "Is Private" %> <%= f.check_box :is_private %><span>Checking this box will make this category only visible to my group.</span></li>
+      <li><%= f.label :is_writable, "Everyone can edit" %> <%= f.check_box :is_writable %><span>Checking this box will make it so that everyone can edit and add docs.</span></li>
+    </ol>
+  </fieldset>
+  <p class="submitbutton"><%= f.submit %></p>
+<% end %>

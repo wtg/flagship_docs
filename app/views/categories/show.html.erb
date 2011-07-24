@@ -1,0 +1,65 @@
+<% content_for :title, @category.name %>
+<% content_for :js_ready do %>
+  //Document grid/table switching
+  $('a.update_holder').live('click', function(event){
+    event.preventDefault();
+    target_url = $(this).attr('href')
+    $.ajax({
+      url: target_url,
+      dataType: "html",
+      cache: false,
+      success: function(data) {
+        $("#doc_holder").fadeOut(100, function(){
+          $("#doc_holder").html("").html(data).fadeIn('slow')
+        });
+      }
+    });
+  });
+<% end %>
+<h2 class="breadcrumb">
+  <%= link_to "Home", "#" %>&nbsp;/&nbsp;<% @category.ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %>
+</h2>
+
+<h1 class="main-title">
+  <div class="info_box">
+    <p>
+      <% if !@category.is_private? %>
+        <%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This category is visible to everyone") %>
+      <% else %>
+        <%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This category is invisible to others") %>
+      <% end %>
+
+      <% if @category.is_writable? %>
+        <%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Anyone can edit this category or add docs") %>
+      <% else %>
+        <%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Nobody else can edit this category or add docs") %>
+      <% end %>
+    </p>
+  </div>
+  <%= @category.name %>
+  <span>
+    <%= @category.description %>
+    <br />
+    <%= link_to 'Edit', edit_category_path(@category), :class => 'edit-link' %>&nbsp;
+    <%= link_to 'Remove', category_path(@category), :confirm => 'Are you sure you want to remove this category?', :method => :delete, :class => 'cancel-link' %>
+  </span>
+</h1>
+
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+
+<br />
+<div class="mc-indent">
+  <h2>Sub-Categories <%= link_to 'Add', new_category_path(:parent_id => @category.id), :class => "link-button" %></h2>
+  <ul class="iconlist">
+    <% @category.children.each do |child| %>
+      <li><%= render :partial => 'block', :locals => {:category => child} %></li>
+    <% end %>
+  </ul>
+  <div style="clear:both;"></div>
+  <br />
+  <h2 id="doclist">Documents <%= link_to 'Add', new_document_path(:category_id => @category.id), :class => "link-button" %></h2>
+  <div id="doc_holder">
+    <%= render :partial => 'documents/' + @display_type, :locals => {:documents => @category.documents} %>
+  </div>
+  <br />
+</div>

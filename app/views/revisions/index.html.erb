@@ -1,0 +1,35 @@
+<h1>Listing revisions</h1>
+
+<table>
+  <tr>
+    <th>Document</th>
+    <th>Search text</th>
+    <th>Download count</th>
+    <th>File name</th>
+    <th>File type</th>
+    <th>File size</th>
+    <th>File data</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @revisions.each do |revision| %>
+  <tr>
+    <td><%= revision.document %></td>
+    <td><%= revision.search_text %></td>
+    <td><%= revision.download_count %></td>
+    <td><%= revision.file_name %></td>
+    <td><%= revision.file_type %></td>
+    <td><%= revision.file_size %></td>
+    <td><%= revision.file_data %></td>
+    <td><%= link_to 'Show', revision %></td>
+    <td><%= link_to 'Edit', edit_revision_path(revision) %></td>
+    <td><%= link_to 'Destroy', revision, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Revision', new_revision_path %>

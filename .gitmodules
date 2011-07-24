@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/attachable"]
+	path = vendor/plugins/attachable
+	url = git://github.com/bamnet/attachable.git

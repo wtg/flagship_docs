@@ -1,0 +1,6 @@
+<% content_for :title, "Editing #{@category.name}" %>
+<h1 class="main-title">
+  Editing Category
+  <span><%= link_to 'Cancel and Return', @category, :class => 'cancel-link' %></span>
+</h1>
+<%= render 'form' %>

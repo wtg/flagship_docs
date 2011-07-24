@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Docs</title>
+  <title><%= yield(:title) || controller.controller_name.titleize %> - Flagship Docs</title>
+  <%= yield(:meta_tags) %>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= yield(:background_img) %>
+  <%= yield(:head) %>
 </head>
 <body>
+  <% if flash[:notice] or flash[:error] %>
+    <div id="flash_block"<% if flash[:error] %> class="error"<% end %>>
+      <div id="flash_block-padding">
+        <% if flash[:notice] %><p><%= flash[:notice] %></p><% end %>
+        <% if flash[:error] %><p><%= flash[:error] %></p><% end %>
+      </div>
+    </div>
+  <% end %>
+  <div id="wrap">
+    <div id="header">
+      <div id="topbar">
+        <div id="topbar-padding">
+          <%= render :partial => 'layouts/topbar_left' %>
+          <%#= render :partial => 'layouts/topbar_right' %>
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+    </div>
+    <div id="wrap-padding">
+      <%= yield %>
+    </div>
+  </div>
+  <%= render :partial => 'layouts/footer' %>
 
-<%= yield %>
+<%= yield(:js_late_load) %>
+<% if content_for?(:js_ready) || flash[:notice] || flash[:error] %>
+<script type="text/javascript">
+$(document).ready(function(){
+  <% if flash[:notice] || flash[:error] %>
+    setTimeout(function(){
+      $("#flash_block").fadeOut("slow", function () {
+        $("#flash_block").remove();
+      });
+    }, 7000);
+  <% end %>
+  <%= yield(:js_ready) %>
+});
+<% end %>
+</script>
+<% if content_for?(:js) %>
+<script type="text/javascipt">
 
+</scipt>
+<% end %>
 </body>
 </html>

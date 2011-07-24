@@ -1,0 +1,97 @@
+<% content_for :title, @document.title %>
+<% content_for :js_ready do %>
+  $("#revision-link").click(function(event){
+    event.preventDefault();
+    $("#revision-link").fadeOut("fast",function() {
+      $("#new-revision").fadeIn("fast");
+    });
+  });
+<% end %>
+<h2 class="breadcrumb">
+  <%= link_to "Home", "#" %>&nbsp;/&nbsp;
+  <% @document.category.ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %>
+  <%= link_to @document.category.name, @document.category %>
+</h2>
+
+<h1 class="main-title">
+  <div class="info_box">
+    <p>
+      <% if !@document.is_private? %>
+        <%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This document is visible to everyone") %>
+      <% else %>
+        <%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This document is invisible to others") %>
+      <% end %>
+
+      <% if @document.is_writable? %>
+        <%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Others can edit this document") %>
+      <% else %>
+        <%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Only members of GROUP can edit this document") %>
+      <% end %>
+      &nbsp;&nbsp;&nbsp;<%=h @document.download_count %> downloads
+    </p>
+  </div>
+  <%= @document.title %>
+  <span>
+    <%= link_to 'Edit', edit_document_path(@document), :class => 'edit-link' %>
+    &nbsp;
+    <%= link_to 'Remove', document_path(@document), :confirm => 'Are you sure you want to remove this document?', :method => :delete, :class => 'cancel-link' %>
+  </span>
+</h1>
+
+<%= render :partial => 'google_viewer', :locals => {:document => @document} %>
+
+<% unless @document.revisions.current.empty? %>
+<div class="flush">
+  <div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
+    <div id="dl">
+      <div id="dl-padding">
+        <div id="dl_icon">
+          <% link_to download_document_revision_path(@document, 'current') do %>
+            <%= image_tag("icons/icon_#{@document.revisions.current.first.short_type}.png", :alt => "Download File") %>
+          <% end %>
+        </div>
+
+        <div style="padding-top:14px;float:right;width:75%;">
+          <div id="dl-link">
+            <div id="dl-link-padding">
+              <%= link_to "Download File", download_document_revision_path(@document, 'current') %>
+              <span class="details">
+                from USER on <%= @document.revisions.current.first.created_at.strftime('%D') %>
+              </span>
+              &nbsp;&nbsp;<%= render :partial => 'clippy', :locals => {:document => @document} %>
+            </div>
+          </div>
+          <div id="dl-revs">
+            <% if @document.revisions.size > 1 %>
+              <h3>Past Revisions:</h3>
+              <% @document.revisions.each_with_index do |revision, i| %>
+                <% if revision != @document.revisions.current %>
+                  <div class="dl-rev">
+                    <%= link_to download_document_revision_path(@document, revision) do %>
+                      <%= image_tag("icons/icon_#{revision.short_type}.png",  :height => "20", :alt => "Download File") %> Revision <%= i+1 %>
+                    <% end %>
+                    <span class="details">from USER on <%= revision.created_at.strftime('%D') %></span>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+            <div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document), :id => 'revision-link' %>
+              <div id="new-revision" style="display:none;">
+                <% form_for([@document, Revision.new(:document => @document)], :html => { :multipart => true }) do |f| %>
+                  <%= f.label :file %> <%= f.file_field :file %>
+                  <%= f.submit %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+  <div class="hr_dl2"><%= image_tag("bl.png", :alt => "") %></div>
+</div>
+<% end %>
+<br /><br />
+<div id="mc-indent" class="mc-indent">
+  <%= @document.description unless @document.description.blank? %>
+</div>

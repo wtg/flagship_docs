@@ -1,0 +1,7 @@
+<% content_for :title, "New Document" %>
+<h1 class="main-title">
+  New Document
+  <span><%= link_to 'Cancel', documents_path, :class => 'cancel-link' %></span>
+</h1>
+<%= render 'form' %>
+

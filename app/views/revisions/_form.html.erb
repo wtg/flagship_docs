@@ -1,0 +1,20 @@
+<%= form_for([@document, @revision], :html => { :class => 'cmxform', :multipart => true }) do |f| %>
+  <% if @revision.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@revision.errors.count, "error") %> prohibited this revision from being saved:</h2>
+
+      <ul>
+      <% @revision.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <ol>
+      <li><%= f.label :file %> <%= f.file_field :file %></li>
+    </ol>
+  </fieldset>
+  <p class="submitbutton"><%= f.submit %></p>
+<% end %>

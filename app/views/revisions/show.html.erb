@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Document:</b>
+  <%= @revision.document %>
+</p>
+
+<p>
+  <b>Search text:</b>
+  <%= @revision.search_text %>
+</p>
+
+<p>
+  <b>Download count:</b>
+  <%= @revision.download_count %>
+</p>
+
+<p>
+  <b>File name:</b>
+  <%= @revision.file_name %>
+</p>
+
+<p>
+  <b>File type:</b>
+  <%= @revision.file_type %>
+</p>
+
+<p>
+  <b>File size:</b>
+  <%= @revision.file_size %>
+</p>
+
+<p>
+  <b>File data:</b>
+  <%= @revision.file_data %>
+</p>
+
+
+<%= link_to 'Edit', edit_revision_path(@revision) %> |
+<%= link_to 'Back', revisions_path %>
