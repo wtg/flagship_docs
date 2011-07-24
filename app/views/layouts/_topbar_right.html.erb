@@ -1,0 +1,17 @@
+<div id="topbar-right">
+  <h1>
+    <% if not logged_in? %>
+      <%= link_to 'Log in to add/change docs', new_session_path %>
+    <% else %>
+      <%= link_to current_user.full_name, current_user %>
+      &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      <% if admin_logged_in? %>
+        <%= link_to 'Users', users_path %>&nbsp;/&nbsp;
+      <% end %>
+      <% if admin_logged_in? || current_user.in_one_group? %>
+        <%= link_to 'Groups', groups_path %> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      <% end %>
+      <%= link_to 'Logout', session_path, :method => :delete %>
+    <% end %>
+  </h1>
+</div>

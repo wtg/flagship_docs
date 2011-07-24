@@ -27,3 +27,9 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
+# Text Extraction
+gem 'textractor', :git => "git://github.com/bamnet/textractor.git"
+
+# Search with Sunspot for now
+#gem 'sunspot_rails'

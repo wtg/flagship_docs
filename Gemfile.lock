@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/bamnet/textractor.git
+  revision: 6017969bf64ea8844b31d1b53e57a45cc248ae60
+  specs:
+    textractor (0.1.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -111,5 +117,6 @@ DEPENDENCIES
   rails (= 3.1.0.rc4)
   sass-rails (~> 3.1.0.rc)
   sqlite3
+  textractor!
   turn
   uglifier
