@@ -1,8 +1,9 @@
 class RevisionsController < ApplicationController
+  before_filter :get_document
+
   # GET /revisions/new
   # GET /revisions/new.xml
   def new
-    @document = Document.find(params[:document_id])
     @revision = Revision.new(:document => @document)
 
     respond_to do |format|
@@ -14,7 +15,6 @@ class RevisionsController < ApplicationController
   # POST /revisions
   # POST /revisions.xml
   def create
-    @document = Document.find(params[:document_id])
     @revision = Revision.new(params[:revision])
     @revision.document = @document
 
@@ -43,8 +43,25 @@ class RevisionsController < ApplicationController
 
   # GET /revisions/1/download
   def download
-    @revision = Revision.find(params[:id])
+    if params[:id] == 'current'
+      @revision = @document.revisions.current.first
+    else
+      @revision = Revision.find(params[:id])
+    end
     @revision.increment!(:download_count)
     send_data @revision.file_contents, :filename => @revision.file_name, :type => @revision.file_type, :disposition => 'inline'
   end
+
+
+  private
+  
+  # Get the current document.  Since revisions
+  # are always scoped off the document ID we can
+  # always grab a @document.
+  #
+  # TODO: Fail if a document can't be found.
+  def get_document
+    @document = Document.find(params[:document_id])
+  end
+
 end

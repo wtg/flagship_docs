@@ -3,7 +3,7 @@
 <ul class="iconlist">
   <% documents.each do |document| %>
   <li>
-    <% link_to document do %>
+    <%= link_to document do %>
       <div class="iconlist_padding">
         <div class="ins">
           <div class="type-folder"><%= image_tag("icons/icon_#{document.revisions.current.first.short_type}.png", :alt => document.title) %></div>

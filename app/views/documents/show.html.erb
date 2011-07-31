@@ -38,15 +38,14 @@
   </span>
 </h1>
 
-<%= render :partial => 'google_viewer', :locals => {:document => @document} %>
-
 <% unless @document.revisions.current.empty? %>
+<%= render :partial => 'google_viewer', :locals => {:document => @document} %>
 <div class="flush">
   <div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
     <div id="dl">
       <div id="dl-padding">
         <div id="dl_icon">
-          <% link_to download_document_revision_path(@document, 'current') do %>
+          <%= link_to download_document_revision_path(@document, 'current') do %>
             <%= image_tag("icons/icon_#{@document.revisions.current.first.short_type}.png", :alt => "Download File") %>
           <% end %>
         </div>
@@ -70,14 +69,14 @@
                     <%= link_to download_document_revision_path(@document, revision) do %>
                       <%= image_tag("icons/icon_#{revision.short_type}.png",  :height => "20", :alt => "Download File") %> Revision <%= i+1 %>
                     <% end %>
-                    <span class="details">from USER on <%= revision.created_at.strftime('%D') %></span>
+                    <span class="details">from USER on <%= revision.created_at.getlocal.strftime('%D @ %r') %></span>
                   </div>
                 <% end %>
               <% end %>
             <% end %>
             <div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document), :id => 'revision-link' %>
               <div id="new-revision" style="display:none;">
-                <% form_for([@document, Revision.new(:document => @document)], :html => { :multipart => true }) do |f| %>
+                <%= form_for([@document, Revision.new(:document => @document)], :html => { :multipart => true }) do |f| %>
                   <%= f.label :file %> <%= f.file_field :file %>
                   <%= f.submit %>
                 <% end %>
@@ -90,8 +89,21 @@
     </div>
   <div class="hr_dl2"><%= image_tag("bl.png", :alt => "") %></div>
 </div>
+<% else %>
+  <p>
+    <b>Uh Oh! This document has no revisions available for download.</b>
+    Care to <%= link_to "upload", new_document_revision_path(@document) %> one?
+  </p>
 <% end %>
 <br /><br />
 <div id="mc-indent" class="mc-indent">
   <%= @document.description unless @document.description.blank? %>
 </div>
+<% unless @document.revisions.empty? %>
+<div id="admin_debug" class="mc-indent">
+    Filename: <%= @document.revisions.current.first.file_name %><br />
+    Size: <%= number_to_human_size(@document.revisions.current.first.file_size) %><br />
+    Search Text: <br />
+    <textarea id="debug_data"><%= @document.revisions.current.first.search_text %></textarea>
+</div>
+<% end %>

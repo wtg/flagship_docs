@@ -15,10 +15,10 @@
   <tbody>
     <% documents.each do |document| %>
       <tr class="<%= cycle('odd', 'even') %>">
-        <td><% link_to document do %><h2><%= document.title %></h2><% end %></td>
+        <td><%= link_to document do %><h2><%= document.title %></h2><% end %></td>
         <td class="doc_img">
           <% unless document.revisions.current.empty? %>
-            <% link_to download_document_revision_path(document, 'current') do %>
+            <%= link_to download_document_revision_path(document, 'current') do %>
               <%= image_tag("icons/icon_#{document.revisions.current.first.short_type}.png", :size=>"40x40", :alt => "Download File") %>
             <% end %>
           <% end %>

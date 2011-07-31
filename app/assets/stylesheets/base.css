@@ -227,6 +227,8 @@ div.info_box { border:solid 1px #666;  -moz-border-radius:7px; -webkit-border-ra
 div.info_box p { font-size:0.5em !important; }
 div.info_box p img { vertical-align: middle; }
 
+div#admin_debug {margin-top: 50px; padding-bottom: 5px; padding-top: 5px; border: 1px solid red;}
+div#admin_debug textarea {width: 80%; height: 100px;}
 
 /*##########################################################################*/
 /*  Home/Index  */
