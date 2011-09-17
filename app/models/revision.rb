@@ -63,6 +63,9 @@ class Revision < ActiveRecord::Base
   # value if there is no data (i.e won't write blank).
   def update_search_text
     output = self.extract_text    
-    output.blank? ? false : self.update_attributes(:search_text => output)
+    if !output.blank?
+      self.update_attributes(:search_text => output)
+      self.document.index!
+    end
   end
 end
