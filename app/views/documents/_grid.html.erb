@@ -6,7 +6,9 @@
     <%= link_to document do %>
       <div class="iconlist_padding">
         <div class="ins">
-          <div class="type-folder"><%= image_tag("icons/icon_#{document.revisions.current.first.short_type}.png", :alt => document.title) %></div>
+          <div class="type-folder">
+            <%= image_tag("icons/icon_#{!document.revisions.current.empty? ? document.revisions.current.first.short_type : "other"}.png", :alt => document.title) %>
+          </div>
         </div>
         <h2><%= document.title %></h2>
       </div>
