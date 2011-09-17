@@ -76,7 +76,6 @@ div.hr_dl2 { background:url(../assets/layout/hr_dl2.png) top left repeat-x; heig
 #wrap-padding { padding:40px 20px; padding-bottom:50px; }
 
 /*##########  HEADER  ##########*/
-#header { background:#BFE2FF; -moz-box-shadow: 0 0.15em 0.2em #666; -webkit-box-shadow: 0 0.15em 0.2em #666; }
 #header h1.expand { font-size:1em; margin-top:4px; }
 #header h1.expand a { font-weight:bold; padding:6px 20px; color:#003366; font-size:0.6em; text-transform:uppercase; letter-spacing:0.13em; }
 #header h1.expand a:hover { color:#FFF; }
@@ -248,7 +247,7 @@ div#admin_debug textarea {width: 80%; height: 100px;}
 p.submitbutton{padding-left:140px;}
 form.cmxform fieldset{ background:#e6e6e6; border:solid 1px #999; -moz-border-radius:5px; -webkit-border-radius:5px; font-size:1.2em;margin-bottom:10px;}
 form.cmxform input { font-size:1em; }
-form.cmxform textarea{font-size:0.9em;width:80%;}
+form.cmxform textarea{font-size:0.9em;width:80%; height: 100px;}
 form.cmxform span { vertical-align:middle; padding-left:8px; font-size:0.7em; color:#333; }
 form.cmxform legend{padding:0 2px;font-weight:700;_margin:0 -7px;/* IE Win */}
 form.cmxform label{text-transform:uppercase; letter-spacing:0.13em; display:inline-block;line-height:1.8;vertical-align:top;}
