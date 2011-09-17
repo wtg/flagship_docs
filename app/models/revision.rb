@@ -62,7 +62,7 @@ class Revision < ActiveRecord::Base
   # by running extract_text.  Will not set the
   # value if there is no data (i.e won't write blank).
   def update_search_text
-    output = extract_text    
-    output.blank? ? false : update_attributes(:search_text => output)
+    output = self.extract_text    
+    output.blank? ? false : self.update_attributes(:search_text => output)
   end
 end

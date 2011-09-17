@@ -20,6 +20,7 @@ class RevisionsController < ApplicationController
 
     respond_to do |format|
       if @revision.save
+        @revision.delay.update_search_text
         format.html { redirect_to(@revision.document, :notice => 'Revision was successfully created.') }
         format.xml  { render :xml => @revision, :status => :created, :location => @revision }
       else

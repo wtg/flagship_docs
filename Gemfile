@@ -35,3 +35,6 @@ gem 'textractor', :git => "git://github.com/bamnet/textractor.git"
 
 # Search with Sunspot for now
 #gem 'sunspot_rails'
+
+# Extract the text in the background
+gem 'delayed_job'

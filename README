@@ -1,1 +1,13 @@
+Quick Setup:
+1. bundle install
+2. rake db:migrate
+3. script/delayed_job start 
+     or
+   RAILS_ENV=production script/delayed_job start
+4. Enjoy.
 
+
+Notes:
+Delayed Job (https://github.com/collectiveidea/delayed_job/) is used to extract the text from
+documents asynchronously.  You'll want to have it running if you want your document content to be
+indexed.  For more information how to start it, check out their readme.
