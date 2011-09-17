@@ -8,6 +8,12 @@ class Category < ActiveRecord::Base
   # Let us quickly find the root categories
   scope :roots, where(:parent_id => nil)
 
+  searchable do
+    text :name
+    text :description
+  end
+
+
   # Test if this category is a root or not
   def is_root?
     parent_id.nil?

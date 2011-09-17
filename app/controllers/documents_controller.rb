@@ -78,9 +78,13 @@ class DocumentsController < ApplicationController
   
   # GET /documents/search
   def search 
-    @document_search = Document.search(:include => [:revisions]) do
-      keywords params[:query], :highlight => true
+    @document_search = Document.search do
+      fulltext params[:query], :highlight => true
     end
+
+    @categories = Category.search do
+      fulltext params[:query]
+    end.results
 
     respond_to do |format|
       format.html # show.html.erb

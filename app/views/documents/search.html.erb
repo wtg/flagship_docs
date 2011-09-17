@@ -5,7 +5,7 @@
   <ol>
     <% @document_search.each_hit_with_result do |hit, document| %>
       <li class="<%= cycle('even', 'odd') %>">
-        <% link_to document do %>
+        <%= link_to document do %>
           <div style="float:left; text-align:center; width:80px;">
             <%= image_tag("icons/icon_#{document.revisions.current.first.short_type}.png", :alt => "", :width => 80) unless document.revisions.current.empty? %>
           </div>
@@ -22,13 +22,13 @@
   <br /><br />
   <h2>Matched Categories</h2>
   <ol>
-    <% for category in [] %>
+    <% for category in @categories %>
       <li class="<%= cycle('even', 'odd') %>">
-        <% link_to category do %>
+        <%= link_to category do %>
           <div style="float:left; text-align:center; width:80px;">
-            <%= image_tag("icons/icon_folder.png", :alt => "", :width => 50) %>
+            <%= image_tag("icons/icon_folder.png", :alt => "", :width => 80) %>
           </div>
-          <div style="float:right; width:800px; padding:8px 0px;">
+          <div style="float:left; padding:8px 10px;">
             <h1><%=h category.name %></h1>
             <h2><%=truncate(h(category.description), :length => 40) %></h2>
           </div>
