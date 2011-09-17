@@ -1,16 +1,18 @@
 class Revision < ActiveRecord::Base
   belongs_to :document
 
-  # Set the search text before we create the revision.
-  before_create do
-    search_text = extract_text
-  end
-
   # Handles the file attachment stuff
   # git://github.com/bamnet/attachable.git
   attachable
 
   scope :current, order("created_at DESC").limit(1)
+
+  # Validations
+  # A revision must have a file
+  validates :file_name, :presence => true
+  validates :file_type, :presence => true
+  validates :file_size, :numericality => { :only_integer => true }
+  validates_associated :document
 
   # Try and identify the type of file uploaded
   # other will be returned if the type doesn't match something we recognize
@@ -48,6 +50,7 @@ class Revision < ActiveRecord::Base
     begin
       extracted = Textractor.text_from_path(tempfile.path, :content_type => file_type)
     rescue
+      logger.error("Unable to extract text from revision #{id} - #{filename}")
       extracted = nil
     end
     tempfile.unlink
