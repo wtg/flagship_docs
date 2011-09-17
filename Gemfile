@@ -31,7 +31,7 @@ group :test do
 end
 
 # Text Extraction
-gem 'textractor', :git => "git://github.com/bamnet/textractor.git"
+gem 'textractor' #, :git => "git://github.com/bamnet/textractor.git"
 
 # Search with Sunspot for now
 gem 'sunspot_rails'

@@ -1,10 +1,3 @@
-GIT
-  remote: git://github.com/bamnet/textractor.git
-  revision: 36a1192ac2fd287a17e27a7af51dc65b3de1a3eb
-  specs:
-    textractor (0.1.6)
-      escape (>= 0.0.4)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -117,6 +110,8 @@ GEM
     sunspot_rails (1.2.1)
       nokogiri
       sunspot (= 1.2.1)
+    textractor (0.2.0)
+      escape (>= 0.0.4)
     thor (0.14.6)
     tilt (1.3.3)
     treetop (1.4.10)
@@ -140,6 +135,6 @@ DEPENDENCIES
   sass-rails (~> 3.1.0)
   sqlite3
   sunspot_rails
-  textractor!
+  textractor
   turn
   uglifier
