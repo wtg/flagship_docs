@@ -55,6 +55,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.update_attributes(params[:document])
+        @document.revisions.current.first.delay.update_search_text unless @document.revisions.empty?
         format.html { redirect_to(@document, :notice => 'Document was successfully updated.') }
         format.xml  { head :ok }
       else
