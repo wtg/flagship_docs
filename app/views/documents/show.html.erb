@@ -8,7 +8,7 @@
   });
 <% end %>
 <h2 class="breadcrumb">
-  <%= link_to "Home", "#" %>&nbsp;/&nbsp;
+  <%= link_to "Home", root_path %>&nbsp;/&nbsp;
   <% @document.category.ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %>
   <%= link_to @document.category.name, @document.category %>
 </h2>

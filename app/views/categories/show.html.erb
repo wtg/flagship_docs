@@ -17,7 +17,7 @@
   });
 <% end %>
 <h2 class="breadcrumb">
-  <%= link_to "Home", categories_path %>&nbsp;/&nbsp;
+  <%= link_to "Home", root_path %>&nbsp;/&nbsp;
   <% @category.ancestors.reverse.each do |ancestor_category| %>
     <%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;
   <% end %>
