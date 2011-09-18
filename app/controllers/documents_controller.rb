@@ -28,7 +28,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1/edit
   def edit
     @document = Document.find(params[:id])
-    @document.revisions = [Revision.new(:document => @document)]
+    @document.revisions.build
   end
 
   # POST /documents

@@ -2,7 +2,6 @@
   <% if @document.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h2>
-
       <ul>
       <% @document.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -18,7 +17,7 @@
       <li><%= f.label :is_private, "Group Only" %> <%= f.check_box :is_private %><span>Checking this box will make this document visible to only members of your group.</span></li>
       <li><%= f.label :is_writable, "Everyone Can Edit" %> <%= f.check_box :is_writable %><span>Checking this box will make it so that everyone can edit this document.</span></li>
       <hr />
-      <%= f.fields_for :revisions do |revision_frm| %>
+      <%= f.fields_for :revisions, @document.revisions.select{|r| !r.persisted?} do |revision_frm| %>
         <li><%= revision_frm.label :file %> <%= revision_frm.file_field :file %></li>
       <% end %>
     </ol>
