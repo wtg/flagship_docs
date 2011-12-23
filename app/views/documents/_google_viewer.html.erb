@@ -3,7 +3,7 @@
 <div class="flush">
   <div id="qv">
     <div id="qv-padding">
-      <% content_for :head do %>
+      <% content_for :NULL_head do %>
         <%= stylesheet_link_tag "jquery.fancybox-1.3.1", :media => 'all' %>
         <%= javascript_include_tag "jquery.easing-1.3.pack.js" %>
         <%= javascript_include_tag "jquery.fancybox-1.3.1.pack.js" %>
@@ -29,7 +29,7 @@
         </script>
       <% end %>
       <h1>
-        <% link_to "http://docs.google.com/viewer?embedded=true&url=#{ download_document_revision_path(@document, 'current', :only_path => false) }", :id => 'docview' do %>
+        <%= link_to "http://docs.google.com/viewer?embedded=true&url=#{ download_document_revision_path(@document, 'current', :only_path => false) }", :id => 'docview' do %>
           <%= image_tag("layout/qv_icon.png", :alt => "") %> View Live Preview
         <% end %>
       </h1>
