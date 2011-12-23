@@ -15,10 +15,10 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td 
 { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertica-align:baseline; }
 html { font-family:"Myriad Web", Myriad, Arial, sans-serif; }
-body { background:#FFFFFF url(../assets/customized/woodplanks.jpg) repeat scroll left top; }
+body { background:#FFFFFF image-url('customized/woodplanks.jpg') repeat scroll left top; }
 
 /*##########  MAIN HEADERS  ##########*/
-h1.main-title { margin:0px; margin-bottom:30px; padding:0px; padding-left:34px; background:url(../assets/layout/h1block.png) top left no-repeat; font-size:2.2em; font-weight:600; color:#333; }
+h1.main-title { margin:0px; margin-bottom:30px; padding:0px; padding-left:34px; background:asset-data-url('layout/h1block.png') top left no-repeat; font-size:2.2em; font-weight:600; color:#333; }
 h1.main-title span { color:#666; font-weight:normal; font-size:0.45em; padding:0px; margin:0px; margin-top:4px; display:block; }
 h1.main-title span a { color:#666; font-weight:bold; }
 h1.main-title span a.cancel-link { color:#dc0000 !important; }
@@ -46,17 +46,17 @@ h1 a.link-button { font-size:0.4em; }
 h1 a.link-button:hover, h2 a.link-button:hover { background:#339933; -moz-box-shadow: 0 0 0 #666; -webkit-box-shadow: 0 0 0 #666; }
 
 /*##########  HORIZONTAL RULE  ##########*/
-div.hr_dl { background:url(../assets/layout/hr_dl.png) top left repeat-x; height:2px; }
+div.hr_dl { background:asset-data-url('layout/hr_dl.png') top left repeat-x; height:2px; }
 #sb-mid div.hr_dl { margin-left:-20px; }
-div.hr_dl2 { background:url(../assets/layout/hr_dl2.png) top left repeat-x; height:2px; }
+div.hr_dl2 { background:asset-data-url('layout/hr_dl2.png') top left repeat-x; height:2px; }
 
 /*##########  TIPSY CAPTIONS  ##########*/
 .tipsy { padding: 5px; font-size: 10px; opacity: 0.8; filter: alpha(opacity=80); background-repeat: no-repeat; }
 .tipsy-inner { padding: 4px 5px; background-color: black; color: white; max-width: 200px; text-align: center; }
-.tipsy-north { background-image: url(../assets/icons/tipsy-north.gif); background-position: top center; }
-.tipsy-south { background-image: url(../assets/icons/tipsy-south.gif); background-position: bottom center; }
-.tipsy-east { background-image: url(../assets/icons/tipsy-east.gif); background-position: right center; }
-.tipsy-west { background-image: url(../assets/icons/tipsy-west.gif); background-position: left center; }
+.tipsy-north { background-image: image-url('icons/tipsy-north.gif'); background-position: top center; }
+.tipsy-south { background-image: image-url('icons/tipsy-south.gif'); background-position: bottom center; }
+.tipsy-east { background-image: image-url('icons/tipsy-east.gif'); background-position: right center; }
+.tipsy-west { background-image: image-url('icons/tipsy-west.gif'); background-position: left center; }
 
 
 /*##########################################################################*/
@@ -70,7 +70,7 @@ div.hr_dl2 { background:url(../assets/layout/hr_dl2.png) top left repeat-x; heig
 .error { background:red !important; color:#FFF !important; }
 
 /*##########  WRAP  ##########*/
-#wrap { width:70%; margin:80px auto; margin-bottom:8px; min-width:940px; background:#f5f5f5 url(../assets/layout/wrap_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; 
+#wrap { width:70%; margin:80px auto; margin-bottom:8px; min-width:940px; background:#f5f5f5 image-url('layout/wrap_bg.png') top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; 
 -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0 0.5em #000; -webkit-box-shadow: 0 0 
 0.5em #000; }
 #wrap-padding { padding:40px 20px; padding-bottom:50px; }
@@ -85,7 +85,7 @@ div.hr_dl2 { background:url(../assets/layout/hr_dl2.png) top left repeat-x; heig
 #footer a { color:#ccc; }
 
 /*##########  TOP BAR  ##########*/
-#topbar { background:url(../assets/layout/tb_bg.png) top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; 
+#topbar { background:image-url('layout/tb_bg.png') top left repeat-x; -moz-border-radius:12px; -webkit-border-radius:12px; -moz-border-radius-topleft:0px; -webkit-border-top-left-radius:0px; 
 -moz-border-radius-topright:0px; -webkit-border-top-right-radius:0px; -moz-box-shadow: 0 0.15em 0.2em #333; -webkit-box-shadow: 0 0.15em 0.2em #333; }
 #topbar-padding { padding:5px 18px; padding-left:12px; }
 #topbar { color:#eee; font-weight:normal; }
@@ -95,7 +95,7 @@ div.hr_dl2 { background:url(../assets/layout/hr_dl2.png) top left repeat-x; heig
 #topbar-right { padding:8px 0px; padding-top:14px; float:right; width:44%; text-align:right; }
 
 /*##########  CATEGORIES TREE  ##########*/
-#cat_tree { background:#99cccc url(../assets/layout/tree_bg.png) bottom left repeat-x; margin:0px; border-bottom:solid 1px #eee; }
+#cat_tree { background:#99cccc image-url('layout/tree_bg.png') bottom left repeat-x; margin:0px; border-bottom:solid 1px #eee; }
 #cat_tree_inset { overflow-y:scroll; height:250px; border-top:solid 1px #666; }
 #cat_tree-padding { padding:15px 25px 20px 8px; border-top:solid 1px #eee; }
 #cat_tree ul { border-left:dotted 1px #006699; font-size:0.95em; margin:0px; padding:0px; margin-left:20px; }
@@ -131,7 +131,7 @@ border:solid 1px #333; border-style:solid; width:422px; background-color:#333; l
 .auto_complete ol li a span { color:#555555; }
 .auto_complete ol li a:hover span { color:#f1f1f1; }
 .auto_complete span.category { font-size:11px; margin:5px; display:block; color:#ffffff; }
-.auto_complete span.seperator { float:right; padding-right:15px; margin-right:5px; background-image:url(../assets/shortcuts_arrow.gif); background-repeat:no-repeat; background-position:right; }
+.auto_complete span.seperator { float:right; padding-right:15px; margin-right:5px; background-image:image-url('shortcuts_arrow.gif'); background-repeat:no-repeat; background-position:right; }
 .auto_complete span.seperator a { background-color:transparent; display:block; margin:5px; height:auto; color:#ffffff; }
 
 
@@ -160,9 +160,9 @@ div.type-file, div.type-folder { margin-left:auto; margin-right:auto; text-align
 div.type-folder img { border:0px !important; }
 div.type-img img { border:solid 1px #666; }
 div.type-file img { border:0px !important; }
-div.f_icon { background:url(../assets/icons/foldericon.png) center center no-repeat; width:50px; height:39px; margin:75px 0px 0px 110px; position:absolute; z-index:5; }
-div.pdf_icon { background:url(../assets/icons/pdficon.png) center center no-repeat; width:44px; height:45px; margin:75px 0px 0px 110px; position:absolute; z-index:5; }
-div.img_icon { background:url(../assets/icons/imageicon.png) center center no-repeat; width:46px; height:44px; margin:75px 0px 0px 110px; position:absolute; z-index:5; }
+div.f_icon { background:image-url('icons/foldericon.png') center center no-repeat; width:50px; height:39px; margin:75px 0px 0px 110px; position:absolute; z-index:5; }
+div.pdf_icon { background:image-url('icons/pdficon.png') center center no-repeat; width:44px; height:45px; margin:75px 0px 0px 110px; position:absolute; z-index:5; }
+div.img_icon { background:image-url('icons/imageicon.png') center center no-repeat; width:46px; height:44px; margin:75px 0px 0px 110px; position:absolute; z-index:5; }
 
 
 /*##########################################################################*/
@@ -194,12 +194,12 @@ div#doc_listing_inpage li a:hover h3 { color:#FFF; text-decoration: none !import
 /*##########################################################################*/
 
 /*##########  QUICKVIEW BLOCK  ##########*/
-#qv { background:#c2c1c2 url(../assets/layout/qvbg.png) top left repeat-x; }
+#qv { background:#c2c1c2 image-url('layout/qvbg.png') top left repeat-x; }
 #qv-padding { padding:12px 34px 12px 34px; }
 #qv h1 a { font-size:1.2em; text-shadow:0px -2px 0px #666; font-weight:bold; color:#FFF; }
 
 /*##########  DOWNLOAD BLOCK  ##########*/
-#dl { background:#ddd url(../assets/layout/dlbg.png) top left repeat-x; }
+#dl { background:#ddd asset-data-url('layout/dlbg.png') top left repeat-x; }
 #dl-padding { padding:18px 34px 18px 34px; }
 #dl.fp #dl-padding { padding:24px 34px; }
 #dl_icon { float:left; width:25%; text-align:center; }
@@ -282,8 +282,8 @@ div.form_group textarea { width:70%; background:#FFEFEF; border:solid 1px #999; 
 /*##########  DOCUMENTS LIST VIEW  ##########*/
 table.docs {-moz-border-radius: 12px 12px 0 0; font-size:0.9em; /* border:1px solid #CCCCCC; */}
 table.docs td { font-size:1.06em; height:35px; text-align:center; vertical-align:center; padding:3px 9px; margin:0; }
-table.docs tr.odd td { background:#e5e5e5 url(../assets/layout/docs_odd_bg.png) top left repeat-x; }
-table.docs tr.even td { background:#ffffff url(../assets/layout/docs_even_bg.png) top left repeat-x; }
+table.docs tr.odd td { background:#e5e5e5 image-url('layout/docs_odd_bg.png') top left repeat-x; }
+table.docs tr.even td { background:#ffffff image-url('layout/docs_even_bg.png') top left repeat-x; }
 table.docs thead th { background: #605B5B; color: #ffffff; padding:6px 10px; height: auto; letter-spacing:0.25em; font-size:0.65em; text-transform:uppercase; }
 table.docs td.doc_img { width:42px; text-align: center; }
 table.docs p { text-align:left; margin:0px; }
