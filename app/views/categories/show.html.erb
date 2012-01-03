@@ -1,21 +1,4 @@
 <% content_for :title, @category.name %>
-<% content_for :js_ready do %>
-  //Document grid/table switching
-  $('a.update_holder').live('click', function(event){
-    event.preventDefault();
-    target_url = $(this).attr('href')
-    $.ajax({
-      url: target_url,
-      dataType: "html",
-      cache: false,
-      success: function(data) {
-        $("#doc_holder").fadeOut(100, function(){
-          $("#doc_holder").html("").html(data).fadeIn('slow')
-        });
-      }
-    });
-  });
-<% end %>
 <h2 class="breadcrumb">
   <%= link_to "Home", root_path %>&nbsp;/&nbsp;
   <% @category.ancestors.reverse.each do |ancestor_category| %>

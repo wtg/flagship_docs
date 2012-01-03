@@ -1,12 +1,4 @@
 <% content_for :title, @document.title %>
-<% content_for :js_ready do %>
-  $("#revision-link").click(function(event){
-    event.preventDefault();
-    $("#revision-link").fadeOut("fast",function() {
-      $("#new-revision").fadeIn("fast");
-    });
-  });
-<% end %>
 <h2 class="breadcrumb">
   <%= link_to "Home", root_path %>&nbsp;/&nbsp;
   <% @document.category.ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %>

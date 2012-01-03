@@ -1,7 +1,4 @@
 <span id="clippy"></span>
-<% content_for :js_late_load do %>
-  <%= javascript_include_tag "swfobject.js" %>
-<% end %>
 <% content_for :js_ready do %>
   var flashvars = { text: "<%= download_document_revision_path(@document, 'current', :only_path => false) %>" };
   var params = { bgcolor: "#EDEDED", scale: "noscale", quality: "high" };
