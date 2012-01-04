@@ -1,4 +1,4 @@
-$('a.update_holder').live 'click', (event) ->
+$(document).on 'click', 'a.update_holder', (event) ->
   event.preventDefault()
   target_url = $(this).attr('href')
   $.ajax
