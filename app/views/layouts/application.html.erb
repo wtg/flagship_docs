@@ -33,13 +33,5 @@
     </div>
   </div>
   <%= render :partial => 'layouts/footer' %>
-
-<% if content_for?(:js_ready) %>
-<script type="text/javascript">
-$(document).ready(function(){
-  <%= yield(:js_ready) %>
-});
-</script>
-<% end %>
 </body>
 </html>

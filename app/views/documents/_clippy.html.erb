@@ -1,6 +1,4 @@
 <span id="clippy"></span>
-<% content_for :js_ready do %>
-  var flashvars = { text: "<%= download_document_revision_path(@document, 'current', :only_path => false) %>" };
-  var params = { bgcolor: "#EDEDED", scale: "noscale", quality: "high" };
-  swfobject.embedSWF("<%= swf_path('clippy.swf') %>", "clippy", "110", "14", "9.0.0", '', flashvars, params);
-<% end %>
+<script type="text/javascript">
+  render_clippy('<%= download_document_revision_path(@document, 'current', :only_path => false) %>','<%= swf_path('clippy.swf') %>');
+</script>
