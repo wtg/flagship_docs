@@ -1,0 +1,40 @@
+<% content_for :title, "Users" %>
+<h2 class="breadcrumb">
+  <%= link_to "Home", root_path %>&nbsp;/&nbsp;
+</h2>
+
+<h1 class="main-title">Users</h1>
+
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+
+<br />
+<div class="mc-indent">
+<% unless @users.empty? %>
+<table cellpadding="0" cellspacing="0" width="100%" class="docs">
+  <thead>
+    <tr class="cat_title">
+      <th>Name</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= link_to user, :style => "text-align: center;" do %><h2><%= user.name %></h2><% end %></td>
+        <td><%= user.email %></td>
+        <td>
+          <span>
+            <%= link_to 'Edit', edit_user_path(user), :class => 'edit-link' %>&nbsp;
+            <%= link_to 'Remove', user_path(user), :confirm => 'Are you sure you want to remove this user?', :method => :delete, :class => 'cancel-link' %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<div style="clear:both;"></div>
+
+  <br />
+</div>

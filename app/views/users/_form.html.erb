@@ -1,0 +1,20 @@
+<%= form_for(@user, :html => { :class => 'cmxform', :multipart => true }) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <ol>
+      <li><%= f.label :name %><%= f.text_field :name %></li>
+      <li><%= f.label :email %><%= f.text_field :email %></li>
+    </ol>
+  </fieldset>
+  <p class="submitbutton"><%= f.submit %></p>
+<% end %>

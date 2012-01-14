@@ -1,0 +1,28 @@
+<% content_for :title, @user.name %>
+<h2 class="breadcrumb">
+  <%= link_to "Home", root_path %>&nbsp;/&nbsp;
+  <%= link_to 'Users', users_path %>
+</h2>
+
+<h1 class="main-title">
+  <%= @user.name %>
+  <span>
+    <%= @user.email %>
+    <br />
+    <%= link_to 'Edit', edit_user_path(@user), :class => "edit-link" %>
+    <%= link_to 'Remove', user_path(@user), :confirm => 'Are you sure you want to delete this user?', :method => :delete, :class => 'cancel-link' %>
+  </span>
+</h1>
+
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+
+<div id="mc-indent" class="mc-indent">
+  <h2>Groups</h2>
+  <ul class="bulleted_list">
+    <%# @user.groups.each do |group| %>
+    <li><%#= link_to group.name, group %></li>
+    <%# end %>
+  </ul>
+  <h2>Documents</h2>
+  <div id="doc_holder"><%#= render :partial => 'documents/table', :locals => {:documents => @user.documents} %></div>
+</div>

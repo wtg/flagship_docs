@@ -13,6 +13,7 @@
   <% if flash[:notice] or flash[:error] %>
     <div id="flash_block"<% if flash[:error] %> class="error"<% end %>>
       <div id="flash_block-padding">
+        <% if flash[:alert] %><p><%= flash[:alert] %></p><% end %>
         <% if flash[:notice] %><p><%= flash[:notice] %></p><% end %>
         <% if flash[:error] %><p><%= flash[:error] %></p><% end %>
       </div>
@@ -23,7 +24,7 @@
       <div id="topbar">
         <div id="topbar-padding">
           <%= render :partial => 'layouts/topbar_left' %>
-          <%#= render :partial => 'layouts/topbar_right' %>
+          <%= render :partial => 'layouts/topbar_right' %>
           <div style="clear:both;"></div>
         </div>
       </div>

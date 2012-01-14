@@ -38,3 +38,6 @@ gem 'sunspot_rails'
 
 # Extract the text in the background
 gem 'delayed_job'
+
+# Devise will manage users for us.
+gem 'devise', "~> 2.0.0.rc"

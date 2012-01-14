@@ -26,7 +26,7 @@
   <span>
     <%= @category.description %>
     <br />
-    <%= link_to 'Edit', edit_category_path(@category), :class => 'edit-link' %>&nbsp;
+    <%= link_to 'Edit', edit_category_path(@category), :class => 'edit-link' %>
     <%= link_to 'Remove', category_path(@category), :confirm => 'Are you sure you want to remove this category?', :method => :delete, :class => 'cancel-link' %>
   </span>
 </h1>

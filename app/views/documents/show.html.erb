@@ -25,7 +25,6 @@
   <%= @document.title %>
   <span>
     <%= link_to 'Edit', edit_document_path(@document), :class => 'edit-link' %>
-    &nbsp;
     <%= link_to 'Remove', document_path(@document), :confirm => 'Are you sure you want to remove this document?', :method => :delete, :class => 'cancel-link' %>
   </span>
 </h1>

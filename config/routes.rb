@@ -1,4 +1,7 @@
 Docs::Application.routes.draw do
+  devise_for :users
+  resources :users, :except => [:new, :create]
+
   resources :documents, :except => [:index] do
     collection do
       get :search
