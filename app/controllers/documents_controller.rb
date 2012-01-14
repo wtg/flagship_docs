@@ -3,6 +3,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1.xml
   def show
     @document = Document.find(params[:id])
+    @current_revision = @document.revisions.current.first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,6 +36,10 @@ class DocumentsController < ApplicationController
   # POST /documents.xml
   def create
     @document = Document.new(params[:document])
+    @document.user = current_user
+    @document.revisions.each do |r|
+      r.user = current_user
+    end
 
     respond_to do |format|
       if @document.save

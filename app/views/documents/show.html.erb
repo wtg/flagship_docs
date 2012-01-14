@@ -37,7 +37,7 @@
       <div id="dl-padding">
         <div id="dl_icon">
           <%= link_to download_document_revision_path(@document, 'current') do %>
-            <%= image_tag("icons/icon_#{@document.revisions.current.first.short_type}.png", :alt => "Download File") %>
+            <%= image_tag("icons/icon_#{@current_revision.short_type}.png", :alt => "Download File") %>
           <% end %>
         </div>
 
@@ -46,7 +46,8 @@
             <div id="dl-link-padding">
               <%= link_to "Download File", download_document_revision_path(@document, 'current') %>
               <span class="details">
-                from USER on <%= @document.revisions.current.first.created_at.strftime('%D') %>
+                from <%= @current_revision.user.nil? ? "Unknown" : @current_revision.user.name %>
+                on <%= @current_revision.created_at.strftime('%D') %>
               </span>
               &nbsp;&nbsp;<%= render :partial => 'clippy', :locals => {:document => @document} %>
             </div>
@@ -60,7 +61,7 @@
                     <%= link_to download_document_revision_path(@document, revision) do %>
                       <%= image_tag("icons/icon_#{revision.short_type}.png",  :height => "20", :alt => "Download File") %> Revision <%= i+1 %>
                     <% end %>
-                    <span class="details">from USER on <%= revision.created_at.getlocal.strftime('%D @ %r') %></span>
+                    <span class="details">from <%= revision.user.nil? ? "Unknown" : revision.user.name %> on <%= revision.created_at.getlocal.strftime('%D @ %r') %></span>
                   </div>
                 <% end %>
               <% end %>
@@ -92,9 +93,9 @@
 </div>
 <% unless @document.revisions.empty? %>
 <div id="admin_debug" class="mc-indent">
-    Filename: <%= @document.revisions.current.first.file_name %><br />
-    Size: <%= number_to_human_size(@document.revisions.current.first.file_size) %><br />
+    Filename: <%= @current_revision.file_name %><br />
+    Size: <%= number_to_human_size(@current_revision.file_size) %><br />
     Search Text: <br />
-    <textarea id="debug_data"><%= @document.revisions.current.first.search_text %></textarea>
+    <textarea id="debug_data"><%= @current_revision.search_text %></textarea>
 </div>
 <% end %>

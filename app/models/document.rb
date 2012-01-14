@@ -1,5 +1,6 @@
 class Document < ActiveRecord::Base
   belongs_to :category
+  belongs_to :user
   has_many :revisions, :dependent => :destroy
 
   accepts_nested_attributes_for :revisions
@@ -15,4 +16,5 @@ class Document < ActiveRecord::Base
   def download_count
     revisions.sum(:download_count)
   end
+
 end

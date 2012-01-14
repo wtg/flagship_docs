@@ -1,5 +1,6 @@
 class Revision < ActiveRecord::Base
   belongs_to :document
+  belongs_to :user
 
   # Handles the file attachment stuff
   # git://github.com/bamnet/attachable.git

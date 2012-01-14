@@ -17,6 +17,7 @@ class RevisionsController < ApplicationController
   def create
     @revision = Revision.new(params[:revision])
     @revision.document = @document
+    @revision.user = current_user
 
     respond_to do |format|
       if @revision.save
