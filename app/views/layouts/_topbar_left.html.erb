@@ -2,7 +2,7 @@
   <div id="search">
     <%= form_tag(search_documents_path, :method => 'post') do %>
       <%= search_field_tag 'query', '', :results=>5, :placeholder => "Type here to search docs and categories", :size=>50 %>
-      <%= submit_tag "Search" %>
+      <%#= submit_tag "Search" %>
     <% end %>
   </div>
 </div>
