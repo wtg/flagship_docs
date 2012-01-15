@@ -1,0 +1,25 @@
+<% content_for :title, @group.name %>
+<h2 class="breadcrumb">
+  <%= link_to "Home", root_path %>&nbsp;/&nbsp;
+  <%= link_to 'Groups', groups_path %>
+</h2>
+
+<h1 class="main-title">
+  <%= @group.name %>
+  <span>
+    <%= link_to 'Edit', edit_group_path(@group), :class => "edit-link" %>
+    <%= link_to 'Remove', group_path(@group), :confirm => 'Are you sure you want to delete this group?', :method => :delete, :class => 'cancel-link' %>
+  </span>
+</h1>
+
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+
+<div id="mc-indent" class="mc-indent">
+  <h2>Members</h2>
+  <ul class="bulleted_list">
+    <%# @group.users.each do |user| %>
+    <li><%#= link_to user.name, user %></li>
+    <%# end %>
+  </ul>
+</div>
+

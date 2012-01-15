@@ -1,0 +1,19 @@
+<%= form_for(@group, :html => {:class => 'cmxform'}) do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <fieldset>
+    <ol>
+      <li><%= f.label :name %><%= f.text_field :name %></li>
+    </ol>
+  </fieldset>
+  <p class="submitbutton"><%= f.submit %></p>
+<% end %>
