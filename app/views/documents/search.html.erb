@@ -1,41 +1,50 @@
 <% content_for :title, "#{params[:query]} - Search Results" %>
 <div id="doc_listing_inpage">
-  <h1 class="main-title">Results for <strong><%= params[:query] %></strong></h1>
-  <br />
-  <h2>Matched Documents</h2>
-  <ol>
-    <% @document_search.each_hit_with_result do |hit, document| %>
-      <li class="<%= cycle('even', 'odd') %>">
-        <%= link_to document do %>
-          <div style="float:left; text-align:center; width:80px;">
-            <%= image_tag("icons/icon_#{document.revisions.current.first.short_type}.png", :alt => "", :width => 80) unless document.revisions.current.empty? %>
-          </div>
-          <div style="float:left; padding:8px 10px;">
-            <h1><%=h document.title %></h1>
-            <h2><%=h document.category.name unless document.category.nil? %></h2>
-            <h3><%=raw hit.highlights.first.format { |fragment| content_tag(:em, fragment) } unless hit.highlights.empty? %></h3>
-          </div>
-          <div style="clear:both;"></div>
+  <% if @document_search.nil? && @categories.nil? %>
+    <h1>Uh Oh! Our search index is offline at the moment.</h1>
+  <% else %>
+    <h1 class="main-title">Results for <strong><%= params[:query] %></strong></h1>
+    <br />
+    <% unless @documents_search.nil? %>
+      <h2>Matched Documents</h2>
+      <ol>
+        <% @document_search.each_hit_with_result do |hit, document| %>
+          <li class="<%= cycle('even', 'odd') %>">
+            <%= link_to document do %>
+              <div style="float:left; text-align:center; width:80px;">
+                <%= image_tag("icons/icon_#{document.revisions.current.first.short_type}.png", :alt => "", :width => 80) unless document.revisions.current.empty? %>
+              </div>
+              <div style="float:left; padding:8px 10px;">
+                <h1><%=h document.title %></h1>
+                <h2><%=h document.category.name unless document.category.nil? %></h2>
+                <h3><%=raw hit.highlights.first.format { |fragment| content_tag(:em, fragment) } unless hit.highlights.empty? %></h3>
+              </div>
+              <div style="clear:both;"></div>
+            <% end %>
+          </li>
         <% end %>
-      </li>
+      </ol>
+      <br />
+      <br />
     <% end %>
-  </ol>
-  <br /><br />
-  <h2>Matched Categories</h2>
-  <ol>
-    <% for category in @categories %>
-      <li class="<%= cycle('even', 'odd') %>">
-        <%= link_to category do %>
-          <div style="float:left; text-align:center; width:80px;">
-            <%= image_tag("icons/icon_folder.png", :alt => "", :width => 80) %>
-          </div>
-          <div style="float:left; padding:8px 10px;">
-            <h1><%=h category.name %></h1>
-            <h2><%=truncate(h(category.description), :length => 40) %></h2>
-          </div>
-          <div style="clear:both;"></div>
+    <% unless @categories.nil? %>
+      <h2>Matched Categories</h2>
+      <ol>
+        <% for category in @categories %>
+          <li class="<%= cycle('even', 'odd') %>">
+            <%= link_to category do %>
+              <div style="float:left; text-align:center; width:80px;">
+                <%= image_tag("icons/icon_folder.png", :alt => "", :width => 80) %>
+              </div>
+              <div style="float:left; padding:8px 10px;">
+                <h1><%=h category.name %></h1>
+                <h2><%=truncate(h(category.description), :length => 40) %></h2>
+              </div>
+              <div style="clear:both;"></div>
+            <% end %>
+          </li>
         <% end %>
-      </li>
+      </ol>
     <% end %>
-  </ol>
+  <% end %>
 </div>

@@ -37,7 +37,7 @@ gem 'textractor' #, :git => "git://github.com/bamnet/textractor.git"
 gem 'sunspot_rails'
 
 # Extract the text in the background
-gem 'delayed_job'
+gem 'delayed_job_active_record'
 
 # Devise will manage users for us.
 gem 'devise', "~> 2.0.0.rc"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120114063856) do
+ActiveRecord::Schema.define(:version => 20120115052610) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120114063856) do
     t.string   "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "queue"
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"

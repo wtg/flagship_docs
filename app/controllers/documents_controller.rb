@@ -43,7 +43,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        #@document.revisions.current.first.delay.update_search_text unless @document.revisions.empty?
+        @document.revisions.current.first.delay.update_search_text unless @document.revisions.empty?
         format.html { redirect_to(@document, :notice => 'Document was successfully created.') }
         format.xml  { render :xml => @document, :status => :created, :location => @document }
       else
@@ -60,7 +60,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.update_attributes(params[:document])
-        #@document.revisions.current.first.delay.update_search_text unless @document.revisions.empty?
+        @document.revisions.current.first.delay.update_search_text unless @document.revisions.empty?
         format.html { redirect_to(@document, :notice => 'Document was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -83,15 +83,19 @@ class DocumentsController < ApplicationController
   end
   
   # GET /documents/search
-  def search 
-    @document_search = Document.search do
-      fulltext params[:query], :highlight => true
+  def search
+    begin
+      @document_search = Document.search do
+        fulltext params[:query], :highlight => true
+      end
+
+      @categories = Category.search do
+        fulltext params[:query]
+      end.results
+    rescue
+      @document_search ||= nil
+      @categories ||= nil
     end
-
-    @categories = Category.search do
-      fulltext params[:query]
-    end.results
-
     respond_to do |format|
       format.html # show.html.erb
     end
