@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :documents
   has_many :revisions
+  has_many :memberships, :dependent => :destroy
+  has_many :groups, :through => :memberships
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

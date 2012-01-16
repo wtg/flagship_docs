@@ -15,11 +15,17 @@
 <div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
 
 <div id="mc-indent" class="mc-indent">
-  <h2>Members</h2>
+  <h2>Members <%= link_to "Add", new_group_membership_path(@group), :class => 'link-button' %></h2>
   <ul class="bulleted_list">
-    <%# @group.users.each do |user| %>
-    <li><%#= link_to user.name, user %></li>
-    <%# end %>
+    <% @group.members.each do |user| %>
+    <li><%= link_to user.name, user %></li>
+    <% end %>
+  </ul>
+  <h2>Managers</h2>
+  <ul class="bulleted_list">
+    <% @group.managers.each do |user| %>
+    <li><%= link_to user.name, user %></li>
+    <% end %>
   </ul>
 </div>
 

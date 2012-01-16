@@ -1,0 +1,21 @@
+<%= form_for([@group, @membership], :html => { :class => 'cmxform' }) do |f| %>
+  <% if @membership.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@membership.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @membership.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <ol>
+      <li><%= f.label :user %> <%= f.select :user_id, (User.all - @group.users).map{|u| [u.name, u.id]} %></li>
+    </ol>
+  </fieldset>
+  <p class="submitbutton"><%= f.submit %></p>
+<% end %>
+
+

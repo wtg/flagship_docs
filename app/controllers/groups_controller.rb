@@ -57,6 +57,10 @@ class GroupsController < ApplicationController
   # PUT /groups/1.json
   def update
     @group = Group.find(params[:id])
+    if params[:group][:members]
+      members = params[:group][:members].map {|id| User.find(id) }
+    end
+    params[:group][:members] = members
 
     respond_to do |format|
       if @group.update_attributes(params[:group])

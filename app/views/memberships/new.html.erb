@@ -1,0 +1,6 @@
+<% content_for :title, "New Membership" %>
+<h1 class="main-title">
+  Add User to <%= @group.name %>
+  <span><%= link_to 'Cancel', @group, :class => 'cancel-link' %></span>
+</h1>
+<%= render 'form' %>

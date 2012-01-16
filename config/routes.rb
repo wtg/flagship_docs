@@ -1,5 +1,12 @@
 Docs::Application.routes.draw do
-  resources :groups
+  resources :groups do
+    resources :memberships, :only => [:new, :create, :update, :destroy] do
+      member do
+        get :promote
+        get :demote
+      end
+    end
+  end
 
   devise_for :users
   resources :users, :except => [:new, :create]

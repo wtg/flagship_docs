@@ -1,6 +1,9 @@
-<h1>Editing group</h1>
-
+<% content_for :title, "Editing #{@group.name}" %>
+<h1 class="main-title">
+  Editing Group
+  <span><%= link_to 'Cancel and Return', @category, :class => 'cancel-link' %></span>
+</h1>
+<div class="mc-indent">
+<h2><%= link_to "Add Members", new_group_membership_path(@group), :class => 'link-button' %></h2>
 <%= render 'form' %>
-
-<%= link_to 'Show', @group %> |
-<%= link_to 'Back', groups_path %>
+</div>

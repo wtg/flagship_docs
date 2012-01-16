@@ -13,6 +13,54 @@
  <fieldset>
     <ol>
       <li><%= f.label :name %><%= f.text_field :name %></li>
+      <li>
+        <h2>Members</h2>
+        <table cellpadding="0" cellspacing="0" width="100%" class="docs">
+          <thead>
+            <tr class="cat_title">
+              <th>Name</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @group.memberships.regular_member.each do |member| %>
+              <tr class="<%= cycle('odd', 'even') %>">
+                <td><%= link_to member.user, :style => "text-align: center;" do %><h2><%= member.user.name %></h2><% end %></td>
+                <td>
+                  <span>
+                    <%= link_to 'Promote', promote_group_membership_path(@group, member), :class => 'edit-link' %>&nbsp;
+                    <%= link_to 'Remove', group_membership_path(@group, member), :confirm => 'Are you sure you want to remove this user?', :method => :delete, :class => 'cancel-link' %>
+                  </span>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <h2>Managers</h2>
+        <table cellpadding="0" cellspacing="0" width="100%" class="docs">
+          <thead>
+            <tr class="cat_title">
+              <th>Name</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @group.memberships.manager.each do |member| %>
+              <tr class="<%= cycle('odd', 'even') %>">
+                <td><%= link_to member.user, :style => "text-align: center;" do %><h2><%= member.user.name %></h2><% end %></td>
+                <td>
+                  <span>
+                    <%= link_to 'Demote', demote_group_membership_path(@group, member), :class => 'edit-link' %>&nbsp;
+                    <%= link_to 'Remove', group_membership_path(@group, member), :confirm => 'Are you sure you want to remove this user?', :method => :delete, :class => 'cancel-link' %>
+                  </span>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </li>
     </ol>
   </fieldset>
   <p class="submitbutton"><%= f.submit %></p>
