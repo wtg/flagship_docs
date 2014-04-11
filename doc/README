@@ -1,0 +1,35 @@
+Installation Guide
+
+1. Go to where you want to install Flagship Docs
+cd /var/rails/
+
+2. Run Clone the Repository
+git clone git://github.com/wtg/flagship_docs.git
+
+3. Run git submodule init and git submodule update to pull in extra modules referenced by git
+cd flagship_docs/
+git submodule init
+git submodule update
+
+4. Run rake gems:install (prefixing it with sudo if you want) to install the necessary gems.
+rake gems:install
+
+4. Copy database.yml.sample to database.yml and configure it with your settings.  This would 
+be the step to create your mysql database and user if needed.
+cp config/database.yml.sample config/database.yml
+
+5. Run rake db:migrate to setup the database
+rake db:migrate
+
+6. Start the ferret server to index the documents with the following command, update the path
+to reflect your own application.
+./script/ferret_server start --root=/var/rails/flagship_docs/
+
+7. Document indexing uses the following tools, you'll want to install them somehow, a tool like
+apt-get might be your friend.
+ - catdoc / catppt
+ - pdftotext
+ - xls2cvs
+ - jhead
+
+8. Figure out authentication (read doc/AUTH)

@@ -1,0 +1,13 @@
+<h2 class="breadcrumb">
+  <%= link_to "Home", root_path %>
+</h2>
+<h1 class="main-title">Groups</h1>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+<br />
+<div id="mc-indent" class="mc-indent">
+	<% if admin_logged_in? %>
+		<%= link_to 'New Group', new_group_path, :class => "link-button" %>
+		<br />
+	<% end %>
+	<%= render :partial => @groups %>
+</div>

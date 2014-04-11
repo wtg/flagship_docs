@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+cool_kids:
+  name: Cool Kids
+  leader: groupie
+  users: groupie, patron
+
+patroons:
+  name: Patroons
+  leader: patron
+  users: patron

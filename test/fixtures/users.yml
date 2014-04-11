@@ -1,0 +1,18 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+admin:
+  username: admin
+  full_name: Admin User
+  is_admin: true  
+
+regular:
+  username: regular
+  full_name: Regular User
+
+groupie:
+  username: groupie
+  full_name: Group Member
+
+patron:
+  username: patron
+  full_name: Different Group Member

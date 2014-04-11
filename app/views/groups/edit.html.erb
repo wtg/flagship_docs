@@ -1,0 +1,19 @@
+<h2 class="breadcrumb">
+  <%= link_to "Home", root_path %> / <%= link_to 'Groups', groups_path %>
+</h2>
+<h1 class="main-title">
+  <%=h @group.name %>
+</h1>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+<div id="mc-indent" class="mc-indent">
+<% form_for(@group) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => 'form', :locals => {:f => f }%>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @group %> |
+<%= link_to 'Back', groups_path %>
+</div>

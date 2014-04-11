@@ -1,0 +1,20 @@
+<% form_for(document, :html => { :class => 'cmxform', :multipart => true }) do |f| %>
+	<%= f.error_messages %>
+	<fieldset>
+		<ol>
+			<li><%= f.label :title %> <%= f.text_field :title %></li>
+			<li><%= f.label :description %> <%= f.text_area :description %></li>
+			<li><%= f.label :category %> <%= aac_select(Category.roots, {:id =>'document_category_id', :name => 'document[category_id]', :selected => @document.category_id}) %></li>
+			<li><%= f.label :readable, "Visible to Everyone" %> <%= f.check_box :readable %><span>Checking this box will make this document visible to everyone.</span></li>
+			<li><%= f.label :writable, "Everyone Can Edit" %> <%= f.check_box :writable %><span>Checking this box will make it so that everyone can edit this document.</span></li>
+		
+		<% if controller.action_name == "new" %>
+			<hr />
+		  	<% f.fields_for :revisions do |revision| %>
+					<%= render :partial => 'revisions/form', :locals => {:form => revision } %>
+			<% end %>
+		<% end %>
+		</ol>
+	</fieldset>
+	<p class="submitbutton"><%= f.submit button_text %></p>
+<% end %>

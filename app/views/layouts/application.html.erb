@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://a9.com/-/spec/opensearch/1.1/">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
+  <title><%= yield(:title) || controller.controller_name.titleize %> - Flagship Docs</title>
+  <%= yield(:meta_tags) %>
+  <%= stylesheet_link_tag "base", :media => 'all' %>
+  <%= javascript_include_tag "jquery-1.4.3.min.js" %>
+  <%= javascript_include_tag "jquery.tipsy.js" %>
+  <%= javascript_include_tag "new_revision.js" %>
+  <%= javascript_include_tag "application.js" %>
+  <%= javascript_include_tag "jquery.ajaxmanager.js" %>
+  <link rel="search" type="application/opensearchdescription+xml" href="<%= opensearch_documents_url(:format => :xml) %>" title="Flagship Docs Search" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <script type="text/javascript" language="javascript">
+    var searchURL = '<%= search_documents_path(:format=>'js') %>';
+  </script>
+  <%= yield(:background_img) %>
+  <%= yield(:head) %>
+</head>
+<body>
+	<% cache('header') do %>
+		<%= render :partial => 'layouts/header' %>
+	<% end %>
+	<% if flash[:notice] or flash[:error] %>
+		<div id="flash_block"<% if flash[:error] %> class="error"<% end %>>
+			<div id="flash_block-padding">
+				<% if flash[:notice] %><p><%= flash[:notice] %></p><% end %>
+				<% if flash[:error] %><p><%= flash[:error] %></p><% end %>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				setTimeout(function(){
+					$("#flash_block").fadeOut("slow", function () {
+						$("#flash_block").remove();
+					});
+				}, 7000);
+			});
+		</script>
+	<% end %>
+	<div id="wrap">
+		<div id="header">
+			<div id="topbar">
+				<div id="topbar-padding">
+					<div id="topbar-left">
+						<% cache('search_pane') do %>
+							<%= render :partial => "documents/search_pane" %>
+						<% end %>
+					</div>
+					<div id="topbar-right">
+						<h1>
+							<% if not logged_in? %>
+								<%= link_to 'Log in to add/change docs', new_session_path %>
+							<% else %>
+								<%= link_to current_user.full_name, current_user %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<% if admin_logged_in? %>
+									<%= link_to 'Users', users_path %>&nbsp;/&nbsp;
+								<% end %>
+								<% if admin_logged_in? || current_user.in_one_group? %>
+									<%= link_to 'Groups', groups_path %> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<% end %>
+								<%= link_to 'Logout', session_path, :method => :delete %>
+							<% end %>
+						</h1>
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+			</div>
+
+			<h1 class="expand"><a id="cat_tree_expand" style="display:none;" href="#"><span id="label_hide" style="display:none;">Hide</span><span id="label_show">Show</span> Categories</a></h1>
+			<% if !logged_in? %>
+				<% cache('cat_tree_0', :expires_in => 1.hour) do %>
+					<%= render :partial=>'categories/cat_tree' %>
+				<% end %>
+			<% else %>
+				<% cache("cat_tree_#{current_user.id}") do %>
+					<%= render :partial=>'categories/cat_tree' %>
+				<% end %>
+			<% end %>
+		</div>
+		
+		<div id="wrap-padding">
+			<%= yield %>
+		</div>
+	</div>
+	<% cache('footer') do %>
+		<%= render :partial => 'layouts/footer' %>
+	<% end %>
+</body>
+
+</html>

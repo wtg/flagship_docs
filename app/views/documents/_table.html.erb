@@ -1,0 +1,46 @@
+<% if (defined? is_ajax) && is_ajax %>
+  <%= link_to 'View in Grid', category_path(:type => 'grid', :anchor => "doclist"), :class => "link-button update_holder", :style => "font-size:0.6em;" %>
+  <br /><br />
+<% end %>
+
+<% if !documents.empty? %>
+<table cellpadding="0" cellspacing="0" width="100%" class="docs">
+ <thead>
+	 <tr class="cat_title">
+		<th style="text-align:right;">Title</th>
+		<th>Link</th>
+		<th style="text-align:left;">Description</th>
+		<th>Downloads</th>
+		<th>Updated</th>
+		<th></th>
+	 </tr>
+ </thead>
+ <tbody>
+ <% documents.each do |document| %>
+ <tr class="<%= cycle('odd', 'even') %>">
+  <td><% link_to document do %><h2><%=h document.title %></h2><% end %></td>
+  <td class="doc_img">
+   <% unless document.current_revision.blank? %>
+    <% link_to download_document_revision_path(document, 'current') do %>
+     <%= image_tag("icons/icon_#{document.current_revision.type}_40.png", {:alt => "Download File", :width => "40px", :height => "40px"}) %>
+    <% end %>
+   <% end %>
+  </td>
+  <td><p><%=h document.description %></p></td>
+  <td><%=h document.downloaded %></td>
+  <td><%=h document.updated_at.strftime('%D') unless document.updated_at.nil? %></td>
+  <td>
+   <% if logged_in? && (admin_logged_in? || document.allowed_to_save) %>
+    <span>
+     <%= link_to 'Edit', edit_document_path(document), :class => 'edit-link' %>
+     &nbsp;
+     <%= link_to 'Remove', document_path(document), :confirm => 'Are you sure you want to remove this document?', :method => :delete, :class => 'cancel-link' %>
+    </span>
+   <% end %>
+  </td>
+ </tr>
+ <% end %>
+ </tbody>
+</table>
+<% end %>
+<div style="clear:both;"></div>

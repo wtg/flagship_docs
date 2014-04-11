@@ -1,0 +1,24 @@
+<h1 class="main-title">Home Category</h1>
+<div class="hr_dl flush"><%= image_tag("bl.png", :alt => "") %></div>
+<br />
+<div id="mc-indent" class="mc-indent">
+	<% if admin_logged_in? %>
+	  <%= link_to 'New Category', new_category_path, :class => "link-button" %>
+	  <br /><br />
+	<% end %>
+	<ul class="iconlist">
+		<% @categories.each do |category| %>
+	  	<li>
+	  		<% link_to category do %>
+	  			<div class="iconlist_padding">
+        		<div class="ins">
+          		<div class="type-folder"><%= image_tag("icons/icon_folder.png", :alt => "Icon_folder") %></div>
+        		</div>
+        		<h2><%=h category.name %></h2>
+      		</div>
+	  		<% end %>
+	  	</li>
+		<% end %>
+	</ul>
+	<div style="clear:both;"></div>
+</div>

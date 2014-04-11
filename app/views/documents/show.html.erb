@@ -1,0 +1,142 @@
+<% content_for :title, @document.title %>
+<% content_for :meta_tags, meta_tags(@document.title, @document.description, "icons/icon_#{@document.current_revision.type}.png") %>
+<% my_ancestors = @document.category.ancestors unless @document.category.nil? %>
+
+<h2 class="breadcrumb">
+	<% if !@document.category.nil? %>
+		<%= link_to "Home", root_path %>&nbsp;/&nbsp;<% my_ancestors.reverse.each do |ancestor_category| %><%= link_to ancestor_category.name, ancestor_category %>&nbsp;/&nbsp;<% end %><%= link_to @document.category.name, @document.category %>
+	<% end %>
+</h2>
+
+<h1 class="main-title">
+	<div class="info_box">
+		<p>
+			<% if @document.readable %>
+				<%= image_tag("icons/eye_icon.png", :alt => "Public", :title => "This document is visible to everyone") %>
+			<% else %>
+				<%= image_tag("icons/noeye_icon.png", :alt => "Private", :title => "This document is invisible to others") %>
+			<% end %>
+			<% if @document.writable %>
+				<%= image_tag("icons/write_icon.png", :alt => "Editable", :title => "Others can edit this document") %>
+			<% else %>
+				<%= image_tag("icons/nowrite_icon.png", :alt => "Not Editable", :title => "Only members of #{@document.group.name unless @document.group.nil?} can edit this document") %>
+			<% end %>
+			&nbsp;&nbsp;&nbsp;<%=h @document.downloaded %> downloads
+		</p>
+	</div>
+
+	<%=h @document.title %>
+	<% if logged_in? && (admin_logged_in? || @document.allowed_to_save) %>
+	  <span>
+	  	<%= link_to 'Edit', edit_document_path(@document), :class => 'edit-link' %>
+	  	&nbsp;
+	  	<%= link_to 'Remove', document_path(@document), :confirm => 'Are you sure you want to remove this document?', :method => :delete, :class => 'cancel-link' %>
+	  </span>
+	<% end %>
+</h1>
+
+<% allowed_types = ['pdf', 'doc', 'ppt'] %>
+<% if allowed_types.include?(@document.current_revision.type) && @document.readable %>
+<div class="flush">
+	<div id="qv">
+		<div id="qv-padding">
+			<% content_for :head do %>
+  			<%= stylesheet_link_tag "jquery.fancybox-1.3.1", :media => 'all' %>
+				<%= javascript_include_tag "jquery.easing-1.3.pack.js" %>
+				<%= javascript_include_tag "jquery.fancybox-1.3.1.pack.js" %>
+				<script type="text/javascript"> 
+					$(document).ready(function() {
+							$("a#docview").fancybox({
+								'titleShow'		: false,
+								'transitionIn'	: 'none',
+								'transitionOut'	: 'none'
+							});
+					
+							$("#docview").fancybox({
+								'width'				: '80%',
+								'height'			: '95%',
+								'autoScale'			: false,
+								'transitionIn'		: 'none',
+								'transitionOut'		: 'none',
+								'type'				: 'iframe'
+							});	
+							$("#docview").click(function(){
+							  //Code here will be fired when a live preview is opened
+							});
+					});
+				</script>
+			<% end %>
+			<h1>
+				<% link_to "http://docs.google.com/viewer?embedded=true&url=#{ download_document_revision_path(@document, 'current', :only_path => false) }", :id => 'docview' do %>
+					<%= image_tag("layout/qv_icon.png", :alt => "") %> View Live Preview
+				<% end %>
+			</h1>
+		</div>
+	</div>
+</div>
+<% end %>
+
+<div class="flush">
+	<div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
+	<div id="dl">
+		<div id="dl-padding">
+			<div id="dl_icon">
+				<% unless @document.current_revision.blank? %>
+					<% link_to download_document_revision_path(@document, 'current') do %>
+						<%= image_tag("icons/icon_#{@document.current_revision.type}.png", :alt => "Download File") %>
+					<% end %>
+				<% end %>
+			</div>
+			<% cache(:action_suffix => 'revisions') do %>
+			<div style="padding-top:14px;float:right;width:75%;">
+				<div id="dl-link"><div id="dl-link-padding">
+					<%= link_to "Download File", download_document_revision_path(@document, 'current') unless @document.current_revision.blank? %>
+					<span class="details">from <%= @document.current_revision.user.full_name unless @document.current_revision.user.blank? %> on <%= @document.current_revision.created_at.strftime('%D') unless @document.current_revision.blank?%></span>
+					&nbsp;&nbsp;<span id="clippy"></span>
+					<% content_for :head do %>
+					    <%= javascript_include_tag "swfobject.js" %>
+					<% end %>
+					<script type="text/javascript">
+					  var flashvars = { text: "<%= download_document_revision_path(@document, 'current', :only_path => false) %>" };
+					  var params = { bgcolor: "#EDEDED", scale: "noscale", quality: "high" };
+					  swfobject.embedSWF("<%= compute_public_path('clippy.swf','flash') %>", "clippy", "110", "14", "9.0.0", '', flashvars, params);
+					</script>
+				</div></div>
+				<div id="dl-revs">
+					<% if @document.revisions.size > 1 %>
+						<h3>Past Revisions:</h3>
+						<% @document.revisions.each do |revision| %>
+	    						<% if revision != @document.current_revision %>
+	    							<div class="dl-rev">
+	    								<%= link_to "Revision #{ revision.position }", download_document_revision_path(@document, revision) %>
+	    								<span class="details">from <%= revision.user.full_name %> on <%= revision.created_at.strftime('%D') %></span>
+	    							</div>
+	    						<% end %>
+	    					<% end %>
+    					<% end %>
+			<% end %>
+    			<% if logged_in? && @document.allowed_to_save %>
+    			  <div id="seemore-link"><%= link_to "New Revision", new_document_revision_path(@document), :id => 'revision-link' %>
+						<div id="new-revision" style="display:none">
+								<% form_for([@document, @revision], :html => { :multipart => true }) do |f| %>
+  									<%= f.error_messages %>
+									<%= f.label :upload %> <%= f.file_field :upload %>
+    									<%= f.submit 'Upload' %>
+								<% end %>
+						</div>
+			  </div>
+    			<% end %>
+			</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+	<div class="hr_dl2"><%= image_tag("bl.png", :alt => "") %></div>
+</div>
+<br /><br />
+<div id="mc-indent" class="mc-indent">
+	<% if @document.description and @document.description != "" %>
+		<%= @document.description %>
+		<br /><br />
+	<% end %>
+</div>

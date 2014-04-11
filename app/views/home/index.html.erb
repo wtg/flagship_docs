@@ -1,0 +1,63 @@
+<% content_for :meta_tags, meta_tags("Flagship Docs", "", "icons/fs_logo.png", auto_discovery_link_tag(:rss, {:format => :rss})) %>
+<div class="flush" id="fpblock">
+	<div class="hr_dl"><%= image_tag("bl.png", :alt => "") %></div>
+	<div id="dl" class="fp">
+		<div id="fp_ex"><%= link_to image_tag("icons/fp_ex.png", :alt => "x"), "#" %></div>
+		<div id="dl-padding">
+			<div style="float:left; width:630px;">
+				<%= render :partial => "home/fpblock" %>
+			</div>
+			<div style="float:right; width:200px;"><%= image_tag("icons/fs_logo.png", :alt => "") %></div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+	<div class="hr_dl2"><%= image_tag("bl.png", :alt => "") %></div>
+	<br />
+</div>
+
+<% content_for :head do %>
+	<script type="text/javascript"> 
+			$(document).ready(function() {
+					$("#fp_ex a").click(function() {
+							$("#fpblock").hide();
+							$(this).blur();
+					});			
+			});
+	</script>
+<% end %>
+
+<div id="mc-indent" class="mc-indent">
+	<% @featured_categories.each do |category| %>
+		<h2>Featured: <%= link_to category.name, category %></h2>
+		<% if !category.documents.empty? %>
+			<% docs = category.documents.find(:all, :order => "updated_at DESC", :limit => 3, :conditions => {:readable => true} ) %>
+			  <%= render :partial=>'documents/table', :locals => {:documents => docs} %>
+			<% if category.documents.size > 3 %>
+			<br />
+			<p style="text-align:right;"><%= link_to "View More...", category %></p>
+			<% end %>
+		<% end %>
+		<div style="clear:both;"></div>
+	<% end %>
+	<h1>Other Categories</h1>
+	<br />
+	<% if admin_logged_in? %>
+	  <%= link_to 'New Category', new_category_path, :class => "link-button" %>
+	  <br /><br />
+	<% end %>
+	<ul class="iconlist">
+		<% @categories.each do |category| %>
+	  	<li>
+	  		<% link_to category do %>
+	  			<div class="iconlist_padding">
+        		<div class="ins">
+          		<div class="type-folder"><%= image_tag("icons/icon_folder.png", :alt => "Icon_folder") %></div>
+        		</div>
+        		<h2><%=h category.name %></h2>
+      		</div>
+	  		<% end %>
+	  	</li>
+		<% end %>
+	</ul>
+	<div style="clear:both;"></div>
+</div>
