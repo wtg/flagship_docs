@@ -1,2 +1,0 @@
-<h1><%= link_to group.name,group %><%= link_to 'Edit', edit_group_path(group), :class => "link-button" if group.allowed_to_save%></h1>
-<h3>Members: <% group.users.each do |u| %><%= link_to u.full_name, u %><% if not group.users.last == u %>, <% end %><% end %></h3>
