@@ -7,8 +7,11 @@
 # log_level: log level for the server's logger
 production:
   enable_star: 1
-  address: localhost
+  #address: localhost
   port: 9001
+  #bin_path: /usr/bin
+  searchd_binary_name: /usr/bin/searchd
+  indexer_binary_name: /usr/bin/indexer
 # aaf won't try to use the DRb server in environments that are not 
 # configured here.
 development:
@@ -18,6 +21,7 @@ development:
   port: 1234
   chunk_size: 80
   limit: 80
+  bin_path: /usr/bin
 #test:
 #  host: localhost
 #  port: 9009
