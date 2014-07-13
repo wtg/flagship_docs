@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <ol class="breadcrumb">
+    <li><%= link_to "Home", categories_path %></li>
+    <li class="active">New Category</li>
+  </ol>
+
+  <div class="panel-body">
+    <%= form_for @category do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <br />
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+      <br />
+      <%= f.label :private %>
+      <%= f.check_box :private %>
+      <br />
+      <%= f.label :is_featured %>
+      <%= f.check_box :is_featured %>
+      <br />
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

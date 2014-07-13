@@ -15,10 +15,11 @@
  *= require_self
  */
 
-$btn-default-bg: #CC0000;
+// $btn-default-bg: #CC0000;
+$btn-default-bg: #708EA4;
 $btn-default-color: #FFFFFF;
 
-$input-border-focus: #00B200;
+$input-border-focus: #CC0000;
 
 @import "bootstrap";
 @import "bootstrap/theme";

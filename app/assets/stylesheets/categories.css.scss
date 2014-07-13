@@ -27,6 +27,12 @@
   float: left;
   .categories_list {
     margin-left: 10px;
+    a { 
+      color: black;
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -57,5 +63,17 @@
     .upload_button_text {
       padding: 5px;
     }
+  }
+}
+
+.new_category_btn {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  .new_category_text {
+    padding: 5px 5px 5px 5px;
+    //background-color: #D1D1E0;
+    background-color: #708EA4;
+    color: #FFFFFF;
+    border-radius: 2px;
   }
 }
