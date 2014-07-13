@@ -1,0 +1,46 @@
+<div class="categories_nav">
+
+  <!-- Document upload button & modal -->
+  <%= render partial: "upload" %>
+
+  <!-- Search field -->
+  <div class="search_categories">
+    <%= text_field_tag :article_search, 
+          nil, :class => "form-control",
+          placeholder: "Search docs and categories ..." %>
+  </div>
+  <br />
+
+  <div class="categories_list">
+    <!-- Title -->
+    <% if @category %>
+      <h4> <%= "#{@category.name}" %> </h4>
+    <% else %>
+      <h4> Browse categories </h4>
+    <% end %>
+
+    <!-- Category list -->
+    <ul class="nav nav-stacked">
+      <% categories.each do |cat| %>
+        <li>
+          <%= link_to cat.name, cat %>
+        </li>
+      <% end %>
+    </ul>
+
+    <!-- Previous category navigation -->
+    <% if !@category.nil? and @category.parent %>
+      <%= link_to "<< prev", @category.parent %>
+    <% elsif !@category.nil? %>
+      <%= link_to "<< prev", categories_path %>
+    <% end %>
+
+    <!-- New category button -->
+    <% if !current_user.nil? and current_user.is_admin? %>
+      <hr />
+      <div class="new_category_btn">
+        <%= link_to "New Category", new_category_path, :class => "new_category_text" %>
+    </div>
+  <% end %>
+  </div>
+</div>

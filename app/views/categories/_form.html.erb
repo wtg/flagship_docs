@@ -1,0 +1,16 @@
+<%= form_for :document, url: documents_path, method: :post do |f| %>
+  <div class="modal-body"> 
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <br />
+
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+    <br />
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <%= f.submit "Submit Document", :class => "btn btn-primary" %>
+  </div>
+<% end %>

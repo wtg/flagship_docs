@@ -1,0 +1,7 @@
+<div class="categories_grid">
+  <% if @documents %>
+    <% @documents.each do |doc| %>
+      <%= doc.title %><br />
+    <% end %>
+  <% end %>
+</div>

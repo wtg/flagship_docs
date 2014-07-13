@@ -1,0 +1,23 @@
+<!-- Document upload button -->
+<div class="upload_button_container">
+  <a class="upload_button" href="" data-toggle="modal" data-target="#myModal">
+    <span class="upload_button_text">
+      Upload
+    </span>
+    <i class="fa fa-file-o fa-lg"></i>
+  </a>
+  <hr />
+</div>
+
+<!-- Document upload modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Document Upload</h4>
+      </div>
+      <%= render partial: "form" %>
+    </div>
+  </div>
+</div>

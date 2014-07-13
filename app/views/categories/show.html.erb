@@ -1,3 +1,2 @@
-<%= @category.name %> 
-<br />
-<%= @category.description %>
+<%= render partial: "categories_nav", locals: {parent: @category, categories: @subcategories} %>
+<%= render partial: "documents" %>

@@ -12,6 +12,9 @@
       <%= f.label :description %>
       <%= f.text_field :description %>
       <br />
+      <%= f.label :parent_id %>
+      <%= f.select :parent_id, @categories, {include_blank: true} %>
+      <br />
       <%= f.label :private %>
       <%= f.check_box :private %>
       <br />
