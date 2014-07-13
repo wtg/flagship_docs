@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+  <ol class="breadcrumb">
+    <li><%= link_to "Home", categories_path %></li>
+    <li class="active">Users Index</li>
+  </ol>
+
+  <div class="body">
+    <% @users.each do |user| %>
+      <%= user.name %>
+    <% end %> 
+  </div>
+</div>

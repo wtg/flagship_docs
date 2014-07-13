@@ -28,4 +28,7 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  get '/auth/:provider/callback', to: 'sessions#new'
+  get '/logout', to: 'sessions#destroy'
+
 end

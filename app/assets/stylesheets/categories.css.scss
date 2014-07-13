@@ -1,3 +1,61 @@
 // Place all the styles related to the categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.page {
+  margin-left: 10px;
+}
+
+.banner {
+  padding-right: 100px;
+}
+
+.unstyled_link {
+  a {
+    text-decoration: none;
+    color: black;
+    &:hover {
+      text-decoration: none;
+      color: black;
+    }
+  }
+}
+
+.categories_nav {
+  width: 300px;
+  padding-right: 20px;
+  float: left;
+  .categories_list {
+    margin-left: 10px;
+  }
+}
+
+.documents_grid {
+  width: 800px;
+  float: right;
+}
+
+.upload_button_container{
+
+  .upload_button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #708EA4;
+    border-radius: 2px;
+    box-shadow: 2px 2px 1px #0A0A0A;
+    text-align: center;
+    width: 100px;
+    height: 35px;
+    line-height: 35px;
+    color: white;
+    &:hover {
+      background-color: #29516D;
+      text-decoration: none;
+      color: white;
+    }
+    .upload_button_text {
+      padding: 5px;
+    }
+  }
+}

@@ -1,8 +1,50 @@
 class Category < ActiveRecord::Base
-  include ActsAsCategory
+  # Based on contributions from @bamnet on the 3.1 branch
 
-  acts_as_category :order_by => 'name', :hidden => 'private'
+  # Build a heirarchy of categories
+  belongs_to :parent, class_name: 'Category'
+  has_many :children, class_name: 'Category', foreign_key: 'parent_id'
 
-  validates_presence_of :name, :group_id, :user_id
+  # Find all categories serving as a root
+  scope :roots, -> { where(parent_id: nil) }
+
+  # Is this category a root?
+  def is_root?
+    parent_id.nil?
+  end
+
+  # Collect a list of parent categories 
+  # Each category the monkey stops as he climbs up the tree
+  # Compliments of DHH http://github.com/rails/acts_as_tree
+  def ancestors
+    node, nodes = self, []
+    nodes << node = node.parent while node.parent
+    nodes
+  end
+
+  # Collect a list of children categories
+  # Each category the monkey could stop by as he climbs down a tree
+  # Compliments of http://github.com/funkensturm/acts_as_category
+  def descendants 
+    node, nodes = self, []
+    node.children.each { |child|
+      # Check for circular dependenciess
+      if !nodes.include?(child)
+        nodes += [child]
+        nodes += child.descendants
+      end
+    } unless node.children.empty?
+    nodes
+  end
+
+  # Figure out the tree's height
+  def depth 
+    ancestors.count
+  end
+
+  # The group of category who share a common parent
+  def self_and_siblings
+    parent ? parent.children : Category.roots
+  end
 
 end
