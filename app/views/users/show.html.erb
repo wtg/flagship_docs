@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <ol class="breadcrumb">
+    <li><%= link_to "Home", categories_path %></li>
+    <li class="active"><%= @user.username.capitalize %></li>
+  </ol>
+
+  <div class="panel-body">
+    <h3> 
+      <%= @user.username.capitalize %>
+      <% if @user.is_admin? %>
+         - Flagship Docs Admin 
+      <% end %>
+    </h3>
+    <hr />
+    <h4> Groups </h4>
+      <%= @user.groups.to_sentence(:words_connector => ',') %>
+    <br />
+    <h4> Documents Uploaded </h4>
+  </div>
+
+</div>

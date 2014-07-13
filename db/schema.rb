@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712225852) do
+ActiveRecord::Schema.define(version: 20140713010937) do
 
   create_table "categories", force: true do |t|
     t.datetime "created_at"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140712225852) do
   create_table "groups", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "memberships", force: true do |t|
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140712225852) do
     t.datetime "updated_at"
     t.integer  "group_id"
     t.integer  "user_id"
+    t.integer  "level"
   end
 
   create_table "revisions", force: true do |t|

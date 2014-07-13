@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <ol class="breadcrumb">
+    <li><%= link_to "Home", categories_path %></li>
+    <li><%= link_to "Groups", groups_path %></li>
+    <li class="active">New Group</li>
+  </ol>
+
+  <div class="panel-body">
+    <h3> New group </h3>
+    <hr />
+    <%= form_for @group do |f| %>
+      <div class="col-md-4">
+        <div class="row">
+          <%= f.label :name %>
+          <%= f.text_field :name, :class => "form-control" %>
+        </div>
+      </div>
+      <br /><br /><br /><hr />
+      <%= f.submit "Create", :class => "btn btn-primary btn-xs" %>
+    <% end %>
+  </div>  
+</div>

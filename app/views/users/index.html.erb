@@ -4,9 +4,25 @@
     <li class="active">Users Index</li>
   </ol>
 
-  <div class="body">
-    <% @users.each do |user| %>
-      <%= user.name %>
-    <% end %> 
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <th> Username </th>
+        <th> Full Name </th>
+        <th> Admin Status </th> 
+        <th> Actions </th>
+      </tr>
+      <% @users.each do |user| %>
+      <tr>
+        <td> <%= link_to user.username, user %> </td>
+        <td> <%= user.full_name %> </td>
+        <td> <%= user.is_admin %> </td>
+        <td> 
+          <%= link_to "Make Admin", "" %>
+          |
+          <%= link_to "Delete", "" %>
+        </td>
+      </tr>
+      <% end %> 
   </div>
 </div>

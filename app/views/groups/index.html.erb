@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <ol class="breadcrumb">
+    <li><%= link_to "Home", categories_path %></li>
+    <li class="active">Groups Index</li>
+    <div class="pull-right">
+      <%= link_to "New Group", new_group_path, :class => "btn btn-primary btn-xs" %>
+    </div>
+  </ol>
+
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <th> Group Name </th>
+        <th> Leaders </th>
+        <th> Members </th>
+        <th> Actions </th>
+      </tr>
+      <% @groups.each do |group| %>
+        <tr>
+          <td> <%= group.name %> </td>
+          <td> <%= group.leaders %> </td>
+          <td> <%= group.members %> </td>
+          <td> 
+            <%= link_to "Edit", "" %>
+            <%= link_to "Delete", "" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
