@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     cas_hash = request.env["omniauth.auth"]
 
     if User.find_by_username(cas_hash[:uid]).nil?
-      user = User.new(username: cas_hash[:uid], is_admin: 0, full_name: cas_hash[:uid])
+      user = User.new(username: cas_hash[:uid], email: cas_hash[:uid] + "@rpi.edu", is_admin: 0, full_name: cas_hash[:uid])
       user.save
       session[:user_id] = user.id
       redirect_to "/"

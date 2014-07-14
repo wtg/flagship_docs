@@ -1,4 +1,4 @@
-<%= form_for :document, url: documents_path, method: :post do |f| %>
+<%= form_for :document, html: { multipart: true }, url: documents_path, method: :post do |f| %>
   <div class="modal-body"> 
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -7,6 +7,28 @@
     <%= f.label :description %>
     <%= f.text_field :description %>
     <br />
+
+    <%= f.label "Visible to Everyone" %>
+    <%= f.check_box :is_private %>
+    <br />
+    <span> Checking this box will make this document visible to everyone.</span>
+    <br />
+
+    <%= f.label "Everyone Can Edit" %>
+    <%= f.check_box :is_writable %> 
+    <br />
+    <span> Checking this box will make it so that everone can edit this document.</span>
+    <br />
+
+    <hr />
+    <%= f.fields_for :revision do |rev| %>
+      <%= rev.file_field :file %>
+    <% end %>
+
+    <%= f.hidden_field :category_id, :value => params[:id] %>
+    <% if !current_user.nil? %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+    <% end %>
   </div>
 
   <div class="modal-footer">

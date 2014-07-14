@@ -15,8 +15,11 @@
       <%= f.label :parent_id %>
       <%= f.select :parent_id, @categories, {include_blank: true} %>
       <br />
-      <%= f.label :private %>
-      <%= f.check_box :private %>
+      <%= f.label :is_private %>
+      <%= f.check_box :is_private %>
+      <br />
+      <%= f.label :is_writable %>
+      <%= f.check_box :is_writable %>
       <br />
       <%= f.label :is_featured %>
       <%= f.check_box :is_featured %>

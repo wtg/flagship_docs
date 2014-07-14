@@ -22,7 +22,6 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    @category.user_id = current_user.id
     if @category.save
       redirect_to @category
     else
@@ -33,7 +32,7 @@ class CategoriesController < ApplicationController
   private
     def category_params
       params.require(:category).permit(:name, :description, 
-        :group_id, :parent_id, :is_featured, :private)
+        :group_id, :parent_id, :is_featured, :is_private, :is_writable)
     end 
 
 end

@@ -11,6 +11,13 @@
   </div>
   <br />
 
+  <!-- Previous category navigation -->
+  <% if !@category.nil? and @category.parent %>
+    <%= link_to "<< prev", @category.parent %>
+  <% elsif !@category.nil? %>
+    <%= link_to "<< prev", categories_path %>
+  <% end %>
+
   <div class="categories_list">
     <!-- Title -->
     <% if @category %>
@@ -28,19 +35,13 @@
       <% end %>
     </ul>
 
-    <!-- Previous category navigation -->
-    <% if !@category.nil? and @category.parent %>
-      <%= link_to "<< prev", @category.parent %>
-    <% elsif !@category.nil? %>
-      <%= link_to "<< prev", categories_path %>
-    <% end %>
-
-    <!-- New category button -->
+    <!-- New category button and Edit categories button -->
     <% if !current_user.nil? and current_user.is_admin? %>
       <hr />
-      <div class="new_category_btn">
-        <%= link_to "New Category", new_category_path, :class => "new_category_text" %>
-    </div>
-  <% end %>
+      <div class="category_btn">
+        <%= link_to "New Category", new_category_path, :class => "category_text" %>
+        <%= link_to "Edit Categories", "", :class => "category_text" %>
+      </div>
+    <% end %>
   </div>
 </div>
