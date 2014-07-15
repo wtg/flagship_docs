@@ -1,0 +1,10 @@
+<div class="col-sm-2">
+  <div class= "unstyled_link">
+    <div class="media">
+      <%= link_to doc do %>
+        <%= image_tag "icons/#{document_icon(doc.current_revision.last.extension_type)}" %>
+        <%= doc.title %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find params[:id]
     @subcategories = @category.children
-    @documents = Document.where(category_id: @category.id)
+    @documents = Document.where(category_id: @category.id).each_slice(5).to_a
 
     respond_to do |format|
       format.html {}

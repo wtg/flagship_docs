@@ -23,3 +23,8 @@ $input-border-focus: #CC0000;
 
 @import "bootstrap";
 @import "bootstrap/theme";
+
+.alert {
+  margin-left: 0px;
+  border-radius: 0px;
+}

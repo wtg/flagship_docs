@@ -1,10 +1,20 @@
 class Revision < ActiveRecord::Base
 
-  attachable
+  belongs_to :document
+  belongs_to :user
 
   validates :file_name, presence: true
   validates :file_type, presence: true
-  validates :file_size, numericality: { only_integer: true }
-  validates_associated :document
-
+  
+  def extension_type
+    ext = case file_type
+      # PDF Files
+      when "application/pdf" then "pdf"
+      when "application/msword" then "doc"
+      when "application/vnd.oasis.opendocument.text" then "odt"
+      else "other"
+    end
+    ext
+  end
+  
 end

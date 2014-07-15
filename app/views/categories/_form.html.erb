@@ -1,24 +1,28 @@
 <%= form_for :document, html: { multipart: true }, url: documents_path, method: :post do |f| %>
   <div class="modal-body"> 
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, :class => "form-control" %>
+    </div>
     <br />
 
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+    <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_field :description, :class => "form-control" %>
+    </div>
     <br />
 
-    <%= f.label "Visible to Everyone" %>
-    <%= f.check_box :is_private %>
-    <br />
-    <span> Checking this box will make this document visible to everyone.</span>
-    <br />
+    <div class="form-group">
+        <%= f.label "Visible to Everyone" %>
+        <span style="font-size: 10px"> Checking this box will make this document visible to everyone.</span>
+        <%= f.check_box :is_private, :class => "checkbox" %>
+    </div>
 
-    <%= f.label "Everyone Can Edit" %>
-    <%= f.check_box :is_writable %> 
-    <br />
-    <span> Checking this box will make it so that everone can edit this document.</span>
-    <br />
+    <div class="form-group">
+        <%= f.label "Everyone Can Edit" %>
+        <span style="font-size: 10px"> Checking this box will make it so that everone can edit this document.</span>
+        <%= f.check_box :is_writable, :class => "checkbox" %>
+    </div>
 
     <hr />
     <%= f.fields_for :revision do |rev| %>
