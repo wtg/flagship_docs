@@ -24,7 +24,27 @@ $input-border-focus: #CC0000;
 @import "bootstrap";
 @import "bootstrap/theme";
 
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
 .alert {
   margin-left: 0px;
   border-radius: 0px;
+}
+
+.btn-default {
+  border-radius: 0px;
+}
+
+.nav-stacked {
+  li {
+    a:hover {
+      background: #C2D6FF;
+    }
+  }
 }

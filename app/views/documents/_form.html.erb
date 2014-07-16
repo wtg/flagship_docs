@@ -30,9 +30,6 @@
     <% end %>
 
     <%= f.hidden_field :category_id, :value => params[:id] %>
-    <% if !current_user.nil? %>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-    <% end %>
   </div>
 
   <div class="modal-footer">

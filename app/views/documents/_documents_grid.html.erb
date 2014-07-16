@@ -1,0 +1,9 @@
+<div class="categories_grid">
+  <% if @documents %>
+    <% @documents.each do |doc_row| %>
+      <% doc_row.each do |doc| %>
+        <%= render partial: "documents/document_tile", locals: { doc: doc } %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

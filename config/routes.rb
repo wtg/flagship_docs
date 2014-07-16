@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :create]
 
   resources :documents, except: [:index] do
+    member do 
+      get :download
+    end
     collection do
       get :search
       post :search

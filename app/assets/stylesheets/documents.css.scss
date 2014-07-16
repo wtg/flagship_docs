@@ -2,7 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.document_actions {
+  text-align: center;
+}
+
 .document_tile {
   padding: 2px;
-  border: 1px solid grey;
+  height: 212px;
+  width: 182px;
+  float: left;
+  text-align: center;
+  .doc_tile_hover {
+    &:hover { 
+      background-color: #C2D6FF;
+    }
+  }
+}
+
+.document_show {
+  position:  relative;
+  text-align: center;
 }

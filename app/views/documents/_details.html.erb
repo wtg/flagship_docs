@@ -1,0 +1,16 @@
+<%= link_to "<< back", category_path(Category.find(@document.category_id)) %>
+<div class="document_show">
+  <h1> <%= @document.title %> </h1>
+  <h4> <%= @document.description %> </h4>
+  <br />
+  <%= link_to download_document_path do %>
+    <%= image_tag "icons/#{document_icon(@document.current_revision.last)}" %>
+  <% end %>
+  <h4> <%= link_to "Download the latest revision here", download_document_path %> </h4>
+  <%= "From #{@document.user.username} #{@document.current_revision.last.updated_at.to_date}" %>
+  <br />
+</div>
+
+<div>
+  <%= "Download count: #{@document.current_revision.last.download_count}" %>
+</div>

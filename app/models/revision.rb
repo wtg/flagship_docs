@@ -16,5 +16,5 @@ class Revision < ActiveRecord::Base
     end
     ext
   end
-  
+
 end

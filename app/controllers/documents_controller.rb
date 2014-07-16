@@ -2,17 +2,31 @@ class DocumentsController < ApplicationController
 
   def show 
     @document = Document.find_by_id(params[:id])
+    @revisions = @document.revisions
+    @category = Category.find(@document.category_id)
+    @children_categories = @category.children
+  end
+
+  def download
+    @document = Document.find_by_id(params[:id])
     if !@document.nil?
+      # Get the most recent revision when downloading a document
       @document = @document.current_revision.last
+      # Increment download count
+      @document.download_count += 1
+      @document.save
+      # Send file binary data to user's browser
       send_data(@document.file_data, :type => @document.file_type, :filename => @document.file_name, :disposition => "inline")
     else
-      flash[:error] = "Could not find document"
+      flash[:error] = "Could not find requested document"
       redirect_to root_path
     end
   end
 
   def create
+    # Create our new document
     @document = Document.new(document_params)
+    @document.user_id = current_user.id
 
     category = Category.find_by_id(@document.category_id)
     if !@document.save
@@ -23,6 +37,7 @@ class DocumentsController < ApplicationController
           file_type: revision_params.content_type,
           file_data: revision_params.read,
           document_id: @document.id,
+          user_id: current_user.id,
           position: 0
         )
       if !@revision.save
