@@ -2,7 +2,7 @@
   <% if @documents %>
     <%= paginate @documents %>
     <% @documents.each do |doc| %>
-      <%= render partial: "documents/document_tile", locals: { doc: doc } %>
+      <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
     <% end %>
   <% end %>
 </div>

@@ -1,0 +1,8 @@
+<div class= "unstyled_link">
+  <%= link_to doc do %>
+    <div class="doc_tile_hover">
+      <%= image_tag "icons/#{small_document_icon(doc.current_revision.last.extension_type)}" %>
+      <%= "#{doc.title}: #{doc.description}" %>
+    </div>
+  <% end %>
+</div>

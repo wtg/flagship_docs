@@ -22,7 +22,7 @@
 }
 
 .categories_nav {
-  height: 100%;
+  height: 550px;
   width: 300px;
   padding-right: 20px;
   float: left;
@@ -38,13 +38,16 @@
 }
 
 .footer {
-  position: absolute;
+  margin: 0px;
+  padding: 0px;
   bottom: 0;
+  position: absolute;
+  font-size: 11px;
+  align: center;
 }
 
 .documents_grid {
   width: 800px;
-  height: 100%;
   float: left;
 }
 

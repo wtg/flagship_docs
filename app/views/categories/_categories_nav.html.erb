@@ -30,7 +30,7 @@
     <ul class="nav nav-stacked">
       <% categories.each do |cat| %>
         <li>
-          <%= link_to cat.name, cat %>
+          <%= link_to cat.name, category_path(cat, view_style: "grid") %>
         </li>
       <% end %>
     </ul>
@@ -44,8 +44,8 @@
       </div>
     <% end %>
   </div>
+</div>
 
-  <div class="footer">
-    ...
-  </div>
+<div class="footer"> 
+  Copyright 2014 RPI Web Technologies Group
 </div>

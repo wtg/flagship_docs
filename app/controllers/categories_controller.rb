@@ -8,7 +8,18 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find params[:id]
     @subcategories = @category.children
-    @documents = Document.where(category_id: @category.id).each_slice(5).to_a
+    @documents = Document.where(category_id: @category.id).page(params[:page])
+    # Check if a view style (list or grid) is specified
+    if params.key?(:view_style) 
+      @view_style = params[:view_style]
+      if params[:view_style] == "list"
+        # Get less documents for a list view
+        @documents = @documents.per(12)
+      end
+    else
+      # Default to list view
+      @view_style = "grid"
+    end
 
     respond_to do |format|
       format.html {}

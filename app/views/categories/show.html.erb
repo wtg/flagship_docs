@@ -1,2 +1,7 @@
 <%= render partial: "categories_nav", locals: {parent: @category, categories: @subcategories} %>
-<%= render partial: "documents/documents_grid" %>
+
+<% if @view_style == "grid" %>
+  <%= render partial: "documents/documents_grid" %>
+<% else %>
+  <%= render partial: "documents/documents_list" %>
+<% end %>
