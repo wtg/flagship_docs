@@ -1,5 +1,6 @@
 <div class="categories_grid">
   <% if @documents %>
+    <%= paginate @documents %>
     <% @documents.each do |doc| %>
       <%= render partial: "documents/document_tile", locals: { doc: doc } %>
     <% end %>
