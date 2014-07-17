@@ -3,14 +3,6 @@
   <!-- Document upload button & modal -->
   <%= render partial: "documents/upload" %>
 
-  <!-- Search field -->
-  <div class="search_categories">
-    <%= text_field_tag :article_search, 
-          nil, :class => "form-control",
-          placeholder: "Search docs and categories ..." %>
-  </div>
-  <br />
-
   <!-- Previous category navigation -->
   <% if !@category.nil? and @category.parent %>
     <%= link_to "<< prev", @category.parent %>

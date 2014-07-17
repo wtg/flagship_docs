@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find params[:id]
     @subcategories = @category.children
-    @documents = Document.where(category_id: @category.id).page(params[:page])
+    @documents = Document.where(category_id: @category.id).order("updated_at desc").page(params[:page])
     
     # Check if a view style (list or grid) is specified
     if params.key?(:view_style) 

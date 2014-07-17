@@ -1,5 +1,6 @@
-<div class="banner">
-  <div class="btn-group pull-right">
+<div class="banner navbar-form">
+
+  <div class="btn-group pull-right remove_border_radius">
     <% if current_user.nil? %>
       <%= link_to "Sign In", "/auth/cas", :class => "btn btn-default" %>
     <% else %>
@@ -11,10 +12,17 @@
       <% end %>
     <% end %>
   </div>
+  
   <h3 class="unstyled_link">
     <%= link_to root_path do %>
       <%= image_tag "icons/icon_folder_50.png" %>
-      Flagship Docs
+        Flagship Docs
     <% end %>
+
+    <!-- Search field -->
+    <%= text_field_tag :article_search, 
+          nil, style: "width: 300px; margin-left: 25px" ,:class => "form-control",
+          placeholder: "Search for documents and categories ..." %>
   </h3>
+
 </div>
