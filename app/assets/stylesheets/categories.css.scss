@@ -47,8 +47,8 @@
 }
 
 .documents_grid {
-  width: 800px;
   float: left;
+  width: 100%;
 }
 
 .upload_button_container{
@@ -88,5 +88,14 @@
   }
   a {
     color: white;
+  }
+}
+
+.featured_category {
+  .featured_category_title {
+    margin-left: 300px;
+  }
+  .breadcrumb {
+    margin-right: 300px;
   }
 }

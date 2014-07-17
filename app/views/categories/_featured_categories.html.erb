@@ -1,0 +1,12 @@
+<% @featured.each do |cat, docs| %>
+  <div class="featured_category">
+    <ol class="breadcrumb featured_category_title">
+      <li><%= Category.find_by_id(cat).name %></li>
+    </ol>
+    <div class="categories_grid">
+      <% docs.each do |doc| %>
+        <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

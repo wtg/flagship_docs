@@ -1,0 +1,3 @@
+<% @latest_docs.each do |rev| %>
+  <%= render partial: "documents/document_list_item", locals: {doc: rev.document} %>
+<% end %>

@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
   # Build a heirarchy of categories
   belongs_to :parent, class_name: 'Category'
   has_many :children, class_name: 'Category', foreign_key: 'parent_id'
+  has_many :documents
 
   # Find all categories serving as a root
   scope :roots, -> { where(parent_id: nil) }
@@ -45,6 +46,17 @@ class Category < ActiveRecord::Base
   # The group of category who share a common parent
   def self_and_siblings
     parent ? parent.children : Category.roots
+  end
+
+  def self.featured
+    categories = Category.where(is_featured: true)
+    featured_docs = {}
+
+    categories.each do |cat| 
+      featured_docs[cat.id] = cat.documents.order("updated_at desc")[0..3]
+    end
+
+    featured_docs
   end
 
 end

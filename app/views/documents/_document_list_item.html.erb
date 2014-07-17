@@ -1,8 +1,11 @@
 <div class= "unstyled_link">
   <%= link_to doc do %>
-    <div class="doc_tile_hover">
+    <div class="document_listitem_hover">
       <%= image_tag "icons/#{small_document_icon(doc.current_revision.last.extension_type)}" %>
-      <%= "#{doc.title}: #{doc.description}" %>
+      <%= "#{doc.title} - #{doc.description}" %>
+      <div class="pull-right">
+        <%= "Date: #{doc.current_revision.last.updated_at.to_date}" %>
+      </div>
     </div>
   <% end %>
 </div>

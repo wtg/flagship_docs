@@ -19,6 +19,14 @@
   }
 }
 
+.document_listitem_hover {
+  margin-left: 300px;
+  padding: 5px;
+  &:hover {
+    background-color: #C2D6FF;
+  }
+}
+
 .document_show {
   position:  relative;
   text-align: center;

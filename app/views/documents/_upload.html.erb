@@ -17,7 +17,15 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">Document Upload</h4>
       </div>
-      <%= render partial: "documents/form" %>
+      <% if !current_user.nil? %>
+        <%= render partial: "documents/form" %>
+      <% else %>
+        <div class="panel-heading">
+          Please 
+          <%= link_to "sign in", "/auth/cas" %>
+          to upload documents!
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

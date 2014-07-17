@@ -1,2 +1,6 @@
 <%= render partial: "categories_nav", locals: {categories: @categories} %>
-<%= render partial: "documents/documents_grid" %>
+<h3> Featured Categories </h3>
+<%= render partial: "featured_categories", locals: {featured: @featured} %>
+<hr />
+<h3> Latest Documents </h3>
+<%= render partial: "latest_documents", locals: {latest_docs: @latest_docs} %>
