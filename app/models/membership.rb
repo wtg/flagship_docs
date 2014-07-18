@@ -3,6 +3,8 @@ class Membership < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
 
+  validates :user_id, uniqueness: {scope: [:level, :group_id]}
+
   LEVELS = {
     regular: 1,
     leader: 9

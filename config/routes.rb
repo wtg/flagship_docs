@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: "categories#index"
 
   resources :groups do 
+    member do
+      post :add_member
+    end
     resources :memberships, only: [:new, :create, :update, :destroy] do
       member do
         get :promote
@@ -29,7 +32,11 @@ Rails.application.routes.draw do
     end
   end 
 
-  resources :categories
+  resources :categories do
+    collection do 
+      get :manage
+    end
+  end
 
   get '/auth/:provider/callback', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'

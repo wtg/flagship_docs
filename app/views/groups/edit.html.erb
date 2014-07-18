@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+  <ol class="breadcrumb">
+    <li><%= link_to "Home", categories_path %></li>
+    <li><%= link_to "Groups Index", groups_path %></li>
+    <li class="active"> <%= "Editing #{@group.name}" %></li>
+  </ol>
+
+  <div class="panel-body">
+    <div class="col-md-8">
+      <div class="row">
+        <%= form_for @group do |f| %>
+          <%= f.label :name %>
+          <%= f.text_field :name, :class => "form-control", placeholder: @group.name %>
+          <br />
+          <%= f.submit "submit", :class => "btn btn-default btn-xs" %>
+        <% end %>
+
+        <h3> Group Leaders </h3>
+        <%= @group.leader_names %>
+        <hr />
+
+        <%= form_for :membership, url: add_member_group_path(group_id: params[:id]) do |l| %>
+          <%= l.label :add_leader %>
+          <%= l.select :user_id, User.all.collect { |u| [u.username, u.id] }, {include_blank: true} %>
+          <%= l.hidden_field :level, value: Membership::LEVELS[:leader] %>
+          <%= l.submit "add", :class => "btn btn-default btn-xs" %>
+        <% end %>
+        <hr />
+
+        <h3> Group Members </h3>
+        <%= @group.member_names %>
+        <hr />
+
+        <%= form_for :membership, url: add_member_group_path(group_id: params[:id]) do |m| %>
+          <%= m.label :add_member %>
+          <%= m.select :user_id, User.all.collect { |u| [u.username, u.id]}, {include_blank: true} %>
+          <%= m.hidden_field :level, value: Membership::LEVELS[:regular] %>
+          <%= m.submit "add", :class => "btn btn-default btn-xs" %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

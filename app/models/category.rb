@@ -49,11 +49,15 @@ class Category < ActiveRecord::Base
   end
 
   def self.featured
-    categories = Category.where(is_featured: true)
+    # Show featured categories & their documents on the home page
+    #  Select featured and public categories 
+    categories = Category.where(is_featured: true, is_private: false)
     featured_docs = {}
 
+    # select a categories documents that are private, order by upload date
+    #  and choose only the most recent four to display
     categories.each do |cat| 
-      featured_docs[cat.id] = cat.documents.order("updated_at desc")[0..3]
+      featured_docs[cat.id] = cat.documents.where(is_private: false).order("updated_at desc")[0..3]
     end
 
     featured_docs

@@ -2,6 +2,7 @@
   <ol class="breadcrumb">
     <li><%= link_to "Home", categories_path %></li>
     <li class="active"><%= @group.name.capitalize %></li>
+    <div class="pull-right"><%= link_to "Edit", edit_group_path(@group), :class => "btn btn-primary btn-xs" %></div>
   </ol>
 
   <div class="panel-body">
@@ -9,10 +10,15 @@
       <%= @group.name.capitalize %>
     </h3>
     <hr />
+    <h4> Leaders </h4>
+    <%= @group.leader_names %>
     <h4> Members </h4>
-      
+    <%= @group.member_names %>
     <br />
     <h4> Documents Uploaded </h4>
+    <% @group.documents.each do |doc| %>
+      <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
+    <% end %>
   </div>
 
 </div>

@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+  <ol class="breadcrumb">
+    <li><%= link_to "Home", categories_path %></li>
+    <li class="active">Manage Categories</li>
+  </ol>
+
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <th> Category name </th>
+        <th> Group </th>
+        <th> Parent </th>
+        <th> Featured? </th>
+        <th> Private? </th>
+        <th> Actions </th>
+      </tr>
+      <% @categories.each do |cat| %>
+      <tr>
+        <td> <%= cat.name %> </td>
+        <td>  </td>
+        <td> 
+          <% if cat.parent %>
+            <%= link_to cat.parent.name, cat.parent %> 
+          <% else %>
+            None 
+          <% end %>
+        </td>
+        <td> <%= cat.is_featured? ? "yes" : "no" %> </td>
+        <td> <%= cat.is_private? ? "yes" : "no" %> </td>
+        <td> <%= link_to "Edit", edit_category_path(cat), :class => "btn btn-primary btn-xs" %> 
+             <%= link_to "Delete", category_path(cat), method: :delete, :class => "btn btn-primary btn-xs" %> 
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

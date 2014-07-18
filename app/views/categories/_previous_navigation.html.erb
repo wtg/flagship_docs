@@ -1,0 +1,5 @@
+<% if !@category.nil? and @category.parent %>
+  <%= link_to "<< prev", @category.parent, :class => "prev_category" %>
+<% elsif !@category.nil? %>
+  <%= link_to "<< prev", categories_path, :class => "prev_category" %>
+<% end %>

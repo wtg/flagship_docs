@@ -4,11 +4,7 @@
   <%= render partial: "documents/upload" %>
 
   <!-- Previous category navigation -->
-  <% if !@category.nil? and @category.parent %>
-    <%= link_to "<< prev", @category.parent %>
-  <% elsif !@category.nil? %>
-    <%= link_to "<< prev", categories_path %>
-  <% end %>
+  <%= render partial: "categories/previous_navigation" %>
 
   <div class="categories_list">
     <!-- Title -->
@@ -32,14 +28,8 @@
       <hr />
       <div class="category_btn">
         <%= link_to "New Category", new_category_path, :class => "category_text" %>
-        <%= link_to "Edit Categories", "", :class => "category_text" %>
+        <%= link_to "Edit Categories", manage_categories_path, :class => "category_text" %>
       </div>
     <% end %>
   </div>
 </div>
-
-<!--
-<div class="footer"> 
-  Copyright 2014 RPI Web Technologies Group
-</div>
--->

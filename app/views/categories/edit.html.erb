@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <ol class="breadcrumb">
+    <li><%= link_to "Home", categories_path %></li>
+    <li><%= link_to "Categories Index", manage_categories_path %></li>
+    <li class="active"> <%= "Editing #{@category.name}" %></li>
+  </ol>
+
+  <div class="panel-body">
+    <%= form_for @category do |f| %>
+      
+    <% end %>
+  </div>
+</div>

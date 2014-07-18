@@ -7,6 +7,10 @@ class CategoriesController < ApplicationController
     @latest_docs = Document.latest_docs
   end
 
+  def manage
+    @categories = Category.all
+  end 
+
   def show
     @category = Category.find params[:id]
     @subcategories = @category.children
@@ -37,7 +41,22 @@ class CategoriesController < ApplicationController
     else
       redirect_to "/"
     end
-  end   
+  end  
+
+  def edit
+    @category = Category.find_by_id(params[:id])
+  end
+
+  def update
+    @category = Category.find_by_id(params[:id])
+    @category.update_attributes(category_params)
+    redirect_to edit_category_path(@category)
+  end
+
+  def destroy
+    @category = Category.find_by_id(params[:id]).destroy
+    redirect_to manage_categories_path
+  end
 
   private
     def category_params

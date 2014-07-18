@@ -1,12 +1,18 @@
 <% @featured.each do |cat, docs| %>
-  <div class="featured_category">
-    <ol class="breadcrumb featured_category_title">
-      <li><%= Category.find_by_id(cat).name %></li>
-    </ol>
-    <div class="categories_grid">
-      <% docs.each do |doc| %>
-        <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
-      <% end %>
+  <!-- Limit the number of featured categories to 3 
+        and only show categories with documents available -->
+  <% total_featured = 0 %>
+  <% if docs.length > 0 or total_featured > 2 %>
+    <% total_featured += 1 %>
+    <div class="featured_category">
+      <ol class="breadcrumb featured_category_title">
+        <li><%= Category.find_by_id(cat).name %></li>
+      </ol>
+      <div class="categories_grid">
+        <% docs.each do |doc| %>
+          <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

@@ -13,7 +13,7 @@ class DocumentsController < ApplicationController
       # Get the most recent revision when downloading a document
       @document = @document.current_revision.last
       # Increment download count
-      @document.increment!("download_count")
+      @document.increment!(:download_count)
       # Send file binary data to user's browser
       send_data(@document.file_data, :type => @document.file_type, :filename => @document.file_name, :disposition => "inline")
     else
