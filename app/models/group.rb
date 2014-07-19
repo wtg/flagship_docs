@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
 
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
+  has_many :categories
 
   def leaders
     memberships = Membership.where(group_id: id, level: Membership::LEVELS[:leader])
@@ -9,6 +10,10 @@ class Group < ActiveRecord::Base
 
   def members
     regular_members = Membership.where(group_id: id, level: Membership::LEVELS[:regular])
+  end
+
+  def categories
+    categories = Category.where(group_id: id)
   end
 
   def leader_names
@@ -21,6 +26,12 @@ class Group < ActiveRecord::Base
     names = Array.new
     members.each { |member| names << member.user.username }
     names.join(", ")
+  end
+
+  def category_names
+    names = Array.new
+    categories.each { |cat| names << cat.name }
+    categories.join(", ")
   end
 
   def documents 

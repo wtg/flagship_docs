@@ -13,9 +13,16 @@
     </h3>
     <hr />
     <h4> Groups </h4>
-      <%= @user.groups.to_sentence(:words_connector => ',') %>
+      <% @user.groups.uniq.each do |group| %>
+        <%= link_to group.name, group %> 
+        <br />
+      <% end %>
     <br />
     <h4> Documents Uploaded </h4>
+      <% @user.documents.each do |doc| %>
+        <%= link_to "#{doc.title}, doc" %>
+        <br />
+      <% end %>
   </div>
 
 </div>

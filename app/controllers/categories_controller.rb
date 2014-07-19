@@ -31,7 +31,9 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    # Get categories and groups for selection dropdowns
     @categories = Category.all.map {|cat| [cat.name, cat.id]}
+    @groups = Group.all.map {|group| [group.name, group.id]}
   end
 
   def create
@@ -45,6 +47,10 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find_by_id(params[:id])
+    # Get categories and groups for selection dropdowns
+    @categories = Category.all.map {|cat| [cat.name, cat.id]}
+    @categories.delete([@category.name, @category.id])
+    @groups = Group.all.map {|group| [group.name, group.id]}
   end
 
   def update

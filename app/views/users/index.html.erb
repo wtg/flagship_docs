@@ -18,9 +18,12 @@
         <td> <%= user.full_name %> </td>
         <td> <%= user.is_admin %> </td>
         <td> 
-          <%= link_to "Make Admin", "" %>
-          |
-          <%= link_to "Delete", "" %>
+          <% if user.is_admin? %>
+            <%= link_to "Demote", admin_status_user_path(user), :class => "btn btn-primary btn-xs" %>
+          <% else %>
+            <%= link_to "Make Admin", admin_status_user_path(user), :class => "btn btn-primary btn-xs" %>
+          <% end %>
+          <%= link_to "Delete", user_path(user), method: :delete, :class => "btn btn-primary btn-xs" %>
         </td>
       </tr>
       <% end %> 

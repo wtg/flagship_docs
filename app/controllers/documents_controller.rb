@@ -11,7 +11,7 @@ class DocumentsController < ApplicationController
     @document = Document.find_by_id(params[:id])
     if !@document.nil?
       # Get the most recent revision when downloading a document
-      @document = @document.current_revision.last
+      @document = @document.current_revision
       # Increment download count
       @document.increment!(:download_count)
       # Send file binary data to user's browser
@@ -45,7 +45,7 @@ class DocumentsController < ApplicationController
     end
 
     if !category.nil?
-      redirect_to category_path(category)
+      redirect_to category_path(category, view_style: params[:view_style])
     else
       redirect_to root_path
     end

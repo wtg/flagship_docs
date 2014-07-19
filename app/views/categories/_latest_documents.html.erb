@@ -1,3 +1,5 @@
 <% @latest_docs.each do |rev| %>
-  <%= render partial: "documents/document_list_item", locals: {doc: rev.document} %>
+  <% if !rev.document.current_revision.nil? %>
+    <%= render partial: "documents/document_list_item", locals: {doc: rev.document} %>
+  <% end %>
 <% end %>

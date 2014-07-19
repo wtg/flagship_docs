@@ -10,7 +10,9 @@
       </ol>
       <div class="categories_grid">
         <% docs.each do |doc| %>
-          <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
+          <% if !doc.current_revision.nil? %>
+            <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
+          <% end %>
         <% end %>
       </div>
     </div>

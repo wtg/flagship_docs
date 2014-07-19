@@ -20,6 +20,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     flash[:error] = "You've successfully logged out. Come back soon."
-    redirect_to "/"
+    redirect_to "https://cas-auth.rpi.edu/cas/logout"
   end
 end

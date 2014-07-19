@@ -2,7 +2,7 @@
   <div class="document_tile">
     <%= link_to doc do %>
       <div class="doc_tile_hover">
-        <%= image_tag "icons/#{document_icon(doc.current_revision.last.extension_type)}" %>
+        <%= image_tag "icons/#{document_icon(doc.current_revision.extension_type)}" %>
         <br />
         <%= doc.title %>
       </div>

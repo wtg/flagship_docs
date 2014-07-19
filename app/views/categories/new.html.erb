@@ -5,26 +5,6 @@
   </ol>
 
   <div class="panel-body">
-    <%= form_for @category do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <br />
-      <%= f.label :description %>
-      <%= f.text_field :description %>
-      <br />
-      <%= f.label :parent_id %>
-      <%= f.select :parent_id, @categories, {include_blank: true} %>
-      <br />
-      <%= f.label :is_private %>
-      <%= f.check_box :is_private %>
-      <br />
-      <%= f.label :is_writable %>
-      <%= f.check_box :is_writable %>
-      <br />
-      <%= f.label :is_featured %>
-      <%= f.check_box :is_featured %>
-      <br />
-      <%= f.submit %>
-    <% end %>
+    <%= render partial: "form" %>
   </div>
 </div>

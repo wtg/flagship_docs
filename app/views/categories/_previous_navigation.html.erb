@@ -1,5 +1,13 @@
 <% if !@category.nil? and @category.parent %>
-  <%= link_to "<< prev", @category.parent, :class => "prev_category" %>
+  <div class="nav nav-tabs">
+    <li> 
+      <%= link_to "<< prev", @category.parent, :class => "prev_category" %>
+    </li>
+  </div>
 <% elsif !@category.nil? %>
-  <%= link_to "<< prev", categories_path, :class => "prev_category" %>
+  <div class="nav nav-tabs">
+    <li>
+      <%= link_to "<< prev", categories_path, :class => "prev_category" %>
+    </li>
+  </div>
 <% end %>

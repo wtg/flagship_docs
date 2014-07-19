@@ -4,11 +4,11 @@
   <h4> <%= @document.description %> </h4>
   <br />
   <%= link_to download_document_path, "data-no-turbolink" => true do %>
-    <%= image_tag "icons/#{document_icon(@document.current_revision.last)}" %>
+    <%= image_tag "icons/#{document_icon(@document.current_revision)}" %>
     <h4> Download the latest revision here </h4>
   <% end %>
-  <%= "From #{@document.user.username} on #{@document.current_revision.last.updated_at.to_date}" %>
+  <%= "From #{@document.user.username} on #{@document.current_revision.updated_at.to_date}" %>
   <br />
-  <%= "Download count: #{@document.current_revision.last.download_count}" %>
+  <%= "Download count: #{@document.current_revision.download_count}" %>
   <br />
 </div>

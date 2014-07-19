@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, except: [:new, :create]
+  resources :users, except: [:new, :create] do
+    member do
+      get :admin_status
+    end
+  end
 
   resources :documents, except: [:index] do
     member do 
