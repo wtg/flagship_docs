@@ -12,10 +12,6 @@ class Group < ActiveRecord::Base
     regular_members = Membership.where(group_id: id, level: Membership::LEVELS[:regular])
   end
 
-  def categories
-    categories = Category.where(group_id: id)
-  end
-
   def leader_names
     names = Array.new
     leaders.each { |leader| names << leader.user.username }

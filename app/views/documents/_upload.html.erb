@@ -17,13 +17,31 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">Document Upload</h4>
       </div>
+      <!-- Check if a user is logged in -->
       <% if !current_user.nil? %>
-        <%= render partial: "documents/form" %>
-      <% else %>
+        <!-- Check if user has permissions to upload -->
+        <% if can_upload_documents(@category) %>
+          <%= render partial: "documents/form" %>
+        <% else %>
+          <div class="panel-heading">
+            Sorry, you do not have permission to upload documents
+            to this category.
+          </div>
+        <% end %>
+      <% elsif current_user.nil? %>
         <div class="panel-heading">
-          Please 
+          Please
           <%= link_to "sign in", "/auth/cas" %>
           to upload documents!
+        </div>
+      <% elsif @permitted_categories.nil? %>
+        <div class="panel-heading">
+          You do not have permission to upload any documents.
+        </div>
+      <% else %>
+        <div class="panel-heaing">
+          An unknown error has occured. Please contact a site administrator
+          for more details.
         </div>
       <% end %>
     </div>

@@ -13,7 +13,7 @@ class Document < ActiveRecord::Base
   end
 
   def self.latest_docs
-    latest = Revision.all.order("updated_at desc").to_a.delete_if { |rev| rev.document.is_private == true } 
+    latest = Revision.all.order("updated_at desc").to_a.reject { |rev| rev.document.is_private == true }
     latest = latest[0..7]
   end
 

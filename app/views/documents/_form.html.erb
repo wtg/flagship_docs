@@ -1,5 +1,5 @@
 <%= form_for :document, html: { multipart: true }, url: documents_path, method: :post do |f| %>
-  <div class="modal-body"> 
+  <div class="modal-body">
     <div class="form-group">
         <%= f.label :title %>
         <%= f.text_field :title, :class => "form-control" %>
@@ -29,7 +29,11 @@
       <%= rev.file_field :file %>
     <% end %>
 
-    <%= f.hidden_field :category_id, :value => params[:id] %>
+    <% if params.has_key?(:id) %>
+      <%= f.hidden_field :category_id, :value => params[:id] %>
+    <% elsif @permitted_categories %>
+      <%= f.select :category_id, @permitted_categories.collect { |c| [c.name, c.id] }, {include_black: true} %>
+    <% end %>
   </div>
 
   <div class="modal-footer">
