@@ -16,6 +16,8 @@ gem 'font-awesome-sass'
 # Use kaminari for pagination
 gem 'kaminari'
 
+# Use therubyracer for a JavaScript runtime
+gem 'therubyracer'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views

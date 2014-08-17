@@ -10,6 +10,9 @@
       <% if current_user.is_admin? %>
         <%= link_to "Groups", groups_path, :class => "btn btn-default" %>
         <%= link_to "Users", users_path, :class => "btn btn-default" %>
+        <!-- New category button and Edit categories button -->
+        <%= link_to "New Category", new_category_path, :class => "btn btn-default" %>
+        <%= link_to "Edit Categories", manage_categories_path, :class => "btn btn-default" %>
       <% end %>
     <% end %>
   </div>

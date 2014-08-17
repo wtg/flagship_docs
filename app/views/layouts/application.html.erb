@@ -10,10 +10,16 @@
   <body>
 
     <%= render partial: "layouts/messages" %>
-    <div class="page">
+    <div class="row header">
       <%= render partial: "layouts/header" %>
-      <hr />
-      <%= yield %>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <%= render partial: "categories/categories_nav.html.erb", locals: {categories: Category.roots} %>
+      </div>
+      <div class="col-md-9">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

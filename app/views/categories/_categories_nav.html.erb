@@ -1,35 +1,23 @@
-<div class="categories_nav">
+<!-- Document upload button & modal -->
+<%= render partial: "documents/upload" %>
 
-  <!-- Document upload button & modal -->
-  <%= render partial: "documents/upload" %>
-
-  <!-- Previous category navigation -->
-  <%= render partial: "categories/previous_navigation" %>
-
-  <div class="categories_list">
-    <!-- Title -->
-    <% if @category %>
-      <h4> <%= "#{@category.name}" %> </h4>
-    <% else %>
-      <h4> Browse categories </h4>
+<!-- Category list -->
+<ul style="list-style-type: none; padding-left: 15px;" >
+  <% categories.each do |root| %>
+    <!-- Show root categories -->
+    <li style="display:block-inline" value="root">
+      <i class="fa fa-plus-square-o button-id-<%=root.id%>" onclick="toggleDescendants(<%= root.id %>)"></i>
+      <%= link_to root.name, category_path(root, view_style: "grid") %>
+    </li>
+    <!-- Subcategories are intially hidden in a tree menu -->
+    <% root.descendants.each do |cat| %>
+      <li class="parent-id-<%=cat.parent_id%>" style="padding-left:<%= 20 * cat.node_depth %>px; display: none" value="hidden"> 
+        <!-- only show the subcategories toggle button if this subcategory has descendants -->
+        <% if cat.descendants.length > 0 %>
+          <i class="fa fa-plus-square-o button-id-<%=cat.id%>" onclick="toggleDescendants(<%= cat.id %>)"></i>
+        <% end %>
+        <%= link_to cat.name, category_path(cat, view_style: "grid") %>
+      </li>
     <% end %>
-
-    <!-- Category list -->
-    <ul class="nav nav-stacked">
-      <% categories.each do |cat| %>
-        <li>
-          <%= link_to cat.name, category_path(cat, view_style: "grid") %>
-        </li>
-      <% end %>
-    </ul>
-
-    <!-- New category button and Edit categories button -->
-    <% if !current_user.nil? and current_user.is_admin? %>
-      <hr />
-      <div class="category_btn">
-        <%= link_to "New Category", new_category_path, :class => "category_text" %>
-        <%= link_to "Edit Categories", manage_categories_path, :class => "category_text" %>
-      </div>
-    <% end %>
-  </div>
-</div>
+  <% end %>
+</ul>

@@ -46,6 +46,17 @@ class Category < ActiveRecord::Base
     ancestors.count
   end
 
+  # Figure out a node's level in the tree
+  def node_depth
+    node = self
+    level = 0
+    while(node.parent != nil)
+      node = node.parent
+      level += 1
+    end
+    level
+  end
+
   # The group of category who share a common parent
   def self_and_siblings
     parent ? parent.children : Category.roots

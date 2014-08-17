@@ -1,6 +1,9 @@
-<%= render partial: "categories_nav", locals: {categories: @categories} %>
-<h3> Featured Categories </h3>
-<%= render partial: "featured_categories", locals: {featured: @featured} %>
-<hr />
-<h3> Recent Documents </h3>
-<%= render partial: "latest_documents", locals: {latest_docs: @latest_docs} %>
+<% if !@featured.nil? and @featured.length > 0 %>
+	<h3> Featured Categories </h3>
+	<%= render partial: "featured_categories", locals: {featured: @featured} %>
+<% end %>
+<% if !@latest_docs.nil? and @latest_docs.length > 0 %>
+	<hr />
+	<h3> Recent Documents </h3>
+	<%= render partial: "latest_documents", locals: {latest_docs: @latest_docs} %>
+<% end %>
