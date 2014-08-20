@@ -22,17 +22,14 @@
 }
 
 .categories_nav {
-  height: 550px;
-  width: 300px;
-  padding-right: 20px;
-  float: left;
-  .categories_list {
-    margin-left: 10px;
-    a { 
+  a {
+    text-decoration: none;
+    color: black;
+    &:hover {
+      text-decoration: none;
       color: black;
-      &:hover {
-        text-decoration: none;
-      }
+      background: #E6E6E6;
+      border-radius: 5px;
     }
   }
 }
@@ -88,13 +85,6 @@
   }
   a {
     color: white;
-  }
-}
-
-.featured_category {
-  .featured_category_title {
-    margin-left: 300px;
-    border-radius: 0px;
   }
 }
 

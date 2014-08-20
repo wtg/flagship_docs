@@ -1,6 +1,9 @@
 class DocumentsController < ApplicationController
 
   def show 
+    # Get all the categories our user can submit documents to
+    @permitted_categories = upload_permitted_categories
+    
     @document = Document.find_by_id(params[:id])
     @revisions = @document.revisions
     @category = Category.find(@document.category_id)
@@ -8,6 +11,9 @@ class DocumentsController < ApplicationController
   end
 
   def download
+    # Get all the categories our user can submit documents to
+    @permitted_categories = upload_permitted_categories
+
     @document = Document.find_by_id(params[:id])
     if !@document.nil?
       # Get the most recent revision when downloading a document
@@ -54,7 +60,7 @@ class DocumentsController < ApplicationController
   private
     def document_params
       params.require(:document).permit(:title, :description, 
-        :category_id, :is_writeable, :is_private, :category_id)
+        :category_id, :is_writeable, :is_private)
     end
 
     def revision_params

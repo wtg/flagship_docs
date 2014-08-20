@@ -1,0 +1,16 @@
+<%= form_for :revision, html: { multipart: true }, url: document_revisions_path(@document), method: :post do |f| %>
+	<div class="modal-body">
+	  <p> <b>Document:</b> <%= @document.title %> </p>
+		<p> <b>Description:</b> <%= @document.description %> </p>
+		<p> <b>Category:</b> <%= @document.category.name %> </p>
+		<p> <b>Uploaded by:</b> <%= User.find(@document.user_id).full_name %> </p>
+
+	  <%= f.file_field :file %>
+	  <br />
+
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    <%= f.submit "Submit Revision", :class => "btn btn-primary" %>
+	  </div>
+  </div>
+<% end %>

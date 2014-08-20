@@ -37,5 +37,3 @@ gem 'spring',        group: :development
 
 # Use textractor for parsing PDF and Word documents
 gem 'textractor'
-# Use attachable to store file binary
-gem 'attachable'

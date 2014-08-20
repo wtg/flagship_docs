@@ -4,11 +4,11 @@
   <% total_featured = 0 %>
   <% if docs.length > 0 or total_featured > 2 %>
     <% total_featured += 1 %>
-    <div class="featured_category">
+    <div class="panel panel-default">
       <ol class="breadcrumb featured_category_title">
         <li><%= Category.find_by_id(cat).name %></li>
       </ol>
-      <div class="categories_grid">
+      <div class="panel-body" style="padding: 0px">
         <% docs.each do |doc| %>
           <% if !doc.current_revision.nil? %>
             <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
@@ -18,3 +18,4 @@
     </div>
   <% end %>
 <% end %>
+

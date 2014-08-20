@@ -23,6 +23,9 @@ class CategoriesController < ApplicationController
     # Get category and its subcategories
     @category = Category.find params[:id]
     @subcategories = @category.children
+    
+    # Get all the categories our user can submit documents to
+    @permitted_categories = upload_permitted_categories
 
     # Check if category is restricted to group members only
     if @category.is_private

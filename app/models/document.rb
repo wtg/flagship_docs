@@ -5,11 +5,13 @@ class Document < ActiveRecord::Base
   has_many :revisions, dependent: :destroy
 
   def current_revision
-    Revision.where(document_id: id).order("created_at desc").last
+    Revision.where(document_id: id).order("position asc").first
   end
 
-  def cr_download_count
-    current_revision.last.download_count
+  def total_downloads
+    count = 0
+    revisions.each {|rev| count += rev.download_count}
+    return count
   end
 
   def self.latest_docs

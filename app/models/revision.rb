@@ -17,4 +17,8 @@ class Revision < ActiveRecord::Base
     ext
   end
 
+  def self.extract_text
+
+  end
+
 end

@@ -2,7 +2,7 @@
 <%= render partial: "documents/upload" %>
 
 <!-- Category list -->
-<ul style="list-style-type: none; padding-left: 15px;" >
+<ul style="list-style-type: none; padding-left: 15px;" class="categories_nav" >
   <% categories.each do |root| %>
     <!-- Show root categories -->
     <li style="display:block-inline" value="root">
@@ -11,7 +11,7 @@
     </li>
     <!-- Subcategories are intially hidden in a tree menu -->
     <% root.descendants.each do |cat| %>
-      <li class="parent-id-<%=cat.parent_id%>" style="padding-left:<%= 20 * cat.node_depth %>px; display: none" value="hidden"> 
+      <li class="parent-id-<%=cat.parent_id%>" style="padding-left:<%= 20 * cat.depth %>px; display: none" value="hidden"> 
         <!-- only show the subcategories toggle button if this subcategory has descendants -->
         <% if cat.descendants.length > 0 %>
           <i class="fa fa-plus-square-o button-id-<%=cat.id%>" onclick="toggleDescendants(<%= cat.id %>)"></i>

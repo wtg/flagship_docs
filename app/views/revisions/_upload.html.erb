@@ -1,27 +1,19 @@
-<!-- Document upload button -->
-<div class="upload_button_container">
-  <a class="upload_button" href="" data-toggle="modal" data-target="#documentModal">
-    <span class="upload_button_text">
-      Upload
-    </span>
-    <i class="fa fa-file-o fa-lg"></i>
-  </a>
-  <hr />
-</div>
+<!-- Revision upload button -->
+<%= link_to "Upload Revision", "", {:class => "btn btn-default btn-xs", "data-toggle" => "modal", "data-target" => "#revisionModal"} %>
 
-<!-- Document upload modal -->
-<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="documentModal" aria-hidden="true">
+<!-- Revision upload modal -->
+<div class="modal fade" id="revisionModal" tabindex="-1" role="dialog" aria-labelledby="revisionModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="documentModal">Document Upload</h4>
+        <h4 class="modal-title" id="revisionModal">Revision Upload</h4>
       </div>
       <!-- Check if a user is logged in -->
       <% if !current_user.nil? %>
         <!-- Check if user has permissions to upload -->
         <% if can_upload_documents(@category) %>
-          <%= render partial: "documents/form" %>
+          <%= render partial: "revisions/form.html.erb" %>
         <% else %>
           <div class="panel-heading">
             Sorry, you do not have permission to upload documents

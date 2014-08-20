@@ -1,14 +1,49 @@
 <%= link_to "<< back", category_path(Category.find(@document.category_id)) %>
-<div class="document_show">
-  <h1> <%= @document.title %> </h1>
-  <h4> <%= @document.description %> </h4>
-  <br />
-  <%= link_to download_document_path, "data-no-turbolink" => true do %>
-    <%= image_tag "icons/#{document_icon(@document.current_revision)}" %>
-    <h4> Download the latest revision here </h4>
-  <% end %>
-  <%= "From #{@document.user.username} on #{@document.current_revision.updated_at.to_date}" %>
-  <br />
-  <%= "Download count: #{@document.current_revision.download_count}" %>
-  <br />
+<div class="row">
+  <div class="col-md-4">
+    <h3> <%= @document.title %> </h3>
+    <p> <%= @document.description %> </p>
+    <br />
+    <%= link_to download_document_path, "data-no-turbolink" => true do %>
+      <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
+      <h4> Download the latest revision here </h4>
+    <% end %>
+    <%= "From #{@document.user.username} on #{@document.current_revision.updated_at.to_date}" %>
+    <br />
+    <%= "Download count: #{@document.total_downloads}" %>
+    <br />
+  </div>
+  <div class="col-md-7">
+    <div class="panel panel-default">
+      <ol class="breadcrumb">
+        <li> Document Revision History </li>
+        <div class="pull-right"><%= render partial: "revisions/upload.html.erb" %></div>
+      </ol>
+      <div class="panel-body">
+        <% if @document.revisions.length > 1 %>
+          <% @document.revisions.order("position asc").each do |revision| %>
+            <% if revision.position != 0 %>
+              <div class= "unstyled_link">
+                <%= link_to download_document_revision_path(document_id: params[:id], revision_id: revision.id), "data-no-turbolink" => true do %>
+                  <div class="document_listitem_hover">
+                    <p>
+                      <%= image_tag "icons/#{small_document_icon(revision.extension_type)}" %>
+                      Revision <%= revision.position %> 
+                      <span class="pull-right">
+                        <%= "Date: #{revision.updated_at.to_date}" %>
+                      </span>
+                    </p>
+                  </div>
+               <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p> This document has not been revised yet. </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
+

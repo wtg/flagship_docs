@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       post :search
     end
 
-    resources :revisions, only: [:new, :create, :destroy] do
+    resources :revisions, only: [:create, :destroy] do
       member do
         get :download
       end

@@ -13,27 +13,37 @@
     <br />
 
     <div class="form-group">
-        <%= f.label "Visible to Everyone" %>
-        <span style="font-size: 10px"> Checking this box will make this document visible to everyone.</span>
         <%= f.check_box :is_private, :class => "checkbox" %>
+        <%= f.label "Visible to Everyone", :style => "display: inline-block" %>
+        <br />
+        <span style="font-size: 10px"> Checking this box will make this document visible to everyone.</span>
     </div>
 
     <div class="form-group">
-        <%= f.label "Everyone Can Edit" %>
-        <span style="font-size: 10px"> Checking this box will make it so that everone can edit this document.</span>
         <%= f.check_box :is_writable, :class => "checkbox" %>
+        <%= f.label "Everyone Can Edit", :style => "display: inline-block"%>
+        <br />
+        <span style="font-size: 10px"> Checking this box will make it so that everone can edit this document.</span>
     </div>
+
+    <br />
+    <%= f.label :category %>
+    <% if params.has_key?(:id) %>
+      <%= f.select :category_id, @permitted_categories.collect { |c| [c.name, c.id] }, {include_black: true, selected: params[:id]} %>
+      <%= f.hidden_field :category_id, :value => params[:id] %>
+    <% elsif @permitted_categories %>
+        <% if @permitted_categories.length > 0 %>
+            <%= f.select :category_id, @permitted_categories.collect { |c| [c.name, c.id] }, {include_black: true} %>
+        <% else %>
+            <p> No categories exist. Please create a category to submit documents. </p>
+        <% end %>
+    <% end %>
 
     <hr />
     <%= f.fields_for :revision do |rev| %>
       <%= rev.file_field :file %>
     <% end %>
 
-    <% if params.has_key?(:id) %>
-      <%= f.hidden_field :category_id, :value => params[:id] %>
-    <% elsif @permitted_categories %>
-      <%= f.select :category_id, @permitted_categories.collect { |c| [c.name, c.id] }, {include_black: true} %>
-    <% end %>
   </div>
 
   <div class="modal-footer">
