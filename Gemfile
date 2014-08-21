@@ -37,3 +37,7 @@ gem 'spring',        group: :development
 
 # Use textractor for parsing PDF and Word documents
 gem 'textractor'
+
+# Use Sunspot Rails and Sunspot Solr for our search engine
+gem 'sunspot_rails'
+gem 'sunspot_solr'

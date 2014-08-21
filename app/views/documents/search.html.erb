@@ -1,0 +1,13 @@
+<h3> <%= "Search results for #{params[:query]}" %> </h3>
+<hr />
+<div class="panel panel-default">
+  <ol class="breadcrumb">
+    <li> Matched Documents </li>
+  </ol>
+  <div class="panel-body" style="padding: 0px">
+    <% @documents.each_hit_with_result do |hit, result| %>
+      <%= render partial: "documents/document_list_item.html.erb", locals: {doc: result} %>
+      <br />
+    <% end %>
+  </div>
+</div>

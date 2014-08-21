@@ -19,34 +19,39 @@ class RevisionsController < ApplicationController
   end
 
   def create
-  	@document = Document.find(params[:document_id])
+    @document = Document.find(params[:document_id])
 
-  	@revision = Revision.new(file_name: revision_params.original_filename,
-	  		file_type: revision_params.content_type,
-	  		file_data: revision_params.read,
-	  		document_id: @document.id,
-	  		user_id: current_user.id,
-        search_text: Revision.extract_text
-  		)
+    @revision = Revision.new(file_name: revision_params.original_filename,
+        file_type: revision_params.content_type,
+        file_data: revision_params.read,
+        document_id: @document.id,
+        user_id: current_user.id,
+        position: 0
+      )
 
-  	@revision.position = 0
+    # Set this new revision as the current revision
+    @revision.position = 0
+    # Increase the position of all previous revisions
+    #  to move them down in the document's history
+    @document.revisions.each do |revision|
+      revision.position += 1
+      revision.save
+    end
 
-  	@document.revisions.each do |revision|
-  		revision.position += 1
-  		revision.save
-  	end
-
-  	if !@revision.save
-  		flash[:error] = "Unable to upload revision"
-  		redirect_to document_path(@document)
-  	else
-  		redirect_to document_path(@document)
-  	end
+    if !@revision.save
+      flash[:error] = "Unable to upload revision"
+      redirect_to document_path(@document)
+    else
+      # Our revision has been saved
+      #  extract it's contents for the search engine
+      @revision.extract_text
+      redirect_to document_path(@document)
+    end
   end
 
   private 
-  	def revision_params
-  		params[:revision][:file]
-  	end
+    def revision_params
+      params[:revision][:file]
+    end
 
 end

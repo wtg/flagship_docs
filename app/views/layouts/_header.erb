@@ -24,9 +24,7 @@
     <% end %>
 
     <!-- Search field -->
-    <%= text_field_tag :article_search, 
-          nil, style: "width: 300px; margin-left: 25px" ,:class => "form-control",
-          placeholder: "Search for documents and categories ..." %>
+    <%= render partial: "layouts/search.html.erb" %>
   </h3>
 
 </div>

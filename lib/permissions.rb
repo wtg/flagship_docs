@@ -4,8 +4,8 @@ module Permissions
     @current_user = User.find_by_id(session[:user_id])
   end
 
-	# Check if the current user can upload documents to the specified category
-	def can_upload_documents(category)
+  # Check if the current user can upload documents to the specified category
+  def can_upload_documents(category)
     if !current_user.nil?
       if category.nil?
         # User will specify category upon uploading
@@ -38,17 +38,9 @@ module Permissions
   # Check if the current user can upload documents to the specified category
   def upload_permitted_categories
     # Return all categories the current user can upload to
-    if !current_user.nil?
-      if current_user.is_admin?
-        # current user is an admin and can upload to any category
-        return Category.all
-      else
-        return current_user.writable_categories 
-      end
-    else
-      # user is not logged in, they can't upload anything
-      return nil
-    end
+    return nil if current_user.nil?
+    permitted_categories = Category.all if current_user.is_admin?
+    permitted_categories ||= current_user.writable_categories
   end
 
 end

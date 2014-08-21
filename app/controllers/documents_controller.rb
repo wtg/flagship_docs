@@ -46,7 +46,12 @@ class DocumentsController < ApplicationController
           position: 0
         )
       if !@revision.save
+        @document.destroy
         flash[:error] = "Unable to upload revision"
+      else
+        # Extract text from file to provide search engine with searchable content
+        @revision.extract_text
+        @revision.save
       end
     end
 
@@ -54,6 +59,17 @@ class DocumentsController < ApplicationController
       redirect_to category_path(category, view_style: params[:view_style])
     else
       redirect_to root_path
+    end
+  end
+
+  def search
+    # Use Sunspot Solr to search for documents based on the search query
+    begin
+      @documents = Document.search do
+        fulltext params[:query], highlight: true
+      end
+    rescue
+      @documents ||= nil
     end
   end
 
