@@ -17,7 +17,9 @@
     <div class="panel panel-default">
       <ol class="breadcrumb">
         <li> Document Revision History </li>
-        <div class="pull-right"><%= render partial: "revisions/upload.html.erb" %></div>
+        <% if can_revise_document(@document) %>
+          <div class="pull-right"><%= render partial: "revisions/upload.html.erb" %></div>
+        <% end %>
       </ol>
       <div class="panel-body">
         <% if @document.revisions.length > 1 %>
@@ -28,9 +30,9 @@
                   <div class="document_listitem_hover">
                     <p>
                       <%= image_tag "icons/#{small_document_icon(revision.extension_type)}" %>
-                      Revision <%= revision.position %> 
+                      <%= "Revision #{revision.position}" %> 
                       <span class="pull-right">
-                        <%= "Date: #{revision.updated_at.to_date}" %>
+                        <%= "by #{User.find(revision.user_id).full_name} on #{revision.updated_at.to_date}" %>
                       </span>
                     </p>
                   </div>

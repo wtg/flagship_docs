@@ -7,6 +7,8 @@ class Category < ActiveRecord::Base
   has_many :documents
   belongs_to :group
 
+  validates_presence_of :name
+
   # Find all categories serving as a root
   def self.roots
     categories = Category.where(parent_id: nil)

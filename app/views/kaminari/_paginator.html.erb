@@ -6,21 +6,24 @@
     remote:        data-remote
     paginator:     the paginator that renders the pagination tags inside
 -%>
-<%= paginator.render do -%>
-  <nav class="pagination nav nav-tabs">
-    <%= first_page_tag unless current_page.first? %>
-    <%= prev_page_tag unless current_page.first? %>
-    <% each_page do |page| -%>
-      <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
-        <%= page_tag page %>
-      <% elsif !page.was_truncated? -%>
-        <%= gap_tag %>
+<div class="row">
+  <%= paginator.render do -%>
+    <nav class="pagination nav nav-tabs">
+      <%= first_page_tag unless current_page.first? %>
+      <%= prev_page_tag unless current_page.first? %>
+      <% each_page do |page| -%>
+        <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
+          <%= page_tag page %>
+        <% elsif !page.was_truncated? -%>
+          <%= gap_tag %>
+        <% end -%>
       <% end -%>
-    <% end -%>
-    <%= next_page_tag unless current_page.last? %>
-    <%= last_page_tag unless current_page.last? %>
-  </nav>
-<% end -%>
-<div class="pull-right" style="padding:20px">
-  <%= render partial: "documents/documents_view_style" %>
+      <%= next_page_tag unless current_page.last? %>
+      <%= last_page_tag unless current_page.last? %>
+    </nav>
+  <% end -%>
+  <div class="pull-right" style="padding:20px">
+    <%= render partial: "documents/documents_view_style" %>
+  </div>
+  <h4> <%= "Documents for #{@category.name}" %> </h4>
 </div>

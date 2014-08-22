@@ -4,6 +4,8 @@ class Document < ActiveRecord::Base
   belongs_to :category
   has_many :revisions, dependent: :destroy
 
+  validates_presence_of :category
+
   # Sunspot Solr search configuration for the document object
   searchable do 
     # Give document titles higher weight when determining search results

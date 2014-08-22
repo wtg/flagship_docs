@@ -10,18 +10,31 @@
       <%= @group.name.capitalize %>
     </h3>
     <hr />
-    <h4> Categories </h4>
-      <%= @group.category_names %>
-    <hr />
-    <h4> Leaders </h4>
-    <%= @group.leader_names %>
-    <h4> Members </h4>
-    <%= @group.member_names %>
-    <br />
-    <h4> Documents Uploaded </h4>
-    <% @group.documents.each do |doc| %>
-      <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
+
+    <% if @group.category_names.length > 0 %>
+      <h4> Categories </h4>
+        <%= @group.category_names %>
+      <hr />
     <% end %>
+
+    <% if @group.leader_names.length > 0 %>
+      <h4> Leaders </h4>
+      <%= @group.leader_names %>
+    <% end %>
+
+    <% if @group.member_names.length > 0 %>
+      <h4> Members </h4>
+      <%= @group.member_names %>
+    <% end %>
+
+    <% if @group.documents.length > 0 %>
+      <br />
+      <h4> Documents Uploaded </h4>
+      <% @group.documents.each do |doc| %>
+        <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
+      <% end %>
+    <% end %>
+
   </div>
 
 </div>

@@ -43,4 +43,21 @@ module Permissions
     permitted_categories ||= current_user.writable_categories
   end
 
+  # Check if the current user can revise a specific document
+  def can_revise_document(document)
+    # current user is an admin
+    return true if current_user.is_admin?
+
+    # current user is a member of the category's 
+    #   group for a document that is write protected
+    unless document.category.group.nil?
+      return true if document.is_writable? and 
+                    (document.category.group.members.include?(current_user) or
+                     document.category.group.leaders.include?(current_user))
+    end
+
+    # current user does not have permission to revise this document
+    return false
+  end
+
 end

@@ -9,9 +9,6 @@ class CategoriesController < ApplicationController
     #  making sure to hide private docs and categories
     @featured = Category.featured
     @latest_docs = Document.latest_docs
-
-    # Get all the categories our user can submit documents to
-    @permitted_categories = upload_permitted_categories
   end
 
   def manage
@@ -24,9 +21,6 @@ class CategoriesController < ApplicationController
     @category = Category.find params[:id]
     @subcategories = @category.children
     
-    # Get all the categories our user can submit documents to
-    @permitted_categories = upload_permitted_categories
-
     # Check if category is restricted to group members only
     if @category.is_private
       if !category_viewable?(@category)
@@ -63,6 +57,7 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to @category
     else
+      flash[:error] = "Unable to save category: #{@category.errors.full_messages.to_sentence}"
       redirect_to "/"
     end
   end

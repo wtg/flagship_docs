@@ -1,9 +1,6 @@
 class DocumentsController < ApplicationController
 
   def show 
-    # Get all the categories our user can submit documents to
-    @permitted_categories = upload_permitted_categories
-    
     @document = Document.find_by_id(params[:id])
     @revisions = @document.revisions
     @category = Category.find(@document.category_id)
@@ -11,9 +8,6 @@ class DocumentsController < ApplicationController
   end
 
   def download
-    # Get all the categories our user can submit documents to
-    @permitted_categories = upload_permitted_categories
-
     @document = Document.find_by_id(params[:id])
     if !@document.nil?
       # Get the most recent revision when downloading a document
@@ -29,29 +23,31 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    # Create our new document
-    @document = Document.new(document_params)
-    @document.user_id = current_user.id
+    if !revision_params.nil?
+      # Create our new document
+      @document = Document.new(document_params)
+      @document.user_id = current_user.id
 
-    category = Category.find_by_id(@document.category_id)
-    if !@document.save
-      flash[:error] = "Unable to upload document"
-    else
-      # Create the initial revision of the new document
-      @revision = Revision.new(file_name: revision_params.original_filename,
-          file_type: revision_params.content_type,
-          file_data: revision_params.read,
-          document_id: @document.id,
-          user_id: current_user.id,
-          position: 0
-        )
-      if !@revision.save
-        @document.destroy
-        flash[:error] = "Unable to upload revision"
+      category = Category.find_by_id(@document.category_id)
+      if !@document.save
+        flash[:error] = "Unable to upload document"
       else
-        # Extract text from file to provide search engine with searchable content
-        @revision.extract_text
-        @revision.save
+        # Create the initial revision of the new document
+        @revision = Revision.new(file_name: revision_params.original_filename,
+            file_type: revision_params.content_type,
+            file_data: revision_params.read,
+            document_id: @document.id,
+            user_id: current_user.id,
+            position: 0
+          )
+        if !@revision.save
+          @document.destroy
+          flash[:error] = "Unable to upload revision"
+        else
+          # Extract text from file to provide search engine with searchable content
+          @revision.extract_text
+          @revision.save
+        end
       end
     end
 
@@ -80,6 +76,6 @@ class DocumentsController < ApplicationController
     end
 
     def revision_params
-      params[:document][:revision][:file]
+      params[:document][:revision][:file] if !params[:document][:revision].blank?
     end
 end

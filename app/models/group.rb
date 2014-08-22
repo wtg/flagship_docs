@@ -6,28 +6,30 @@ class Group < ActiveRecord::Base
 
   def leaders
     memberships = Membership.where(group_id: id, level: Membership::LEVELS[:leader])
+    memberships.to_a.map! {|member| member.user}
   end
 
   def members
     regular_members = Membership.where(group_id: id, level: Membership::LEVELS[:regular])
+    regular_members.to_a.map! {|member| member.user}
   end
 
   def leader_names
     names = Array.new
-    leaders.each { |leader| names << leader.user.username }
+    leaders.each { |leader| names << leader.username }
     names.join(", ")
   end
 
   def member_names
     names = Array.new
-    members.each { |member| names << member.user.username }
+    members.each { |member| names << member.username }
     names.join(", ")
   end
 
   def category_names
     names = Array.new
     categories.each { |cat| names << cat.name }
-    categories.join(", ")
+    names.join(", ")
   end
 
   def documents 

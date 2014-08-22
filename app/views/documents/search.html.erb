@@ -5,9 +5,12 @@
     <li> Matched Documents </li>
   </ol>
   <div class="panel-body" style="padding: 0px">
-    <% @documents.each_hit_with_result do |hit, result| %>
-      <%= render partial: "documents/document_list_item.html.erb", locals: {doc: result} %>
-      <br />
+    <% if !@documents.nil? %>
+      <% @documents.each_hit_with_result do |hit, result| %>
+        <%= render partial: "documents/document_list_item.html.erb", 
+                   locals: {doc: result} %>
+        <br />
+      <% end %>
     <% end %>
   </div>
 </div>

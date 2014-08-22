@@ -17,7 +17,13 @@
       <% @categories.each do |cat| %>
       <tr>
         <td> <%= cat.name %> </td>
-        <td> <%= link_to cat.group.name, group_path(cat.group) %> </td>
+        <td> 
+          <% if !cat.group.nil? %>
+            <%= link_to cat.group.name, group_path(cat.group) %> 
+          <% else %>
+            None
+          <% end %>
+        </td>
         <td> 
           <% if cat.parent %>
             <%= link_to cat.parent.name, cat.parent %> 

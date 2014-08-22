@@ -2,7 +2,7 @@
   <%= form_tag search_documents_path, method: :post do %>
     <div class="input-group">
       <%= search_field_tag :query, nil, style: "width: 400px; margin-left: 25px",
-            :class => "form-control", :placeholder => "Search for documents and categories ..." %>
+            :class => "form-control", placeholder: "Search for documents and categories ..." %>
       <div class="input-group-btn">
         <%= submit_tag "search", :class => "btn btn-default" %>
       </div>
