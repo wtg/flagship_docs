@@ -1,31 +1,29 @@
-<%= form_for @category, url: category_path(@category), method: :patch do |f| %>
-  <div class="col-md-6">
-    <div class="row">
-      <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name, :class => "form-control"%>
-      </div>
-      <br />
-      <div class="form-group">
-        <%= f.label :description %>
-        <%= f.text_field :description, :class => "form-control" %>
-      </div>
-      <%= f.label :owning_group %>
-      <%= f.select :group_id, @groups, {include_blank: true} %>
-      <br />
-      <%= f.label :parent_id %>
-      <%= f.select :parent_id, @categories, {include_blank: true} %>
-      <br />
-      <%= f.label :is_private %>
-      <%= f.check_box :is_private %>
-      <br />
-      <%= f.label :is_writable %>
-      <%= f.check_box :is_writable %>
-      <br />
-      <%= f.label :is_featured %>
-      <%= f.check_box :is_featured %>
-      <br />
-      <%= f.submit %>
+<div class="col-md-6">
+  <div class="row">
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, :class => "form-control"%>
     </div>
+    <br />
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_field :description, :class => "form-control" %>
+    </div>
+    <%= f.label :owning_group %>
+    <%= f.select :group_id, @groups, {include_blank: true} %>
+    <br />
+    <%= f.label :parent_id %>
+    <%= f.select :parent_id, @categories, {include_blank: true} %>
+    <br />
+    <%= f.label :is_private %>
+    <%= f.check_box :is_private %>
+    <br />
+    <%= f.label :is_writable %>
+    <%= f.check_box :is_writable %>
+    <br />
+    <%= f.label :is_featured %>
+    <%= f.check_box :is_featured %>
+    <br />
+    <%= f.submit %>
   </div>
-<% end %>
+</div>

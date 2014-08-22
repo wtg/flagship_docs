@@ -1,11 +1,13 @@
-<div class= "unstyled_link">
-  <%= link_to doc do %>
-    <div class="document_listitem_hover">
-      <%= image_tag "icons/#{small_document_icon(doc.current_revision.extension_type)}" %>
-      <b> <%= "#{doc.title}" %> </b> <%= " - #{doc.description}" %>
-      <div class="pull-right">
-        <%= "Date: #{doc.current_revision.updated_at.to_date}" %>
+<% if can_view_document(doc) %> 
+  <div class= "unstyled_link">
+    <%= link_to doc do %>
+      <div class="document_listitem_hover">
+        <%= image_tag "icons/#{small_document_icon(doc.current_revision.extension_type)}" %>
+        <b> <%= "#{doc.title}" %> </b> <%= " - #{doc.description}" %>
+        <div class="pull-right">
+          <%= "Date: #{doc.current_revision.updated_at.to_date}" %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>

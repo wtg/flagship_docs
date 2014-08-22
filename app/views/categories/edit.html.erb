@@ -6,6 +6,8 @@
   </ol>
 
   <div class="panel-body">
-    <%= render partial: "form" %>
+  <%= form_for @category, url: category_path(@category), method: :patch do |f| %>
+      <%= render partial: "form", locals: {f: f} %>
+  <% end %>
   </div>
 </div>

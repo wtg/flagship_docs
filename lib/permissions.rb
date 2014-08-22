@@ -4,6 +4,10 @@ module Permissions
     @current_user = User.find_by_id(session[:user_id])
   end
 
+  # ====================
+  # Category Permissions
+  # ====================
+
   # Check if the current user can upload documents to the specified category
   def can_upload_documents(category)
     if !current_user.nil?
@@ -43,20 +47,54 @@ module Permissions
     permitted_categories ||= current_user.writable_categories
   end
 
+  # ====================
+  # Document Permissions
+  # ====================
+
+
   # Check if the current user can revise a specific document
   def can_revise_document(document)
+    # deny user if not logged in
+    return false if current_user.nil?
     # current user is an admin
     return true if current_user.is_admin?
-
-    # current user is a member of the category's 
+    # current user is a member of the category's
     #   group for a document that is write protected
     unless document.category.group.nil?
-      return true if document.is_writable? and 
+      return true if !document.is_writable? and 
+                     (document.category.group.members.include?(current_user) or
+                      document.category.group.leaders.include?(current_user))
+    end
+    return document.is_writable?
+  end
+
+  # Check if the current user can view a specific document
+  def can_view_document(document)
+    # deny access if not logged in
+    return false if current_user.nil?
+    # allow access if user is logged in
+    return true if current_user.is_admin?
+    # current user is a member of the category's
+    #   group for a document that is private
+    unless document.category.group.nil?
+      return true if document.is_private? and 
                     (document.category.group.members.include?(current_user) or
                      document.category.group.leaders.include?(current_user))
     end
+    return !document.is_private?
+  end
 
-    # current user does not have permission to revise this document
+  # Check if the current user can edit a specific document
+  def can_edit_document(document)
+    # deny user if not logged in
+    return false if current_user.nil?
+    # current user is an admin
+    return true if current_user.is_admin?
+    # current user is a member of the category's group
+    unless document.category.group.nil?
+      return true if document.category.group.members.include?(current_user) or 
+                     document.category.group.leaders.include?(current_user)
+    end
     return false
   end
 

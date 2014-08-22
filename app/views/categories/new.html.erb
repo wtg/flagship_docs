@@ -5,6 +5,8 @@
   </ol>
 
   <div class="panel-body">
-    <%= render partial: "form" %>
+    <%= form_for @category do |f| %>
+      <%= render partial: "form", locals: {f: f} %>
+    <% end %>
   </div>
 </div>
