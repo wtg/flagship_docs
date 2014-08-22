@@ -2,7 +2,9 @@
   <ol class="breadcrumb">
     <li><%= link_to "Home", categories_path %></li>
     <li class="active"><%= @group.name.capitalize %></li>
-    <div class="pull-right"><%= link_to "Edit", edit_group_path(@group), :class => "btn btn-primary btn-xs" %></div>
+    <% if admin? %>
+      <div class="pull-right"><%= link_to "Edit", edit_group_path(@group), :class => "btn btn-primary btn-xs" %></div>
+    <% end %>
   </ol>
 
   <div class="panel-body">

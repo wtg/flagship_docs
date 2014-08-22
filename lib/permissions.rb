@@ -1,7 +1,15 @@
 module Permissions
+  # ====================
+  # Permission Helpers 
+  # ====================
+
   # Return the current logged in user
   def current_user
     @current_user = User.find_by_id(session[:user_id])
+  end
+
+  def admin?
+    current_user.is_admin?
   end
 
   # ====================
@@ -70,10 +78,8 @@ module Permissions
 
   # Check if the current user can view a specific document
   def can_view_document(document)
-    # deny access if not logged in
-    return false if current_user.nil?
     # allow access if user is logged in
-    return true if current_user.is_admin?
+    return true if !current_user.nil? and current_user.is_admin?
     # current user is a member of the category's
     #   group for a document that is private
     unless document.category.group.nil?

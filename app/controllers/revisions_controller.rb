@@ -1,4 +1,4 @@
-class RevisionsController < ApplicationController
+class RevisionsController < ApplicationController 
 
   def download
     # Get the request document revision

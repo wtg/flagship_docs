@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
 
+  before_filter :admin?, except: [:index, :show]
+
   # GET /categories
   def index
     # Get all viewable categories

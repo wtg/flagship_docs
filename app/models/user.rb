@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-  has_many :documents
-  has_many :revisions
+  has_many :documents, dependent: :destroy
+  has_many :revisions, dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :groups, through: :memberships
 

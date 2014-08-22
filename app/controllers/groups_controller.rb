@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
 
+  before_filter :admin?, except: [:show]
+
   def index
     @groups = Group.all
   end

@@ -2,9 +2,15 @@ class DocumentsController < ApplicationController
 
   def show 
     @document = Document.find_by_id(params[:id])
-    @revisions = @document.revisions
-    @category = Category.find(@document.category_id)
-    @children_categories = @category.children
+
+    if can_view_document(@document)
+      @revisions = @document.revisions
+      @category = Category.find(@document.category_id)
+      @children_categories = @category.children
+    else
+      flash[:error] = "You do not have permission to view this document."
+      redirect_to "/"
+    end
   end
 
   def download
