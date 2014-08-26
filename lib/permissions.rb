@@ -8,8 +8,9 @@ module Permissions
     @current_user = User.find_by_id(session[:user_id])
   end
 
+  # Check if the current logged in user is an admin
   def admin?
-    current_user.is_admin?
+    current_user.is_admin? if !current_user.nil?
   end
 
   # ====================

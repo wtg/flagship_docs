@@ -3,8 +3,7 @@
 
 <!-- Category list -->
 <ul style="list-style-type: none; padding-left: 15px;" class="categories_nav" >
-  <% categories.each do |root| %>
-    <% position = 0 %>
+  <% categories.each_with_index do |root, position| %>
     <!-- Show root categories -->
     <li style="display:block-inline" value="root" class="order-<%=position%>">
       <% if root.descendants.length > 0 %>
@@ -25,6 +24,5 @@
       </li>
     <% end %>
     <br />
-    <% position += 1 %>
   <% end %>
 </ul>

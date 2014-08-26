@@ -12,6 +12,10 @@
     <br />
     <%= "Download count: #{@document.total_downloads}" %>
     <br />
+    <% if can_edit_document(@document) %>
+      <br />
+      <%= render partial: "edit_document" %> 
+    <% end %>
   </div>
   <div class="col-md-7">
     <div class="panel panel-default">

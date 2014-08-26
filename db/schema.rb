@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140713005035) do
     t.boolean  "is_writable", default: false
     t.integer  "parent_id"
     t.integer  "group_id"
-    t.boolean  "is_featured"
+    t.boolean  "is_featured", default: false
   end
 
   create_table "documents", force: true do |t|

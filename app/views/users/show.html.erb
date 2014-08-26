@@ -20,7 +20,7 @@
     <br />
     <h4> Documents Uploaded </h4>
       <% @user.documents.each do |doc| %>
-        <%= link_to "#{doc.title}, doc" %>
+        <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
         <br />
       <% end %>
   </div>

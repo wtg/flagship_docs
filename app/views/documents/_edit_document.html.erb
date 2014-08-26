@@ -1,44 +1,42 @@
-<!-- Document upload button -->
-<div class="upload_button_container">
-  <a class="upload_button" href="" data-toggle="modal" data-target="#documentModal">
-    <span class="upload_button_text">
-      Upload
-    </span>
-    <i class="fa fa-file-o fa-lg"></i>
-  </a>
-  <hr />
+<!-- Document edit button -->
+<div>
+  <div style="float:left; padding-right: 15px">
+    <%= link_to "Edit Document", "", {:class => "btn btn-default btn-xs", "data-toggle" => "modal", "data-target" => "#editDocModal"} %>
+  </div>
+  <div style="float:left">
+    <%= button_to "Delete", document_path(@document), method: :delete, confirm: "Are you sure you want to delete this document?", :class => "btn btn-danger btn-xs" %>
+  </div>
 </div>
 
 <!-- Document upload modal -->
-<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="documentModal" aria-hidden="true">
+<div class="modal fade" id="editDocModal" tabindex="-1" role="dialog" aria-labelledby="editDocModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="documentModal">Document Upload</h4>
+        <h4 class="modal-title" id="editDocModal"> Edit Document </h4>
       </div>
       <!-- Check if a user is logged in -->
       <% if !current_user.nil? %>
         <!-- Check if user has permissions to upload -->
         <% if can_upload_documents(@category) %>
-          <%= form_for :document, html: { multipart: true }, url: documents_path, method: :post do |f| %>
-            <%= render partial: "documents/form", locals: {f: f, include_revision: true} %>
+          <%= form_for :document, html: { multipart: true }, url: document_path(@document), method: :patch do |f| %>
+            <%= render partial: "documents/form", locals: {f: f, include_revision: false, document: @document} %>
           <% end %>
         <% else %>
           <div class="panel-heading">
-            Sorry, you do not have permission to upload documents
-            to this category.
+            Sorry, you do not have permission to edit this document.
           </div>
         <% end %>
       <% elsif current_user.nil? %>
         <div class="panel-heading">
           Please
           <%= link_to "sign in", "/auth/cas" %>
-          to upload documents!
+          to upload and edit documents!
         </div>
       <% elsif @permitted_categories.nil? %>
         <div class="panel-heading">
-          You do not have permission to upload any documents.
+          You do not have permission to edit this document.
         </div>
       <% else %>
         <div class="panel-heaing">

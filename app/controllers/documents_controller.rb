@@ -13,6 +13,17 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def search
+    # Use Sunspot Solr to search for documents based on the search query
+    begin
+      @documents = Document.search do
+        fulltext params[:query], highlight: true
+      end
+    rescue
+      @documents ||= nil
+    end
+  end
+
   def download
     @document = Document.find_by_id(params[:id])
     if !@document.nil?
@@ -64,21 +75,34 @@ class DocumentsController < ApplicationController
     end
   end
 
-  def search
-    # Use Sunspot Solr to search for documents based on the search query
-    begin
-      @documents = Document.search do
-        fulltext params[:query], highlight: true
-      end
-    rescue
-      @documents ||= nil
+  def update
+    @document = Document.find(params[:id])
+    # Check if the current user is allowed to edit this document
+    if !can_edit_document(@document)
+      flash[:error] = "You are not allowed to edit this document."
+      redirect_to "/"
     end
+    # Check if document attributes have successfully saved
+    if @document.update_attributes(document_params)
+      flash[:success] = "Document updated!"
+      redirect_to @document
+    else
+      flash[:error] = "Document failed to update: #{@document.errors.full_messages.to_sentence}" 
+      redirect_to @document
+    end
+  end
+
+  def destroy 
+    @document = Document.find(params[:id])
+    @category = @document.category
+    @document.destroy
+    redirect_to @category
   end
 
   private
     def document_params
       params.require(:document).permit(:title, :description, 
-        :category_id, :is_writeable, :is_private)
+        :category_id, :is_writable, :is_private)
     end
 
     def revision_params

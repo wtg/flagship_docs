@@ -1,11 +1,53 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# --------------------------------------
+# Root Category : Student Senate
+# --------------------------------------
+student_senate:
+  name: Student Senate
+  description: Rensselaer Student Senate
+  group: student_senate
+  is_featured: true
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+# Student Senate Sub-Categories
+<% 10.times do |n| %>
+<%= n.ordinalize %>_student_senate:
+  name: <%= "#{n.ordinalize} Student Senate" %> 
+  description: <%= "#{n.ordinalize} Rensselaer Student Senate" %>
+  group: student_senate
+  parent: student_senate
+
+wtg:
+  name: Web Technologies group
+  description: RPI Web Technologies group
+  group: web_tech
+  parent: student_senate
+
+concerto:
+  name: Concerto Digital Signage
+  description: RPI Concerto Digital Signage
+  group: web_tech
+  parent: wtg
+  is_private: true
+  is_writable: false
+
+# --------------------------------------
+# Root Category : RPI TV
+# --------------------------------------
+rpi_tv:
+  name: RPI TV
+  description: RPI TV
+  group: rpi_tv
+
+# RPI TV Sub-Categories
+rpi_tv_meeting_minutes:
+  name: Meeting Minutes
+  description: Minutes from our general body meetings
+  group: rpi_tv
+  parent: rpi_tv
+
+rpi_tv_executive_committee:
+  name: Executive Committee Documents
+  description: RPI TV Executive Committee Documents
+  group: rpi_tv
+  is_private: true
+  is_writable: false
+  parent: rpi_tv
