@@ -3,22 +3,23 @@
 
 <!-- Category list -->
 <ul style="list-style-type: none; padding-left: 15px;" class="categories_nav" >
-  <% categories.each_with_index do |root, position| %>
+  <% categories.each_with_index do |root, root_num| %>
     <!-- Show root categories -->
-    <li style="display:block-inline" value="root" class="order-<%=position%>">
+    <li style="display:block-inline" value="root">
       <% if root.descendants.length > 0 %>
-        <i class="fa fa-minus-square-o button-id-<%=root.id%>" onclick="toggleDescendants(<%= root.id %>, <%= position %>)"></i>
+        <i class="fa fa-plus-square-o" onclick="toggleDescendants(<%= root_num %>, 0, 0)"></i>
       <% else %>
-        <i class="fa fa-square-o button-id-<%=root.id%>"></i>
+        <i class="fa fa-square-o"></i>
       <% end %>
       <b> <%= link_to root.name, category_path(root, view_style: "grid") %> </b>
     </li>
     <!-- Subcategories are intially hidden in a tree menu -->
-    <% root.descendants.each do |cat| %>
-      <li class="parent-id-<%=cat.parent_id%> order-<%=position%>" style="padding-left:<%= 20 * cat.depth %>px; display: block" value="shown"> 
+    <% root.descendants.each_with_index do |cat, cat_num| %>
+      <li style="padding-left:<%= 20 * cat.depth %>px; display: none", value="hidden", 
+          data-root="<%= root_num %>", data-cat="<%= cat_num %>", data-depth="<%= cat.depth %>" > 
         <!-- only show the subcategories toggle button if this subcategory has descendants -->
         <% if cat.descendants.length > 0 %>
-          <i class="fa fa-minus-square-o button-id-<%=cat.id%>" onclick="toggleDescendants(<%= cat.id %>, <%= position %>)"></i>
+          <i class="fa fa-plus-square-o" onclick="toggleDescendants(<%= root_num %>, <%= cat_num %>, <%= cat.depth %>)"></i>
         <% end %>
         <%= link_to cat.name, category_path(cat, view_style: "grid") %>
       </li>

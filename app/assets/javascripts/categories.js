@@ -1,48 +1,35 @@
-// Show all descendant categories of the clicked parent category
-function toggleDescendants(parent_id, position) {
-	// Target class for the subcategories and their states (hidden or shown)
-	target_class = '.parent-id-' + parent_id.toString();
-	target_class_state = $(target_class).attr("value");
-	// Class for the tree menu's collapse/show subcategories button 
-	button_class = "button-id-" + parent_id.toString();
+/* Recursively hide or show a category and it's sub categories */
+function toggleDescendants(root_num, cat_num, depth) {
+	// Get all categories under the root
+	categories = $("li[data-root='" + root_num.toString() + "']")
+		.filter(function() {
+			// Filter categories only selecting ones 
+			//  at the next depth level and 
+			//   with a greater or equal category level
+			return $(this).data("cat") >= cat_num 
+					&& $(this).data("depth") == depth + 1
+		}).each(function() {
 
-	if (target_class_state == "hidden") {
-		// Show the hidden subcategories
-		$(target_class).css("display", "block");
-		$(target_class).attr("value", "shown");
-		// Change the orientation of the collapsible menu button
-		$("." + button_class).attr("class", "fa fa-minus-square-o " + button_class);
-	}
-	else if (target_class_state == "shown") {
-		// Hide the subcategories
-		$(target_class).css("display", "none");
-		$(target_class).attr("value", "hidden");
-		// Change the orientation of the collapsible menu button
-		$("." + button_class).attr("class", "fa fa-plus-square-o " + button_class);
-		// Recursively hide any remaining categories deeper in the tree
-		hideDescendantTree(parent_id + 1, position);
-	}
-}
+			// Show element if hidden
+			if ($(this).attr("value") == "hidden") {
+				$(this).css("display", "block");
+				$(this).attr("value", "shown");
+			}
+			// Hide element if shown
+			else if ($(this).attr("value") == "shown") {
+				$(this).css("display", "none");
+				$(this).attr("value", "hidden");
 
-function hideDescendantTree(parent_id, position) {
-	// Recursively hide any sub categories in the tree
-	target_class = '.parent-id-' + parent_id.toString() + ".order-" + position.toString();
-	target_class_state = $(target_class).attr("value");
-	button_class = "button-id-" + parent_id.toString();
-
-	// Check if the the target class exists
-	if ($(target_class).length) {
-		if ($(target_class_state == "shown")) {
-			// Hide the category
-			$(target_class).css("display", "none");
-			$(target_class).attr("value", "hidden");
-			// Change the toggle button
-			$("." + button_class).attr("class", "fa fa-plus-square-o " + button_class);
-			// Recurse
-			hideDescendantTree(parent_id + 1, position);
-		}
-	} else {
-		// We've reached the end of the tree, return
-		return;
-	}
-}
+				// Hide deeper levels of subcategories beyond the current depth + 1
+				$("li[data-root='" + root_num.toString() + "']")
+					.filter(function() {
+						return $(this).data("cat") > cat_num
+								&& $(this).data("depth") > depth + 1
+					}).each(function() {
+						// Hide the subcategory element
+						$(this).css("display", "none");
+						$(this).attr("value", "hidden");
+					});
+			}
+	});
+}	
