@@ -32,7 +32,7 @@ class Revision < ActiveRecord::Base
     tempfile.unlink
 
     # Get rid of utf-8 control characters 
-    contents.gsub!(/\p{Cc}/, "") if !contents.blank?
+    contents.gsub!(/\P{ASCII}/, '') if !contents.blank?
     # Redundant line breaks are useless to us
     self.search_text = contents.gsub(/(\r?\n)+/,"\n") if !contents.blank?
   end
