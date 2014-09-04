@@ -16,6 +16,14 @@ function showCategory(cat_class) {
   $(cat_class).attr("value", "shown");
 }
 
+function toggleCategoryIcon(root_class) {
+  if ($(root_class + " > i").attr("class") == "fa fa-caret-right") {
+    $(root_class + " > i").attr("class", "fa fa-caret-down");
+  } else {
+    $(root_class + " > i").attr("class", "fa fa-caret-right");
+  }
+}
+
 // Get all subcategories belonging to the toggled category 
 function getSubCategories(category_id) {
   url = "/categories/" + category_id.toString() + "/subcategories";
@@ -23,6 +31,8 @@ function getSubCategories(category_id) {
   $.get(url, function(subcategories) {
     var root_class = '.cat-' + category_id.toString(); 
     var id, cat, cat_class, depth = null;
+
+    toggleCategoryIcon(root_class);
 
     for(var i = 0; i < subcategories.length; i++) {
       id = subcategories[i].id.toString();
@@ -33,7 +43,7 @@ function getSubCategories(category_id) {
       if (!$(cat_class).length) {
         $(root_class).append(
           "<li value='shown' style='display:block-inline; margin-left:"+depth+"px;' class='cat-"+id+"'> \
-            <i class='fa fa-plus-square-o' onclick='getSubCategories("+id+")'></i> \
+            <i class='fa fa-caret-right' onclick='getSubCategories("+id+")'></i> \
             <a href='/categories/"+id+"'>"+subcategories[i].name+"</a> \
           </li>"
         );
