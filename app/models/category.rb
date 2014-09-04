@@ -68,4 +68,9 @@ class Category < ActiveRecord::Base
     featured_docs
   end
 
+  # Define only the json attributes we need for the frontend
+  def subcategories_json
+    {id: id, name: name, depth: depth}
+  end
+
 end

@@ -13,10 +13,6 @@ class CategoriesController < ApplicationController
     @latest_docs = Document.latest_docs
   end
 
-  def manage
-    @categories = Category.all
-  end
-
   # GET /categories/:id
   def show
     # Get category and its subcategories
@@ -83,10 +79,19 @@ class CategoriesController < ApplicationController
     redirect_to manage_categories_path
   end
 
+  def manage
+    @categories = Category.all
+  end
+
+  def subcategories
+    @subcategories = Category.find(params[:id]).children.map{ |c| c.subcategories_json}
+
+    render json: @subcategories 
+  end
+
   private
     def category_params
       params.require(:category).permit(:name, :description,
         :group_id, :parent_id, :is_featured, :is_private, :is_writable)
     end
-
 end
